@@ -218,3 +218,5 @@ pip-log.txt
 obj/
 bin/
 .suo
+.*
+!.gitignore
