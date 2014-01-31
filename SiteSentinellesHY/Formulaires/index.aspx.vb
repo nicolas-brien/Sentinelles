@@ -79,7 +79,7 @@ Public Class index
         If listeRevuesDePresse.Count > 0 Then
             listeRevuesDePresse.RemoveAt(0)
         End If
-
+        'Mathieu
         Return listeRevuesDePresse.AsQueryable
     End Function
 #End Region
