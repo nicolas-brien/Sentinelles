@@ -6,175 +6,7 @@ SiteSentinellesHY
 </name>
 </assembly>
 <members>
-<member name="F:SiteSentinellesHY.FRMliensutiles.liensUtiles">
-	<summary>
-Contrôle liensUtiles.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY._default.form1">
-	<summary>
-Contrôle form1.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.divFormulaire">
-	<summary>
-Contrôle divFormulaire.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.lblNom">
-	<summary>
-Contrôle lblNom.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.tbnom">
-	<summary>
-Contrôle tbnom.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.lblNoTelephone">
-	<summary>
-Contrôle lblNoTelephone.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.tbnoTelephone">
-	<summary>
-Contrôle tbnoTelephone.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.lblCourriel">
-	<summary>
-Contrôle lblCourriel.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.tbcourriel">
-	<summary>
-Contrôle tbcourriel.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.lblAPropos">
-	<summary>
-Contrôle lblAPropos.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.tbaPropos">
-	<summary>
-Contrôle tbaPropos.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.lblCharRestant">
-	<summary>
-Contrôle lblCharRestant.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.texteCharRestant">
-	<summary>
-Contrôle texteCharRestant.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.btnEnvoi">
-	<summary>
-Contrôle btnEnvoi.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.lblErreurSentinelle">
-	<summary>
-Contrôle lblErreurSentinelle.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMevenements.dataPagerHaut">
-	<summary>
-Contrôle dataPagerHaut.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMevenements.lvEvenements">
-	<summary>
-Contrôle lvEvenements.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMevenements.dataPagerBas">
-	<summary>
-Contrôle dataPagerBas.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMnouvelles.dataPagerHaut">
-	<summary>
-Contrôle dataPagerHaut.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMnouvelles.lvNouvelles">
-	<summary>
-Contrôle lvNouvelles.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMnouvelles.dataPagerBas">
-	<summary>
-Contrôle dataPagerBas.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMmaltraitance.textMaltraitance">
+<member name="F:SiteSentinellesHY.FRMmaltraitance.textMaltraitance">
 	<summary>
 Contrôle textMaltraitance.
 </summary>
@@ -766,127 +598,14 @@ Contrôle LnkBtnZoneSentinelle_footer.
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
-</member><member name="F:SiteSentinellesHY.FRMrevuedepresse.dataPagerHaut">
+</member><member name="F:SiteSentinellesHY.FRMliensutiles.liensUtiles">
 	<summary>
-Contrôle dataPagerHaut.
+Contrôle liensUtiles.
 </summary>
 	<remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
-</member><member name="F:SiteSentinellesHY.FRMrevuedepresse.lvRevueDePresse">
-	<summary>
-Contrôle lvRevueDePresse.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMrevuedepresse.dataPagerBas">
-	<summary>
-Contrôle dataPagerBas.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.index.lblPenseeAccueil">
-	<summary>
-Contrôle lblPenseeAccueil.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.index.lvPremiereNouvellesAccueil">
-	<summary>
-Contrôle lvPremiereNouvellesAccueil.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.index.lvNouvellesAccueil">
-	<summary>
-Contrôle lvNouvellesAccueil.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.index.lvPremierEvenementAccueil">
-	<summary>
-Contrôle lvPremierEvenementAccueil.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.index.lvEvenementAccueil">
-	<summary>
-Contrôle lvEvenementAccueil.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.index.lvPremiereRDPAccueil">
-	<summary>
-Contrôle lvPremiereRDPAccueil.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.index.lvRDPAccueil">
-	<summary>
-Contrôle lvRDPAccueil.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMhistorique.temoignageHistorique">
-	<summary>
-Contrôle temoignageHistorique.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="F:SiteSentinellesHY.FRMhistorique.texteHistorique">
-	<summary>
-Contrôle texteHistorique.
-</summary>
-	<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member><member name="P:SiteSentinellesHY.My.MyWebExtension.Computer">
-	<summary>
- Retourne les informations relatives à l'ordinateur hôte.
- </summary>
-</member><member name="P:SiteSentinellesHY.My.MyWebExtension.User">
-	<summary>
- Retourne des informations pour l'utilisateur Web actuel.
- </summary>
-</member><member name="P:SiteSentinellesHY.My.MyWebExtension.Request">
-	<summary>
- Retourne l'objet Request.
- </summary>
-</member><member name="P:SiteSentinellesHY.My.MyWebExtension.Response">
-	<summary>
- Retourne l'objet Response.
- </summary>
-</member><member name="P:SiteSentinellesHY.My.MyWebExtension.Log">
-	<summary>
- Retourne l'objet de journal Asp.
- </summary>
-</member><member name="T:SiteSentinellesHY.My.MyWebExtension">
-	<summary>
- Module utilisé pour définir les propriétés qui sont disponibles dans My Namespace pour les projets Web.
- </summary>
-	<remarks></remarks>
 </member><member name="F:SiteSentinellesHY.FRMPanneauDeControle.Head1">
 	<summary>
 Contrôle Head1.
@@ -1351,6 +1070,279 @@ Contrôle LnkBtnZoneSentinelle_footer.
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
+</member><member name="F:SiteSentinellesHY.FRMrevuedepresse.dataPagerHaut">
+	<summary>
+Contrôle dataPagerHaut.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMrevuedepresse.lvRevueDePresse">
+	<summary>
+Contrôle lvRevueDePresse.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMrevuedepresse.dataPagerBas">
+	<summary>
+Contrôle dataPagerBas.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="P:SiteSentinellesHY.My.MyWebExtension.Computer">
+	<summary>
+ Retourne les informations relatives à l'ordinateur hôte.
+ </summary>
+</member><member name="P:SiteSentinellesHY.My.MyWebExtension.User">
+	<summary>
+ Retourne des informations pour l'utilisateur Web actuel.
+ </summary>
+</member><member name="P:SiteSentinellesHY.My.MyWebExtension.Request">
+	<summary>
+ Retourne l'objet Request.
+ </summary>
+</member><member name="P:SiteSentinellesHY.My.MyWebExtension.Response">
+	<summary>
+ Retourne l'objet Response.
+ </summary>
+</member><member name="P:SiteSentinellesHY.My.MyWebExtension.Log">
+	<summary>
+ Retourne l'objet de journal Asp.
+ </summary>
+</member><member name="T:SiteSentinellesHY.My.MyWebExtension">
+	<summary>
+ Module utilisé pour définir les propriétés qui sont disponibles dans My Namespace pour les projets Web.
+ </summary>
+	<remarks></remarks>
+</member><member name="F:SiteSentinellesHY.FRMhistorique.temoignageHistorique">
+	<summary>
+Contrôle temoignageHistorique.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMhistorique.texteHistorique">
+	<summary>
+Contrôle texteHistorique.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.index.lblPenseeAccueil">
+	<summary>
+Contrôle lblPenseeAccueil.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.index.lvPremiereNouvellesAccueil">
+	<summary>
+Contrôle lvPremiereNouvellesAccueil.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.index.lvNouvellesAccueil">
+	<summary>
+Contrôle lvNouvellesAccueil.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.index.lvPremierEvenementAccueil">
+	<summary>
+Contrôle lvPremierEvenementAccueil.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.index.lvEvenementAccueil">
+	<summary>
+Contrôle lvEvenementAccueil.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.index.lvPremiereRDPAccueil">
+	<summary>
+Contrôle lvPremiereRDPAccueil.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.index.lvRDPAccueil">
+	<summary>
+Contrôle lvRDPAccueil.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.divFormulaire">
+	<summary>
+Contrôle divFormulaire.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.lblNom">
+	<summary>
+Contrôle lblNom.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.tbnom">
+	<summary>
+Contrôle tbnom.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.lblNoTelephone">
+	<summary>
+Contrôle lblNoTelephone.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.tbnoTelephone">
+	<summary>
+Contrôle tbnoTelephone.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.lblCourriel">
+	<summary>
+Contrôle lblCourriel.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.tbcourriel">
+	<summary>
+Contrôle tbcourriel.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.lblAPropos">
+	<summary>
+Contrôle lblAPropos.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.tbaPropos">
+	<summary>
+Contrôle tbaPropos.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.lblCharRestant">
+	<summary>
+Contrôle lblCharRestant.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.texteCharRestant">
+	<summary>
+Contrôle texteCharRestant.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.btnEnvoi">
+	<summary>
+Contrôle btnEnvoi.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMdevenirsentinelle.lblErreurSentinelle">
+	<summary>
+Contrôle lblErreurSentinelle.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMevenements.dataPagerHaut">
+	<summary>
+Contrôle dataPagerHaut.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMevenements.lvEvenements">
+	<summary>
+Contrôle lvEvenements.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMevenements.dataPagerBas">
+	<summary>
+Contrôle dataPagerBas.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMnouvelles.dataPagerHaut">
+	<summary>
+Contrôle dataPagerHaut.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMnouvelles.lvNouvelles">
+	<summary>
+Contrôle lvNouvelles.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMnouvelles.dataPagerBas">
+	<summary>
+Contrôle dataPagerBas.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
 </member><member name="F:SiteSentinellesHY.Site.Head1">
 	<summary>
 Contrôle Head1.
@@ -1754,6 +1746,14 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 </member><member name="F:SiteSentinellesHY.Site.btnClose">
 	<summary>
 Contrôle btnClose.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY._default.form1">
+	<summary>
+Contrôle form1.
 </summary>
 	<remarks>
 Champ généré automatiquement.
