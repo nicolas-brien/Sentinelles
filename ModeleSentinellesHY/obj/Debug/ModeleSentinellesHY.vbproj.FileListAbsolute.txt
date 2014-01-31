@@ -100,3 +100,4 @@ C:\Users\Mick\Desktop\SentinellesHY\ModeleSentinellesHY\obj\Debug\ModeleSentinel
 C:\Users\Mick\Desktop\SentinellesHY\ModeleSentinellesHY\obj\Debug\ModeleSentinellesHY.dll
 C:\Users\Mick\Desktop\SentinellesHY\ModeleSentinellesHY\obj\Debug\ModeleSentinellesHY.xml
 C:\Users\Mick\Desktop\SentinellesHY\ModeleSentinellesHY\obj\Debug\ModeleSentinellesHY.pdb
+C:\Users\Mick\Desktop\SentinellesHY\ModeleSentinellesHY\obj\Debug\ModeleSentinellesHY.vbprojResolveAssemblyReference.cache

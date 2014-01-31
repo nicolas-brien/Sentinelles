@@ -486,6 +486,22 @@ Contrôle Label6.
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
+</member><member name="F:SiteSentinellesHY.FRMForum.imgbtnRetour">
+	<summary>
+Contrôle imgbtnRetour.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member><member name="F:SiteSentinellesHY.FRMForum.lnkBtnRetour">
+	<summary>
+Contrôle lnkBtnRetour.
+</summary>
+	<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
 </member><member name="F:SiteSentinellesHY.FRMForum.lviewConsulterPublication">
 	<summary>
 Contrôle lviewConsulterPublication.

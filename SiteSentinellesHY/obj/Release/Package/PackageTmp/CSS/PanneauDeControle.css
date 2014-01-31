@@ -86,6 +86,9 @@
     max-width: 800px;
     height: 200px;
 }
+.SelectedItemTemplate {
+    background-color:skyblue;
+}
 /*-------------------------------------Message ----------------------------------*/
 #div_titreMessage
 {

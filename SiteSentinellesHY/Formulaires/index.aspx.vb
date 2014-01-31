@@ -33,7 +33,9 @@ Public Class index
         Dim listeNouvelles As New List(Of ModeleSentinellesHY.Nouvelle)
 
         listeNouvelles = (From nou In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By nou.dateRedaction Descending).Take(3).ToList
-        listeNouvelles.RemoveAt(0)
+        If listeNouvelles.Count > 0 Then
+            listeNouvelles.RemoveAt(0)
+        End If
 
         Return listeNouvelles.AsQueryable
     End Function
@@ -52,7 +54,9 @@ Public Class index
         Dim listeEvenements As New List(Of ModeleSentinellesHY.Événement)
 
         listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateRedaction Descending).Take(3).ToList
-        listeEvenements.RemoveAt(0)
+        If listeEvenements.Count > 0 Then
+            listeEvenements.RemoveAt(0)
+        End If
 
         Return listeEvenements.AsQueryable
     End Function
@@ -71,7 +75,9 @@ Public Class index
         Dim listeRevuesDePresse As New List(Of ModeleSentinellesHY.RevueDePresse)
 
         listeRevuesDePresse = (From rdp In ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).Take(3).ToList
-        listeRevuesDePresse.RemoveAt(0)
+        If listeRevuesDePresse.Count > 0 Then
+            listeRevuesDePresse.RemoveAt(0)
+        End If
 
         Return listeRevuesDePresse.AsQueryable
     End Function

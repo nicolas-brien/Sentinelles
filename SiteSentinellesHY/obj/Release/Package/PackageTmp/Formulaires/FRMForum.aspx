@@ -575,7 +575,7 @@
                                                 DataValueField="idStatut"
                                                 DataTextField="nomStatut"
                                                 ItemType="ModeleSentinellesHY.Statut"
-                                                SelectedValue="<%# BindItem.idStatut%>"
+                                                SelectedValue="<%# Eval("idStatut")%>"
                                                 SelectMethod="getStatutUtilisateur"
                                                 Enabled="false" />
                                             <asp:Label ID="lblType" CssClass="lblInfoUtilisateur" runat="server"><%= outils.obtenirLangue("Type d'utilisateur :|User type :")%></asp:Label>
