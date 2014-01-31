@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 **** 2014-01-31 10:20:33 ****
 Inner Exception Type: System.Reflection.TargetInvocationException
 Inner Exception: Une exception a été levée par la cible d'un appel.
@@ -111,6 +112,9 @@ Stack Trace:
 
 
 **** 2014-01-31 10:16:09 ****
+=======
+**** 2014-01-31 09:53:50 ****
+>>>>>>> master
 Inner Exception Type: System.Data.EntityException
 Inner Exception: Échec du fournisseur sous-jacent sur Open.
 Inner Source: System.Data.Entity
@@ -126,7 +130,11 @@ Inner Stack Trace:
    à System.Data.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[S](Expression expression)
    à System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
    à System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+<<<<<<< HEAD
    à SiteSentinellesHY.index.lblPenseeAccueil_Init(Object sender, EventArgs e) dans C:\Users\Mick\Desktop\SentinellesHY\SiteSentinellesHY\Formulaires\index.aspx.vb:ligne 14
+=======
+   à SiteSentinellesHY.index.lblPenseeAccueil_Init(Object sender, EventArgs e) dans C:\Users\Mathieu\Desktop\Sentinelles\SiteSentinellesHY\Formulaires\index.aspx.vb:ligne 14
+>>>>>>> master
    à System.Web.UI.Control.OnInit(EventArgs e)
    à System.Web.UI.Control.InitRecursive(Control namingContainer)
    à System.Web.UI.Control.InitRecursive(Control namingContainer)
@@ -149,6 +157,7 @@ Stack Trace:
    à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
 
+<<<<<<< HEAD
 **** 2014-01-31 09:26:05 ****
 Inner Exception Type: System.Reflection.TargetInvocationException
 Inner Exception: Une exception a été levée par la cible d'un appel.
@@ -190,6 +199,8 @@ Stack Trace:
    à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
 
+=======
+>>>>>>> master
 **** 2013-12-13 14:26:27 ****
 Inner Exception Type: System.Reflection.TargetInvocationException
 Inner Exception: Une exception a été levée par la cible d'un appel.
