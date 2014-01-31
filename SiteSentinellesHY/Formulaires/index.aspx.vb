@@ -33,9 +33,7 @@ Public Class index
         Dim listeNouvelles As New List(Of ModeleSentinellesHY.Nouvelle)
 
         listeNouvelles = (From nou In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By nou.dateRedaction Descending).Take(3).ToList
-        If listeNouvelles.Count > 0 Then
-            listeNouvelles.RemoveAt(0)
-        End If
+        listeNouvelles.RemoveAt(0)
 
         Return listeNouvelles.AsQueryable
     End Function
@@ -54,9 +52,7 @@ Public Class index
         Dim listeEvenements As New List(Of ModeleSentinellesHY.Événement)
 
         listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateRedaction Descending).Take(3).ToList
-        If listeEvenements.Count > 0 Then
-            listeEvenements.RemoveAt(0)
-        End If
+        listeEvenements.RemoveAt(0)
 
         Return listeEvenements.AsQueryable
     End Function
