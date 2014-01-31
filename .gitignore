@@ -221,3 +221,4 @@ bin/
 .*
 !.gitignore
 merge-all.sh
+ErrorLog.txt
