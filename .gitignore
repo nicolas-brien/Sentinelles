@@ -214,10 +214,10 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-.cache
+*.cache
 obj/
 bin/
-.suo
+*.suo
 .*
 !.gitignore
 merge-all.sh
