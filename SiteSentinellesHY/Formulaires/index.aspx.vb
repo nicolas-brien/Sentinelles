@@ -70,8 +70,11 @@ Public Class index
     Public Shared Function getRDP() As IQueryable(Of ModeleSentinellesHY.RevueDePresse)
         Dim listeRevuesDePresse As New List(Of ModeleSentinellesHY.RevueDePresse)
 
+
         listeRevuesDePresse = (From rdp In ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).Take(3).ToList
-        listeRevuesDePresse.RemoveAt(0)
+        If listeRevuesDePresse.Count > 0 Then
+            listeRevuesDePresse.RemoveAt(0)
+        End If
 
         Return listeRevuesDePresse.AsQueryable
     End Function
