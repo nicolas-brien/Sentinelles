@@ -1,3 +1,154 @@
+**** 2014-01-31 10:20:33 ****
+Inner Exception Type: System.Reflection.TargetInvocationException
+Inner Exception: Une exception a été levée par la cible d'un appel.
+Inner Source: mscorlib
+Inner Stack Trace: 
+   à System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   à System.Reflection.RuntimeMethodInfo.UnsafeInvokeInternal(Object obj, Object[] parameters, Object[] arguments)
+   à System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   à System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   à lambda_method(Closure , MethodInfo , Object , Object[] )
+   à System.Web.UI.WebControls.ModelDataSourceView.InvokeMethod(ModelDataSourceMethod method)
+   à System.Web.UI.WebControls.ModelDataSourceView.GetSelectMethodResult(DataSourceSelectArguments arguments)
+   à System.Web.UI.WebControls.ModelDataSourceView.ExecuteSelect(DataSourceSelectArguments arguments)
+   à System.Web.UI.DataSourceView.Select(DataSourceSelectArguments arguments, DataSourceViewSelectCallback callback)
+   à System.Web.UI.WebControls.DataBoundControl.PerformSelect()
+   à System.Web.UI.WebControls.ListView.PerformSelect()
+   à System.Web.UI.WebControls.BaseDataBoundControl.DataBind()
+   à SiteSentinellesHY.index.Page_Load(Object sender, EventArgs e) dans C:\Users\Mick\Desktop\SentinellesHY\SiteSentinellesHY\Formulaires\index.aspx.vb:ligne 7
+   à System.Web.UI.Control.OnLoad(EventArgs e)
+   à System.Web.UI.Control.LoadRecursive()
+   à System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Une exception de type 'System.Web.HttpUnhandledException' a été levée.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   à System.Web.UI.Page.HandleError(Exception e)
+   à System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   à System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   à System.Web.UI.Page.ProcessRequest()
+   à System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   à System.Web.UI.Page.ProcessRequest(HttpContext context)
+   à ASP.formulaires_index_aspx.ProcessRequest(HttpContext context)
+   à System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+
+**** 2014-01-31 10:19:17 ****
+Inner Exception Type: System.Data.EntityException
+Inner Exception: Échec du fournisseur sous-jacent sur Open.
+Inner Source: System.Data.Entity
+Inner Stack Trace: 
+   à System.Data.EntityClient.EntityConnection.OpenStoreConnectionIf(Boolean openCondition, DbConnection storeConnectionToOpen, DbConnection originalConnection, String exceptionCode, String attemptedOperation, Boolean& closeStoreConnectionOnFailure)
+   à System.Data.EntityClient.EntityConnection.Open()
+   à System.Data.Objects.ObjectContext.EnsureConnection()
+   à System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   à System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+   à System.Data.Entity.Internal.Linq.InternalQuery`1.GetEnumerator()
+   à System.Data.Entity.Infrastructure.DbQuery`1.System.Collections.Generic.IEnumerable<TResult>.GetEnumerator()
+   à System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   à System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   à SiteSentinellesHY.index.lblPenseeAccueil_Init(Object sender, EventArgs e) dans C:\Users\Mick\Desktop\SentinellesHY\SiteSentinellesHY\Formulaires\index.aspx.vb:ligne 14
+   à System.Web.UI.Control.OnInit(EventArgs e)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Une exception de type 'System.Web.HttpUnhandledException' a été levée.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   à System.Web.UI.Page.HandleError(Exception e)
+   à System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   à System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   à System.Web.UI.Page.ProcessRequest()
+   à System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   à System.Web.UI.Page.ProcessRequest(HttpContext context)
+   à ASP.formulaires_index_aspx.ProcessRequest(HttpContext context)
+   à System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+
+**** 2014-01-31 10:17:28 ****
+Inner Exception Type: System.Data.EntityException
+Inner Exception: Échec du fournisseur sous-jacent sur Open.
+Inner Source: System.Data.Entity
+Inner Stack Trace: 
+   à System.Data.EntityClient.EntityConnection.OpenStoreConnectionIf(Boolean openCondition, DbConnection storeConnectionToOpen, DbConnection originalConnection, String exceptionCode, String attemptedOperation, Boolean& closeStoreConnectionOnFailure)
+   à System.Data.EntityClient.EntityConnection.Open()
+   à System.Data.Objects.ObjectContext.EnsureConnection()
+   à System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   à System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+   à System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   à System.Data.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   à System.Data.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   à System.Data.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[S](Expression expression)
+   à System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   à System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   à SiteSentinellesHY.index.lblPenseeAccueil_Init(Object sender, EventArgs e) dans C:\Users\Mick\Desktop\SentinellesHY\SiteSentinellesHY\Formulaires\index.aspx.vb:ligne 14
+   à System.Web.UI.Control.OnInit(EventArgs e)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Une exception de type 'System.Web.HttpUnhandledException' a été levée.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   à System.Web.UI.Page.HandleError(Exception e)
+   à System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   à System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   à System.Web.UI.Page.ProcessRequest()
+   à System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   à System.Web.UI.Page.ProcessRequest(HttpContext context)
+   à ASP.formulaires_index_aspx.ProcessRequest(HttpContext context)
+   à System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+
+**** 2014-01-31 10:16:09 ****
+Inner Exception Type: System.Data.EntityException
+Inner Exception: Échec du fournisseur sous-jacent sur Open.
+Inner Source: System.Data.Entity
+Inner Stack Trace: 
+   à System.Data.EntityClient.EntityConnection.OpenStoreConnectionIf(Boolean openCondition, DbConnection storeConnectionToOpen, DbConnection originalConnection, String exceptionCode, String attemptedOperation, Boolean& closeStoreConnectionOnFailure)
+   à System.Data.EntityClient.EntityConnection.Open()
+   à System.Data.Objects.ObjectContext.EnsureConnection()
+   à System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   à System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+   à System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   à System.Data.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   à System.Data.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   à System.Data.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[S](Expression expression)
+   à System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   à System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   à SiteSentinellesHY.index.lblPenseeAccueil_Init(Object sender, EventArgs e) dans C:\Users\Mick\Desktop\SentinellesHY\SiteSentinellesHY\Formulaires\index.aspx.vb:ligne 14
+   à System.Web.UI.Control.OnInit(EventArgs e)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Une exception de type 'System.Web.HttpUnhandledException' a été levée.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   à System.Web.UI.Page.HandleError(Exception e)
+   à System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   à System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   à System.Web.UI.Page.ProcessRequest()
+   à System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   à System.Web.UI.Page.ProcessRequest(HttpContext context)
+   à ASP.formulaires_index_aspx.ProcessRequest(HttpContext context)
+   à System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+
 **** 2014-01-31 09:26:05 ****
 Inner Exception Type: System.Reflection.TargetInvocationException
 Inner Exception: Une exception a été levée par la cible d'un appel.

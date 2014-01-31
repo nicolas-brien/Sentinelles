@@ -559,7 +559,7 @@
                                     </div>
                                     <div class="pull-right">
                                         <div class="clear-both">
-                                            <asp:TextBox ID="tbNomUtilisateur" CssClass="tbInfoUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nomUtilisateur%>' Enabled="false" />
+                                            <asp:TextBox ID="tbNomUtilisateur" CssClass="tbInfoUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# Eval("nomUtilisateur")%>' Enabled="false" />
                                             <asp:Label ID="lblNomUtilisateur" CssClass="lblInfoUtilisateur" runat="server"><%= outils.obtenirLangue("Nom d'utilisateur :|Username :")%></asp:Label>
                                         </div>
                                         <div class="clear-both">
@@ -795,7 +795,7 @@
                             <asp:LinkButton ID="LnkBtnInfoMaltraitance_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalInfoMaltraitance" data-toggle="modal"><%= outils.obtenirLangue("Info Maltraitance|Elder Abuse Information")%></asp:LinkButton>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
+                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
                     </div>
                 </div>
