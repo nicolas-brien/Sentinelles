@@ -6,9 +6,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAxyLVR88TXUuxmVhPyb/kgAAAAAACAAAAAAAQZgAAAAEAACAAAADSO5StFcswGEmbOJWUjlKr5yyDN/stc8ZFsiVcPc91SgAAAAAOgAAAAAIAACAAAAAeKAkCKbVSKIj+u3gJ/Geb0E+7wFEZSdNUavwPaAVW6zAAAABtmp6aMzTQ9qUfsfC4PwYGz2yAn5U+1L5238UoGdamgdJPt6K+nzsEja8QAaH7m6FAAAAAMAjWCUtZAs36JCj1dCNqvuwXrgIPY+DlgH9jqfcBghJVqA8odjApj5X5PXv32tbBoLHHV9wrVjIn9f3izxuelg==</EncryptedPassword>
-    <LastUsedBuildConfiguration />
-    <LastUsedPlatform />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAALPbYyNn+3UKC7daAxt8GLwAAAAACAAAAAAAQZgAAAAEAACAAAADH+9S4dFwF0JdJwdyT8birR/G323iE5yolz7/HDcvh5AAAAAAOgAAAAAIAACAAAADgpcaaU9GfN/HosPoNCS1rkusP2oazaukmbSXUBmWLXDAAAABeezLaPbzFWj4T1EE+eGg2l16h7IcYbdqW6irJxVETwu3Uy4pzUNkbVkHgSKI9qMlAAAAAyLMh9DimmDa7oaoEvg2jcVG0Vekm56CJuFK+bjcj5f88HzUC8r6wxJOPozJnpq5JPoWQaKgJjU/mmPk1oiROCA==</EncryptedPassword>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AjaxControlToolkit.dll">

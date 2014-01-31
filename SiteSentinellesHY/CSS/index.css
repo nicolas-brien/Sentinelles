@@ -100,5 +100,3 @@ h4, h5
 
   /* blockquote hanging opening quote */
 blockquote:before {display: block; height: 0; content: "“"; margin-left: -.75em; font: italic 600%/1 Cochin,Georgia,"Times New Roman",serif; color: #005ab5;}
-
-/*ghis test*/

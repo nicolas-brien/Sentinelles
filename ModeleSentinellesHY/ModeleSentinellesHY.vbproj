@@ -168,9 +168,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>model_sentinelleshy.Designer.vb</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.config" />
     <None Include="model_sentinelleshy.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>model_sentinelleshy.edmx</DependentUpon>
@@ -197,6 +195,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="bin\Debug\ModeleSentinellesHY.dll" />
+    <Content Include="bin\Debug\ModeleSentinellesHY.pdb" />
     <Content Include="model_sentinelleshy.edmx.sql" />
   </ItemGroup>
   <ItemGroup>

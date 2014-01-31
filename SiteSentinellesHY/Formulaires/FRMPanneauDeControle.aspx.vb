@@ -1,4 +1,6 @@
-﻿Imports System.IO
+﻿'Rechercher #Region "Utilisateur" afin d'accéder directement au bon endroit dans le document
+
+Imports System.IO
 Imports System.Threading
 Imports System.Drawing
 Imports System.Drawing.Imaging
