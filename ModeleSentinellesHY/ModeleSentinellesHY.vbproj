@@ -195,8 +195,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="bin\Debug\ModeleSentinellesHY.dll" />
-    <Content Include="bin\Debug\ModeleSentinellesHY.pdb" />
     <Content Include="model_sentinelleshy.edmx.sql" />
   </ItemGroup>
   <ItemGroup>
