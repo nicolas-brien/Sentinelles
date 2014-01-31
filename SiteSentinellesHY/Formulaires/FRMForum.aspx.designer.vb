@@ -338,24 +338,6 @@ Partial Public Class FRMForum
     Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Contrôle imgbtnRetour.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents imgbtnRetour As Global.System.Web.UI.WebControls.ImageButton
-
-    '''<summary>
-    '''Contrôle lnkBtnRetour.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents lnkBtnRetour As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
     '''Contrôle lviewConsulterPublication.
     '''</summary>
     '''<remarks>
