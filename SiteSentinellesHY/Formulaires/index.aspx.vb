@@ -23,7 +23,7 @@ Public Class index
 
         listeNouvelles = (From nou In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By nou.dateRedaction Descending).ToList
 
-        If listeNouvelles.Count > 5 Then
+        If listeNouvelles.Count > 0 Then
             Return listeNouvelles.FirstOrDefault
         End If
         Return Nothing
@@ -43,8 +43,9 @@ Public Class index
     Public Shared Function getPremierEvenement() As ModeleSentinellesHY.Événement
         Dim listeEvenements As New List(Of ModeleSentinellesHY.Événement)
 
-        listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateRedaction Descending).ToList
-
+        If listeEvenements.Count > 6 Then
+            listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateRedaction Descending).ToList
+        End If
         Return listeEvenements.FirstOrDefault
     End Function
 
