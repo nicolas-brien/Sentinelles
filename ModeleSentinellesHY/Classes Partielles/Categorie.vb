@@ -5,6 +5,9 @@ Partial Public Class Categorie
     Public Sub New()
         nomCategorieFR = ""
 
+
+
+
         nomCategorieEN = ""
     End Sub
 
