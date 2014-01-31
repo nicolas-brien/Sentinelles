@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="model_sentinelleshy" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="model_sentinelleshyContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ÉvénementJeu" EntityType="model_sentinelleshy.Événement" />
+    <EntitySet Name="NouvelleJeu" EntityType="model_sentinelleshy.Nouvelle" />
+    <EntitySet Name="RevueDePresseJeu" EntityType="model_sentinelleshy.RevueDePresse" />
+    <EntitySet Name="StatutJeu" EntityType="model_sentinelleshy.Statut" />
+    <EntitySet Name="sysdiagrams" EntityType="model_sentinelleshy.sysdiagrams" />
+    <EntitySet Name="UtilisateurJeu" EntityType="model_sentinelleshy.Utilisateur" />
+    <AssociationSet Name="FK_UtilisateurÉvénement" Association="model_sentinelleshy.FK_UtilisateurÉvénement">
+      <End Role="UtilisateurJeu" EntitySet="UtilisateurJeu" />
+      <End Role="Événement" EntitySet="ÉvénementJeu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UtilisateurRevueDePresse" Association="model_sentinelleshy.FK_UtilisateurRevueDePresse">
+      <End Role="UtilisateurJeu" EntitySet="UtilisateurJeu" />
+      <End Role="RevueDePresse" EntitySet="RevueDePresseJeu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StatutUtilisateur" Association="model_sentinelleshy.FK_StatutUtilisateur">
+      <End Role="Statut" EntitySet="StatutJeu" />
+      <End Role="UtilisateurJeu" EntitySet="UtilisateurJeu" />
+    </AssociationSet>
+    <AssociationSet Name="UtilisateurNouvelle" Association="model_sentinelleshy.UtilisateurNouvelle">
+      <End Role="Utilisateur" EntitySet="UtilisateurJeu" />
+      <End Role="Nouvelle" EntitySet="NouvelleJeu" />
+    </AssociationSet>
+    <EntitySet Name="InfoGeneraleJeu" EntityType="model_sentinelleshy.InfoGenerale" />
+    <AssociationSet Name="FK_UtilisateurInfoGenerale" Association="model_sentinelleshy.FK_UtilisateurInfoGenerale">
+      <End Role="Utilisateur" EntitySet="UtilisateurJeu" />
+      <End Role="InfoGeneraleJeu" EntitySet="InfoGeneraleJeu" />
+    </AssociationSet>
+    <EntitySet Name="CategorieJeu" EntityType="model_sentinelleshy.Categorie" />
+    <EntitySet Name="PublicationJeu" EntityType="model_sentinelleshy.Publication" />
+    <AssociationSet Name="FK_CategoriePublication" Association="model_sentinelleshy.FK_CategoriePublication">
+      <End Role="Categorie" EntitySet="CategorieJeu" />
+      <End Role="PublicationJeu" EntitySet="PublicationJeu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PublicationPublication" Association="model_sentinelleshy.FK_PublicationPublication">
+      <End Role="PublicationJeu" EntitySet="PublicationJeu" />
+      <End Role="PublicationJeu1" EntitySet="PublicationJeu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UtilisateurPublication" Association="model_sentinelleshy.FK_UtilisateurPublication">
+      <End Role="Utilisateur" EntitySet="UtilisateurJeu" />
+      <End Role="PublicationJeu" EntitySet="PublicationJeu" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Événement">
+    <Key>
+      <PropertyRef Name="idEvenement" />
+    </Key>
+    <Property Type="Int32" Name="idEvenement" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="titreFR" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="contenuEN" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="titreEN" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="contenuFR" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="dateRedaction" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="dateEvenement" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="idUtilisateur" Nullable="true" />
+    <NavigationProperty Name="Utilisateur" Relationship="model_sentinelleshy.FK_UtilisateurÉvénement" FromRole="Événement" ToRole="UtilisateurJeu" />
+  </EntityType>
+  <EntityType Name="Nouvelle">
+    <Key>
+      <PropertyRef Name="idNouvelle" />
+    </Key>
+    <Property Type="Int32" Name="idNouvelle" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="titreFR" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="contenuFR" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="titreEN" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="contenuEN" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="dateRedaction" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="idUtilisateur" Nullable="true" />
+  </EntityType>
+  <EntityType Name="RevueDePresse">
+    <Key>
+      <PropertyRef Name="idRDP" />
+    </Key>
+    <Property Type="Int32" Name="idRDP" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="titreFR" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="contenuEN" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="titreEN" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="contenuFR" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="dateRedaction" Nullable="false" Precision="3" />
+    <Property Type="String" Name="urlDocument" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="idUtilisateur" Nullable="true" />
+    <NavigationProperty Name="Utilisateur" Relationship="model_sentinelleshy.FK_UtilisateurRevueDePresse" FromRole="RevueDePresse" ToRole="UtilisateurJeu" />
+  </EntityType>
+  <EntityType Name="Statut">
+    <Key>
+      <PropertyRef Name="idStatut" />
+    </Key>
+    <Property Type="String" Name="nomStatutFR" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="nomStatutEN" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="idStatut" Nullable="false" />
+    <NavigationProperty Name="Utilisateur" Relationship="model_sentinelleshy.FK_StatutUtilisateur" FromRole="Statut" ToRole="UtilisateurJeu" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="principal_id" Nullable="false" />
+    <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="version" />
+    <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Utilisateur">
+    <Key>
+      <PropertyRef Name="idUtilisateur" />
+    </Key>
+    <Property Type="String" Name="nomUtilisateur" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="motDePasse" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SelDeMer" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UrlAvatar" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="dateInscription" Nullable="false" Precision="3" />
+    <Property Type="String" Name="courriel" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="milieu" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="nom" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="prenom" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="sexe" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="noTelephone" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="idUtilisateur" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="idStatut" />
+    <NavigationProperty Name="Événement" Relationship="model_sentinelleshy.FK_UtilisateurÉvénement" FromRole="UtilisateurJeu" ToRole="Événement" />
+    <NavigationProperty Name="RevueDePresse" Relationship="model_sentinelleshy.FK_UtilisateurRevueDePresse" FromRole="UtilisateurJeu" ToRole="RevueDePresse" />
+    <NavigationProperty Name="Statut" Relationship="model_sentinelleshy.FK_StatutUtilisateur" FromRole="UtilisateurJeu" ToRole="Statut" />
+    <NavigationProperty Name="InfoGenerale" Relationship="model_sentinelleshy.FK_UtilisateurInfoGenerale" FromRole="Utilisateur" ToRole="InfoGeneraleJeu" />
+    <NavigationProperty Name="PublicationJeu" Relationship="model_sentinelleshy.FK_UtilisateurPublication" FromRole="Utilisateur" ToRole="PublicationJeu" />
+  </EntityType>
+  <Association Name="FK_UtilisateurÉvénement">
+    <End Type="model_sentinelleshy.Utilisateur" Role="UtilisateurJeu" Multiplicity="0..1" />
+    <End Type="model_sentinelleshy.Événement" Role="Événement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UtilisateurJeu">
+        <PropertyRef Name="idUtilisateur" />
+      </Principal>
+      <Dependent Role="Événement">
+        <PropertyRef Name="idUtilisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UtilisateurRevueDePresse">
+    <End Type="model_sentinelleshy.Utilisateur" Role="UtilisateurJeu" Multiplicity="0..1" />
+    <End Type="model_sentinelleshy.RevueDePresse" Role="RevueDePresse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UtilisateurJeu">
+        <PropertyRef Name="idUtilisateur" />
+      </Principal>
+      <Dependent Role="RevueDePresse">
+        <PropertyRef Name="idUtilisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StatutUtilisateur">
+    <End Type="model_sentinelleshy.Statut" Role="Statut" Multiplicity="0..1" />
+    <End Type="model_sentinelleshy.Utilisateur" Role="UtilisateurJeu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statut">
+        <PropertyRef Name="idStatut" />
+      </Principal>
+      <Dependent Role="UtilisateurJeu">
+        <PropertyRef Name="idStatut" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UtilisateurNouvelle">
+    <End Type="model_sentinelleshy.Utilisateur" Role="Utilisateur" Multiplicity="0..1" />
+    <End Type="model_sentinelleshy.Nouvelle" Role="Nouvelle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Utilisateur">
+        <PropertyRef Name="idUtilisateur" />
+      </Principal>
+      <Dependent Role="Nouvelle">
+        <PropertyRef Name="idUtilisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="InfoGenerale">
+    <Key>
+      <PropertyRef Name="idInfo" />
+    </Key>
+    <Property Type="Int32" Name="idInfo" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="penseeFR" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="penseeEN" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="temoignageFR" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="temoignageEN" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="courrielFormulaire" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="idUtilisateur" />
+    <Property Type="String" Name="historiqueFR" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="historiqueEN" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="maltraitanceFR" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="maltraitanceEN" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Utilisateur" Relationship="model_sentinelleshy.FK_UtilisateurInfoGenerale" FromRole="InfoGeneraleJeu" ToRole="Utilisateur" />
+  </EntityType>
+  <Association Name="FK_UtilisateurInfoGenerale">
+    <End Type="model_sentinelleshy.Utilisateur" Role="Utilisateur" Multiplicity="0..1" />
+    <End Type="model_sentinelleshy.InfoGenerale" Role="InfoGeneraleJeu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Utilisateur">
+        <PropertyRef Name="idUtilisateur" />
+      </Principal>
+      <Dependent Role="InfoGeneraleJeu">
+        <PropertyRef Name="idUtilisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Categorie">
+    <Key>
+      <PropertyRef Name="idCategorie" />
+    </Key>
+    <Property Type="Int32" Name="idCategorie" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="nomCategorieFR" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="nomCategorieEN" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Publication">
+    <Key>
+      <PropertyRef Name="idPublication" />
+    </Key>
+    <Property Type="Int32" Name="idPublication" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="titre" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="datePublication" Nullable="false" Precision="3" />
+    <Property Type="Boolean" Name="epinglee" Nullable="false" />
+    <Property Type="Boolean" Name="consulteParIntervenant" Nullable="false" />
+    <Property Type="Int32" Name="idCategorie" />
+    <Property Type="Int32" Name="idUtilisateur" />
+    <Property Type="Int32" Name="idParent" />
+    <Property Type="String" Name="contenu" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Categorie" Relationship="model_sentinelleshy.FK_CategoriePublication" FromRole="PublicationJeu" ToRole="Categorie" />
+    <NavigationProperty Name="Utilisateur" Relationship="model_sentinelleshy.FK_UtilisateurPublication" FromRole="PublicationJeu" ToRole="Utilisateur" />
+  </EntityType>
+  <Association Name="FK_CategoriePublication">
+    <End Type="model_sentinelleshy.Categorie" Role="Categorie" Multiplicity="0..1" />
+    <End Type="model_sentinelleshy.Publication" Role="PublicationJeu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorie">
+        <PropertyRef Name="idCategorie" />
+      </Principal>
+      <Dependent Role="PublicationJeu">
+        <PropertyRef Name="idCategorie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PublicationPublication">
+    <End Type="model_sentinelleshy.Publication" Role="PublicationJeu" Multiplicity="0..1" />
+    <End Type="model_sentinelleshy.Publication" Role="PublicationJeu1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PublicationJeu">
+        <PropertyRef Name="idPublication" />
+      </Principal>
+      <Dependent Role="PublicationJeu1">
+        <PropertyRef Name="idParent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UtilisateurPublication">
+    <End Type="model_sentinelleshy.Utilisateur" Role="Utilisateur" Multiplicity="0..1" />
+    <End Type="model_sentinelleshy.Publication" Role="PublicationJeu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Utilisateur">
+        <PropertyRef Name="idUtilisateur" />
+      </Principal>
+      <Dependent Role="PublicationJeu">
+        <PropertyRef Name="idUtilisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,77 @@
+﻿<%@ Page Title="Événements" Language="vb" AutoEventWireup="false" MasterPageFile="~/Formulaires/Site.Master" CodeBehind="FRMevenements.aspx.vb" Inherits="SiteSentinellesHY.FRMevenements" %>
+<%@ Import Namespace="ModeleSentinellesHY" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <link href="../CSS/index.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h2><%= outils.obtenirLangue("ÉVÉNEMENTS|EVENTS")%></h2>
+    <div class="dataPager">
+        <asp:DataPager runat="server" ID="dataPagerHaut" PageSize="3" PagedControlID="lvEvenements">
+            <Fields>
+                <asp:NextPreviousPagerField ButtonCssClass="liensListe" FirstPageText="&lt;&lt;"
+                    ShowFirstPageButton="true"
+                    ShowNextPageButton="false"
+                    ShowPreviousPageButton="false" />
+                <asp:NumericPagerField NumericButtonCssClass="liensListe" />
+                <asp:NextPreviousPagerField ButtonCssClass="liensListe" LastPageText="&gt;&gt;"
+                    ShowLastPageButton="true"
+                    ShowNextPageButton="false"
+                    ShowPreviousPageButton="false" />
+            </Fields>
+        </asp:DataPager>
+    </div>
+    <asp:ListView runat="server"
+        ID="lvEvenements"
+        DataKeyNames="idEvenement"
+        ItemType="ModeleSentinellesHY.Événement"
+        SelectMethod="getEvenements">
+        <ItemTemplate>
+            <div id='<%# Eval("idEvenement")%>' class="listeAccueil">
+                <h3><%# Left(Eval(outils.obtenirLangue("titreFR|titreEN")), 50)%></h3>
+                <div class="clear-both">
+                    <div class="cadrageItems">
+                        <div>
+                            <h6><%# Left(Eval("dateRedaction"),10)%></h6>
+                        </div>
+                        <div class="clear-both">
+                            <asp:Label ID="lblEvenement1" runat="server" Text='<%# Eval(outils.obtenirLangue("contenuFR|contenuEN"))%>'></asp:Label>
+                        </div>
+                        <div class="clear-both">
+                            <br />
+                            <asp:Label ID="lblDateEvenement" runat="server"><b><%= outils.obtenirLangue("Date de l'événement : |Event Date : ") %></b><%# Left(Eval("dateEvenement"),10) %></asp:Label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ItemTemplate>
+        <EmptyDataTemplate>
+            <div class="listeAccueil">
+                <h3><%= outils.obtenirLangue("Aucun événements|No events")%></h3>
+                <div class="clear-both">
+                    <div class="cadrageItems">
+                        <div class="clear-both">
+                            <h5><% =outils.obtenirLangue("Aucun événements pour le moment.|There's no events at this time.")%></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </EmptyDataTemplate>
+    </asp:ListView>
+    <div class="dataPager">
+        <asp:DataPager runat="server" ID="dataPagerBas" PageSize="3" PagedControlID="lvEvenements">
+            <Fields>
+                <asp:NextPreviousPagerField ButtonCssClass="liensListe" FirstPageText="&lt;&lt;"
+                    ShowFirstPageButton="true"
+                    ShowNextPageButton="false"
+                    ShowPreviousPageButton="false" />
+                <asp:NumericPagerField NumericButtonCssClass="liensListe" />
+                <asp:NextPreviousPagerField ButtonCssClass="liensListe" LastPageText="&gt;&gt;"
+                    ShowLastPageButton="true"
+                    ShowNextPageButton="false"
+                    ShowPreviousPageButton="false" />
+            </Fields>
+        </asp:DataPager>
+    </div>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+</asp:Content>

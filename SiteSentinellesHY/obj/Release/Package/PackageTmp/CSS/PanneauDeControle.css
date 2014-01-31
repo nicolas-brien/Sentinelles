@@ -1,0 +1,370 @@
+﻿.lnkBtn_menuConfig
+{
+    color: #000;
+    font-family: 'AgencyR';
+    font-size: x-large;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+    background-color: #efefef;
+    text-align: left;
+    padding: 5px 5px;
+    text-decoration: none;
+    clear: both;
+    border-radius: 2px;
+}
+    .lnkBtn_menuConfig:hover
+    {
+        -moz-transition-duration: 100ms;
+        -webkit-transition-duration: 100ms;
+        text-decoration: none;
+        color: #FFF;
+        background-color: #e71f1f;
+    }
+.lnkBtn_menuConfig_active
+{
+    text-decoration: none;
+    color: #FFF;
+    background-color: #e71f1f;
+}
+#imgBtn_EnvoiMessage
+{
+    width: 55px;
+    height: 30px;
+}
+#divAvatar
+{
+    position: relative;
+}
+.divConfig_margin
+{
+    margin-bottom: 15px;
+}
+.lblTitreConfig
+{
+    font-size: xx-large;
+    font-family: 'AgencyR';
+    margin-bottom: 25px;
+    margin-left: 20px;
+}
+.content_centrer
+{
+    text-align: center;
+}
+.paddingRow
+{
+    padding: 20px 50px 0px 50px;
+}
+.encadrerModification
+{
+    border: 1px dashed blue;
+    padding: 25px;
+    margin-bottom: 50px;
+}
+.btnAccepterModification
+{
+    display: inline-block;
+    padding: 4px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 21px;
+    color: #000;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    white-space: nowrap;
+    vertical-align: top;
+    background-color: lightgrey;
+    padding-right: 5px;
+    padding-left: 5px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 10px;
+    border-radius: 8px;
+}
+.txtBoxModifier
+{
+    margin-top: 10px;
+    width: 800px;
+    max-width: 800px;
+    height: 200px;
+}
+/*-------------------------------------Message ----------------------------------*/
+#div_titreMessage
+{
+    margin-left:2px;
+}
+#txtboxTitreMessage
+{
+    width:400px;
+}
+#lnkBtn_envoiMessage
+{
+    margin-top:25px;
+}
+.AvecSucces
+{
+    color: green;
+}
+#lblErreur
+{
+    margin: 25px 0px 0px 25px;
+}
+.htmlEditor
+{
+    width:814px;
+    height:210px;
+}
+/*-------------------------------------Options ----------------------------------*/
+#accordionOptions
+{
+    margin-left: 30px;
+}
+#div_lblHistoriqueFR
+{
+    margin-bottom:10px;
+}
+#div_lblHistoriqueEN
+{
+    margin-top:5px;
+    margin-bottom:10px;
+}
+.htmleditorMaltraitance
+{
+    width:814px;
+    height:210px;
+}
+#div_lnkbtnMaltraitance
+{
+    margin-top: 25px;
+}
+#div_lblMaltraitanceFR
+{
+     margin-bottom:10px;
+}
+.htmleditorHistorique
+{
+    width:814px;
+    height:210px;
+}
+#div_lnkbtnHistorique
+{
+    margin-top:25px;
+}
+.txtboxtemoignageFR
+{
+    margin-left:4px;
+    margin-top: 10px;
+    width: 590px;
+    max-width: 590px;
+    height: 20px;
+}
+.txtboxtemoignageEN
+{
+    margin-top: 10px;
+    width: 590px;
+    max-width: 590px;
+    height: 20px;
+}
+.txtboxPenseeFR
+{
+    margin-left:4px;
+    margin-top:10px;
+    width: 600px;
+    min-width: 500px;
+    max-width: 600px;
+    height: 20px;
+}
+.txtboxPenseeEN
+{
+    width: 600px;
+    max-width: 600px;
+    height: 20px;
+}
+.marginbottom_divImgCarrousel
+{
+    margin-bottom: 25px;
+}
+#lblFormatImgMessage
+{
+    font-size: 9px;
+}
+.lblAccordeon
+{
+    width: 235px;
+}
+#txtboxCourrielAdmin
+{
+    margin: -1px 0px 0px 10px;
+}
+#lnkbtnCourrielAdmin
+{
+    margin-top: 15px;
+}
+/*-------------------------------------Nouvelle----------------------------------*/
+#txtboxtitreFR
+{
+    margin-left: 10px;
+}
+.txtBoxModifier_Titre
+{
+    margin-top: 10px;
+    width: 300px;
+    height: auto;
+}
+.div_AjoutNouvelle
+{
+    position: relative;
+}
+.divDateRedaction
+{
+    float: right;
+    margin-right: 40px;
+}
+#lnkBtnAjoutNouvelle
+{
+    position: absolute;
+    top: 15px;
+    left: 25px;
+}
+.boutonsNouvelleMargin
+{
+    margin-top: 25px;
+}
+/*--------------------------------------Evenement-----------------------------------*/
+#lnkBtnAjoutEvenement
+{
+    position: absolute;
+    top: 15px;
+    left: 25px;
+}
+.calendrierEvenement
+{
+    position: absolute;
+    background-color: white;
+}
+.tbEvenement
+{
+    width: 175px;
+}
+/*-------------------------------------Utilisateur----------------------------------*/
+.petitsPoints
+{
+    border: 1px dashed blue;
+    padding: 25px;
+    margin-bottom: 50px;
+}
+.petitsPointsListeUtilisateurs
+{
+    border: 1px dashed blue;
+    padding: 15px;
+    margin-bottom: 50px;
+    height: 100px;
+}
+.petitsPointsPadding
+{
+    border: 1px dashed blue;
+    padding: 25px 25px 125px 25px;
+    margin-bottom: 50px;
+}
+.overflow
+{
+    overflow: scroll;
+}
+.lviewInfoUtilisateur_centrer
+{
+    margin-top: 15px;
+}
+.lnkbtnAjouter_margin
+{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.lblTitreConfig
+{
+    font-size: xx-large;
+    font-family: 'AgencyR';
+    margin-bottom: 25px;
+    margin-left: 20px;
+}
+.lblUtilisateur
+{
+    vertical-align: bottom;
+    Width: 250px;
+}
+.txtboxUtilisateur
+{
+    Width: 300px;
+}
+.btnAjouter
+{
+    margin: 0px 5px;
+    display: inline-block;
+    padding: 4px 6px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 21px;
+    color: #000;
+    text-shadow: none;
+    white-space: nowrap;
+    vertical-align: top;
+    background-color: lightgrey;
+    padding-right: 5px;
+    padding-left: 5px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 10px;
+    border-radius: 8px;
+    background-image: linear-gradient(to bottom, #ECECEC, #C7C6C6);
+}
+.encadrerBoutons
+{
+    width: 250px;
+    border: 1px dashed blue;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+}
+.rbtnSexe
+{
+    width: 200px;
+    margin-left: 25px;
+}
+.ItemTemplateNom
+{
+    color: black;
+    padding-left: 75px;
+    margin: 3px 0px;
+}
+.SelectedItemTemplateNom
+{
+    padding-left: 75px;
+    margin: 3px 0px;
+    color: none;
+    text-decoration: underline;
+}
+.lblMessageErreur
+{
+    margin-top: 10px;
+    color: red;
+}
+#lnkBtnUpload
+{
+    font-size: xx-large;
+}
+#divFileUpload
+{
+    position: absolute;
+    left: 150px;
+    top: 5px;
+    width: 150px;
+}
+.centrerVerticalement
+{
+    vertical-align: middle;
+}
+#rowBouton
+{
+    margin-bottom: 10px;
+}
+.Avatar_margin
+{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+/*--------------------------------FOOTER----------------------------------------*/

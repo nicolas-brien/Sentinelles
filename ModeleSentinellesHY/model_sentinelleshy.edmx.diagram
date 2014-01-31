@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4053b434fe1b49e69ac854956bbdf901" Name="Diagramme1" ZoomLevel="93" DisplayType="true" >
+        <EntityTypeShape EntityType="model_sentinelleshy.Événement" Width="1.5" PointX="5.5" PointY="19.625" />
+        <EntityTypeShape EntityType="model_sentinelleshy.Nouvelle" Width="1.5" PointX="3.125" PointY="19.75" />
+        <EntityTypeShape EntityType="model_sentinelleshy.RevueDePresse" Width="1.5" PointX="7.875" PointY="19.625" />
+        <EntityTypeShape EntityType="model_sentinelleshy.Statut" Width="1.5" PointX="7.5" PointY="23.25" />
+        <EntityTypeShape EntityType="model_sentinelleshy.sysdiagrams" Width="1.5" PointX="0.75" PointY="16.75" />
+        <EntityTypeShape EntityType="model_sentinelleshy.Utilisateur" Width="1.5" PointX="3.75" PointY="23" />
+        <AssociationConnector Association="model_sentinelleshy.FK_UtilisateurÉvénement" />
+        <AssociationConnector Association="model_sentinelleshy.FK_UtilisateurRevueDePresse" />
+        <AssociationConnector Association="model_sentinelleshy.FK_StatutUtilisateur" />
+        <AssociationConnector Association="model_sentinelleshy.UtilisateurNouvelle" />
+        <EntityTypeShape EntityType="model_sentinelleshy.InfoGenerale" Width="1.5" PointX="1.5" PointY="25.125" />
+        <AssociationConnector Association="model_sentinelleshy.FK_UtilisateurInfoGenerale" />
+        <EntityTypeShape EntityType="model_sentinelleshy.Categorie" Width="1.5" PointX="0.75" PointY="19.25" />
+        <EntityTypeShape EntityType="model_sentinelleshy.Publication" Width="2.375" PointX="1" PointY="22" />
+        <AssociationConnector Association="model_sentinelleshy.FK_CategoriePublication" />
+        <AssociationConnector Association="model_sentinelleshy.FK_PublicationPublication" />
+        <AssociationConnector Association="model_sentinelleshy.FK_UtilisateurPublication" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

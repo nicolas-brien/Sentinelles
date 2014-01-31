@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{DD3F8E42-CCD5-43DB-8B56-18EFE609EC1F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SiteSentinellesHY</RootNamespace>
+    <AssemblyName>SiteSentinellesHY</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>SiteSentinellesHY.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>SiteSentinellesHY.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\packages\AjaxControlToolkit.7.0930\lib\45\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="AjaxMin">
+      <HintPath>..\packages\AjaxMin.4.97.4951.28483\lib\net40\AjaxMin.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\ar\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\cs\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\de\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\es\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\fr\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\he\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\hi\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\it\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\ja\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\ko\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\ModeleSentinellesHY.dll" />
+    <Content Include="bin\ModeleSentinellesHY.pdb" />
+    <Content Include="bin\ModeleSentinellesHY.xml" />
+    <Content Include="bin\nl\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\pt\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\ru\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\SiteSentinellesHY.dll" />
+    <Content Include="bin\SiteSentinellesHY.pdb" />
+    <Content Include="bin\SiteSentinellesHY.xml" />
+    <Content Include="bin\tr-TR\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\zh-CHS\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\zh-CHT\AjaxControlToolkit.resources.dll" />
+    <Content Include="CSS\bootstrap-responsive.css" />
+    <Content Include="CSS\bootstrap-responsive.min.css" />
+    <Content Include="CSS\bootstrap.css" />
+    <Content Include="CSS\bootstrap.min.css" />
+    <Content Include="CSS\Forum.css" />
+    <Content Include="CSS\FRMhistorique.css" />
+    <Content Include="CSS\index.css" />
+    <Content Include="CSS\js\bootstrap.js" />
+    <Content Include="CSS\js\bootstrap.min.js" />
+    <Content Include="CSS\js\jquery.js" />
+    <Content Include="CSS\PanneauDeControle.css" />
+    <Content Include="CSS\SiteMaster.css" />
+    <Content Include="default.aspx" />
+    <Content Include="Formulaires\FRMConfirmation.aspx" />
+    <Content Include="Formulaires\FRMdevenirsentinelle.aspx" />
+    <Content Include="Formulaires\FRMevenements.aspx" />
+    <Content Include="Formulaires\FRMForum.aspx" />
+    <Content Include="Formulaires\FRMhistorique.aspx" />
+    <Content Include="Formulaires\FRMliensutiles.aspx" />
+    <Content Include="Formulaires\FRMmaltraitance.aspx" />
+    <Content Include="Formulaires\FRMnouvelles.aspx" />
+    <Content Include="Formulaires\FRMPageErreur.aspx" />
+    <Content Include="Formulaires\FRMPanneauDeControle.aspx" />
+    <Content Include="Formulaires\FRMrevuedepresse.aspx" />
+    <Content Include="Formulaires\index.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\AQDR.jpg" />
+    <Content Include="Images\background.png" />
+    <Content Include="Images\BanniereEN.png" />
+    <Content Include="Images\BanniereFR.png" />
+    <Content Include="Images\Carrousel1.png" />
+    <Content Include="Images\Carrousel2.png" />
+    <Content Include="Images\Carrousel3.png" />
+    <Content Include="Images\CGHY.jpg" />
+    <Content Include="Images\configuration.png" />
+    <Content Include="Images\CPS.jpg" />
+    <Content Include="Images\CSSSHY.jpg" />
+    <Content Include="Images\enveloppe.png" />
+    <Content Include="Images\enveloppeSelected.png" />
+    <Content Include="Images\flecheRetour.png" />
+    <Content Include="Images\glyphicons-halflings.png" />
+    <Content Include="Images\icon-pin.png" />
+    <Content Include="Images\LogoOfficielHY.png" />
+    <Content Include="Images\LogoOfficielHYSmallEN.png" />
+    <Content Include="Images\LogoOfficielHYSmallFR.png" />
+    <Content Include="Images\PastilleDevenirSentinelleEN.png" />
+    <Content Include="Images\PastilleDevenirSentinelleFR.png" />
+    <Content Include="Images\PastilleInfoMaltraitanceEN.png" />
+    <Content Include="Images\PastilleInfoMaltraitanceFR.png" />
+    <Content Include="Images\PastilleInfoSuicideEN.png" />
+    <Content Include="Images\PastilleInfoSuicideFR.png" />
+    <Content Include="Images\TriangleFooter.png" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="default.aspx.designer.vb">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="default.aspx.vb">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FRMConfirmation.aspx.designer.vb">
+      <DependentUpon>FRMConfirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FRMConfirmation.aspx.vb">
+      <DependentUpon>FRMConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FRMdevenirsentinelle.aspx.designer.vb">
+      <DependentUpon>FRMdevenirsentinelle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FRMdevenirsentinelle.aspx.vb">
+      <DependentUpon>FRMdevenirsentinelle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FRMevenements.aspx.designer.vb">
+      <DependentUpon>FRMevenements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FRMevenements.aspx.vb">
+      <DependentUpon>FRMevenements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FRMForum.aspx.designer.vb">
+      <DependentUpon>FRMForum.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FRMForum.aspx.vb">
+      <DependentUpon>FRMForum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FRMhistorique.aspx.designer.vb">
+      <DependentUpon>FRMhistorique.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FRMhistorique.aspx.vb">
+      <DependentUpon>FRMhistorique.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FRMliensutiles.aspx.designer.vb">
+      <DependentUpon>FRMliensutiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FRMliensutiles.aspx.vb">
+      <DependentUpon>FRMliensutiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FRMmaltraitance.aspx.designer.vb">
+      <DependentUpon>FRMmaltraitance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FRMmaltraitance.aspx.vb">
+      <DependentUpon>FRMmaltraitance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FRMnouvelles.aspx.designer.vb">
+      <DependentUpon>FRMnouvelles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FRMnouvelles.aspx.vb">
+      <DependentUpon>FRMnouvelles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FRMPageErreur.aspx.designer.vb">
+      <DependentUpon>FRMPageErreur.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FRMPageErreur.aspx.vb">
+      <DependentUpon>FRMPageErreur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FRMPanneauDeControle.aspx.designer.vb">
+      <DependentUpon>FRMPanneauDeControle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FRMPanneauDeControle.aspx.vb">
+      <DependentUpon>FRMPanneauDeControle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FRMrevuedepresse.aspx.designer.vb">
+      <DependentUpon>FRMrevuedepresse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FRMrevuedepresse.aspx.vb">
+      <DependentUpon>FRMrevuedepresse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\index.aspx.designer.vb">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\index.aspx.vb">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\Site.Master.designer.vb">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\Site.Master.vb">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Formulaires\Site.Master" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\PublishProfiles\Connexion.pubxml" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ModeleSentinellesHY\ModeleSentinellesHY.vbproj">
+      <Project>{74dacde9-1265-47d0-826f-a5c283611b89}</Project>
+      <Name>ModeleSentinellesHY</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1780</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4079/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,973 @@
+﻿Imports System.IO
+Imports System.Threading
+Imports System.Drawing
+Imports System.Drawing.Imaging
+Imports System.Drawing.Drawing2D
+Imports System.Data.Entity.Validation
+
+Public Class FRMForum
+    Inherits ModeleSentinellesHY.FRMdeBase
+
+    'Liste erreur est déclaré ici afin d'être accessible dans toute les méthodes de cette page
+    Dim listeErreur As New List(Of ModeleSentinellesHY.clsErreur)
+
+    Private Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+        'Vérifie si l'utilisateur est authentifié
+        If Session("Autorisation") Is Nothing Then
+            Response.Redirect("index.aspx")
+        End If
+
+        imgbtnLogo.ImageUrl = ModeleSentinellesHY.outils.obtenirLangue("~/Images/LogoOfficielHYSmallFR.png|~/Images/LogoOfficielHYSmallEN.png")
+
+    End Sub
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If Not Page.IsPostBack Then
+            'Change la vue selon le Query String
+            Dim vueActive = Request.QueryString("view")
+            Select Case vueActive
+                Case 0
+                    MultiViewForum.ActiveViewIndex = 0
+                Case 1
+                    MultiViewForum.ActiveViewIndex = 1
+                Case 2
+                    MultiViewForum.ActiveViewIndex = 2
+                Case 3
+                    MultiViewForum.ActiveViewIndex = 3
+                Case 4
+                    MultiViewForum.ActiveViewIndex = 4
+                Case 5
+                    MultiViewForum.ActiveViewIndex = 5
+                Case Else
+                    MultiViewForum.ActiveViewIndex = 0
+            End Select
+        End If
+
+
+        If Not Session("Utilisateur") Is Nothing Then
+            divLogin.Visible = True
+
+            'Affiche l'accès au panneau de controle si l'usager est Intervenant ou Admin
+            If CType(Session("Autorisation"), Integer) < 3 Then
+                iconSetting.Visible = True
+                gererLesCategories.Visible = True
+                lnkbtnGererCategorie.Visible = True
+            End If
+
+            'Affiche le nom de l'utilisateur
+            lblInfoUtilisateur.InnerText = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).nomUtilisateur
+        End If
+    End Sub
+
+    'Effectue des databind lorsque les vues sont changées
+    Private Sub MultiViewForum_ActiveViewChanged(sender As Object, e As EventArgs) Handles MultiViewForum.ActiveViewChanged
+        If MultiViewForum.ActiveViewIndex = 0 Then
+            lblErreurCategorie.Text = ""
+        ElseIf MultiViewForum.ActiveViewIndex = 2 Then
+            lviewConsulterPublication.DataBind()
+        ElseIf MultiViewForum.ActiveViewIndex = 3 Then
+            lviewAjouterPublication.DataBind()
+        ElseIf MultiViewForum.ActiveViewIndex = 4 Then
+            lvInfoUtilisateur.DataBind()
+        End If
+    End Sub
+
+#Region "Liens_Click"
+    Protected Sub lnkAnglais_Click(sender As Object, e As EventArgs)
+        Dim culture As String = ""
+
+        culture = ModeleSentinellesHY.outils.obtenirLangue("EN|FR")
+
+        'Mémorise dans un cookie la langue choisie par l'utilisateur
+        Dim aCookie As New HttpCookie("SentinellesHY")
+        aCookie.Values("langue") = culture
+        aCookie.Expires = System.DateTime.Now.AddDays(3650)
+        Response.Cookies.Add(aCookie)
+
+        Response.Redirect(Request.Url.AbsoluteUri, False)
+    End Sub
+
+    'Méthode qui, lorsque l'on clique sur le nom d'une catégorie, nous amène à la vue de cette catégorie
+    'avec toutes les publications qui s'y trouve
+    Protected Sub lnkBtn_categorie_Click(sender As Object, e As EventArgs)
+        ViewState("idCategorie") = CType(sender, LinkButton).CommandArgument
+        lviewCategorie.DataBind()
+        MultiViewForum.ActiveViewIndex = 1
+    End Sub
+
+    'Méthode qui, lorsque l'on clique sur le titre d'une publication parent, nous amène à la vue de cette publication
+    'avec toutes les publications enfants qui s'y trouvent
+    Protected Sub lnkBtn_TitrePublication_Click(sender As Object, e As EventArgs)
+        Dim idPublication = CType(sender, LinkButton).CommandArgument
+        Dim unePublication = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                              Where pub.idPublication = CType(sender, LinkButton).CommandArgument).FirstOrDefault
+        If unePublication.idParent Is Nothing Then
+            ViewState("idPublication") = unePublication.idPublication
+        Else
+            ViewState("idPublication") = unePublication.idParent
+        End If
+
+        ViewState("idCategorie") = unePublication.idCategorie
+
+        lviewCategorie.DataBind()
+        MultiViewForum.ActiveViewIndex = 2
+    End Sub
+
+    'Méthode qui nous amène à la vue d'ajout de publication parent
+    Protected Sub lnkbtnAjouterPublication_Click(sender As Object, e As EventArgs)
+        MultiViewForum.ActiveViewIndex = 3
+        ViewState("modePublication") = "AjoutPublication"
+    End Sub
+
+    Protected Sub lnkbtnLogout_Click(sender As Object, e As EventArgs)
+        Session("Utilisateur") = Nothing
+        Session("Autorisation") = Nothing
+        Response.Redirect("index.aspx")
+    End Sub
+#End Region
+
+#Region "Accueil Forum Vue0"
+#Region "Categorie"
+    'Ici sont les méthodes afin de gérer les catégories. Cette partie se retrouve sur l'accueil du forum.
+    'Elle n'est accessible que pour les administrateurs ainsi que les intervenants
+    Public Function getCategorieAccueil() As IQueryable(Of ModeleSentinellesHY.Categorie)
+        Dim listeCategoriePublication As New List(Of ModeleSentinellesHY.Categorie)
+
+        listeCategoriePublication = (From ca In ModeleSentinellesHY.outils.leContexte.CategorieJeu Order By ca.nomCategorieFR).ToList
+        Return listeCategoriePublication.AsQueryable
+    End Function
+
+    Protected Sub lnkbtnSupprimerCategorie_Click(sender As Object, e As EventArgs)
+        Dim unID = CType(sender, LinkButton).CommandArgument
+        Dim listePublication = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                        Where pub.idCategorie = unID).ToList
+        If listePublication.Count <> 0 Then
+            lblErreurCategorie.Text = ModeleSentinellesHY.outils.obtenirLangue("La catégorie ne peut pas être supprimé car elle contient des publications.|" _
+                                                                               & "The category can not be deleted because it contains publications.")
+        Else
+            Dim uneCategorie = (From cat As ModeleSentinellesHY.Categorie In ModeleSentinellesHY.outils.leContexte.CategorieJeu _
+                                Where cat.idCategorie = unID).FirstOrDefault
+            ModeleSentinellesHY.outils.leContexte.CategorieJeu.Remove(uneCategorie)
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            lblErreurCategorie.Text = ""
+            tbNomCategorieEN.Text = ""
+            tbNomCategorieFR.Text = ""
+        End If
+        lvCategorie.DataBind()
+    End Sub
+
+    Protected Sub lnkbtnAjoutCategorie_Click(sender As Object, e As EventArgs)
+        Dim uneCategorie As New ModeleSentinellesHY.Categorie
+        uneCategorie.nomCategorieEN = tbNomCategorieEN.Text
+        uneCategorie.nomCategorieFR = tbNomCategorieFR.Text
+
+        'Condition pour vérifier si la catégorie à enregistrer est valide
+        If (uneCategorie.nomCategorieEN = "" Or uneCategorie.nomCategorieFR = "") Or _
+           (uneCategorie.nomCategorieEN.Count > 50 Or uneCategorie.nomCategorieFR.Count > 50) Then
+            lblErreurCategorie.Text = ModeleSentinellesHY.outils.obtenirLangue("Tous les champs doivent contenir un nom valide de moins de 50 caractères." _
+                                                                               & "|All fields must contain a valid name of less than 50 characters.")
+        Else
+            ModeleSentinellesHY.outils.leContexte.CategorieJeu.Add(uneCategorie)
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            lblErreurCategorie.Text = ""
+            tbNomCategorieEN.Text = ""
+            tbNomCategorieFR.Text = ""
+        End If
+        lvCategorie.DataBind()
+    End Sub
+#End Region
+    Public Function getPublications_accueilForum() As IQueryable(Of ModeleSentinellesHY.Publication)
+        Dim listePublication As New List(Of ModeleSentinellesHY.Publication)
+        Dim listeRetour As New List(Of ModeleSentinellesHY.Publication)
+
+        'Pour chaque catégorie, on choisi les trois parents ayant eu la réponse la plus récente
+        For Each cat As ModeleSentinellesHY.Categorie In ModeleSentinellesHY.outils.leContexte.CategorieJeu
+            Dim listePublicationTemp As New List(Of ModeleSentinellesHY.Publication)
+            listePublication = (From uti In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where cat.idCategorie = uti.idCategorie _
+             Order By uti.datePublication Descending).ToList()
+            For Each pub As ModeleSentinellesHY.Publication In listePublication
+                If pub.idParent Is Nothing Then
+                    listePublicationTemp.Add(pub)
+                Else
+                    Dim parent = (From unParent As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                                  Where pub.idParent = unParent.idPublication).FirstOrDefault
+                    listePublicationTemp.Add(parent)
+                End If
+            Next
+            listeRetour.AddRange(listePublicationTemp.Distinct().Take(3).ToList())
+        Next
+        Return listeRetour.AsQueryable()
+    End Function
+
+    Private Sub lviewPublication_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewForum_accueil.ItemDataBound
+        Dim DroitUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idStatut
+        Dim unePublication As ModeleSentinellesHY.Publication = CType(e.Item.DataItem, ModeleSentinellesHY.Publication)
+        Dim lblPubliePar = CType(e.Item.FindControl("lblPubliePar"), Label)
+
+        'Condition qui vérifie si l'auteur de la publication est encore présent dans la BD
+        If Not unePublication.idUtilisateur Is Nothing Then
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
+        Else
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
+        End If
+
+        'Épingle les "pinned posts"
+        If unePublication.epinglee = True Then
+            CType(e.Item.FindControl("pinnedIcon"), HtmlImage).Attributes("style") = "display:normal;position:relative;top:5px;"
+        End If
+
+        'Condition qui affiche en orange le titre de la publication si elle ou un de ses enfants n'a pas été consulté 
+        'par un intervenant ou un admin
+        If DroitUtilisateur < 3 Then
+            If unePublication.consulteParIntervenant = False Then
+                CType(e.Item.FindControl("lnkBtn_TitrePublication"), LinkButton).Attributes("style") = "color:orange;"
+            Else
+                Dim listeEnfants As List(Of ModeleSentinellesHY.Publication) = Nothing
+                listeEnfants = (From enf As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                                   Where enf.idParent = unePublication.idPublication).ToList
+                For Each enf As ModeleSentinellesHY.Publication In listeEnfants
+                    If enf.consulteParIntervenant = False Then
+                        CType(e.Item.FindControl("lnkBtn_TitrePublication"), LinkButton).Attributes("style") = "color:orange;"
+                    End If
+                Next
+            End If
+        End If
+
+        'Affiche la catégorie si c'est la première publication de cette catégorie
+        If e.Item.ItemType = ListViewItemType.DataItem AndAlso e.Item.DisplayIndex > 0 Then
+            Dim categorieActuelle As String = CType(e.Item.DataItem, ModeleSentinellesHY.Publication).Categorie.idCategorie
+            Dim categoriePrecedente As String = lviewForum_accueil.DataKeys(e.Item.DisplayIndex - 1)(1)
+
+            If categorieActuelle = categoriePrecedente Then
+                CType(e.Item.FindControl("divCategorie"), HtmlControl).Attributes("style") = "display: none;"
+
+            End If
+
+        End If
+    End Sub
+#End Region
+
+#Region "Categorie Vue1"
+    Public Function getCategories() As IQueryable(Of ModeleSentinellesHY.Publication)
+        Dim listePublication As New List(Of ModeleSentinellesHY.Publication)
+        Dim listePublication2 As New List(Of ModeleSentinellesHY.Publication)
+        Dim listeRetour As New List(Of ModeleSentinellesHY.Publication)
+        Dim uneCategorie As Integer = ViewState("idCategorie")
+        Dim listePublicationTemp As New List(Of ModeleSentinellesHY.Publication)
+
+        'On crée une liste avec que les publications parents épinglées en ordre de date décroissant
+        listePublication = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where uneCategorie = pub.idCategorie AndAlso pub.epinglee = True _
+             Order By pub.datePublication Descending).ToList()
+        For Each pub As ModeleSentinellesHY.Publication In listePublication
+            If pub.idParent Is Nothing Then
+                listePublicationTemp.Add(pub)
+            Else
+                Dim parent = (From unParent As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                              Where pub.idParent = unParent.idPublication).FirstOrDefault
+                listePublicationTemp.Add(parent)
+            End If
+        Next
+        listeRetour.AddRange(listePublicationTemp.ToList())
+
+        'On crée une liste avec que les publications parents non épinglées en ordre de date décroissant
+        Dim listePublicationTemp2 As New List(Of ModeleSentinellesHY.Publication)
+        listePublication2 = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where uneCategorie = pub.idCategorie AndAlso pub.epinglee = False _
+             Order By pub.datePublication Descending).ToList()
+        For Each pub As ModeleSentinellesHY.Publication In listePublication2
+            If pub.idParent Is Nothing Then
+                listePublicationTemp2.Add(pub)
+            Else
+                Dim parent = (From unParent As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                              Where pub.idParent = unParent.idPublication).FirstOrDefault
+                listePublicationTemp2.Add(parent)
+            End If
+        Next
+
+        'On concatène les deux listes dans la même et on enlève ensuite les doublons
+        listeRetour.AddRange(listePublicationTemp2.ToList())
+        listeRetour = listeRetour.Distinct.ToList
+
+        Return listeRetour.AsQueryable()
+    End Function
+
+    Private Sub lviewCategorie_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewCategorie.ItemDataBound
+        Dim DroitUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idStatut
+        Dim unePublication As ModeleSentinellesHY.Publication = CType(e.Item.DataItem, ModeleSentinellesHY.Publication)
+        Dim lblPubliePar = CType(e.Item.FindControl("lblPubliePar"), Label)
+
+        'On vérifie que l'utilisateur existe encore dans la BD
+        If Not unePublication.idUtilisateur Is Nothing Then
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
+        Else
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
+        End If
+
+        'Condition qui affiche en orange le titre de la publication si elle ou un de ses enfants n'a pas été consulté 
+        'par un intervenant ou un admin
+        If DroitUtilisateur < 3 Then
+            If unePublication.consulteParIntervenant = False Then
+                CType(e.Item.FindControl("lnkBtn_TitrePublication"), LinkButton).Attributes("style") = "color:orange;"
+            Else
+                Dim listeEnfants As List(Of ModeleSentinellesHY.Publication) = Nothing
+                listeEnfants = (From enf As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                                   Where enf.idParent = unePublication.idPublication).ToList
+                For Each enf As ModeleSentinellesHY.Publication In listeEnfants
+                    If enf.consulteParIntervenant = False Then
+                        CType(e.Item.FindControl("lnkBtn_TitrePublication"), LinkButton).Attributes("style") = "color:orange;"
+                    End If
+                Next
+            End If
+        End If
+
+        'Épingle les "pinned posts"
+        If unePublication.epinglee = True Then
+            CType(e.Item.FindControl("pinnedIcon"), HtmlImage).Attributes("style") = "display:normal;position:relative;top:5px;"
+        End If
+
+        'Affiche le titre de la catégorie lorsqu'on affiche la première publication
+        If e.Item.ItemType = ListViewItemType.DataItem AndAlso e.Item.DisplayIndex > 0 Then
+            CType(e.Item.FindControl("divCategorie1"), HtmlControl).Attributes("style") = "display: none;"
+        End If
+    End Sub
+
+    'Liens pour retourner à l'accueil du forum
+    Protected Sub retourAccueil_Click(sender As Object, e As EventArgs)
+        lviewForum_accueil.DataBind()
+        MultiViewForum.ActiveViewIndex = 0
+    End Sub
+#End Region
+
+#Region "Publication+Enfants Vue2"
+    Public Sub DeletePublication(ByVal PubADelete As ModeleSentinellesHY.Publication)
+        Dim listePublication As New List(Of ModeleSentinellesHY.Publication)
+        Dim idParent As Integer = ViewState("idPublication")
+        listePublication = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                            Where pub.idParent = idParent Or pub.idPublication = idParent).ToList
+        Dim pubAValider As ModeleSentinellesHY.Publication = Nothing
+        pubAValider = ModeleSentinellesHY.outils.leContexte.PublicationJeu.Find(PubADelete.idPublication)
+        If pubAValider.idParent Is Nothing Then
+            For Each pub As ModeleSentinellesHY.Publication In listePublication
+                ModeleSentinellesHY.outils.leContexte.PublicationJeu.Remove(pub)
+            Next
+            MultiViewForum.ActiveViewIndex = 1
+        Else
+            ModeleSentinellesHY.outils.leContexte.PublicationJeu.Remove(pubAValider)
+        End If
+        ModeleSentinellesHY.outils.leContexte.SaveChanges()
+        lviewForum_accueil.DataBind()
+        lviewCategorie.DataBind()
+    End Sub
+    Protected Sub retourCategorie_Click(sender As Object, e As EventArgs)
+        'On vérifie si le Viewstate Recherche contient un résultat de recherche. Si c'est le cas,
+        'on retourne à la vue de la recherche. Sinon, on retourne à la vue de la catégorie
+        If ViewState("Recherche") <> "" Then
+            MultiViewForum.ActiveViewIndex = 5
+        Else
+            lviewCategorie.DataBind()
+            MultiViewForum.ActiveViewIndex = 1
+        End If
+    End Sub
+
+    Private Sub lviewConsulterPublication_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewConsulterPublication.ItemDataBound
+        Dim unUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur)
+        Dim lblPubliePar = CType(e.Item.FindControl("lblPubliePar"), Label)
+        Dim imgAvatar = CType(e.Item.FindControl("imgAvatar"), System.Web.UI.WebControls.Image)
+        Dim unePublication As ModeleSentinellesHY.Publication = CType(e.Item.DataItem, ModeleSentinellesHY.Publication)
+
+        'Ici, on permet à l'utilisateur ayant publié une REPONSE à une publication de modifier sa propre publication.
+        'Il ne peut pas modifier une publication parent
+        If unUtilisateur.idStatut = 3 Then
+            If CType(e.Item.DataItem, ModeleSentinellesHY.Publication).idParent Is Nothing Or unUtilisateur.nomUtilisateur <> CType(e.Item.DataItem, ModeleSentinellesHY.Publication).Utilisateur.nomUtilisateur Then
+                CType(e.Item.FindControl("divModifierPublication"), HtmlControl).Attributes("style") = "display: none;"
+            End If
+        End If
+
+        'On affiche le statut de l'auteur du message dans la bonne langue
+        If Not unUtilisateur Is Nothing Then
+            CType(e.Item.FindControl("lblStatut"), Label).Text = ModeleSentinellesHY.outils.obtenirLangue(CType(e.Item.DataItem, ModeleSentinellesHY.Publication).Utilisateur.Statut.nomStatutFR _
+                                                                                                          & "|" & CType(e.Item.DataItem, ModeleSentinellesHY.Publication).Utilisateur.Statut.nomStatutEN)
+        End If
+
+        'On affiche l'image de la publication épinglée
+        If unePublication.epinglee = True Then
+            CType(e.Item.FindControl("pinnedIcon"), HtmlImage).Attributes("style") = "display:normal;position:relative;top:5px;"
+        End If
+
+        If Not unePublication.idParent Is Nothing Or unUtilisateur.idStatut = 3 Then
+            CType(e.Item.FindControl("divPinned"), HtmlControl).Attributes("style") = "display:none;"
+        End If
+
+        'On vérifie si l'utilisateur existe encore dans la BD
+        If Not unePublication.idUtilisateur Is Nothing Then
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
+            imgAvatar.ImageUrl = "../Upload/" & unePublication.Utilisateur.UrlAvatar
+        Else
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
+            imgAvatar.ImageUrl = "../Upload/default.png"
+        End If
+
+        'Condition qui affiche en orange le titre de la publication si elle ou un de ses enfants n'a pas été consulté 
+        'par un intervenant ou un admin après quoi le titre redevient normal au prochain affichage
+        If unePublication.consulteParIntervenant = False AndAlso unUtilisateur.idStatut < 3 Then
+            CType(e.Item.FindControl("lblTitrePublication"), Label).Attributes("style") = "color:orange;"
+            unePublication.consulteParIntervenant = True
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+        End If
+
+        'Si ce n'est pas une publication parent, on n'affiche pas le div de la catégorie et on met un Re: devant le titre
+        If e.Item.ItemType = ListViewItemType.DataItem AndAlso e.Item.DisplayIndex > 0 Then
+            CType(e.Item.FindControl("divNomCategorie"), HtmlControl).Attributes("style") = "display: none;"
+            CType(e.Item.FindControl("lblTitrePublication"), Label).Text = ("Re : " & unePublication.titre)
+        End If
+    End Sub
+    Public Function getConsulterPublication() As IQueryable(Of ModeleSentinellesHY.Publication)
+        Dim listePublication As New List(Of ModeleSentinellesHY.Publication)
+        Dim idPublication As Integer = ViewState("idPublication")
+
+        listePublication = (From uti In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where uti.idPublication = idPublication).ToList.Union _
+        (From uti In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where uti.idParent = idPublication Order By uti.datePublication).ToList
+
+        ViewState("idCategorie") = listePublication.Item(0).idCategorie
+
+        Return listePublication.AsQueryable()
+    End Function
+
+    'Méthode utiliser dans la fenêtre modal pour modifier une publication existante
+    Protected Sub lnkbtnModifierPublication_Click(sender As Object, e As EventArgs)
+        Dim noItem = CType(sender, LinkButton).CommandArgument
+        ViewState("noItem") = noItem
+        'On force ici l'appel de la méthode Update du ListView
+        lviewConsulterPublication.UpdateItem(noItem, False)
+    End Sub
+
+    Public Sub UpdatePublication(ByVal publicationAUpdater As ModeleSentinellesHY.Publication)
+
+        Dim noItem = ViewState("noItem")
+        Dim lblMessageErreurModifierPublication = CType(lviewConsulterPublication.Items(noItem).FindControl("lblMessageErreurModifierPublication"), Label)
+        lblMessageErreurModifierPublication.Text = ""
+        lblMessageErreurModifierPublication.ForeColor = Drawing.Color.Red
+        For Each tb As Object In lviewConsulterPublication.Items(0).Controls 'Reset l'encadrer autour de tous les txtBox
+            If TypeOf (tb) Is TextBox Then
+                CType(tb, TextBox).BorderColor = Nothing
+            End If
+        Next
+        publicationAUpdater = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                                       Where pub.idPublication = publicationAUpdater.idPublication).FirstOrDefault
+        TryUpdateModel(publicationAUpdater)
+
+        'Remplace les div par des p pour un retour à la ligne
+        If Not publicationAUpdater.contenu = Nothing Then
+            publicationAUpdater.contenu = publicationAUpdater.contenu.Replace("<div", "<p")
+            publicationAUpdater.contenu = publicationAUpdater.contenu.Replace("</div>", "</p>")
+        End If
+
+        'On attribue à la publication son utilisateur et sa catégorie
+        publicationAUpdater.Utilisateur = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                                       Where pub.idPublication = publicationAUpdater.idPublication).FirstOrDefault.Utilisateur
+        publicationAUpdater.Categorie = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                                       Where pub.idPublication = publicationAUpdater.idPublication).FirstOrDefault.Categorie
+        ModeleSentinellesHY.outils.validationFormulaire(publicationAUpdater, New ModeleSentinellesHY.PublicationValidation(), lviewConsulterPublication, listeErreur)
+        If listeErreur.Count > 0 Then
+            For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
+                lblMessageErreurModifierPublication.Text += "*" & erreur.errorMessage & "<br/>"
+            Next
+        End If
+        If ModelState.IsValid Then
+            If listeErreur.Count = 0 Then
+                ModeleSentinellesHY.outils.leContexte.SaveChanges()
+                lviewConsulterPublication.DataBind()
+            End If
+        End If
+        For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
+            CType(lviewConsulterPublication.Items(0).FindControl("txtbox" & erreur.nomPropriete), TextBox).BorderColor = Drawing.Color.Red
+        Next
+
+    End Sub
+    Public Sub UpdateAjouterReponse()
+        'Méthode qui sert à ajouter une réponse à une publication
+        Dim lblMessageErreurReponse = CType(lviewConsulterPublication.FindControl("lblMessageErreurReponse"), Label)
+        Dim reponseAValider As New ModeleSentinellesHY.Publication
+        lblMessageErreurReponse.Text = ""
+        lblMessageErreurReponse.ForeColor = Drawing.Color.Red
+        For Each tb As Object In lviewConsulterPublication.Items(0).Controls 'Reset l'encadrer autour de tous les txtBox
+            If TypeOf (tb) Is TextBox Then
+                CType(tb, TextBox).BorderColor = Nothing
+            End If
+        Next
+        reponseAValider = New ModeleSentinellesHY.Publication
+        TryUpdateModel(reponseAValider)
+
+        'Remplace les div par des p pour un retour à la ligne
+        If Not reponseAValider.contenu = Nothing Then
+            reponseAValider.contenu = reponseAValider.contenu.Replace("<div", "<p")
+            reponseAValider.contenu = reponseAValider.contenu.Replace("</div>", "</p>")
+        End If
+
+        reponseAValider.datePublication = Date.Now()
+        reponseAValider.idParent = CType(ViewState("idPublication"), Integer)
+        reponseAValider.Utilisateur = Session("Utilisateur")
+        reponseAValider.idCategorie = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                                       Where pub.idPublication = reponseAValider.idParent).FirstOrDefault.idCategorie
+        reponseAValider.titre = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                                 Where pub.idPublication = reponseAValider.idParent).FirstOrDefault().titre
+        ModeleSentinellesHY.outils.validationFormulaire(reponseAValider, New ModeleSentinellesHY.PublicationValidation(), lviewAjouterReponse, listeErreur)
+        If listeErreur.Count > 0 Then
+            For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
+                lblMessageErreurReponse.Text += "*" & erreur.errorMessage & "<br/>"
+            Next
+        End If
+        If listeErreur.Count = 0 Then
+            ModeleSentinellesHY.outils.leContexte.PublicationJeu.Add(reponseAValider)
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            CType(lviewAjouterReponse.Items(0).FindControl("txtboxcontenu"), TextBox).Text = ""
+            lviewConsulterPublication.DataBind()
+        End If
+
+        For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
+            If Not erreur.nomPropriete.ToString.Contains("Categorie") Then
+                CType(lviewConsulterPublication.Items(0).FindControl("txtbox" & erreur.nomPropriete), TextBox).BorderColor = Drawing.Color.Red
+            Else
+                CType(lviewConsulterPublication.Items(0).FindControl("ddlstCategorie"), DropDownList).BorderColor = Drawing.Color.Red
+            End If
+        Next
+    End Sub
+    Public Shared Function getReponse_ajouterReponse() As ModeleSentinellesHY.Publication
+        'Retourne une publication vide afin de donner les valeurs du constructeur dans les champs du listview
+        Dim listePublication As New ModeleSentinellesHY.Publication
+        Return listePublication
+    End Function
+#End Region
+
+#Region "Ajout Publication Vue3"
+    Public Function getCategories_AjouterPublication() As IQueryable(Of ModeleSentinellesHY.Categorie)
+        Dim listeCategoriePublication As New List(Of ModeleSentinellesHY.Categorie)
+
+        listeCategoriePublication = (From ca In ModeleSentinellesHY.outils.leContexte.CategorieJeu).ToList
+
+        'On ajoute la catégorie suivante afin d'obliger l'usager à en choisir une
+        Dim CategorieDefault As New ModeleSentinellesHY.Categorie
+        CategorieDefault.idCategorie = 0
+        CategorieDefault.nomCategorieFR = "Sélectionner une catégorie"
+        CategorieDefault.nomCategorieEN = "Select a category"
+        listeCategoriePublication.Insert(0, CategorieDefault)
+
+        For Each categorie As ModeleSentinellesHY.Categorie In listeCategoriePublication
+            categorie.nomCategorie = ModeleSentinellesHY.outils.obtenirLangue(categorie.nomCategorieFR & "|" & categorie.nomCategorieEN)
+        Next
+        Return listeCategoriePublication.AsQueryable
+    End Function
+
+    Public Sub UpdateAjouterPublication(ByVal publicationAUpdater As ModeleSentinellesHY.Publication)
+        Dim lblMessageErreurPublication = CType(lviewAjouterPublication.FindControl("lblMessageErreurPublication"), Label)
+        Dim publicationAValider As ModeleSentinellesHY.Publication = Nothing
+        lblMessageErreurPublication.Text = ""
+        lblMessageErreurPublication.ForeColor = Drawing.Color.Red
+
+        For Each tb As Object In lviewAjouterPublication.Items(0).Controls 'Reset l'encadrer autour de tous les txtBox
+            If TypeOf (tb) Is TextBox Then
+                CType(tb, TextBox).BorderColor = Nothing
+            End If
+        Next
+        publicationAValider = New ModeleSentinellesHY.Publication
+        TryUpdateModel(publicationAValider)
+
+        'Remplace les div par des p pour un retour à la ligne
+        If Not publicationAValider.contenu = Nothing Then
+            publicationAValider.contenu = publicationAValider.contenu.Replace("<div", "<p")
+            publicationAValider.contenu = publicationAValider.contenu.Replace("</div>", "</p>")
+        End If
+        publicationAValider.datePublication = Date.Now()
+        publicationAValider.Utilisateur = Session("Utilisateur")
+
+        'On vérifie si la catégorie a été changée
+        If publicationAValider.idCategorie = 0 Then
+            ModelState.AddModelError("idCategorie", "Vous devez choisir une catégorie|You must choose a category")
+            publicationAValider.idCategorie = Nothing
+        Else
+            publicationAValider.Categorie = (From cat In ModeleSentinellesHY.outils.leContexte.CategorieJeu _
+                                             Where cat.idCategorie = publicationAValider.idCategorie).FirstOrDefault()
+        End If
+
+        ModeleSentinellesHY.outils.validationFormulaire(publicationAValider, New ModeleSentinellesHY.PublicationValidation(), lviewAjouterPublication, listeErreur)
+        If listeErreur.Count > 0 Then
+            For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
+                lblMessageErreurPublication.Text += "*" & erreur.errorMessage & "<br/>"
+            Next
+        End If
+
+        If ModelState.IsValid Then
+            ModeleSentinellesHY.outils.leContexte.PublicationJeu.Add(publicationAValider)
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            ViewState("idCategorie") = publicationAValider.idCategorie
+            MultiViewForum.ActiveViewIndex = 1
+            ViewState("modePublication") = ""
+
+            'On reset les valeurs
+            CType(lviewAjouterPublication.Items(0).FindControl("ddlstCategorie"), DropDownList).SelectedValue = 0
+            CType(lviewAjouterPublication.Items(0).FindControl("txtboxtitre"), TextBox).Text = ""
+            CType(lviewAjouterPublication.Items(0).FindControl("txtboxcontenu"), TextBox).Text = ""
+
+            lviewForum_accueil.DataBind()
+            lviewCategorie.DataBind()
+        End If
+        For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
+            If Not erreur.nomPropriete.ToString.Contains("Categorie") Then
+                CType(lviewAjouterPublication.Items(0).FindControl("txtbox" & erreur.nomPropriete), TextBox).BorderColor = Drawing.Color.Red
+            Else
+                CType(lviewAjouterPublication.Items(0).FindControl("ddlstCategorie"), DropDownList).BorderColor = Drawing.Color.Red
+            End If
+        Next
+    End Sub
+
+    Public Shared Function getPublication_ajouterPublication() As ModeleSentinellesHY.Publication
+        'On retourne une publication vide afin de fournir le listview d'ajout de publication
+        Dim unePublication As New ModeleSentinellesHY.Publication
+        Return unePublication
+    End Function
+
+    Private Sub lviewAjouterPublication_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewAjouterPublication.ItemDataBound
+        Dim unUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur)
+
+        'On cache ce div afin que les usagers qui ne sont pas Admin ou Intervenant ne puissent pas 
+        'épingler une publication
+        If unUtilisateur.idStatut = 3 Then
+            CType(e.Item.FindControl("divPinned"), HtmlControl).Attributes("style") = "display:none;"
+        End If
+    End Sub
+#End Region
+
+#Region "InfoUtilisateur Vue4"
+    Public Function getInfoUtilisateur() As ModeleSentinellesHY.Utilisateur
+        Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
+        If Not Session("Utilisateur") Is Nothing Then
+            Dim idUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idUtilisateur
+            unUtilisateur = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu Where uti.idUtilisateur = idUtilisateur).FirstOrDefault
+            ModeleSentinellesHY.outils.leContexte.Entry(unUtilisateur).Reload()
+        Else
+            'S'il n'y a aucun utilisateur, on redirige vers l'index puisqu'on ne pourra pas afficher les infos
+            Response.Redirect("index.aspx")
+        End If
+        Return unUtilisateur
+    End Function
+
+    Public Sub updateInfoUtilisateur(ByVal idUtilisateur As Integer)
+        Dim lblMessageErreur = CType(lvInfoUtilisateur.FindControl("lblMessageErreur"), Label)
+        Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Nothing
+        Dim tbMotDePasse As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbMotDePasse"), TextBox).Text
+        Dim tbConfirmation As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbConfirmer"), TextBox).Text
+
+        lblMessageErreur.Text = ""
+        lblMessageErreur.ForeColor = Drawing.Color.Red
+        For Each tb As Object In lvInfoUtilisateur.Items(0).Controls 'Reset l'encadrer autour de tout txtBox
+            If TypeOf (tb) Is TextBox Then
+                CType(tb, TextBox).BorderColor = Nothing
+            End If
+        Next
+
+        utilisateurAValider = ModeleSentinellesHY.outils.leContexte.UtilisateurJeu.Find(idUtilisateur)
+
+        'Prend les données qui sont dans le formulaire
+        TryUpdateModel(utilisateurAValider)
+
+        'Url Avatar avant de l'avoir enregistré. Permet de remettre l'url si l'usager n'est pas enregistré
+        utilisateurAValider.urlAvatarTemp = utilisateurAValider.UrlAvatar
+
+        ModeleSentinellesHY.outils.validationUtilisateur(utilisateurAValider, New ModeleSentinellesHY.UtilisateurValidation(), lvInfoUtilisateur, listeErreur)
+
+        If listeErreur.Count > 0 Then
+            For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
+                lblMessageErreur.Text += "*" & erreur.errorMessage & "<br/>"
+            Next
+        End If
+
+        If ModelState.IsValid Then
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            lblMessageErreur.Text = ModeleSentinellesHY.outils.obtenirLangue("L'utilisateur a été modifié avec succès!|The user has been successfully updated!")
+            lblMessageErreur.ForeColor = Color.Green
+
+            'Conditions pour Supprimer Avatar du fichier Upload mais ne pas supprimer la photo par défaut
+            If utilisateurAValider.UrlAvatar <> utilisateurAValider.urlAvatarTemp AndAlso utilisateurAValider.UrlAvatar <> "" _
+                AndAlso utilisateurAValider.UrlAvatar <> "default.png" Then
+                ModeleSentinellesHY.outils.SupprimerFichierUpload(utilisateurAValider.urlAvatarTemp)
+            End If
+            lvInfoUtilisateur.DataBind()
+        Else
+
+            For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
+                If Not erreur.nomPropriete Is Nothing Then
+                    CType(lvInfoUtilisateur.Items(0).FindControl("tb" & erreur.nomPropriete), TextBox).BorderColor = Drawing.Color.Red
+                ElseIf erreur.errorMessage.ToString.Contains("pass") Then
+                    CType(lvInfoUtilisateur.Items(0).FindControl("tbMotDePasse"), TextBox).BorderColor = Drawing.Color.Red
+                    CType(lvInfoUtilisateur.Items(0).FindControl("tbConfirmer"), TextBox).BorderColor = Drawing.Color.Red
+                End If
+            Next
+        End If
+        utilisateurAValider.motDePasseTemp = ""
+        utilisateurAValider.confirmationMotDePasse = ""
+    End Sub
+
+    Protected Sub lnkUpload_Click(sender As Object, e As EventArgs)
+        Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Session("Utilisateur")
+        Dim controlUpload = CType(lvInfoUtilisateur.Items(0).FindControl("fuplPhoto"), FileUpload)
+        Dim extension As String = ""
+        Dim nomFichier As String = ""
+        If controlUpload.HasFile Then
+            'On vérifie le type de fichier
+            If controlUpload.PostedFile.ContentType = "image/jpeg" Or controlUpload.PostedFile.ContentType = "image/png" Then
+                'On découpe le nom du fichier de son extension afin d'insérer un nombre aléatoire
+                nomFichier = Left(controlUpload.FileName, Len(controlUpload.FileName) - 4)
+                extension = Right(controlUpload.FileName, 4)
+                If nomFichier.Length > 30 Then
+                    nomFichier = Left(nomFichier, 30)
+                End If
+                'On ajoute un nombre aléatoire à la fin du fichier afin d'éviter d'écraser les photos existantes
+                Dim MyRandomNumber As New Random()
+                Dim x As Integer = MyRandomNumber.Next(10000, 100000)
+                nomFichier &= x
+                nomFichier &= extension
+
+                'On redimensionne le fichier selon nos désirs dans cette fonction
+                ResizeImageFile(controlUpload.PostedFile.InputStream, 120, Server.MapPath("../Upload/" & nomFichier), "typeAvatar")
+                CType(lvInfoUtilisateur.Items(0).FindControl("tbAvatar"), TextBox).Text = nomFichier
+                CType(lvInfoUtilisateur.Items(0).FindControl("imgUpload"), HtmlImage).Src = "../Upload/" & nomFichier
+                utilisateurAValider.UrlAvatar = nomFichier
+                ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            End If
+        End If
+    End Sub
+
+    Public Shared Function ResizeImageFile(imageFileMS As Stream, targetSize As Integer, lepathfichier As String, typeUpload As String) As String
+
+        'Fonction qui redimensionne selon un format pour l'avatar ou selon les images du carrousel
+        Dim original As Image = Image.FromStream(imageFileMS)
+        Dim targetH As Integer, targetW As Integer
+        If typeUpload.Contains("typeAvatar") Then
+            If original.Height > original.Width Then
+                targetH = targetSize
+                targetW = CInt(original.Width * (CSng(targetSize) / CSng(original.Height)))
+            Else
+                targetW = targetSize
+                targetH = CInt(original.Height * (CSng(targetSize) / CSng(original.Width)))
+            End If
+        Else
+            targetH = 200
+            targetW = 960
+        End If
+
+        Dim imgPhoto As Image = Image.FromStream(imageFileMS)
+        ' Create a new blank canvas.  The resized image will be drawn on this canvas.
+        Dim bmPhoto As New Bitmap(targetW, targetH, PixelFormat.Format24bppRgb)
+        bmPhoto.SetResolution(72, 72)
+
+        Dim grPhoto As Graphics = Graphics.FromImage(bmPhoto)
+        grPhoto.SmoothingMode = SmoothingMode.AntiAlias
+        grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic
+        grPhoto.PixelOffsetMode = PixelOffsetMode.HighQuality
+        grPhoto.DrawImage(imgPhoto, New Rectangle(0, 0, targetW, targetH), 0, 0, original.Width, original.Height, _
+            GraphicsUnit.Pixel)
+        bmPhoto.Save(lepathfichier, System.Drawing.Imaging.ImageFormat.Jpeg)
+        original.Dispose()
+        imgPhoto.Dispose()
+        bmPhoto.Dispose()
+        grPhoto.Dispose()
+
+        Return ""
+    End Function
+
+    Protected Sub rbtnSexe_Init(sender As Object, e As EventArgs)
+        Dim Homme As New ListItem
+        Dim Femme As New ListItem
+        Homme.Value = "H"
+        Femme.Value = "F"
+
+        Femme.Text = ModeleSentinellesHY.outils.obtenirLangue("Femme|Female")
+        Homme.Text = ModeleSentinellesHY.outils.obtenirLangue("Homme|Male")
+
+        CType(sender, RadioButtonList).Items.Add(Femme)
+        CType(sender, RadioButtonList).Items.Add(Homme)
+    End Sub
+    Public Function getStatutUtilisateur() As IQueryable(Of ModeleSentinellesHY.Statut)
+
+        Dim listeStatutUtilisateur As New List(Of ModeleSentinellesHY.Statut)
+        listeStatutUtilisateur = (From ca In ModeleSentinellesHY.outils.leContexte.StatutJeu).ToList
+
+        For Each statut As ModeleSentinellesHY.Statut In listeStatutUtilisateur
+                statut.nomStatut = ModeleSentinellesHY.outils.obtenirLangue(statut.nomStatutFR & "|" & statut.nomStatutEN)
+        Next
+
+        Return listeStatutUtilisateur.AsQueryable
+    End Function
+#End Region
+
+#Region "Recherche Vue5"
+    Protected Sub btnRecherche_Click(sender As Object, e As EventArgs)
+        'Lorsqu'on clique, on change de vue, on vide la barre de recherche du haut et on met le texte recherché
+        'dans la barre de recherche de la vue. Le ViewState mémorise le texte recherché afin que le bouton précédent
+        'de la vue Publication+Enfant sache s'il doit redirigé vers la vue Catégorie ou la vue Résultat de recherche
+        'et aussi pour permettre de faire la recherche dans la BD
+        MultiViewForum.ActiveViewIndex = 5
+        ViewState("Recherche") = tbRecherche.Text
+        tbRechercheAvancee.Text = tbRecherche.Text
+        tbRecherche.Text = ""
+        lvResultatRecherche.DataBind()
+    End Sub
+
+    'Petite fonction afin de permettre l'autocomplétion sur la barre de recherche.
+    <System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()>
+    Public Shared Function GetCompletionList(ByVal prefixText As String, ByVal count As Integer, ByVal contextKey As String) As String()
+
+        Dim autoCompleteList() As String = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Select pub.Categorie.nomCategorieEN).Union _
+                                (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Select pub.Categorie.nomCategorieFR).ToArray.Union _
+                                (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Select pub.titre).ToArray
+
+        Return (
+            From obj In autoCompleteList
+            Where obj.ToLower.Contains(prefixText.ToLower)
+            Select obj).Take(count).ToArray()
+    End Function
+
+    'On peut effectuer les recherches selon plusieurs critères
+    Public Function getResultatRecherche() As IQueryable(Of ModeleSentinellesHY.Publication)
+        Dim listeResultat As New List(Of ModeleSentinellesHY.Publication)
+        Dim texteRecherche = ViewState("Recherche")
+
+        'On peut chercher par catégorie ou pour toutes les catégories
+        Dim noCategorie = DDLRechercheAvancee.SelectedValue
+
+        'On peut choisir une intervalle pour effectuer la recherche
+        Dim dateDepart = tbDateDebut.Text
+        Dim dateFin = tbDateFin.Text
+
+        'On vérifie quels sont les endroits où l'usager souhaite effectuer sa recherche
+        Dim rechercherTitre = CBLRechercheAvancee.Items(0).Selected
+        Dim rechercherContenu = CBLRechercheAvancee.Items(1).Selected
+        Dim rechercherUsager = CBLRechercheAvancee.Items(2).Selected
+
+        lblQuantiteReponse.Text = 0
+        lblReponse.Text = ModeleSentinellesHY.outils.obtenirLangue("RÉSULTAT|RESULT")
+
+        If texteRecherche.ToString & "" <> "" Then
+            Dim listeResultatTemp As New List(Of ModeleSentinellesHY.Publication)
+            If rechercherTitre Then
+                Dim listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.titre.Contains(texteRecherche)).ToList()
+                listeResultatTemp.AddRange(listeResultatPartiel)
+            End If
+            If rechercherContenu Then
+                Dim listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.contenu.Contains(texteRecherche)).ToList()
+                listeResultatTemp.AddRange(listeResultatPartiel)
+            End If
+            If rechercherUsager Then
+                Dim listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.Utilisateur.nomUtilisateur.Contains(texteRecherche)).ToList()
+                listeResultatTemp.AddRange(listeResultatPartiel)
+            End If
+
+            'Comme on n'affiche que la publication parent dans les résultats de la recherche, on fait cette boucle
+            For Each pub As ModeleSentinellesHY.Publication In listeResultatTemp
+                If pub.idParent Is Nothing Then
+                    listeResultat.Add(pub)
+                Else
+                    Dim parent = (From unePub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                                  Where unePub.idPublication = pub.idParent).FirstOrDefault
+                    listeResultat.Add(parent)
+                End If
+            Next
+
+            'On élimine les doublons
+            listeResultat = listeResultat.Distinct().ToList()
+
+            Dim unedate As Date
+            If Date.TryParse(dateDepart, unedate) Then
+                Dim listeResultatPartiel = listeResultat.Where(Function(x) x.datePublication >= dateDepart).ToList
+                listeResultat = listeResultatPartiel
+            End If
+            If Date.TryParse(dateFin, unedate) Then
+                'On ajoute une journée dans la requête afin d'inclure la journée sélectionnée avec le calendrier jusqu'à minuit de cette journée
+                Dim listeResultatPartiel = listeResultat.Where(Function(x) x.datePublication <= CType(dateFin, Date).AddDays(1)).ToList
+                listeResultat = listeResultatPartiel
+            End If
+
+            If noCategorie <> 0 Then
+                Dim listeResultatPartiel = listeResultat.Where(Function(x) x.idCategorie = noCategorie).ToList
+                listeResultat = listeResultatPartiel
+            End If
+
+            lblQuantiteReponse.Text = listeResultat.Count
+            If listeResultat.Count > 1 Then
+                lblReponse.Text = ModeleSentinellesHY.outils.obtenirLangue("RÉSULTATS|RESULTS")
+            End If
+        End If
+
+        Return listeResultat.AsQueryable
+    End Function
+
+    Protected Sub btnRechercheAvancee_Click(sender As Object, e As EventArgs)
+        ViewState("Recherche") = tbRechercheAvancee.Text
+        lvResultatRecherche.DataBind()
+    End Sub
+
+    Protected Sub CBLRechercheAvancee_Init(sender As Object, e As EventArgs)
+        Dim unTitre As New ListItem
+        Dim unContenu As New ListItem
+        Dim unUsager As New ListItem
+
+        unTitre.Value = 0
+        unContenu.Value = 1
+        unUsager.Value = 2
+
+        unTitre.Text = ModeleSentinellesHY.outils.obtenirLangue("Titre|Title")
+        unContenu.Text = ModeleSentinellesHY.outils.obtenirLangue("Contenu|Content")
+        unUsager.Text = ModeleSentinellesHY.outils.obtenirLangue("Nom d'usager|Username")
+
+        CType(sender, CheckBoxList).Items.Add(unTitre)
+        CType(sender, CheckBoxList).Items.Add(unContenu)
+        CType(sender, CheckBoxList).Items.Add(unUsager)
+
+        CType(sender, CheckBoxList).Items(0).Selected = True
+        CType(sender, CheckBoxList).Items(1).Selected = True
+        CType(sender, CheckBoxList).Items(2).Selected = False
+
+    End Sub
+
+    Protected Sub DDLRechercheAvancee_Init(sender As Object, e As EventArgs)
+        Dim toutesCategories As New ListItem
+
+        toutesCategories.Text = ModeleSentinellesHY.outils.obtenirLangue("Toutes les catégories|All categories")
+
+        toutesCategories.Value = 0
+        CType(sender, DropDownList).Items.Add(toutesCategories)
+
+        For Each cat As ModeleSentinellesHY.Categorie In ModeleSentinellesHY.outils.leContexte.CategorieJeu
+            Dim uneCategorie As New ListItem
+            uneCategorie.Text = ModeleSentinellesHY.outils.obtenirLangue(cat.nomCategorieFR & "|" & cat.nomCategorieEN)
+
+            uneCategorie.Value = cat.idCategorie
+            CType(sender, DropDownList).Items.Add(uneCategorie)
+        Next
+    End Sub
+
+    Protected Sub tbDateFin_Init(sender As Object, e As EventArgs)
+        CType(sender, TextBox).Text = Left(Date.Now.ToString, 10)
+    End Sub
+
+    Protected Sub lvResultatRecherche_DataBound(sender As Object, e As EventArgs)
+        DPResultatRechercheHaut.Visible = (DPResultatRechercheHaut.PageSize < DPResultatRechercheHaut.TotalRowCount)
+        DPResultatRechercheBas.Visible = (DPResultatRechercheBas.PageSize < DPResultatRechercheBas.TotalRowCount)
+    End Sub
+
+    Private Sub lvResultatRecherche_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lvResultatRecherche.ItemDataBound
+        Dim lblPubliePar = CType(e.Item.FindControl("lblPubliePar"), Label)
+        Dim imgAvatar = CType(e.Item.FindControl("imgAvatar"), System.Web.UI.WebControls.Image)
+        Dim unePublication As ModeleSentinellesHY.Publication = CType(e.Item.DataItem, ModeleSentinellesHY.Publication)
+
+        'On vérifie si l'utilisateur ayant publié la publication existe encore dans la BD
+        If Not unePublication.idUtilisateur Is Nothing Then
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
+            imgAvatar.ImageUrl = "../Upload/" & unePublication.Utilisateur.UrlAvatar
+        Else
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
+            imgAvatar.ImageUrl = "../Upload/default.png"
+        End If
+    End Sub
+#End Region
+End Class
