@@ -23,7 +23,7 @@ Public Class index
 
         listeNouvelles = (From nou In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By nou.dateRedaction Descending).ToList
 
-        If listeNouvelles.Count > 0 Then
+        If listeNouvelles.Count > 5 Then
             Return listeNouvelles.FirstOrDefault
         End If
         Return Nothing
@@ -74,7 +74,7 @@ Public Class index
         If listeRevuesDePresse.Count > 0 Then
             listeRevuesDePresse.RemoveAt(0)
         End If
-        'Mathieu 
+        'Canard 
         Return listeRevuesDePresse.AsQueryable
     End Function
 #End Region
