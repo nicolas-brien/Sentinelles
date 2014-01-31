@@ -43,7 +43,7 @@ Public Class index
     Public Shared Function getPremierEvenement() As ModeleSentinellesHY.Événement
         Dim listeEvenements As New List(Of ModeleSentinellesHY.Événement)
 
-        If listeEvenements.Count > 6 Then
+        If listeEvenements.Count > 0 Then
             listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateRedaction Descending).ToList
         End If
         Return listeEvenements.FirstOrDefault
@@ -75,7 +75,7 @@ Public Class index
         If listeRevuesDePresse.Count > 0 Then
             listeRevuesDePresse.RemoveAt(0)
         End If
-        'Canard 
+
         Return listeRevuesDePresse.AsQueryable
     End Function
 #End Region
