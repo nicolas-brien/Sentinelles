@@ -195,7 +195,7 @@ Public Class FRMForum
                     listePublicationTemp.Add(parent)
                 End If
             Next
-            listeRetour.AddRange(listePublicationTemp.Distinct().Take(3).ToList())
+            listeRetour.AddRange(listePublicationTemp.Distinct().Take(5).ToList())
         Next
         Return listeRetour.AsQueryable()
     End Function
@@ -210,11 +210,6 @@ Public Class FRMForum
             lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
         Else
             lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
-        End If
-
-        'Épingle les "pinned posts"
-        If unePublication.epinglee = True Then
-            CType(e.Item.FindControl("pinnedIcon"), HtmlImage).Attributes("style") = "display:normal;position:relative;top:5px;"
         End If
 
         'Condition qui affiche en orange le titre de la publication si elle ou un de ses enfants n'a pas été consulté 

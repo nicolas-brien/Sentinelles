@@ -155,15 +155,11 @@
                                     <div id="divCadrageItems" class="cadrageItems">
 
                                         <div style="float: right;">
-                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# Eval("DatePublication","{0:MMMM d, yyyy}")%></asp:Label><br />
+                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# "Créé le " + Eval("DatePublication","{0:d MMMM, yyyy}")%></asp:Label> |
                                             <asp:Label ID="lblPubliePar" CssClass="lblInfoPublication" runat="server"></asp:Label>
                                         </div>
-                                        <img id="pinnedIcon" runat="server" src="../Images/icon-pin.png" class="pull-left" style="display: none;" />
                                         <div style="margin-left: 40px;">
                                             <asp:LinkButton ID="lnkBtn_TitrePublication" CssClass="lnkBtn_TitrePublication" CommandArgument='<%# item.idPublication %>' OnClick="lnkBtn_TitrePublication_Click" runat="server"><%# Item.titre %></asp:LinkButton>
-                                            <div>
-                                                <asp:Label ID="lblContenuPublication" CssClass="lblContenuPublication" runat="server" Text='<%# Left(Eval("contenu"), 200) & IIf(Item.contenu.Length > 200, "...", "") %>'></asp:Label>
-                                            </div>
                                         </div>
                                     </div>
                                 </ItemTemplate>
