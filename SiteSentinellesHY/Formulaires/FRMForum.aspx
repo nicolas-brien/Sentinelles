@@ -302,7 +302,6 @@
                                                                             <ajaxToolkit:JustifyCenter />
                                                                             <ajaxToolkit:JustifyRight />
                                                                             <ajaxToolkit:JustifyFull />
-                                                                            <ajaxToolkit:InsertOrderedList />
                                                                             <ajaxToolkit:InsertUnorderedList />
                                                                             <ajaxToolkit:CreateLink />
                                                                             <ajaxToolkit:UnLink />
@@ -393,7 +392,6 @@
                                                         <ajaxToolkit:JustifyCenter />
                                                         <ajaxToolkit:JustifyRight />
                                                         <ajaxToolkit:JustifyFull />
-                                                        <ajaxToolkit:InsertOrderedList />
                                                         <ajaxToolkit:InsertUnorderedList />
                                                         <ajaxToolkit:CreateLink />
                                                         <ajaxToolkit:UnLink />
@@ -473,7 +471,6 @@
                                                     <ajaxToolkit:JustifyCenter />
                                                     <ajaxToolkit:JustifyRight />
                                                     <ajaxToolkit:JustifyFull />
-                                                    <ajaxToolkit:InsertOrderedList />
                                                     <ajaxToolkit:InsertUnorderedList />
                                                     <ajaxToolkit:CreateLink />
                                                     <ajaxToolkit:UnLink />
