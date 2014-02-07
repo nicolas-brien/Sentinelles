@@ -187,7 +187,7 @@
                                 <LayoutTemplate>
                                     <asp:ImageButton ID="imgbtnRetour" ImageUrl="~/Images/flecheRetour.png" runat="server" CssClass="imgbtnRetour" AlternateText="Page précédente" ToolTip="Page précédente" OnClick="retourAccueil_Click" />
                                     <asp:LinkButton ID="lnkBtnRetour" PostBackUrl="~/Formulaires/FRMForum.aspx" CssClass="lnkBtnRetour" runat="server" OnClick="retourAccueil_Click"><%= outils.obtenirlangue("Retour|Back") %></asp:LinkButton>
-                                    <asp:LinkButton ID="lnkbtnAjouterPublication" CssClass="lnkbtnAjouterPublication_categorie" runat="server" OnClick="lnkbtnAjouterPublication_Click">
+                                    <asp:LinkButton ID="lnkbtnAjouterPublication" CssClass="lnkbtnAjouterPublication_categorie disabled-button" runat="server" OnClick="lnkbtnAjouterPublication_Click">
                                 <i aria-hidden="true" class="icon-plus-sign"></i><% =outils.obtenirLangue(" Poser une question| Ask a question")%>
                                     </asp:LinkButton>
                                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
@@ -414,7 +414,7 @@
                                             </div>
                                             <div class="boutonPublier">
                                                 <asp:LinkButton ID="lnkbtnPublierQuestion" runat="server"
-                                                    CssClass="btn btnAjouter clear-both"
+                                                    CssClass="btn btnAjouter clear-both disabled-button"
                                                     CommandName="Update">
                                                             <i aria-hidden="true" class="icon-check"></i><% =outils.obtenirLangue(" Publier| Post")%></asp:LinkButton>
                                             </div>
@@ -494,7 +494,7 @@
                                         </div>
                                         <div class="boutonPublier">
                                             <asp:LinkButton ID="lnkbtnPublierQuestion" runat="server"
-                                                CssClass="btn btnAjouter"
+                                                CssClass="btn btnAjouter disabled-button"
                                                 CommandName="Update">
                                                             <i aria-hidden="true" class="icon-check"></i><% =outils.obtenirLangue(" Publier| Post")%></asp:LinkButton>
                                         </div>
@@ -592,7 +592,7 @@
                                         <div class="clear-both">
                                             <asp:LinkButton ID="btnModifier" runat="server"
                                                 CommandName="Update"
-                                                CssClass="btn btnAjouter tbInfoUtilisateur"
+                                                CssClass="btn btnAjouter disabled-button tbInfoUtilisateur"
                                                 CausesValidation="true"
                                                 ValidationGroup="sommaire">
                                                     <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Mettre à jour| Update")%></asp:LinkButton>
