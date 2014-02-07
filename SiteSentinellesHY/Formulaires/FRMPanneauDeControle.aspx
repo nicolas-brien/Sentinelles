@@ -520,6 +520,12 @@
                                         </div>
                                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                     </LayoutTemplate>
+                                    <EmptyDataTemplate>
+                                        <div class="div_AjoutNouvelle">
+                                            <asp:LinkButton ID="lnkBtnAjoutRDP" runat="server" OnClick="lnkBtnAjoutRDP_Click">+ <% =outils.obtenirLangue("Ajouter une revue de presse|Add a press review")%></asp:LinkButton>
+                                        </div>
+                                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                    </EmptyDataTemplate>
                                     <ItemTemplate>
                                         <div style="position: relative;">
                                             <asp:Label ID="lblTitreFR" runat="server"><%= outils.obtenirLangue("Titre Français : |French Title : ")%></asp:Label>
@@ -876,7 +882,7 @@
                             <asp:LinkButton ID="LnkBtnInfoMaltraitance_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalInfoMaltraitance" data-toggle="modal"><%= outils.obtenirLangue("Info Maltraitance|Elder Abuse Information")%></asp:LinkButton>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server"  href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
+                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
                     </div>
                 </div>
