@@ -23,6 +23,15 @@ Partial Public Class index
     Protected WithEvents lblPenseeAccueil As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''Contrôle divContantNouvelles.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents divContantNouvelles As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''Contrôle lvPremiereNouvellesAccueil.
     '''</summary>
     '''<remarks>
@@ -41,6 +50,15 @@ Partial Public Class index
     Protected WithEvents lvNouvellesAccueil As Global.System.Web.UI.WebControls.ListView
 
     '''<summary>
+    '''Contrôle divContenantEvenement.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents divContenantEvenement As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''Contrôle lvPremierEvenementAccueil.
     '''</summary>
     '''<remarks>
@@ -57,6 +75,15 @@ Partial Public Class index
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents lvEvenementAccueil As Global.System.Web.UI.WebControls.ListView
+
+    '''<summary>
+    '''Contrôle divContenantRDP.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents divContenantRDP As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''Contrôle lvPremiereRDPAccueil.

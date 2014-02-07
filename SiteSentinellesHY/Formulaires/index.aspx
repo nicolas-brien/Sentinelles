@@ -14,7 +14,7 @@
     </div>
 
     <%--------------------------------------NOUVELLES----------------------------------------------%>
-    <div class="listeAccueil">
+    <div id="divContantNouvelles" class="listeAccueil" runat="server">
         <h3><%= outils.obtenirLangue("NOUVELLES|NEWS")%></h3>
         <div class="cadrageItems">
             <div class="clear-both">
@@ -57,7 +57,7 @@
         </div>
     </div>
     <%--------------------------------------EVENEMENTS------------------------------------------------------%>
-    <div class="listeAccueil">
+    <div id="divContenantEvenement" class="listeAccueil" runat="server">
         <h3><%= outils.obtenirLangue("ÉVÉNEMENTS|EVENTS")%></h3>
         <div class="cadrageItems">
             <div class="clear-both">
@@ -102,7 +102,7 @@
         </div>
     </div>
     <%--------------------------------------REVUE DE PRESSE------------------------------------------------%>
-    <div class="listeAccueil">
+    <div id="divContenantRDP" class="listeAccueil" runat="server">
         <h3><%= outils.obtenirLangue("REVUE DE PRESSE|PRESS REVIEW")%></h3>
         <div class="cadrageItems">
             <div class="clear-both">
