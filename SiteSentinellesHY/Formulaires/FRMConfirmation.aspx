@@ -7,5 +7,3 @@
     <br />
     <h4><%= ModeleSentinellesHY.outils.obtenirLangue("Votre formulaire a bien été acheminé à nos responsables et ils vous contacteront sous peu. Merci de l'intérêt que vous portez aux Sentinelles!|Your form has been sent to our managers and they will contact you shortly. Thank you for your interest in the Sentinels!")%></h4>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-</asp:Content>

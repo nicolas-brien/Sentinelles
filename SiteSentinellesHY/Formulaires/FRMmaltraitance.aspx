@@ -10,5 +10,3 @@
     <h2><%= outils.obtenirLangue("MALTRAITANCE|ELDER ABUSE")%></h2>
     <asp:Label ID="textMaltraitance" runat="server" OnInit="textMaltraitance_Init"></asp:Label>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-</asp:Content>
