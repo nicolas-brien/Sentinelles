@@ -16,5 +16,3 @@
        <asp:Label ID="texteHistorique" runat="server" OnInit="texteHistorique_Init"></asp:Label>
     </div>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-</asp:Content>
