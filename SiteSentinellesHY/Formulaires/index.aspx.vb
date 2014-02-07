@@ -23,8 +23,7 @@ Public Class index
 
         listeNouvelles = (From nou In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By nou.dateRedaction Descending).ToList
 
-        If listeNouvelles.Count > 0 Then
-            Return listeNouvelles.FirstOrDefault
+        Return listeNouvelles.FirstOrDefault
         End If
         Return Nothing
     End Function
@@ -42,6 +41,7 @@ Public Class index
 #Region "Evenements"
     Public Shared Function getPremierEvenement() As ModeleSentinellesHY.Événement
         Dim listeEvenements As New List(Of ModeleSentinellesHY.Événement)
+
 
         If listeEvenements.Count > 0 Then
             listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateRedaction Descending).ToList
@@ -75,6 +75,22 @@ Public Class index
         If listeRevuesDePresse.Count > 0 Then
             listeRevuesDePresse.RemoveAt(0)
         End If
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+        'the zipper Bith 
+=======
+>>>>>>> ghislan
+<<<<<<< .mine
+        'Mathieu
+=======
+        'Mathieu 
+>>>>>>> .theirs
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> ghislan
         Return listeRevuesDePresse.AsQueryable
     End Function
 #End Region
