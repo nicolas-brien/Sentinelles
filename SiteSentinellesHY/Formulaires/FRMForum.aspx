@@ -15,6 +15,7 @@
     <link href="../CSS/Forum.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
     <script src="../CSS/js/jquery.js"></script>
+    <script src="../CSS/js/scriptGlobal.js"></script>
 
 </head>
 <body>
@@ -559,7 +560,7 @@
                                     </div>
                                     <div class="pull-right">
                                         <div class="clear-both">
-                                            <asp:TextBox ID="tbNomUtilisateur" CssClass="tbInfoUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nomUtilisateur%>' Enabled="false" />
+                                            <asp:TextBox ID="tbNomUtilisateur" CssClass="tbInfoUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# Eval("nomUtilisateur")%>' Enabled="false" />
                                             <asp:Label ID="lblNomUtilisateur" CssClass="lblInfoUtilisateur" runat="server"><%= outils.obtenirLangue("Nom d'utilisateur :|Username :")%></asp:Label>
                                         </div>
                                         <div class="clear-both">
@@ -575,7 +576,7 @@
                                                 DataValueField="idStatut"
                                                 DataTextField="nomStatut"
                                                 ItemType="ModeleSentinellesHY.Statut"
-                                                SelectedValue="<%# BindItem.idStatut%>"
+                                                SelectedValue="<%# Item.idStatut%>"
                                                 SelectMethod="getStatutUtilisateur"
                                                 Enabled="false" />
                                             <asp:Label ID="lblType" CssClass="lblInfoUtilisateur" runat="server"><%= outils.obtenirLangue("Type d'utilisateur :|User type :")%></asp:Label>
