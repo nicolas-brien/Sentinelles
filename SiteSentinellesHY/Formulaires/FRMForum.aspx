@@ -156,11 +156,15 @@
                                     <div id="divCadrageItems" class="cadrageItems">
 
                                         <div style="float: right;">
-                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# "Créé le " + Eval("DatePublication","{0:d MMMM, yyyy}")%></asp:Label> |
+                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><<%# "Créé le " + Eval("DatePublication","{0:d MMMM, yyyy}")%></asp:Label><br />
                                             <asp:Label ID="lblPubliePar" CssClass="lblInfoPublication" runat="server"></asp:Label>
                                         </div>
+                                        <img id="pinnedIcon" runat="server" src="../Images/icon-pin.png" class="pull-left" style="display: none;" />
                                         <div style="margin-left: 40px;">
                                             <asp:LinkButton ID="lnkBtn_TitrePublication" CssClass="lnkBtn_TitrePublication" CommandArgument='<%# item.idPublication %>' OnClick="lnkBtn_TitrePublication_Click" runat="server"><%# Item.titre %></asp:LinkButton>
+                                            <div>
+                                                <asp:Label ID="lblContenuPublication" CssClass="lblContenuPublication" runat="server" Text='<%# Left(Eval("contenu"), 200) & IIf(Item.contenu.Length > 200, "...", "") %>'></asp:Label>
+                                            </div>
                                         </div>
                                     </div>
                                 </ItemTemplate>
@@ -490,7 +494,7 @@
                                         </div>
                                         <div class="boutonPublier">
                                             <asp:LinkButton ID="lnkbtnPublierQuestion" runat="server"
-                                                CssClass="btn btnAjouter disable-button"
+                                                CssClass="btn btnAjouter"
                                                 CommandName="Update">
                                                             <i aria-hidden="true" class="icon-check"></i><% =outils.obtenirLangue(" Publier| Post")%></asp:LinkButton>
                                         </div>
@@ -792,7 +796,7 @@
                             <asp:LinkButton ID="LnkBtnInfoMaltraitance_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalInfoMaltraitance" data-toggle="modal"><%= outils.obtenirLangue("Info Maltraitance|Elder Abuse Information")%></asp:LinkButton>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" data-toggle="modal" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
+                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
                     </div>
                 </div>
