@@ -295,6 +295,9 @@ Public Class FRMPanneauDeControle
     End Function
     Public Sub UpdateNouvelle(ByVal nouvelleAUpdater As ModeleSentinellesHY.Nouvelle)
 
+        If (ModeleSentinellesHY.outils.leContexte.NouvelleJeu).Count = 0 Then
+            ViewState("modeNouvelle") = "AjoutNouvelle"
+        End If
         Dim nouvelleAValider As ModeleSentinellesHY.Nouvelle = Nothing
         lblMessageErreurNouvelle.Text = ""
         lblMessageErreurNouvelle.ForeColor = Drawing.Color.Red
@@ -339,8 +342,8 @@ Public Class FRMPanneauDeControle
             ViewState("modeNouvelle") = ""
             lblMessageErreurNouvelle.Text = ModeleSentinellesHY.outils.obtenirLangue("La nouvelle a été modifié avec succès!|The news has been succesfully updated!")
             lblMessageErreurNouvelle.ForeColor = Color.Green
-            lviewInfoNouvelles.DataBind()
             lviewNouvelle.DataBind()
+            lviewInfoNouvelles.DataBind()
         End If
         For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
             CType(lviewInfoNouvelles.Items(0).FindControl("txtbox" & erreur.nomPropriete), TextBox).BorderColor = Drawing.Color.Red
@@ -412,6 +415,9 @@ Public Class FRMPanneauDeControle
 
     Public Sub UpdateEvenement(ByVal evenementAUpdater As ModeleSentinellesHY.Événement)
 
+        If ModeleSentinellesHY.outils.leContexte.ÉvénementJeu.Count = 0 Then
+            ViewState("modeEvenement") = "AjoutEvenement"
+        End If
         Dim evenementAValider As ModeleSentinellesHY.Événement = Nothing
         lblMessageErreurEvenement.Text = ""
         lblMessageErreurEvenement.ForeColor = Drawing.Color.Red
@@ -456,8 +462,8 @@ Public Class FRMPanneauDeControle
             lblMessageErreurEvenement.Text = ModeleSentinellesHY.outils.obtenirLangue("L'événement a été modifié avec succès!|The event has been succesfully updated!")
             lblMessageErreurEvenement.ForeColor = Color.Green
             ViewState("modeEvenement") = ""
-            lvInfoEvenement.DataBind()
             lvEvenement.DataBind()
+            lvInfoEvenement.DataBind()
         End If
         For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
             CType(lvInfoEvenement.Items(0).FindControl("txtbox" & erreur.nomPropriete), TextBox).BorderColor = Drawing.Color.Red
