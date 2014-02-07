@@ -76,14 +76,30 @@ Public Class index
             listeRevuesDePresse.RemoveAt(0)
         End If
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         'the zipper Bith 
 =======
+=======
+=======
+<<<<<<< HEAD
+
+        'the zipper Bith 
+=======
+>>>>>>> ghislan
+>>>>>>> master
 <<<<<<< .mine
         'Mathieu
 =======
         'Mathieu 
 >>>>>>> .theirs
+<<<<<<< HEAD
+>>>>>>> master
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> ghislan
 >>>>>>> master
         Return listeRevuesDePresse.AsQueryable
     End Function
