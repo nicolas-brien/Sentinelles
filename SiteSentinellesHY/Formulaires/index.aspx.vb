@@ -22,8 +22,8 @@ Public Class index
         Dim listeNouvelles As New List(Of ModeleSentinellesHY.Nouvelle)
 
         listeNouvelles = (From nou In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By nou.dateRedaction Descending).ToList
-
-        Return listeNouvelles.FirstOrDefault
+        If listeNouvelles.Count > 0 Then
+            Return listeNouvelles.FirstOrDefault
         End If
         Return Nothing
     End Function
@@ -75,32 +75,6 @@ Public Class index
         If listeRevuesDePresse.Count > 0 Then
             listeRevuesDePresse.RemoveAt(0)
         End If
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-        'the zipper Bith 
-=======
-=======
-=======
-<<<<<<< HEAD
-
-        'the zipper Bith 
-=======
->>>>>>> ghislan
->>>>>>> master
-<<<<<<< .mine
-        'Mathieu
-=======
-        'Mathieu 
->>>>>>> .theirs
-<<<<<<< HEAD
->>>>>>> master
-=======
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> ghislan
->>>>>>> master
         Return listeRevuesDePresse.AsQueryable
     End Function
 #End Region
