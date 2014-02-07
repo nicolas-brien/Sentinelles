@@ -653,12 +653,14 @@ Public Class FRMForum
 
     Public Sub updateInfoUtilisateur(ByVal idUtilisateur As Integer)
         Dim lblMessageErreur = CType(lvInfoUtilisateur.FindControl("lblMessageErreur"), Label)
+        Dim divMessageErreur = CType(lvInfoUtilisateur.FindControl("divMessageErreur"), Panel)
         Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Nothing
         Dim tbMotDePasse As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbMotDePasse"), TextBox).Text
         Dim tbConfirmation As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbConfirmer"), TextBox).Text
 
         lblMessageErreur.Text = ""
-        lblMessageErreur.ForeColor = Drawing.Color.Red
+        divMessageErreur.CssClass = "alert alert-error"
+        divMessageErreur.Visible = True
         For Each tb As Object In lvInfoUtilisateur.Items(0).Controls 'Reset l'encadrer autour de tout txtBox
             If TypeOf (tb) Is TextBox Then
                 CType(tb, TextBox).BorderColor = Nothing
@@ -683,8 +685,10 @@ Public Class FRMForum
 
         If ModelState.IsValid Then
             ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            divMessageErreur.CssClass = "alert alert-success"
+            divMessageErreur.Visible = True
             lblMessageErreur.Text = ModeleSentinellesHY.outils.obtenirLangue("L'utilisateur a été modifié avec succès!|The user has been successfully updated!")
-            lblMessageErreur.ForeColor = Color.Green
+
 
             'Conditions pour Supprimer Avatar du fichier Upload mais ne pas supprimer la photo par défaut
             If utilisateurAValider.UrlAvatar <> utilisateurAValider.urlAvatarTemp AndAlso utilisateurAValider.UrlAvatar <> "" _

@@ -516,8 +516,10 @@
                                 DataKeyName="idUtilisateur">
                                 <LayoutTemplate>
                                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-                                    <div class="clear-both pull-right">
-                                        <asp:Label ID="lblMessageErreur" CssClass="lblMessageErreur" runat="server" Text="" />
+                                    <div class="clear-both" style="padding-top: 10px;">
+                                        <asp:panel id="divMessageErreur" style="margin:0;" Visible="false" CssClass="alert alert-error" runat="server">
+                                            <asp:Label ID="lblMessageErreur" runat="server" Text="" />
+                                        </asp:panel>
                                     </div>
                                 </LayoutTemplate>
                                 <ItemTemplate>
