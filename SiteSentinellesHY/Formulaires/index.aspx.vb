@@ -75,8 +75,16 @@ Public Class index
         If listeRevuesDePresse.Count > 0 Then
             listeRevuesDePresse.RemoveAt(0)
         End If
+<<<<<<< HEAD
 
         'the zipper Bith 
+=======
+<<<<<<< .mine
+        'Mathieu
+=======
+        'Mathieu 
+>>>>>>> .theirs
+>>>>>>> master
         Return listeRevuesDePresse.AsQueryable
     End Function
 #End Region
