@@ -55,12 +55,6 @@
 {
     padding: 20px 50px 0px 50px;
 }
-.encadrerModification
-{
-    border: 1px dashed blue;
-    padding: 25px;
-    margin-bottom: 50px;
-}
 .btnAccepterModification
 {
     display: inline-block;

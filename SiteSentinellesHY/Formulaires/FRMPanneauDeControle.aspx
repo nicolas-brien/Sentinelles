@@ -304,7 +304,7 @@
                                     </EmptyDataTemplate>
                                 </asp:ListView>
                             </div>
-                            <div class="encadrerModification">
+                            <div class="petitsPoints">
                                 <asp:Label ID="lblMessageErreurNouvelle" CssClass="lblMessageErreur" runat="server" Text="" />
                                 <asp:ListView ID="lviewInfoNouvelles" runat="server"
                                     ItemType="ModeleSentinellesHY.nouvelle"
@@ -402,7 +402,7 @@
                                 </asp:ListView>
                             </div>
 
-                            <div class="encadrerModification">
+                            <div class="petitsPoints">
                                 <asp:Label ID="lblMessageErreurEvenement" CssClass="lblMessageErreur" runat="server" Text="" />
                                 <asp:ListView ID="lvInfoEvenement" runat="server"
                                     ItemType="ModeleSentinellesHY.événement"
@@ -505,7 +505,7 @@
                                     </EmptyDataTemplate>
                                 </asp:ListView>
                             </div>
-                            <div class="encadrerModification">
+                            <div class="petitsPoints">
                                 <asp:Label ID="lblMessageErreurRDP" CssClass="lblMessageErreur" runat="server" Text="" />
                                 <asp:ListView ID="lvInfoRDP" runat="server"
                                     ItemType="ModeleSentinellesHY.revuedepresse"
@@ -791,7 +791,7 @@
                         </asp:View>
 
                         <asp:View ID="viewMessage" runat="server">
-                            <div class="encadrerModification">
+                            <div class="petitsPoints">
                                 <div>
                                     <asp:Label ID="Label11" runat="server">
                                         <%= outils.obtenirLangue("Veuillez prendre note que ce message sera distribué à tous les utilisateurs présentement inscrits.|Please take note that this email will be sent to all the users actually registered.")%>
