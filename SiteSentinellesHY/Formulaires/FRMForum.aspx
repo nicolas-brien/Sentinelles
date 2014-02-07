@@ -296,12 +296,6 @@
                                                                             <ajaxToolkit:Italic />
                                                                             <ajaxToolkit:Underline />
                                                                             <ajaxToolkit:StrikeThrough />
-                                                                            <ajaxToolkit:Subscript />
-                                                                            <ajaxToolkit:Superscript />
-                                                                            <ajaxToolkit:JustifyLeft />
-                                                                            <ajaxToolkit:JustifyCenter />
-                                                                            <ajaxToolkit:JustifyRight />
-                                                                            <ajaxToolkit:JustifyFull />
                                                                             <ajaxToolkit:InsertUnorderedList />
                                                                             <ajaxToolkit:CreateLink />
                                                                             <ajaxToolkit:UnLink />
@@ -386,12 +380,6 @@
                                                         <ajaxToolkit:Italic />
                                                         <ajaxToolkit:Underline />
                                                         <ajaxToolkit:StrikeThrough />
-                                                        <ajaxToolkit:Subscript />
-                                                        <ajaxToolkit:Superscript />
-                                                        <ajaxToolkit:JustifyLeft />
-                                                        <ajaxToolkit:JustifyCenter />
-                                                        <ajaxToolkit:JustifyRight />
-                                                        <ajaxToolkit:JustifyFull />
                                                         <ajaxToolkit:InsertUnorderedList />
                                                         <ajaxToolkit:CreateLink />
                                                         <ajaxToolkit:UnLink />
@@ -465,12 +453,6 @@
                                                     <ajaxToolkit:Italic />
                                                     <ajaxToolkit:Underline />
                                                     <ajaxToolkit:StrikeThrough />
-                                                    <ajaxToolkit:Subscript />
-                                                    <ajaxToolkit:Superscript />
-                                                    <ajaxToolkit:JustifyLeft />
-                                                    <ajaxToolkit:JustifyCenter />
-                                                    <ajaxToolkit:JustifyRight />
-                                                    <ajaxToolkit:JustifyFull />
                                                     <ajaxToolkit:InsertUnorderedList />
                                                     <ajaxToolkit:CreateLink />
                                                     <ajaxToolkit:UnLink />
