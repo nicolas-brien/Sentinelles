@@ -13,6 +13,7 @@
     <link href="../CSS/PanneauDeControle.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
     <script src="../CSS/js/jquery.js"></script>
+    <script src="../CSS/js/scriptGlobal.js"></script>
     <title>Les Sentinelles Haute-Yamaska</title>
 </head>
 <body>
@@ -88,7 +89,7 @@
                                                             <asp:TextBox ID="txtboxcourrielFormulaire" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.courrielFormulaire%>' />
                                                         </div>
                                                         <asp:LinkButton ID="lnkbtnCourrielAdmin" runat="server"
-                                                            CssClass="btn btnAjouter"
+                                                            CssClass="btn btnAjouter disabled-button"
                                                             CommandName="Update"
                                                             Text="<i aria-hidden=true class=icon-check></i>"><% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
                                                     </div>
@@ -123,7 +124,7 @@
                                                         </div>
                                                         <div id="div_lnkbtnHistorique">
                                                             <asp:LinkButton ID="lnkbtnHistorique" runat="server"
-                                                                CssClass="btn btnAjouter"
+                                                                CssClass="btn btnAjouter disabled-button"
                                                                 CommandName="Update"
                                                                 Text="<i aria-hidden=true class=icon-check></i>"><% =outils.obtenirLangue(" Sauvegarder| Save")%> </asp:LinkButton>
                                                         </div>
@@ -160,7 +161,7 @@
                                                         </div>
                                                         <div id="div_lnkbtnMaltraitance">
                                                             <asp:LinkButton ID="lnkbtnMaltraitance" runat="server"
-                                                                CssClass="btn btnAjouter"
+                                                                CssClass="btn btnAjouter disabled-button"
                                                                 CommandName="Update"
                                                                 Text="<i aria-hidden=true class=icon-check></i>"><% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
                                                         </div>
@@ -186,7 +187,7 @@
                                                             <asp:TextBox ID="txtboxPenseeEN" CssClass="txtboxPenseeEN" TextMode="MultiLine" Height="40px" runat="server" Text='<%# BindItem.penseeEN%>' />
                                                         </div>
                                                         <asp:LinkButton ID="LinkButton4" runat="server"
-                                                            CssClass="btn btnAjouter"
+                                                            CssClass="btn btnAjouter disabled-button"
                                                             CommandName="Update"
                                                             Text="<i aria-hidden=true class=icon-check></i>"> <% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
                                                     </div>
@@ -214,7 +215,7 @@
                                                             <asp:TextBox ID="txtboxtemoignageEN" runat="server" CssClass="txtboxtemoignageEN" TextMode="MultiLine" Height="40px" Text='<%# BindItem.temoignageEN%>' />
                                                         </div>
                                                         <asp:LinkButton ID="LinkButton5" runat="server"
-                                                            CssClass="btn btnAjouter"
+                                                            CssClass="btn btnAjouter disabled-button"
                                                             CommandName="Update"
                                                             Text="<i aria-hidden=true class=icon-check></i>"><% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
                                                     </div>
@@ -304,7 +305,7 @@
                                     </EmptyDataTemplate>
                                 </asp:ListView>
                             </div>
-                            <div class="encadrerModification">
+                            <div class="petitsPoints">
                                 <asp:Label ID="lblMessageErreurNouvelle" CssClass="lblMessageErreur" runat="server" Text="" />
                                 <asp:ListView ID="lviewInfoNouvelles" runat="server"
                                     ItemType="ModeleSentinellesHY.nouvelle"
@@ -341,12 +342,12 @@
                                         <div class="boutonsNouvelleMargin">
                                             <asp:LinkButton ID="btnModifierNouvelle" runat="server"
                                                 CommandName="Update"
-                                                CssClass="btn btnAjouter">
+                                                CssClass="btn btnAjouter disabled-button">
                                                 <i aria-hidden="true" class="icon-check"></i> <% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
                                             <asp:LinkButton ID="lnkbtnSupprimerNouvelle" runat="server"
                                                 href="#myModal"
                                                 role="button"
-                                                class="btn btnAjouter"
+                                                class="btn btnAjouter disabled-button"
                                                 data-toggle="modal">
                                                 <i aria-hidden="true" class="icon-remove"></i><% =outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
                                             <!-- Modal -->
@@ -445,12 +446,12 @@
                                         <div class="boutonsNouvelleMargin">
                                             <asp:LinkButton ID="btnModifierNouvelle" runat="server"
                                                 CommandName="Update"
-                                                CssClass="btn btnAjouter">
+                                                CssClass="btn btnAjouter disabled-button">
                                                 <i aria-hidden="true" class="icon-check"></i> <% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
                                             <asp:LinkButton ID="lnkbtnSupprimerNouvelle" runat="server"
                                                 href="#myModal"
                                                 role="button"
-                                                class="btn btnAjouter"
+                                                class="btn btnAjouter disabled-button"
                                                 data-toggle="modal">
                                                 <i aria-hidden="true" class="icon-remove"></i><% =outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
                                             <!-- Modal -->
@@ -875,7 +876,7 @@
                             <asp:LinkButton ID="LnkBtnInfoMaltraitance_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalInfoMaltraitance" data-toggle="modal"><%= outils.obtenirLangue("Info Maltraitance|Elder Abuse Information")%></asp:LinkButton>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server"  href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
+                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" data-toggle="modal" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
                     </div>
                 </div>

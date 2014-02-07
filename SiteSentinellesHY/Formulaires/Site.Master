@@ -15,6 +15,7 @@
     </asp:ContentPlaceHolder>
     <title><%= outils.obtenirLangue("Les Sentinelles Haute-Yamaska|Haute-Yamaska's Sentinels")%></title>
     <script src="../CSS/js/jquery.js"></script>
+    <script src="../CSS/js/scriptGlobal.js"></script>
 </head>
 <body>
     <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
@@ -181,7 +182,7 @@
                             <asp:LinkButton ID="LnkBtnInfoMaltraitance_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalInfoMaltraitance" data-toggle="modal"><%= outils.obtenirLangue("Info Maltraitance|Elder Abuse Information")%></asp:LinkButton>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server"  href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
+                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" data-toggle="modal"  href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
                     </div>
                 </div>

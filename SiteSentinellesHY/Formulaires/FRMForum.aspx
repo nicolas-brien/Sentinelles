@@ -15,6 +15,7 @@
     <link href="../CSS/Forum.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
     <script src="../CSS/js/jquery.js"></script>
+    <script src="../CSS/js/scriptGlobal.js"></script>
 
 </head>
 <body>
@@ -155,7 +156,7 @@
                                     <div id="divCadrageItems" class="cadrageItems">
 
                                         <div style="float: right;">
-                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# Eval("DatePublication","{0:MMMM d, yyyy}")%></asp:Label><br />
+                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><<%# "Créé le " + Eval("DatePublication","{0:d MMMM, yyyy}")%></asp:Label><br />
                                             <asp:Label ID="lblPubliePar" CssClass="lblInfoPublication" runat="server"></asp:Label>
                                         </div>
                                         <img id="pinnedIcon" runat="server" src="../Images/icon-pin.png" class="pull-left" style="display: none;" />
@@ -186,7 +187,7 @@
                                 <LayoutTemplate>
                                     <asp:ImageButton ID="imgbtnRetour" ImageUrl="~/Images/flecheRetour.png" runat="server" CssClass="imgbtnRetour" AlternateText="Page précédente" ToolTip="Page précédente" OnClick="retourAccueil_Click" />
                                     <asp:LinkButton ID="lnkBtnRetour" PostBackUrl="~/Formulaires/FRMForum.aspx" CssClass="lnkBtnRetour" runat="server" OnClick="retourAccueil_Click"><%= outils.obtenirlangue("Retour|Back") %></asp:LinkButton>
-                                    <asp:LinkButton ID="lnkbtnAjouterPublication" CssClass="lnkbtnAjouterPublication_categorie" runat="server" OnClick="lnkbtnAjouterPublication_Click">
+                                    <asp:LinkButton ID="lnkbtnAjouterPublication" CssClass="lnkbtnAjouterPublication_categorie disabled-button" runat="server" OnClick="lnkbtnAjouterPublication_Click">
                                 <i aria-hidden="true" class="icon-plus-sign"></i><% =outils.obtenirLangue(" Poser une question| Ask a question")%>
                                     </asp:LinkButton>
                                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
@@ -296,13 +297,6 @@
                                                                             <ajaxToolkit:Italic />
                                                                             <ajaxToolkit:Underline />
                                                                             <ajaxToolkit:StrikeThrough />
-                                                                            <ajaxToolkit:Subscript />
-                                                                            <ajaxToolkit:Superscript />
-                                                                            <ajaxToolkit:JustifyLeft />
-                                                                            <ajaxToolkit:JustifyCenter />
-                                                                            <ajaxToolkit:JustifyRight />
-                                                                            <ajaxToolkit:JustifyFull />
-                                                                            <ajaxToolkit:InsertOrderedList />
                                                                             <ajaxToolkit:InsertUnorderedList />
                                                                             <ajaxToolkit:CreateLink />
                                                                             <ajaxToolkit:UnLink />
@@ -387,13 +381,6 @@
                                                         <ajaxToolkit:Italic />
                                                         <ajaxToolkit:Underline />
                                                         <ajaxToolkit:StrikeThrough />
-                                                        <ajaxToolkit:Subscript />
-                                                        <ajaxToolkit:Superscript />
-                                                        <ajaxToolkit:JustifyLeft />
-                                                        <ajaxToolkit:JustifyCenter />
-                                                        <ajaxToolkit:JustifyRight />
-                                                        <ajaxToolkit:JustifyFull />
-                                                        <ajaxToolkit:InsertOrderedList />
                                                         <ajaxToolkit:InsertUnorderedList />
                                                         <ajaxToolkit:CreateLink />
                                                         <ajaxToolkit:UnLink />
@@ -413,7 +400,7 @@
                                             </div>
                                             <div class="boutonPublier">
                                                 <asp:LinkButton ID="lnkbtnPublierQuestion" runat="server"
-                                                    CssClass="btn btnAjouter clear-both"
+                                                    CssClass="btn btnAjouter clear-both disabled-button"
                                                     CommandName="Update">
                                                             <i aria-hidden="true" class="icon-check"></i><% =outils.obtenirLangue(" Publier| Post")%></asp:LinkButton>
                                             </div>
@@ -467,13 +454,6 @@
                                                     <ajaxToolkit:Italic />
                                                     <ajaxToolkit:Underline />
                                                     <ajaxToolkit:StrikeThrough />
-                                                    <ajaxToolkit:Subscript />
-                                                    <ajaxToolkit:Superscript />
-                                                    <ajaxToolkit:JustifyLeft />
-                                                    <ajaxToolkit:JustifyCenter />
-                                                    <ajaxToolkit:JustifyRight />
-                                                    <ajaxToolkit:JustifyFull />
-                                                    <ajaxToolkit:InsertOrderedList />
                                                     <ajaxToolkit:InsertUnorderedList />
                                                     <ajaxToolkit:CreateLink />
                                                     <ajaxToolkit:UnLink />
@@ -493,7 +473,7 @@
                                         </div>
                                         <div class="boutonPublier">
                                             <asp:LinkButton ID="lnkbtnPublierQuestion" runat="server"
-                                                CssClass="btn btnAjouter"
+                                                CssClass="btn btnAjouter disabled-button"
                                                 CommandName="Update">
                                                             <i aria-hidden="true" class="icon-check"></i><% =outils.obtenirLangue(" Publier| Post")%></asp:LinkButton>
                                         </div>
@@ -561,7 +541,7 @@
                                     </div>
                                     <div class="pull-right">
                                         <div class="clear-both">
-                                            <asp:TextBox ID="tbNomUtilisateur" CssClass="tbInfoUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nomUtilisateur%>' Enabled="false" />
+                                            <asp:TextBox ID="tbNomUtilisateur" CssClass="tbInfoUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# Eval("nomUtilisateur")%>' Enabled="false" />
                                             <asp:Label ID="lblNomUtilisateur" CssClass="lblInfoUtilisateur" runat="server"><%= outils.obtenirLangue("Nom d'utilisateur :|Username :")%></asp:Label>
                                         </div>
                                         <div class="clear-both">
@@ -577,7 +557,7 @@
                                                 DataValueField="idStatut"
                                                 DataTextField="nomStatut"
                                                 ItemType="ModeleSentinellesHY.Statut"
-                                                SelectedValue="<%# BindItem.idStatut%>"
+                                                SelectedValue="<%# Item.idStatut%>"
                                                 SelectMethod="getStatutUtilisateur"
                                                 Enabled="false" />
                                             <asp:Label ID="lblType" CssClass="lblInfoUtilisateur" runat="server"><%= outils.obtenirLangue("Type d'utilisateur :|User type :")%></asp:Label>
@@ -593,7 +573,7 @@
                                         <div class="clear-both">
                                             <asp:LinkButton ID="btnModifier" runat="server"
                                                 CommandName="Update"
-                                                CssClass="btn btnAjouter tbInfoUtilisateur"
+                                                CssClass="btn btnAjouter disabled-button tbInfoUtilisateur"
                                                 CausesValidation="true"
                                                 ValidationGroup="sommaire">
                                                     <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Mettre à jour| Update")%></asp:LinkButton>
