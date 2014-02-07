@@ -18,15 +18,16 @@ Public Class index
 #End Region
 
 #Region "Nouvelles"
-    Public Shared Function getPremiereNouvelle() As ModeleSentinellesHY.Nouvelle
+    Public Function getPremiereNouvelle() As ModeleSentinellesHY.Nouvelle
         Dim listeNouvelles As New List(Of ModeleSentinellesHY.Nouvelle)
 
         listeNouvelles = (From nou In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By nou.dateRedaction Descending).ToList
 
-        If listeNouvelles.Count > 0 Then
-            Return listeNouvelles.FirstOrDefault
+        If listeNouvelles.Count = 0 Then
+            divContantNouvelles.Visible = False
         End If
-        Return Nothing
+
+        Return listeNouvelles.FirstOrDefault
     End Function
 
     Public Shared Function getNouvelles() As IQueryable(Of ModeleSentinellesHY.Nouvelle)
@@ -43,14 +44,15 @@ Public Class index
 #End Region
 
 #Region "Evenements"
-    Public Shared Function getPremierEvenement() As ModeleSentinellesHY.Événement
+    Public Function getPremierEvenement() As ModeleSentinellesHY.Événement
         Dim listeEvenements As New List(Of ModeleSentinellesHY.Événement)
 
-            listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateRedaction Descending).ToList
+        listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateRedaction Descending).ToList
 
-        If listeEvenements.Count > 0 Then
-            listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateRedaction Descending).ToList
+        If listeEvenements.Count = 0 Then
+            divContenantEvenement.Visible = False
         End If
+
         Return listeEvenements.FirstOrDefault
     End Function
 
@@ -68,10 +70,14 @@ Public Class index
 #End Region
 
 #Region "Revue de Presse"
-    Public Shared Function getPremiereRDP() As ModeleSentinellesHY.RevueDePresse
+    Public Function getPremiereRDP() As ModeleSentinellesHY.RevueDePresse
         Dim listeRevuesDePresse As New List(Of ModeleSentinellesHY.RevueDePresse)
 
         listeRevuesDePresse = (From rdp In ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).ToList
+
+        If listeRevuesDePresse.Count = 0 Then
+            divContenantRDP.Visible = False
+        End If
 
         Return listeRevuesDePresse.FirstOrDefault
     End Function
