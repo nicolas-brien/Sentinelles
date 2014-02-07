@@ -203,15 +203,6 @@ Partial Public Class Site
     Protected WithEvents ContentPlaceHolder1 As Global.System.Web.UI.WebControls.ContentPlaceHolder
 
     '''<summary>
-    '''Contrôle ContentPlaceHolder2.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents ContentPlaceHolder2 As Global.System.Web.UI.WebControls.ContentPlaceHolder
-
-    '''<summary>
     '''Contrôle divAccueil.
     '''</summary>
     '''<remarks>

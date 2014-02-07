@@ -15,6 +15,7 @@
     </asp:ContentPlaceHolder>
     <title><%= outils.obtenirLangue("Les Sentinelles Haute-Yamaska|Haute-Yamaska's Sentinels")%></title>
     <script src="../CSS/js/jquery.js"></script>
+    <script src="../CSS/js/scriptGlobal.js"></script>
 </head>
 <body>
     <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
@@ -104,8 +105,6 @@
             <%-----------------------------------Content----------------------------------%>
             <div id="contenu">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                </asp:ContentPlaceHolder>
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
             <%-------------------------------End Content----------------------------------%>
