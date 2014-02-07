@@ -490,7 +490,7 @@
                                         </div>
                                         <div class="boutonPublier">
                                             <asp:LinkButton ID="lnkbtnPublierQuestion" runat="server"
-                                                CssClass="btn btnAjouter"
+                                                CssClass="btn btnAjouter disable-button"
                                                 CommandName="Update">
                                                             <i aria-hidden="true" class="icon-check"></i><% =outils.obtenirLangue(" Publier| Post")%></asp:LinkButton>
                                         </div>
@@ -792,7 +792,7 @@
                             <asp:LinkButton ID="LnkBtnInfoMaltraitance_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalInfoMaltraitance" data-toggle="modal"><%= outils.obtenirLangue("Info Maltraitance|Elder Abuse Information")%></asp:LinkButton>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
+                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" data-toggle="modal" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
                     </div>
                 </div>

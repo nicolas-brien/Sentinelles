@@ -403,7 +403,7 @@
                                 </asp:ListView>
                             </div>
 
-                            <div class="petitsPoints">
+                            <div class="encadrerModification">
                                 <asp:Label ID="lblMessageErreurEvenement" CssClass="lblMessageErreur" runat="server" Text="" />
                                 <asp:ListView ID="lvInfoEvenement" runat="server"
                                     ItemType="ModeleSentinellesHY.événement"
@@ -506,7 +506,7 @@
                                     </EmptyDataTemplate>
                                 </asp:ListView>
                             </div>
-                            <div class="petitsPoints">
+                            <div class="encadrerModification">
                                 <asp:Label ID="lblMessageErreurRDP" CssClass="lblMessageErreur" runat="server" Text="" />
                                 <asp:ListView ID="lvInfoRDP" runat="server"
                                     ItemType="ModeleSentinellesHY.revuedepresse"
@@ -520,12 +520,6 @@
                                         </div>
                                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                     </LayoutTemplate>
-                                    <EmptyDataTemplate>
-                                        <div class="div_AjoutNouvelle">
-                                            <asp:LinkButton ID="lnkBtnAjoutRDP" runat="server" OnClick="lnkBtnAjoutRDP_Click">+ <% =outils.obtenirLangue("Ajouter une revue de presse|Add a press review")%></asp:LinkButton>
-                                        </div>
-                                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-                                    </EmptyDataTemplate>
                                     <ItemTemplate>
                                         <div style="position: relative;">
                                             <asp:Label ID="lblTitreFR" runat="server"><%= outils.obtenirLangue("Titre Français : |French Title : ")%></asp:Label>
@@ -798,7 +792,7 @@
                         </asp:View>
 
                         <asp:View ID="viewMessage" runat="server">
-                            <div class="petitsPoints">
+                            <div class="encadrerModification">
                                 <div>
                                     <asp:Label ID="Label11" runat="server">
                                         <%= outils.obtenirLangue("Veuillez prendre note que ce message sera distribué à tous les utilisateurs présentement inscrits.|Please take note that this email will be sent to all the users actually registered.")%>
@@ -882,7 +876,7 @@
                             <asp:LinkButton ID="LnkBtnInfoMaltraitance_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalInfoMaltraitance" data-toggle="modal"><%= outils.obtenirLangue("Info Maltraitance|Elder Abuse Information")%></asp:LinkButton>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
+                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server"  href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
                     </div>
                 </div>
