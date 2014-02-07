@@ -14,7 +14,7 @@
     </div>
 
     <%--------------------------------------NOUVELLES----------------------------------------------%>
-    <div class="listeAccueil">
+    <div id="divContantNouvelles" class="listeAccueil" runat="server">
         <h3><%= outils.obtenirLangue("NOUVELLES|NEWS")%></h3>
         <div class="cadrageItems">
             <div class="clear-both">
@@ -26,7 +26,7 @@
                     <ItemTemplate>
                         <div>
                             <h5 class="pull-left"><%# Left(Eval(outils.obtenirLangue("titreFR|titreEN")), 50)%></h5>
-                            <h6 class="pull-right"><%# Left(Eval("dateRedaction"),10)%></h6>
+                            <h6 class="pull-right"><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ") %></b><%# Left(Eval("dateRedaction"),10)%></h6>
                         </div>
                         <div class="clear-both">
                             <asp:Label ID="lblNouvelle" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("contenuFR|contenuEN")),500) & IIf(outils.obtenirLangue("contenuFR|contenuEN").Count > 500, "...", "") %>'></asp:Label>
@@ -57,7 +57,7 @@
         </div>
     </div>
     <%--------------------------------------EVENEMENTS------------------------------------------------------%>
-    <div class="listeAccueil">
+    <div id="divContenantEvenement" class="listeAccueil" runat="server">
         <h3><%= outils.obtenirLangue("ÉVÉNEMENTS|EVENTS")%></h3>
         <div class="cadrageItems">
             <div class="clear-both">
@@ -102,7 +102,7 @@
         </div>
     </div>
     <%--------------------------------------REVUE DE PRESSE------------------------------------------------%>
-    <div class="listeAccueil">
+    <div id="divContenantRDP" class="listeAccueil" runat="server">
         <h3><%= outils.obtenirLangue("REVUE DE PRESSE|PRESS REVIEW")%></h3>
         <div class="cadrageItems">
             <div class="clear-both">

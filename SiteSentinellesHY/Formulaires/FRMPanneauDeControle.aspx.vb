@@ -522,6 +522,12 @@ Public Class FRMPanneauDeControle
     End Function
 
     Public Sub UpdateRDP(ByVal RDPAUpdater As ModeleSentinellesHY.RevueDePresse)
+        If ((ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu).Count = 0) Then
+            ViewState("modeRDP") = "AjoutRDP"
+        End If
+
+
+
 
         Dim RDPAValider As ModeleSentinellesHY.RevueDePresse = Nothing
         lblMessageErreurRDP.Text = ""
@@ -572,8 +578,8 @@ Public Class FRMPanneauDeControle
                 AndAlso Not RDPAValider.urlDocument.Contains("http://") Then
                 ModeleSentinellesHY.outils.SupprimerFichierUpload(RDPAValider.urlDocumentTemp)
             End If
-            lvInfoRDP.DataBind()
             lvRDP.DataBind()
+            lvInfoRDP.DataBind()
         End If
         For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
             CType(lvInfoRDP.Items(0).FindControl("txtbox" & erreur.nomPropriete), TextBox).BorderColor = Drawing.Color.Red
