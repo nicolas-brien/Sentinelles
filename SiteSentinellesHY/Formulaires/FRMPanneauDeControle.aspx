@@ -281,10 +281,10 @@
                                     GroupItemCount="3">
                                     <LayoutTemplate>
                                         <div style="width: 82.5%; float: left;">
-                                            <asp:Label runat="server" class="titreListe"><%= outils.obtenirLangue("Titre Français|English title")%></asp:Label>
+                                            <asp:LinkButton runat="server" CommandName="sort" CommandArgument='<%= outils.obtenirLangue("TitreFR|TitreEN") %>' class="titreListe"><%= outils.obtenirLangue("Titre Français|English title")%></asp:LinkButton>
                                         </div>
                                         <div style="width: 17.5%; float: right;">
-                                            <asp:Label runat="server" class="titreListe"><%= outils.obtenirLangue("Date de publication|Publish date")%></asp:Label>
+                                            <asp:LinkButton runat="server" CommandName="sort" CommandArgument="dateRedaction" class="titreListe"><%= outils.obtenirLangue("Date de publication|Publish date")%></asp:LinkButton>
                                         </div>
                                         <asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
                                     </LayoutTemplate>
