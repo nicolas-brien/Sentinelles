@@ -42,6 +42,26 @@ Public Class FRMForum
                 Case Else
                     MultiViewForum.ActiveViewIndex = 0
             End Select
+
+            Dim cat = Request.QueryString("cat")
+            Dim id = Request.QueryString("id")
+
+            If (cat <> "" And id <> "") Then
+                Dim idPublication = id
+                Dim unePublication = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                                      Where pub.idPublication = id).FirstOrDefault
+                If unePublication.idParent Is Nothing Then
+                    ViewState("idPublication") = unePublication.idPublication
+                Else
+                    ViewState("idPublication") = unePublication.idParent
+                End If
+
+                ViewState("idCategorie") = cat
+
+                lviewCategorie.DataBind()
+                MultiViewForum.ActiveViewIndex = 2
+            End If
+
         End If
 
 
@@ -335,6 +355,7 @@ Public Class FRMForum
     Protected Sub retourAccueil_Click(sender As Object, e As EventArgs)
         lviewForum_accueil.DataBind()
         MultiViewForum.ActiveViewIndex = 0
+        Response.Redirect("FRMForum.aspx")
     End Sub
 #End Region
 
@@ -522,6 +543,9 @@ Public Class FRMForum
             ModeleSentinellesHY.outils.leContexte.SaveChanges()
             CType(lviewAjouterReponse.Items(0).FindControl("txtboxcontenu"), TextBox).Text = ""
             lviewConsulterPublication.DataBind()
+
+            Response.Redirect("FRMForum.aspx?cat=" & ViewState("idCategorie") & "&id=" & ViewState("idPublication"))
+
         End If
 
         For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
@@ -970,4 +994,5 @@ Public Class FRMForum
         End If
     End Sub
 #End Region
+
 End Class
