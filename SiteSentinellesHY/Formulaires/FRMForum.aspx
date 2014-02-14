@@ -235,6 +235,7 @@
                                     UpdateMethod="UpdatePublication"
                                     DeleteMethod="DeletePublication"
                                     SelectMethod="getConsulterPublication">
+                                    
                                     <LayoutTemplate>
 
                                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
