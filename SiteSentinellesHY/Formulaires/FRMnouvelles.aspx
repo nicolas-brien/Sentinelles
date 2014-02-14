@@ -39,7 +39,7 @@
                         <div class="clear-both">
                             <br />
                             
-                            <asp:Label ID="lblNouvelle" runat="server" Text='<%# Eval(outils.obtenirLangue("contenuFR|contenuEN"))%>' Width="200"></asp:Label>
+                            <asp:Label ID="lblNouvelle" runat="server" Text='<%# Eval(outils.obtenirLangue("contenuFR|contenuEN"))%>' ></asp:Label>
                             
                         </div>
                     </div>
