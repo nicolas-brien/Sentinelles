@@ -13,660 +13,660 @@ Option Explicit On
 
 Partial Public Class FRMForum
 
-    '''<summary>
-    '''form1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-
-    '''<summary>
-    '''tsmTest control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tsmTest As Global.AjaxControlToolkit.ToolkitScriptManager
-
-    '''<summary>
-    '''imgbtnLogo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents imgbtnLogo As Global.System.Web.UI.WebControls.ImageButton
-
-    '''<summary>
-    '''Label1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Label2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lnkConnexion control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkConnexion As Global.System.Web.UI.HtmlControls.HtmlAnchor
-
-    '''<summary>
-    '''Label3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lnkAnglais control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkAnglais As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''iconSetting control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents iconSetting As Global.System.Web.UI.HtmlControls.HtmlAnchor
-
-    '''<summary>
-    '''divLogin control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents divLogin As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''lblInfoUtilisateur control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblInfoUtilisateur As Global.System.Web.UI.HtmlControls.HtmlAnchor
-
-    '''<summary>
-    '''lblPipeLogin control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblPipeLogin As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lnkbtnLogout control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkbtnLogout As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''tbRecherche control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbRecherche As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''ACERecherche control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ACERecherche As Global.AjaxControlToolkit.AutoCompleteExtender
-
-    '''<summary>
-    '''btnRecherche control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnRecherche As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''MultiViewForum control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents MultiViewForum As Global.System.Web.UI.WebControls.MultiView
-
-    '''<summary>
-    '''viewForum_Accueil control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents viewForum_Accueil As Global.System.Web.UI.WebControls.View
-
-    '''<summary>
-    '''Label4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lnkbtnAjouterPublication control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkbtnAjouterPublication As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''lnkbtnGererCategorie control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkbtnGererCategorie As Global.System.Web.UI.HtmlControls.HtmlAnchor
-
-    '''<summary>
-    '''gererLesCategories control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents gererLesCategories As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''upCategorie control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents upCategorie As Global.System.Web.UI.UpdatePanel
-
-    '''<summary>
-    '''Span1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Span1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''Span2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Span2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''lvCategorie control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lvCategorie As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''tbNomCategorieFR control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbNomCategorieFR As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''tbNomCategorieEN control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbNomCategorieEN As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lnkbtnAjoutCategorie control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkbtnAjoutCategorie As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''lblErreurCategorie control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblErreurCategorie As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lviewForum_accueil control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lviewForum_accueil As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''viewCategorie control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents viewCategorie As Global.System.Web.UI.WebControls.View
-
-    '''<summary>
-    '''Label5 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label5 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lviewCategorie control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lviewCategorie As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''viewConsulterPublicaton control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents viewConsulterPublicaton As Global.System.Web.UI.WebControls.View
-
-    '''<summary>
-    '''Label6 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''imgbtnRetour control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents imgbtnRetour As Global.System.Web.UI.WebControls.ImageButton
-
-    '''<summary>
-    '''lnkBtnRetour control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkBtnRetour As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''lviewConsulterPublication control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lviewConsulterPublication As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''lviewAjouterReponse control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lviewAjouterReponse As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''viewAjouterPublication control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents viewAjouterPublication As Global.System.Web.UI.WebControls.View
-
-    '''<summary>
-    '''lviewAjouterPublication control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lviewAjouterPublication As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''viewInfoUtilisateur control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents viewInfoUtilisateur As Global.System.Web.UI.WebControls.View
-
-    '''<summary>
-    '''Label7 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label7 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lvInfoUtilisateur control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lvInfoUtilisateur As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''viewResultatRecherche control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents viewResultatRecherche As Global.System.Web.UI.WebControls.View
-
-    '''<summary>
-    '''lblrechercheAvancee control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblrechercheAvancee As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''tbRechercheAvancee control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbRechercheAvancee As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''ACERechercheAvancee control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ACERechercheAvancee As Global.AjaxControlToolkit.AutoCompleteExtender
-
-    '''<summary>
-    '''btnRechercheAvancee control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnRechercheAvancee As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''btnRechercheAvanceeLarge control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnRechercheAvanceeLarge As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''DDLRechercheAvancee control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DDLRechercheAvancee As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''Label8 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label8 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''tbDateDebut control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbDateDebut As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''CETbDateDebut control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CETbDateDebut As Global.AjaxControlToolkit.CalendarExtender
-
-    '''<summary>
-    '''tbDateFin control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbDateFin As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''CETbDateFin control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CETbDateFin As Global.AjaxControlToolkit.CalendarExtender
-
-    '''<summary>
-    '''CBLRechercheAvancee control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CBLRechercheAvancee As Global.System.Web.UI.WebControls.CheckBoxList
-
-    '''<summary>
-    '''UPRechercheAvancee control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UPRechercheAvancee As Global.System.Web.UI.UpdatePanel
-
-    '''<summary>
-    '''lblQuantiteReponse control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblQuantiteReponse As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblReponse control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblReponse As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''DPResultatRechercheHaut control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DPResultatRechercheHaut As Global.System.Web.UI.WebControls.DataPager
-
-    '''<summary>
-    '''lvResultatRecherche control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lvResultatRecherche As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''DPResultatRechercheBas control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DPResultatRechercheBas As Global.System.Web.UI.WebControls.DataPager
-
-    '''<summary>
-    '''LnkBtnNavigation_footer control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LnkBtnNavigation_footer As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''LnkBtnHistorique_footer control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LnkBtnHistorique_footer As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''LnkBtnNouvelles_footer control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LnkBtnNouvelles_footer As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''LnkBtnEvenement_footer control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LnkBtnEvenement_footer As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''LnkBtnRDP_footer control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LnkBtnRDP_footer As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''LnkBtnDevenirSentinelle_footer control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LnkBtnDevenirSentinelle_footer As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''LnkBtnInfoSuicide_footer control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LnkBtnInfoSuicide_footer As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''LnkBtnInfoMaltraitance_footer control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LnkBtnInfoMaltraitance_footer As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''LnkBtnZoneSentinelle_footer control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LnkBtnZoneSentinelle_footer As Global.System.Web.UI.WebControls.LinkButton
+	'''<summary>
+	'''form1 control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
+
+	'''<summary>
+	'''tsmTest control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents tsmTest As Global.AjaxControlToolkit.ToolkitScriptManager
+
+	'''<summary>
+	'''imgbtnLogo control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents imgbtnLogo As Global.System.Web.UI.WebControls.ImageButton
+
+	'''<summary>
+	'''Label1 control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Label2 control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''lnkConnexion control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lnkConnexion As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+	'''<summary>
+	'''Label3 control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''lnkAnglais control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lnkAnglais As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''iconSetting control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents iconSetting As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+	'''<summary>
+	'''divLogin control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents divLogin As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+	'''<summary>
+	'''lblInfoUtilisateur control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lblInfoUtilisateur As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+	'''<summary>
+	'''lblPipeLogin control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lblPipeLogin As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''lnkbtnLogout control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lnkbtnLogout As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''tbRecherche control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents tbRecherche As Global.System.Web.UI.WebControls.TextBox
+
+	'''<summary>
+	'''ACERecherche control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents ACERecherche As Global.AjaxControlToolkit.AutoCompleteExtender
+
+	'''<summary>
+	'''btnRecherche control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents btnRecherche As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''MultiViewForum control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents MultiViewForum As Global.System.Web.UI.WebControls.MultiView
+
+	'''<summary>
+	'''viewForum_Accueil control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents viewForum_Accueil As Global.System.Web.UI.WebControls.View
+
+	'''<summary>
+	'''Label4 control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''lnkbtnAjouterPublication control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lnkbtnAjouterPublication As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''lnkbtnGererCategorie control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lnkbtnGererCategorie As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+	'''<summary>
+	'''gererLesCategories control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents gererLesCategories As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+	'''<summary>
+	'''upCategorie control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents upCategorie As Global.System.Web.UI.UpdatePanel
+
+	'''<summary>
+	'''Span1 control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents Span1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+	'''<summary>
+	'''Span2 control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents Span2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+	'''<summary>
+	'''lvCategorie control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lvCategorie As Global.System.Web.UI.WebControls.ListView
+
+	'''<summary>
+	'''tbNomCategorieFR control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents tbNomCategorieFR As Global.System.Web.UI.WebControls.TextBox
+
+	'''<summary>
+	'''tbNomCategorieEN control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents tbNomCategorieEN As Global.System.Web.UI.WebControls.TextBox
+
+	'''<summary>
+	'''lnkbtnAjoutCategorie control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lnkbtnAjoutCategorie As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''lblErreurCategorie control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lblErreurCategorie As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''lviewForum_accueil control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lviewForum_accueil As Global.System.Web.UI.WebControls.ListView
+
+	'''<summary>
+	'''viewCategorie control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents viewCategorie As Global.System.Web.UI.WebControls.View
+
+	'''<summary>
+	'''Label5 control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents Label5 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''lviewCategorie control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lviewCategorie As Global.System.Web.UI.WebControls.ListView
+
+	'''<summary>
+	'''viewConsulterPublicaton control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents viewConsulterPublicaton As Global.System.Web.UI.WebControls.View
+
+	'''<summary>
+	'''Label6 control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''imgbtnRetour control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents imgbtnRetour As Global.System.Web.UI.WebControls.ImageButton
+
+	'''<summary>
+	'''lnkBtnRetour control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lnkBtnRetour As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''lviewConsulterPublication control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lviewConsulterPublication As Global.System.Web.UI.WebControls.ListView
+
+	'''<summary>
+	'''lviewAjouterReponse control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lviewAjouterReponse As Global.System.Web.UI.WebControls.ListView
+
+	'''<summary>
+	'''viewAjouterPublication control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents viewAjouterPublication As Global.System.Web.UI.WebControls.View
+
+	'''<summary>
+	'''lviewAjouterPublication control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lviewAjouterPublication As Global.System.Web.UI.WebControls.ListView
+
+	'''<summary>
+	'''viewInfoUtilisateur control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents viewInfoUtilisateur As Global.System.Web.UI.WebControls.View
+
+	'''<summary>
+	'''Label7 control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents Label7 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''lvInfoUtilisateur control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lvInfoUtilisateur As Global.System.Web.UI.WebControls.ListView
+
+	'''<summary>
+	'''viewResultatRecherche control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents viewResultatRecherche As Global.System.Web.UI.WebControls.View
+
+	'''<summary>
+	'''lblrechercheAvancee control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lblrechercheAvancee As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''tbRechercheAvancee control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents tbRechercheAvancee As Global.System.Web.UI.WebControls.TextBox
+
+	'''<summary>
+	'''ACERechercheAvancee control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents ACERechercheAvancee As Global.AjaxControlToolkit.AutoCompleteExtender
+
+	'''<summary>
+	'''btnRechercheAvancee control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents btnRechercheAvancee As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''btnRechercheAvanceeLarge control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents btnRechercheAvanceeLarge As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''DDLRechercheAvancee control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents DDLRechercheAvancee As Global.System.Web.UI.WebControls.DropDownList
+
+	'''<summary>
+	'''Label8 control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents Label8 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''tbDateDebut control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents tbDateDebut As Global.System.Web.UI.WebControls.TextBox
+
+	'''<summary>
+	'''CETbDateDebut control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents CETbDateDebut As Global.AjaxControlToolkit.CalendarExtender
+
+	'''<summary>
+	'''tbDateFin control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents tbDateFin As Global.System.Web.UI.WebControls.TextBox
+
+	'''<summary>
+	'''CETbDateFin control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents CETbDateFin As Global.AjaxControlToolkit.CalendarExtender
+
+	'''<summary>
+	'''CBLRechercheAvancee control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents CBLRechercheAvancee As Global.System.Web.UI.WebControls.CheckBoxList
+
+	'''<summary>
+	'''UPRechercheAvancee control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents UPRechercheAvancee As Global.System.Web.UI.UpdatePanel
+
+	'''<summary>
+	'''lblQuantiteReponse control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lblQuantiteReponse As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''lblReponse control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lblReponse As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''DPResultatRechercheHaut control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents DPResultatRechercheHaut As Global.System.Web.UI.WebControls.DataPager
+
+	'''<summary>
+	'''lvResultatRecherche control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents lvResultatRecherche As Global.System.Web.UI.WebControls.ListView
+
+	'''<summary>
+	'''DPResultatRechercheBas control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents DPResultatRechercheBas As Global.System.Web.UI.WebControls.DataPager
+
+	'''<summary>
+	'''LnkBtnNavigation_footer control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents LnkBtnNavigation_footer As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''LnkBtnHistorique_footer control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents LnkBtnHistorique_footer As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''LnkBtnNouvelles_footer control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents LnkBtnNouvelles_footer As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''LnkBtnEvenement_footer control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents LnkBtnEvenement_footer As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''LnkBtnRDP_footer control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents LnkBtnRDP_footer As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''LnkBtnDevenirSentinelle_footer control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents LnkBtnDevenirSentinelle_footer As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''LnkBtnInfoSuicide_footer control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents LnkBtnInfoSuicide_footer As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''LnkBtnInfoMaltraitance_footer control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents LnkBtnInfoMaltraitance_footer As Global.System.Web.UI.WebControls.LinkButton
+
+	'''<summary>
+	'''LnkBtnZoneSentinelle_footer control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents LnkBtnZoneSentinelle_footer As Global.System.Web.UI.WebControls.LinkButton
 End Class

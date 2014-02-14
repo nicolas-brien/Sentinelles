@@ -42,6 +42,26 @@ Public Class FRMForum
                 Case Else
                     MultiViewForum.ActiveViewIndex = 0
             End Select
+
+            Dim cat = Request.QueryString("cat")
+            Dim id = Request.QueryString("id")
+
+            If (cat <> "" And id <> "") Then
+                Dim idPublication = id
+                Dim unePublication = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                                      Where pub.idPublication = id).FirstOrDefault
+                If unePublication.idParent Is Nothing Then
+                    ViewState("idPublication") = unePublication.idPublication
+                Else
+                    ViewState("idPublication") = unePublication.idParent
+                End If
+
+                ViewState("idCategorie") = cat
+
+                lviewCategorie.DataBind()
+                MultiViewForum.ActiveViewIndex = 2
+            End If
+
         End If
 
 
@@ -195,7 +215,7 @@ Public Class FRMForum
                     listePublicationTemp.Add(parent)
                 End If
             Next
-            listeRetour.AddRange(listePublicationTemp.Distinct().Take(3).ToList())
+            listeRetour.AddRange(listePublicationTemp.Distinct().Take(5).ToList())
         Next
         Return listeRetour.AsQueryable()
     End Function
@@ -210,11 +230,6 @@ Public Class FRMForum
             lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
         Else
             lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
-        End If
-
-        'Épingle les "pinned posts"
-        If unePublication.epinglee = True Then
-            CType(e.Item.FindControl("pinnedIcon"), HtmlImage).Attributes("style") = "display:normal;position:relative;top:5px;"
         End If
 
         'Condition qui affiche en orange le titre de la publication si elle ou un de ses enfants n'a pas été consulté 
@@ -335,6 +350,7 @@ Public Class FRMForum
     Protected Sub retourAccueil_Click(sender As Object, e As EventArgs)
         lviewForum_accueil.DataBind()
         MultiViewForum.ActiveViewIndex = 0
+        Response.Redirect("FRMForum.aspx")
     End Sub
 #End Region
 
@@ -522,6 +538,9 @@ Public Class FRMForum
             ModeleSentinellesHY.outils.leContexte.SaveChanges()
             CType(lviewAjouterReponse.Items(0).FindControl("txtboxcontenu"), TextBox).Text = ""
             lviewConsulterPublication.DataBind()
+
+            Response.Redirect("FRMForum.aspx?cat=" & ViewState("idCategorie") & "&id=" & ViewState("idPublication"))
+
         End If
 
         For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
@@ -653,12 +672,14 @@ Public Class FRMForum
 
     Public Sub updateInfoUtilisateur(ByVal idUtilisateur As Integer)
         Dim lblMessageErreur = CType(lvInfoUtilisateur.FindControl("lblMessageErreur"), Label)
+        Dim divMessageErreur = CType(lvInfoUtilisateur.FindControl("divMessageErreur"), Panel)
         Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Nothing
         Dim tbMotDePasse As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbMotDePasse"), TextBox).Text
         Dim tbConfirmation As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbConfirmer"), TextBox).Text
 
         lblMessageErreur.Text = ""
-        lblMessageErreur.ForeColor = Drawing.Color.Red
+        divMessageErreur.CssClass = "alert alert-error"
+        divMessageErreur.Visible = True
         For Each tb As Object In lvInfoUtilisateur.Items(0).Controls 'Reset l'encadrer autour de tout txtBox
             If TypeOf (tb) Is TextBox Then
                 CType(tb, TextBox).BorderColor = Nothing
@@ -683,8 +704,10 @@ Public Class FRMForum
 
         If ModelState.IsValid Then
             ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            divMessageErreur.CssClass = "alert alert-success"
+            divMessageErreur.Visible = True
             lblMessageErreur.Text = ModeleSentinellesHY.outils.obtenirLangue("L'utilisateur a été modifié avec succès!|The user has been successfully updated!")
-            lblMessageErreur.ForeColor = Color.Green
+
 
             'Conditions pour Supprimer Avatar du fichier Upload mais ne pas supprimer la photo par défaut
             If utilisateurAValider.UrlAvatar <> utilisateurAValider.urlAvatarTemp AndAlso utilisateurAValider.UrlAvatar <> "" _
@@ -970,4 +993,5 @@ Public Class FRMForum
         End If
     End Sub
 #End Region
+
 End Class

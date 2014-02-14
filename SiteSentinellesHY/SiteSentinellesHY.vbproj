@@ -128,6 +128,7 @@
     <Content Include="CSS\js\bootstrap.js" />
     <Content Include="CSS\js\bootstrap.min.js" />
     <Content Include="CSS\js\jquery.js" />
+    <Content Include="CSS\js\scriptGlobal.js" />
     <Content Include="CSS\PanneauDeControle.css" />
     <Content Include="CSS\SiteMaster.css" />
     <Content Include="default.aspx" />
