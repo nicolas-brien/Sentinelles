@@ -111,7 +111,7 @@
                                                         <asp:TextBox ID="tbNomCategorieEN" runat="server" MaxLength="50" Text='<%# BindItem.nomCategorieEN %>' onkeydown="return (event.keyCode!=13);"></asp:TextBox>
                                                     </div>
                                                     <div class="span2 offset2" style="padding-top: 3px">
-                                                        <asp:LinkButton ID="lnkbtnSauvegarderCategorie" runat="server" Width="82px" CssClass="btn"><%= outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkbtnSauvegarderCategorie" runat="server" Width="82px" CssClass="btn disabled-button"><%= outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
                                                         <asp:LinkButton ID="lnkbtnSupprimerCategorie" runat="server"
                                                             CommandArgument='<%# BindItem.idCategorie %>'
                                                             CssClass="pull-right"
@@ -129,7 +129,7 @@
                                                 <asp:TextBox ID="tbNomCategorieEN" runat="server" MaxLength="50" onkeydown="return (event.keyCode!=13);"></asp:TextBox>
                                             </div>
                                             <div class="span1 offset2" style="padding-top: 3px">
-                                                <asp:LinkButton ID="lnkbtnAjoutCategorie" runat="server" Width="82px" CssClass="btn" OnClick="lnkbtnAjoutCategorie_Click"><%= outils.obtenirLangue("Ajouter|Add")%></asp:LinkButton>
+                                                <asp:LinkButton ID="lnkbtnAjoutCategorie" runat="server" Width="82px" CssClass="btn disabled-button" OnClick="lnkbtnAjoutCategorie_Click"><%= outils.obtenirLangue("Ajouter|Add")%></asp:LinkButton>
                                             </div>
                                         </div>
                                         <div class="clear-both">
@@ -187,7 +187,7 @@
                                 <LayoutTemplate>
                                     <asp:ImageButton ID="imgbtnRetour" ImageUrl="~/Images/flecheRetour.png" runat="server" CssClass="imgbtnRetour" AlternateText="Page précédente" ToolTip="Page précédente" OnClick="retourAccueil_Click" />
                                     <asp:LinkButton ID="lnkBtnRetour" PostBackUrl="~/Formulaires/FRMForum.aspx" CssClass="lnkBtnRetour" runat="server" OnClick="retourAccueil_Click"><%= outils.obtenirlangue("Retour|Back") %></asp:LinkButton>
-                                    <asp:LinkButton ID="lnkbtnAjouterPublication" CssClass="lnkbtnAjouterPublication_categorie disabled-button" runat="server" OnClick="lnkbtnAjouterPublication_Click">
+                                    <asp:LinkButton ID="lnkbtnAjouterPublication" CssClass="lnkbtnAjouterPublication_categorie" runat="server" OnClick="lnkbtnAjouterPublication_Click">
                                 <i aria-hidden="true" class="icon-plus-sign"></i><% =outils.obtenirLangue(" Poser une question| Ask a question")%>
                                     </asp:LinkButton>
                                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
@@ -269,7 +269,7 @@
                                                     role="button"
                                                     data-toggle="modal"
                                                     CommandArgument="<%# Item.idParent %>">
-                                                <i aria-hidden="true" class="icon-pencil"></i></asp:LinkButton>
+                                                <i aria-hidden="true" class="icon-pencil disabled-button"></i></asp:LinkButton>
                                                 <%--fenetre modal--%>
                                                 <div id="divmodale" runat="server">
                                                     <div id='<%# "Modifier" & Eval("idPublication") %>' class="modal hide fade modalModifierPublication" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -321,7 +321,7 @@
                                                             <ContentTemplate>
                                                                 <div class="modal-footer">
                                                                     <button class="btn" data-dismiss="modal" aria-hidden="true"><% =outils.obtenirLangue("Annuler|Cancel")%></button>
-                                                                    <asp:LinkButton ID="lnkbtnModifierPublication" runat="server" CommandArgument='<%# DataBinder.Eval(Container, "DataItemIndex") %>' OnClick="lnkbtnModifierPublication_Click" class="btn btn-primary"><% =outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
+                                                                    <asp:LinkButton ID="lnkbtnModifierPublication" runat="server" CommandArgument='<%# DataBinder.Eval(Container, "DataItemIndex") %>' OnClick="lnkbtnModifierPublication_Click" class="btn btn-primary disabled-button"><% =outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <div>
@@ -402,7 +402,7 @@
                                                 <asp:LinkButton ID="lnkbtnPublierQuestion" runat="server"
                                                     CssClass="btn btnAjouter clear-both disabled-button"
                                                     CommandName="Update">
-                                                            <i aria-hidden="true" class="icon-check"></i><% =outils.obtenirLangue(" Publier| Post")%></asp:LinkButton>
+                                                            <i aria-hidden="true" class="icon-check disabled-button"></i><% =outils.obtenirLangue(" Publier| Post")%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </ItemTemplate>
