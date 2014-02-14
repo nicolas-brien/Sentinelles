@@ -531,10 +531,6 @@ Public Class FRMPanneauDeControle
         If ((ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu).Count = 0) Then
             ViewState("modeRDP") = "AjoutRDP"
         End If
-
-
-
-
         Dim RDPAValider As ModeleSentinellesHY.RevueDePresse = Nothing
         lblMessageErreurRDP.Text = ""
         lblMessageErreurRDP.ForeColor = Drawing.Color.Red
