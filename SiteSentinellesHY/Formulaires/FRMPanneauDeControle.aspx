@@ -13,7 +13,6 @@
     <link href="../CSS/PanneauDeControle.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
     <script src="../CSS/js/jquery.js"></script>
-    <script src="../CSS/js/scriptGlobal.js"></script>
     <title>Les Sentinelles Haute-Yamaska</title>
 </head>
 <body>
