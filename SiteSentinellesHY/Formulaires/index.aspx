@@ -29,6 +29,7 @@
                             <h6 class="pull-right"><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ") %></b><%# Left(Eval("dateRedaction"),10)%></h6>
                         </div>
                         <div class="clear-both">
+                             <asp:Label ID="Label1" runat="server" Text='<%# (Eval(outils.obtenirLangue("contenuFR|contenuEN"))) & IIf(outils.obtenirLangue("contenuFR|contenuEN").Count > 500, "...", "") %>'></asp:Label>
                             <asp:Label ID="lblNouvelle" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("contenuFR|contenuEN")),500) & IIf(outils.obtenirLangue("contenuFR|contenuEN").Count > 500, "...", "") %>'></asp:Label>
                         </div>
                         <div class="btnListe">
