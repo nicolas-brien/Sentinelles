@@ -132,8 +132,13 @@
                                                 <asp:LinkButton ID="lnkbtnAjoutCategorie" runat="server" Width="82px" CssClass="btn" OnClick="lnkbtnAjoutCategorie_Click"><%= outils.obtenirLangue("Ajouter|Add")%></asp:LinkButton>
                                             </div>
                                         </div>
+                                        <div class="clear-both" style="padding-top: 10px;">
+                                            <asp:panel id="divMessageErreur" style="margin:0;" Visible="<% IIf(lblErreurCategorie.Text IsNot "", True, False)%>" CssClass="alert alert-error" runat="server">
+                                                <asp:Label runat="server" ID="lblErreurCategorie" CssClass="lblMessageErreur"></asp:Label>
+                                            </asp:panel>
+                                        </div>
                                         <div class="clear-both">
-                                            <asp:Label runat="server" ID="lblErreurCategorie" CssClass="lblMessageErreur"></asp:Label>
+                                            
                                         </div>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
@@ -188,7 +193,7 @@
                                     <asp:ImageButton ID="imgbtnRetour" ImageUrl="~/Images/flecheRetour.png" runat="server" CssClass="imgbtnRetour" AlternateText="Page précédente" ToolTip="Page précédente" OnClick="retourAccueil_Click" />
                                     <asp:LinkButton ID="lnkBtnRetour" PostBackUrl="~/Formulaires/FRMForum.aspx" CssClass="lnkBtnRetour" runat="server" OnClick="retourAccueil_Click"><%= outils.obtenirlangue("Retour|Back") %></asp:LinkButton>
                                     <asp:LinkButton ID="lnkbtnAjouterPublication" CssClass="lnkbtnAjouterPublication_categorie disabled-button" runat="server" OnClick="lnkbtnAjouterPublication_Click">
-                                <i aria-hidden="true" class="icon-plus-sign"></i><% =outils.obtenirLangue(" Poser une question| Ask a question")%>
+                                        <i aria-hidden="true" class="icon-plus-sign"></i><% =outils.obtenirLangue(" Poser une question| Ask a question")%>
                                     </asp:LinkButton>
                                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                 </LayoutTemplate>
