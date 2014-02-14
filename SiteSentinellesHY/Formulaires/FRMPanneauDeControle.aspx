@@ -13,7 +13,6 @@
     <link href="../CSS/PanneauDeControle.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
     <script src="../CSS/js/jquery.js"></script>
-    <script src="../CSS/js/scriptGlobal.js"></script>
     <title>Les Sentinelles Haute-Yamaska</title>
 </head>
 <body>
@@ -274,29 +273,43 @@
                         </asp:View>
 
                         <asp:View ID="ViewNouvelle" runat="server">
-                            <div class="petitsPointsListeUtilisateurs overflow">
+                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 120px;">
                                 <asp:ListView ID="lviewNouvelle" runat="server"
                                     ItemType="ModeleSentinellesHY.nouvelle"
                                     SelectMethod="GetNouvelle"
                                     DataKeyNames="idNouvelle"
                                     GroupItemCount="3">
                                     <LayoutTemplate>
+                                        <div style="width: 82.5%; float: left;">
+                                            <asp:Label runat="server" class="titreListe"><%= outils.obtenirLangue("Titre Français|English title")%></asp:Label>
+                                        </div>
+                                        <div style="width: 17.5%; float: right;">
+                                            <asp:Label runat="server" class="titreListe"><%= outils.obtenirLangue("Date de publication|Publish date")%></asp:Label>
+                                        </div>
                                         <asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
                                     </LayoutTemplate>
                                     <GroupTemplate>
-                                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                        <div class="clear-both">
+                                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                        </div>
                                     </GroupTemplate>
                                     <ItemTemplate>
-                                        <div class="span3">
-                                            <div id="divTitreFR" style="color: black;" class="ItemTemplateNom">
-                                                <asp:LinkButton ID="lblTitreFR" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                        <div class="ItemTemplate">
+                                            <div style="width: 82.5%; float: left;">
+                                                <asp:LinkButton CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                            </div>
+                                            <div style="width: 17.5%; float: right;">
+                                                <asp:LinkButton runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </ItemTemplate>
                                     <SelectedItemTemplate>
-                                        <div class="span3">
-                                            <div id="divTitreFR" class="SelectedItemTemplateNom">
-                                                <asp:LinkButton ID="lblTitreFR" title='<%# Eval("TitreFR")%>' CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                        <div class="SelectedItemTemplate">
+                                            <div style="width: 82.5%; float: left;">
+                                                <asp:LinkButton CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                            </div>
+                                            <div style="width: 17.5%; float: right;">
+                                                <asp:LinkButton runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </SelectedItemTemplate>
