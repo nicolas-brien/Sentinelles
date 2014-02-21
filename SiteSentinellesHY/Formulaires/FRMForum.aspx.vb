@@ -368,11 +368,15 @@ Public Class FRMForum
             Next
             MultiViewForum.ActiveViewIndex = 1
         Else
-            ModeleSentinellesHY.outils.leContexte.PublicationJeu.Remove(pubAValider)
+            If (Not IsDBNull(pubAValider)) Then
+                ModeleSentinellesHY.outils.leContexte.PublicationJeu.Remove(pubAValider)
+            End If
         End If
         ModeleSentinellesHY.outils.leContexte.SaveChanges()
         lviewForum_accueil.DataBind()
         lviewCategorie.DataBind()
+        'Redirige afin d'empecher le rafraichissement
+        Response.Redirect("FRMForum.aspx")
     End Sub
     Protected Sub retourCategorie_Click(sender As Object, e As EventArgs)
         'On vérifie si le Viewstate Recherche contient un résultat de recherche. Si c'est le cas,
