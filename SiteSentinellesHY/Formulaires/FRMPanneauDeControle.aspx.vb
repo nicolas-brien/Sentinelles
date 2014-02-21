@@ -7,6 +7,7 @@ Imports System.Drawing.Imaging
 Imports System.Drawing.Drawing2D
 Imports System.Data.Entity.Validation
 Imports System.ComponentModel.DataAnnotations
+Imports ModeleSentinellesHY
 
 Public Class FRMPanneauDeControle
     Inherits ModeleSentinellesHY.FRMdeBase
@@ -140,6 +141,12 @@ Public Class FRMPanneauDeControle
     Private Sub imgBtn_EnvoiMessage_Click(sender As Object, e As ImageClickEventArgs) Handles imgBtn_EnvoiMessage.Click
         MultiView.ActiveViewIndex = 5
     End Sub
+
+    Protected Sub lnkCreateBackup_Click(sender As Object, e As EventArgs)
+        Dim controler As DBControler = New DBControler()
+        controler.CreateBackup(Server.MapPath("../Upload/Backup/"), "sentinelle_" & Date.Now().ToString("dd/MMM/yyyy") & ".bak")
+    End Sub
+
 #End Region
 
 #Region "EnvoiMessage"
@@ -861,4 +868,5 @@ Public Class FRMPanneauDeControle
 
     End Sub
 #End Region
+
 End Class

@@ -361,6 +361,28 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="accordion-group">
+                                                <div class="accordion-heading">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseBackup">
+                                                        <%= outils.obtenirLangue("Sauvegarde de la base de données |Database Backup")%>
+                                                        
+                                                    </a>
+                                                </div>
+                                                <div id="collapseBackup" class="accordion-body collapse">
+                                                    <div class="accordion-inner">
+                                                        <div>
+                                                            <asp:LinkButton ID="lnkCreateBackup" runat="server" style="color: #000;" OnClientClick="return confirm('Êtes vous certain de vouloir créer une nouvelle sauvegarde?')" OnClick="lnkCreateBackup_Click">
+                                                                <%= outils.obtenirLangue("Créer une sauvegarde |Create backup ")%>
+                                                            </asp:LinkButton>                               
+                                                        </div>
+                                                        <div>
+                                                            <asp:LinkButton ID="LinkButton2" runat="server" style="color: #000;">
+                                                                <%= outils.obtenirLangue("Restaurer une sauvegarde |Restore backup ")%>
+                                                            </asp:LinkButton> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </ItemTemplate>
