@@ -48,16 +48,19 @@ Public NotInheritable Class ExceptionUtility
         objTempEmptyWriter.WriteLine("")
         objTempEmptyWriter.Close()
 
+        Dim objWriter As New System.IO.StreamWriter(logFile)
+        objWriter.Close()
+
         Dim objTempWriter = New StreamWriter(logTemp, True) 'Appening to add the current entries to this tempory list
         Dim objReader = New StreamReader(logFile, True)
         objTempWriter.Write(objReader.ReadToEnd) 'Write to stop excess empty lines at end of file
         objTempWriter.Close()
         objReader.Close()
         Dim objTempReader As New System.IO.StreamReader(logTemp, True)
-        Dim objWriter As New System.IO.StreamWriter(logFile)
-        objWriter.Write(objTempReader.ReadToEnd)
+        Dim objWriter2 As New System.IO.StreamWriter(logFile)
+        objWriter2.Write(objTempReader.ReadToEnd)
         objTempReader.Close()
-        objWriter.Close()
+        objWriter2.Close()
         System.IO.File.Delete(logTemp)
     End Sub
 

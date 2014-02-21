@@ -123,6 +123,7 @@
     <Content Include="CSS\bootstrap.css" />
     <Content Include="CSS\bootstrap.min.css" />
     <Content Include="CSS\Forum.css" />
+    <Content Include="CSS\FRMCreateurs.css" />
     <Content Include="CSS\FRMhistorique.css" />
     <Content Include="CSS\index.css" />
     <Content Include="CSS\js\bootstrap.js" />
@@ -133,6 +134,7 @@
     <Content Include="CSS\SiteMaster.css" />
     <Content Include="default.aspx" />
     <Content Include="Formulaires\FRMConfirmation.aspx" />
+    <Content Include="Formulaires\FRMCreateurs.aspx" />
     <Content Include="Formulaires\FRMdevenirsentinelle.aspx" />
     <Content Include="Formulaires\FRMevenements.aspx" />
     <Content Include="Formulaires\FRMForum.aspx" />
@@ -171,31 +173,6 @@
     <Content Include="Images\PastilleInfoSuicideEN.png" />
     <Content Include="Images\PastilleInfoSuicideFR.png" />
     <Content Include="Images\TriangleFooter.png" />
-    <Content Include="Upload\1000131_10151807822318694_877723510.jpg" />
-    <Content Include="Upload\563134_10151665736157607_2376320567.jpg" />
-    <Content Include="Upload\563134_10151665736157607_2376324381.jpg" />
-    <Content Include="Upload\563134_10151665736157607_2376367327.jpg" />
-    <Content Include="Upload\563134_10151665736157607_2376374382.jpg" />
-    <Content Include="Upload\Carrousel1.jpg" />
-    <Content Include="Upload\Carrousel1.png" />
-    <Content Include="Upload\Carrousel2.jpg" />
-    <Content Include="Upload\Carrousel2.png" />
-    <Content Include="Upload\Carrousel3.jpg" />
-    <Content Include="Upload\Carrousel3.png" />
-    <Content Include="Upload\default.png" />
-    <Content Include="Upload\default31813.png" />
-    <Content Include="Upload\default35226.png" />
-    <Content Include="Upload\default49022.png" />
-    <Content Include="Upload\default59364.png" />
-    <Content Include="Upload\DSC0634695097.JPG" />
-    <Content Include="Upload\DSC0635261719.JPG" />
-    <Content Include="Upload\DSC0635269092.JPG" />
-    <Content Include="Upload\DSC0648947190.JPG" />
-    <Content Include="Upload\DSC0649141778.JPG" />
-    <Content Include="Upload\Elite16836.png" />
-    <Content Include="Upload\ErrorTemp.txt" />
-    <Content Include="Upload\Sans titre51635.jpg" />
-    <Content Include="Upload\Sans titre70432.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -214,6 +191,13 @@
     <Compile Include="Formulaires\FRMConfirmation.aspx.vb">
       <DependentUpon>FRMConfirmation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FRMCreateurs.aspx.designer.vb">
+      <DependentUpon>FRMCreateurs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FRMCreateurs.aspx.vb">
+      <DependentUpon>FRMCreateurs.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Formulaires\FRMdevenirsentinelle.aspx.designer.vb">
       <DependentUpon>FRMdevenirsentinelle.aspx</DependentUpon>
@@ -344,13 +328,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <Content Include="packages.config" />
-    <Content Include="Upload\20131024.pdf" />
-    <Content Include="Upload\AGENCYB.TTF" />
-    <Content Include="Upload\AGENCYR.eot" />
-    <Content Include="Upload\AGENCYR.TTF" />
-    <Content Include="Upload\Lucida_webfont.eot" />
-    <Content Include="Upload\Lucida_webfont.ttf" />
-    <Content Include="Upload\Lucida_webfont.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

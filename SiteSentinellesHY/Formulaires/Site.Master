@@ -15,6 +15,7 @@
     </asp:ContentPlaceHolder>
     <title><%= outils.obtenirLangue("Les Sentinelles Haute-Yamaska|Haute-Yamaska's Sentinels")%></title>
     <script src="../CSS/js/jquery.js"></script>
+    <script src="../CSS/js/bootstrap.min.js"></script>
     <script src="../CSS/js/scriptGlobal.js"></script>
 </head>
 <body>
@@ -323,6 +324,9 @@
     $(document).ready(function () {
         $("#monCaroussel").carousel({
             interval: 6000
+        });
+        $('#ModalConnexion').on('shown', function () {
+            $('#tbLoginUsername').focus();
         });
     });
 </script>

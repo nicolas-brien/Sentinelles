@@ -7,6 +7,7 @@ Imports System.Drawing.Imaging
 Imports System.Drawing.Drawing2D
 Imports System.Data.Entity.Validation
 Imports System.ComponentModel.DataAnnotations
+Imports ModeleSentinellesHY
 
 Public Class FRMPanneauDeControle
     Inherits ModeleSentinellesHY.FRMdeBase
@@ -140,6 +141,12 @@ Public Class FRMPanneauDeControle
     Private Sub imgBtn_EnvoiMessage_Click(sender As Object, e As ImageClickEventArgs) Handles imgBtn_EnvoiMessage.Click
         MultiView.ActiveViewIndex = 5
     End Sub
+
+    Protected Sub lnkCreateBackup_Click(sender As Object, e As EventArgs)
+        Dim controler As DBControler = New DBControler()
+        controler.CreateBackup(Server.MapPath("../Upload/Backup/"), "sentinelle_" & Date.Now().ToString("dd/MMM/yyyy") & ".bak")
+    End Sub
+
 #End Region
 
 #Region "EnvoiMessage"
@@ -364,6 +371,12 @@ Public Class FRMPanneauDeControle
             lviewNouvelle.SelectedIndex = 0
         End If
     End Sub
+
+    Private Sub lviewNouvelle_LayoutCreated(sender As Object, e As EventArgs) Handles lviewNouvelle.LayoutCreated
+        If lviewNouvelle.Items.Count > 0 Then
+            CType(lviewNouvelle.FindControl("lbNouvelleTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+        End If
+    End Sub
     Private Sub lviewNouvelle_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewNouvelle.SelectedIndexChanged
         ViewState("modeNouvelle") = ""
         lblMessageErreurNouvelle.Text = ""
@@ -391,6 +404,12 @@ Public Class FRMPanneauDeControle
 #End Region
 
 #Region "Événement"
+
+    Private Sub lvEvenement_LayoutCreated(sender As Object, e As EventArgs) Handles lvEvenement.LayoutCreated
+        If lvEvenement.Items.Count > 0 Then
+            CType(lvEvenement.FindControl("lbEvenementTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+        End If
+    End Sub
     Private Sub lvEvenement_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvEvenement.SelectedIndexChanged
         ViewState("modeEvenement") = ""
         lblMessageErreurEvenement.Text = ""
@@ -713,6 +732,12 @@ Public Class FRMPanneauDeControle
         Return unUtilisateur
     End Function
 
+    Private Sub lviewInfoUtilisateur_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewInfoUtilisateur.ItemDataBound
+        If CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idUtilisateur = CType(e.Item.DataItem, ModeleSentinellesHY.Utilisateur).idUtilisateur Then
+            CType(e.Item.FindControl("btnSupprimerUtilisateur"), Button).Visible = False
+        End If
+    End Sub
+
     Public Sub DeleteUtilisateur(ByVal utilisateurASupprimer As ModeleSentinellesHY.Utilisateur)
 
         Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Nothing
@@ -852,7 +877,7 @@ Public Class FRMPanneauDeControle
                 targetH = CInt(original.Height * (CSng(targetSize) / CSng(original.Width)))
             End If
         Else
-            targetH = 200
+            targetH = 400
             targetW = 960
         End If
 
@@ -890,4 +915,5 @@ Public Class FRMPanneauDeControle
 
     End Sub
 #End Region
+
 End Class
