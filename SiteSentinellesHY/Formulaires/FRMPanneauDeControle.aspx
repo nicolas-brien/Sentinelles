@@ -421,8 +421,8 @@
                                     UpdateMethod="UpdateNouvelle"
                                     DeleteMethod="DeleteNouvelle"
                                     DataKeyNames="idNouvelle">
-                                    <LayoutTemplate>
-                                        <div class="div_AjoutNouvelle">
+                                    <LayoutTemplate runat="server">
+                                        <div class="div_AjoutNouvelle" runat="server">
                                             <asp:LinkButton ID="lnkBtnAjoutNouvelle" runat="server" OnClick="lnkBtnAjoutNouvelle_Click">+ <% =outils.obtenirLangue("Ajouter une nouvelle|Add a news")%></asp:LinkButton>
                                         </div>
                                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
@@ -570,7 +570,7 @@
                                     DeleteMethod="DeleteEvenement"
                                     DataKeyNames="idEvenement">
                                     <LayoutTemplate>
-                                        <div class="div_AjoutNouvelle">
+                                        <div class="div_AjoutNouvelle" runat="server">
                                             <asp:LinkButton ID="lnkBtnAjoutEvenement" runat="server" OnClick="lnkBtnAjoutEvenement_Click">+ <% =outils.obtenirLangue("Ajouter un événement|Add an event")%></asp:LinkButton>
                                         </div>
                                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
