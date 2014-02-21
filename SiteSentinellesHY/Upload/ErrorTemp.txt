@@ -1,24 +1,27 @@
-**** 2014-02-07 11:21:39 ****
-Inner Exception Type: System.Data.EntityException
-Inner Exception: Échec du fournisseur sous-jacent sur Open.
-Inner Source: System.Data.Entity
+**** 2014-02-21 10:08:42 ****
+Inner Exception Type: System.Web.HttpException
+Inner Exception: Le contrôle 'tbLoginUsername' de type 'TextBox' doit être placé dans une balise form avec runat=server.
+Inner Source: System.Web
 Inner Stack Trace: 
-   à System.Data.EntityClient.EntityConnection.OpenStoreConnectionIf(Boolean openCondition, DbConnection storeConnectionToOpen, DbConnection originalConnection, String exceptionCode, String attemptedOperation, Boolean& closeStoreConnectionOnFailure)
-   à System.Data.EntityClient.EntityConnection.Open()
-   à System.Data.Objects.ObjectContext.EnsureConnection()
-   à System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   à System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
-   à System.Data.Entity.Internal.Linq.InternalQuery`1.GetEnumerator()
-   à System.Data.Entity.Internal.Linq.InternalSet`1.GetEnumerator()
-   à System.Data.Entity.Infrastructure.DbQuery`1.System.Collections.Generic.IEnumerable<TResult>.GetEnumerator()
-   à SiteSentinellesHY.FRMForum.DDLRechercheAvancee_Init(Object sender, EventArgs e) dans C:\Users\Louis-Alexandre\Documents\Sentinelles\SiteSentinellesHY\Formulaires\FRMForum.aspx.vb:ligne 940
-   à System.Web.UI.Control.OnInit(EventArgs e)
-   à System.Web.UI.WebControls.BaseDataBoundControl.OnInit(EventArgs e)
-   à System.Web.UI.Control.InitRecursive(Control namingContainer)
-   à System.Web.UI.Control.InitRecursive(Control namingContainer)
-   à System.Web.UI.Control.InitRecursive(Control namingContainer)
-   à System.Web.UI.Control.InitRecursive(Control namingContainer)
-   à System.Web.UI.Control.InitRecursive(Control namingContainer)
+   à System.Web.UI.Page.VerifyRenderingInServerForm(Control control)
+   à System.Web.UI.WebControls.TextBox.AddAttributesToRender(HtmlTextWriter writer)
+   à System.Web.UI.WebControls.WebControl.RenderBeginTag(HtmlTextWriter writer)
+   à System.Web.UI.WebControls.TextBox.Render(HtmlTextWriter writer)
+   à System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   à System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   à System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   à System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   à System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   à System.Web.UI.Control.Render(HtmlTextWriter writer)
+   à System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   à System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   à System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   à System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   à System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   à System.Web.UI.Page.Render(HtmlTextWriter writer)
+   à System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   à System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   à System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
    à System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
 Exception Type: System.Web.HttpUnhandledException
 Exception: Une exception de type 'System.Web.HttpUnhandledException' a été levée.
@@ -30,7 +33,7 @@ Stack Trace:
    à System.Web.UI.Page.ProcessRequest()
    à System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
    à System.Web.UI.Page.ProcessRequest(HttpContext context)
-   à ASP.formulaires_frmforum_aspx.ProcessRequest(HttpContext context)
+   à ASP.formulaires_index_aspx.ProcessRequest(HttpContext context)
    à System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
