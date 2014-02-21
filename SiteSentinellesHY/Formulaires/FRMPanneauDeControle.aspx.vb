@@ -282,6 +282,7 @@ Public Class FRMPanneauDeControle
 #End Region
 
 #Region "Nouvelle"
+
     Public Shared Function GetNouvelle() As IQueryable(Of ModeleSentinellesHY.Nouvelle)
         Dim listeNouvelles As List(Of ModeleSentinellesHY.Nouvelle) = Nothing
 
@@ -372,9 +373,10 @@ Public Class FRMPanneauDeControle
         End If
     End Sub
 
-    Private Sub lviewNouvelle_LayoutCreated(sender As Object, e As EventArgs) Handles lviewNouvelle.LayoutCreated
+    Private Sub lviewNouvelle_PreRender(sender As Object, e As EventArgs) Handles lviewNouvelle.PreRender
         If lviewNouvelle.Items.Count > 0 Then
             CType(lviewNouvelle.FindControl("lbNouvelleTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+            lviewNouvelle.Sort(ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN"), SortDirection.Ascending)
         End If
     End Sub
     Private Sub lviewNouvelle_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewNouvelle.SelectedIndexChanged
@@ -404,12 +406,13 @@ Public Class FRMPanneauDeControle
 #End Region
 
 #Region "Événement"
-
-    Private Sub lvEvenement_LayoutCreated(sender As Object, e As EventArgs) Handles lvEvenement.LayoutCreated
+    Private Sub lvEvenement_PreRender(sender As Object, e As EventArgs) Handles lvEvenement.PreRender
         If lvEvenement.Items.Count > 0 Then
             CType(lvEvenement.FindControl("lbEvenementTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+            lvEvenement.Sort(ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN"), SortDirection.Ascending)
         End If
     End Sub
+
     Private Sub lvEvenement_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvEvenement.SelectedIndexChanged
         ViewState("modeEvenement") = ""
         lblMessageErreurEvenement.Text = ""
@@ -539,6 +542,13 @@ Public Class FRMPanneauDeControle
 #End Region
 
 #Region "Revue de Presse"
+    Private Sub lvRDP_PreRender(sender As Object, e As EventArgs) Handles lvRDP.PreRender
+        If lvRDP.Items.Count > 0 Then
+            CType(lvRDP.FindControl("lbRDPTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+            lvRDP.Sort(ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN"), SortDirection.Ascending)
+        End If
+    End Sub
+
     Private Sub lvRDP_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvRDP.SelectedIndexChanged
         ViewState("modeRDP") = ""
         lblMessageErreurRDP.Text = ""
