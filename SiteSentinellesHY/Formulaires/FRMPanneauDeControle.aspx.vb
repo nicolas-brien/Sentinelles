@@ -817,7 +817,7 @@ Public Class FRMPanneauDeControle
                 targetH = CInt(original.Height * (CSng(targetSize) / CSng(original.Width)))
             End If
         Else
-            targetH = 200
+            targetH = 400
             targetW = 960
         End If
 

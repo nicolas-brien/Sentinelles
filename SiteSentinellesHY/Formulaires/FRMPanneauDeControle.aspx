@@ -326,7 +326,7 @@
                                                     <div class="accordion-inner">
                                                         <div>
                                                             <asp:Label ID="lblFormatImgMessage" runat="server">
-                                                                <%= outils.obtenirLangue("*Les images du carrousel doivent être approximativement de 960 x 200 et de types .png ou .jpg|*The images of the caroussel must be approximately 960 x 200 and with the type .png or .jpg")%>
+                                                                <%= outils.obtenirLangue("*Les images du carrousel doivent être approximativement de 960 x 400 et de types .png ou .jpg|*The images of the caroussel must be approximately 960 x 400 and with the type .png or .jpg")%>
                                                             </asp:Label>
                                                         </div>
                                                         <div class="marginbottom_divImgCarrousel">
