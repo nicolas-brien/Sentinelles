@@ -678,6 +678,12 @@ Public Class FRMPanneauDeControle
         Return unUtilisateur
     End Function
 
+    Private Sub lviewInfoUtilisateur_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewInfoUtilisateur.ItemDataBound
+        If CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idUtilisateur = CType(e.Item.DataItem, ModeleSentinellesHY.Utilisateur).idUtilisateur Then
+            CType(e.Item.FindControl("btnSupprimerUtilisateur"), Button).Visible = False
+        End If
+    End Sub
+
     Public Sub DeleteUtilisateur(ByVal utilisateurASupprimer As ModeleSentinellesHY.Utilisateur)
 
         Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Nothing
