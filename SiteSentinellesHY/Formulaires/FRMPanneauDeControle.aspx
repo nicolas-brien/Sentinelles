@@ -109,7 +109,30 @@
                                                                 </asp:Label>
                                                             </div>
                                                             <asp:TextBox ID="txtboxHistoriqueFR" TextMode="MultiLine" CssClass="htmleditorHistorique" runat="server" Text='<%# BindItem.historiqueFR%>' />
-                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueFR" runat="server" TargetControlID="txtboxHistoriqueFR" />
+                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueFR" runat="server" TargetControlID="txtboxHistoriqueFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
+                                                                  <Toolbar> 
+                                                                    <ajaxToolkit:Undo />
+                                                                    <ajaxToolkit:Redo />
+                                                                    <ajaxToolkit:Bold />
+                                                                    <ajaxToolkit:Italic />
+                                                                    <ajaxToolkit:Underline />
+                                                                    <ajaxToolkit:StrikeThrough />
+                                                                    <ajaxToolkit:InsertUnorderedList />
+                                                                    <ajaxToolkit:CreateLink />
+                                                                    <ajaxToolkit:UnLink />
+                                                                    <ajaxToolkit:RemoveFormat />
+                                                                    <ajaxToolkit:SelectAll />
+                                                                    <ajaxToolkit:UnSelect />
+                                                                    <ajaxToolkit:Delete />
+                                                                    <ajaxToolkit:Cut />
+                                                                    <ajaxToolkit:Copy />
+                                                                    <ajaxToolkit:Paste />
+                                                                    <ajaxToolkit:Indent />
+                                                                    <ajaxToolkit:Outdent />
+                                                                    <ajaxToolkit:InsertHorizontalRule />
+                                                                    <ajaxToolkit:HorizontalSeparator />
+                                                                </Toolbar>
+                                                          </asp:HtmlEditorExtender>
                                                         </div>
                                                         <hr />
                                                         <div>
@@ -119,7 +142,30 @@
                                                                 </asp:Label>
                                                             </div>
                                                             <asp:TextBox ID="txtboxHistoriqueEN" TextMode="MultiLine" CssClass="htmleditorHistorique" runat="server" Text='<%# BindItem.historiqueEN%>' />
-                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueEN" runat="server" TargetControlID="txtboxHistoriqueEN" />
+                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueEN" runat="server" TargetControlID="txtboxHistoriqueEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
+                                                                  <Toolbar> 
+                                                                    <ajaxToolkit:Undo />
+                                                                    <ajaxToolkit:Redo />
+                                                                    <ajaxToolkit:Bold />
+                                                                    <ajaxToolkit:Italic />
+                                                                    <ajaxToolkit:Underline />
+                                                                    <ajaxToolkit:StrikeThrough />
+                                                                    <ajaxToolkit:InsertUnorderedList />
+                                                                    <ajaxToolkit:CreateLink />
+                                                                    <ajaxToolkit:UnLink />
+                                                                    <ajaxToolkit:RemoveFormat />
+                                                                    <ajaxToolkit:SelectAll />
+                                                                    <ajaxToolkit:UnSelect />
+                                                                    <ajaxToolkit:Delete />
+                                                                    <ajaxToolkit:Cut />
+                                                                    <ajaxToolkit:Copy />
+                                                                    <ajaxToolkit:Paste />
+                                                                    <ajaxToolkit:Indent />
+                                                                    <ajaxToolkit:Outdent />
+                                                                    <ajaxToolkit:InsertHorizontalRule />
+                                                                    <ajaxToolkit:HorizontalSeparator />
+                                                                </Toolbar>
+                                                          </asp:HtmlEditorExtender>
                                                         </div>
                                                         <div id="div_lnkbtnHistorique">
                                                             <asp:LinkButton ID="lnkbtnHistorique" runat="server"
@@ -146,7 +192,30 @@
                                                                 </asp:Label>
                                                             </div>
                                                             <asp:TextBox ID="txtboxMaltraitanceFR" TextMode="MultiLine" CssClass="htmleditorMaltraitance" runat="server" Text='<%# BindItem.maltraitanceFR%>' />
-                                                            <asp:HtmlEditorExtender ID="htmleditorMaltraitanceFR" runat="server" TargetControlID="txtboxMaltraitanceFR" />
+                                                            <asp:HtmlEditorExtender ID="htmleditorMaltraitanceFR" runat="server" TargetControlID="txtboxMaltraitanceFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                                                  <Toolbar> 
+                                                                    <ajaxToolkit:Undo />
+                                                                    <ajaxToolkit:Redo />
+                                                                    <ajaxToolkit:Bold />
+                                                                    <ajaxToolkit:Italic />
+                                                                    <ajaxToolkit:Underline />
+                                                                    <ajaxToolkit:StrikeThrough />
+                                                                    <ajaxToolkit:InsertUnorderedList />
+                                                                    <ajaxToolkit:CreateLink />
+                                                                    <ajaxToolkit:UnLink />
+                                                                    <ajaxToolkit:RemoveFormat />
+                                                                    <ajaxToolkit:SelectAll />
+                                                                    <ajaxToolkit:UnSelect />
+                                                                    <ajaxToolkit:Delete />
+                                                                    <ajaxToolkit:Cut />
+                                                                    <ajaxToolkit:Copy />
+                                                                    <ajaxToolkit:Paste />
+                                                                    <ajaxToolkit:Indent />
+                                                                    <ajaxToolkit:Outdent />
+                                                                    <ajaxToolkit:InsertHorizontalRule />
+                                                                    <ajaxToolkit:HorizontalSeparator />
+                                                                </Toolbar>
+                                                          </asp:HtmlEditorExtender>
                                                         </div>
                                                         <hr />
                                                         <div>
@@ -156,7 +225,33 @@
                                                                 </asp:Label>
                                                             </div>
                                                             <asp:TextBox ID="txtboxMaltraitanceEN" TextMode="MultiLine" CssClass="htmleditorMaltraitance" runat="server" Text='<%# BindItem.maltraitanceEN%>' />
-                                                            <asp:HtmlEditorExtender ID="HtmlEditorExtender1" runat="server" TargetControlID="txtboxMaltraitanceEN" />
+
+                                                            <asp:HtmlEditorExtender ID="HtmlEditorExtender1" runat="server" TargetControlID="txtboxMaltraitanceEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                                                  <Toolbar> 
+                                                                    <ajaxToolkit:Undo />
+                                                                    <ajaxToolkit:Redo />
+                                                                    <ajaxToolkit:Bold />
+                                                                    <ajaxToolkit:Italic />
+                                                                    <ajaxToolkit:Underline />
+                                                                    <ajaxToolkit:StrikeThrough />
+                                                                    <ajaxToolkit:InsertUnorderedList />
+                                                                    <ajaxToolkit:CreateLink />
+                                                                    <ajaxToolkit:UnLink />
+                                                                    <ajaxToolkit:RemoveFormat />
+                                                                    <ajaxToolkit:SelectAll />
+                                                                    <ajaxToolkit:UnSelect />
+                                                                    <ajaxToolkit:Delete />
+                                                                    <ajaxToolkit:Cut />
+                                                                    <ajaxToolkit:Copy />
+                                                                    <ajaxToolkit:Paste />
+                                                                    <ajaxToolkit:Indent />
+                                                                    <ajaxToolkit:Outdent />
+                                                                    <ajaxToolkit:InsertHorizontalRule />
+                                                                    <ajaxToolkit:HorizontalSeparator />
+                                                                </Toolbar>
+                                                          </asp:HtmlEditorExtender>
+
+
                                                         </div>
                                                         <div id="div_lnkbtnMaltraitance">
                                                             <asp:LinkButton ID="lnkbtnMaltraitance" runat="server"
@@ -273,29 +368,43 @@
                         </asp:View>
 
                         <asp:View ID="ViewNouvelle" runat="server">
-                            <div class="petitsPointsListeUtilisateurs overflow">
+                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 120px;">
                                 <asp:ListView ID="lviewNouvelle" runat="server"
                                     ItemType="ModeleSentinellesHY.nouvelle"
                                     SelectMethod="GetNouvelle"
                                     DataKeyNames="idNouvelle"
                                     GroupItemCount="3">
                                     <LayoutTemplate>
+                                        <div style="width: 82.5%; float: left;">
+                                            <asp:Label runat="server" class="titreListe"><%= outils.obtenirLangue("Titre Français|English title")%></asp:Label>
+                                        </div>
+                                        <div style="width: 17.5%; float: right;">
+                                            <asp:Label runat="server" class="titreListe"><%= outils.obtenirLangue("Date de publication|Publish date")%></asp:Label>
+                                        </div>
                                         <asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
                                     </LayoutTemplate>
                                     <GroupTemplate>
-                                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                        <div class="clear-both">
+                                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                        </div>
                                     </GroupTemplate>
                                     <ItemTemplate>
-                                        <div class="span3">
-                                            <div id="divTitreFR" style="color: black;" class="ItemTemplateNom">
-                                                <asp:LinkButton ID="lblTitreFR" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                        <div class="ItemTemplate">
+                                            <div style="width: 82.5%; float: left;">
+                                                <asp:LinkButton CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                            </div>
+                                            <div style="width: 17.5%; float: right;">
+                                                <asp:LinkButton runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </ItemTemplate>
                                     <SelectedItemTemplate>
-                                        <div class="span3">
-                                            <div id="divTitreFR" class="SelectedItemTemplateNom">
-                                                <asp:LinkButton ID="lblTitreFR" title='<%# Eval("TitreFR")%>' CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                        <div class="SelectedItemTemplate">
+                                            <div style="width: 82.5%; float: left;">
+                                                <asp:LinkButton CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                            </div>
+                                            <div style="width: 17.5%; float: right;">
+                                                <asp:LinkButton runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </SelectedItemTemplate>
@@ -329,7 +438,32 @@
                                         </div>
                                         <div>
                                             <asp:TextBox ID="txtboxcontenuFR" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuFR%>' runat="server" />
-                                            <asp:HtmlEditorExtender ID="htmleditorContenuFR" runat="server" TargetControlID="txtboxcontenuFR" />
+
+                                            <asp:HtmlEditorExtender ID="htmleditorContenuFR" runat="server" TargetControlID="txtboxcontenuFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
+                                                <Toolbar>
+                                                    <ajaxToolkit:Undo />
+                                                    <ajaxToolkit:Redo />
+                                                    <ajaxToolkit:Bold />
+                                                    <ajaxToolkit:Italic />
+                                                    <ajaxToolkit:Underline />
+                                                    <ajaxToolkit:StrikeThrough />
+                                                    <ajaxToolkit:InsertUnorderedList />
+                                                    <ajaxToolkit:CreateLink />
+                                                    <ajaxToolkit:UnLink />
+                                                    <ajaxToolkit:RemoveFormat />
+                                                    <ajaxToolkit:SelectAll />
+                                                    <ajaxToolkit:UnSelect />
+                                                    <ajaxToolkit:Delete />
+                                                    <ajaxToolkit:Cut />
+                                                    <ajaxToolkit:Copy />
+                                                    <ajaxToolkit:Paste />
+                                                    <ajaxToolkit:Indent />
+                                                    <ajaxToolkit:Outdent />
+                                                    <ajaxToolkit:InsertHorizontalRule />
+                                                    <ajaxToolkit:HorizontalSeparator />
+                                                </Toolbar>
+                                            </asp:HtmlEditorExtender>
+
                                         </div>
                                         <hr />
                                         <div>
@@ -337,7 +471,32 @@
                                             <asp:TextBox ID="txtboxtitreEN" CssClass="txtBoxModifier_Titre" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.titreEN%>' runat="server" />
                                         </div>
                                         <asp:TextBox ID="txtboxcontenuEN" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuEN%>' runat="server" />
-                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN" />
+
+                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
+                                            <Toolbar>
+                                                <ajaxToolkit:Undo />
+                                                <ajaxToolkit:Redo />
+                                                <ajaxToolkit:Bold />
+                                                <ajaxToolkit:Italic />
+                                                <ajaxToolkit:Underline />
+                                                <ajaxToolkit:StrikeThrough />
+                                                <ajaxToolkit:InsertUnorderedList />
+                                                <ajaxToolkit:CreateLink />
+                                                <ajaxToolkit:UnLink />
+                                                <ajaxToolkit:RemoveFormat />
+                                                <ajaxToolkit:SelectAll />
+                                                <ajaxToolkit:UnSelect />
+                                                <ajaxToolkit:Delete />
+                                                <ajaxToolkit:Cut />
+                                                <ajaxToolkit:Copy />
+                                                <ajaxToolkit:Paste />
+                                                <ajaxToolkit:Indent />
+                                                <ajaxToolkit:Outdent />
+                                                <ajaxToolkit:InsertHorizontalRule />
+                                                <ajaxToolkit:HorizontalSeparator />
+                                            </Toolbar>
+                                        </asp:HtmlEditorExtender>
+
                                         <div class="boutonsNouvelleMargin">
                                             <asp:LinkButton ID="btnModifierNouvelle" runat="server"
                                                 CommandName="Update"
@@ -427,7 +586,32 @@
                                         </div>
                                         <div>
                                             <asp:TextBox ID="txtboxcontenuFR" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuFR%>' runat="server" />
-                                            <asp:HtmlEditorExtender ID="htmleditorContenuFR" runat="server" TargetControlID="txtboxcontenuFR" />
+
+                                            <asp:HtmlEditorExtender ID="htmleditorContenuFR" runat="server" TargetControlID="txtboxcontenuFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                                <Toolbar>
+                                                    <ajaxToolkit:Undo />
+                                                    <ajaxToolkit:Redo />
+                                                    <ajaxToolkit:Bold />
+                                                    <ajaxToolkit:Italic />
+                                                    <ajaxToolkit:Underline />
+                                                    <ajaxToolkit:StrikeThrough />
+                                                    <ajaxToolkit:InsertUnorderedList />
+                                                    <ajaxToolkit:CreateLink />
+                                                    <ajaxToolkit:UnLink />
+                                                    <ajaxToolkit:RemoveFormat />
+                                                    <ajaxToolkit:SelectAll />
+                                                    <ajaxToolkit:UnSelect />
+                                                    <ajaxToolkit:Delete />
+                                                    <ajaxToolkit:Cut />
+                                                    <ajaxToolkit:Copy />
+                                                    <ajaxToolkit:Paste />
+                                                    <ajaxToolkit:Indent />
+                                                    <ajaxToolkit:Outdent />
+                                                    <ajaxToolkit:InsertHorizontalRule />
+                                                    <ajaxToolkit:HorizontalSeparator />
+                                                </Toolbar>
+                                            </asp:HtmlEditorExtender>
+
                                         </div>
                                         <hr />
                                         <div>
@@ -435,7 +619,32 @@
                                             <asp:TextBox ID="txtboxtitreEN" CssClass="txtBoxModifier_Titre" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.titreEN%>' runat="server" />
                                         </div>
                                         <asp:TextBox ID="txtboxcontenuEN" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuEN%>' runat="server" />
-                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN" />
+
+                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                            <Toolbar>
+                                                <ajaxToolkit:Undo />
+                                                <ajaxToolkit:Redo />
+                                                <ajaxToolkit:Bold />
+                                                <ajaxToolkit:Italic />
+                                                <ajaxToolkit:Underline />
+                                                <ajaxToolkit:StrikeThrough />
+                                                <ajaxToolkit:InsertUnorderedList />
+                                                <ajaxToolkit:CreateLink />
+                                                <ajaxToolkit:UnLink />
+                                                <ajaxToolkit:RemoveFormat />
+                                                <ajaxToolkit:SelectAll />
+                                                <ajaxToolkit:UnSelect />
+                                                <ajaxToolkit:Delete />
+                                                <ajaxToolkit:Cut />
+                                                <ajaxToolkit:Copy />
+                                                <ajaxToolkit:Paste />
+                                                <ajaxToolkit:Indent />
+                                                <ajaxToolkit:Outdent />
+                                                <ajaxToolkit:InsertHorizontalRule />
+                                                <ajaxToolkit:HorizontalSeparator />
+                                            </Toolbar>
+                                        </asp:HtmlEditorExtender>
+
                                         <hr />
                                         <div>
                                             <asp:Label ID="lblDateEvenement" runat="server"><%= outils.obtenirLangue("Date de l'événement |Event date ")%></asp:Label>
@@ -530,7 +739,32 @@
                                         </div>
                                         <div>
                                             <asp:TextBox ID="txtboxcontenuFR" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuFR%>' runat="server" />
-                                            <asp:HtmlEditorExtender ID="htmleditorContenuFR" runat="server" TargetControlID="txtboxcontenuFR" />
+
+                                            <asp:HtmlEditorExtender ID="htmleditorContenuFR" runat="server" TargetControlID="txtboxcontenuFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                                <Toolbar>
+                                                    <ajaxToolkit:Undo />
+                                                    <ajaxToolkit:Redo />
+                                                    <ajaxToolkit:Bold />
+                                                    <ajaxToolkit:Italic />
+                                                    <ajaxToolkit:Underline />
+                                                    <ajaxToolkit:StrikeThrough />
+                                                    <ajaxToolkit:InsertUnorderedList />
+                                                    <ajaxToolkit:CreateLink />
+                                                    <ajaxToolkit:UnLink />
+                                                    <ajaxToolkit:RemoveFormat />
+                                                    <ajaxToolkit:SelectAll />
+                                                    <ajaxToolkit:UnSelect />
+                                                    <ajaxToolkit:Delete />
+                                                    <ajaxToolkit:Cut />
+                                                    <ajaxToolkit:Copy />
+                                                    <ajaxToolkit:Paste />
+                                                    <ajaxToolkit:Indent />
+                                                    <ajaxToolkit:Outdent />
+                                                    <ajaxToolkit:InsertHorizontalRule />
+                                                    <ajaxToolkit:HorizontalSeparator />
+                                                </Toolbar>
+                                            </asp:HtmlEditorExtender>
+
                                         </div>
                                         <hr />
                                         <div>
@@ -538,7 +772,32 @@
                                             <asp:TextBox ID="txtboxtitreEN" CssClass="txtBoxModifier_Titre" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.titreEN%>' runat="server" />
                                         </div>
                                         <asp:TextBox ID="txtboxcontenuEN" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuEN%>' runat="server" />
-                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN" />
+
+                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN"   ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                            <Toolbar>
+                                                <ajaxToolkit:Undo />
+                                                <ajaxToolkit:Redo />
+                                                <ajaxToolkit:Bold />
+                                                <ajaxToolkit:Italic />
+                                                <ajaxToolkit:Underline />
+                                                <ajaxToolkit:StrikeThrough />
+                                                <ajaxToolkit:InsertUnorderedList />
+                                                <ajaxToolkit:CreateLink />
+                                                <ajaxToolkit:UnLink />
+                                                <ajaxToolkit:RemoveFormat />
+                                                <ajaxToolkit:SelectAll />
+                                                <ajaxToolkit:UnSelect />
+                                                <ajaxToolkit:Delete />
+                                                <ajaxToolkit:Cut />
+                                                <ajaxToolkit:Copy />
+                                                <ajaxToolkit:Paste />
+                                                <ajaxToolkit:Indent />
+                                                <ajaxToolkit:Outdent />
+                                                <ajaxToolkit:InsertHorizontalRule />
+                                                <ajaxToolkit:HorizontalSeparator />
+                                            </Toolbar>
+                                        </asp:HtmlEditorExtender>
+
                                         <hr />
                                         <asp:Label runat="server"><%= outils.obtenirLangue("Fichier ou lien vers la revue de presse : |File or link to the press review : ")%></asp:Label>
                                         <asp:TextBox ID="txtboxUrlDocument" CssClass="txtBoxModifier" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.urlDocument%>' Width="300" runat="server" />
@@ -806,7 +1065,32 @@
                                 </div>
                                 <div>
                                     <asp:TextBox ID="txtboxMessage" runat="server" CssClass="htmlEditor" TextMode="MultiLine"></asp:TextBox>
-                                    <asp:HtmlEditorExtender ID="htmleditorMessage" runat="server" TargetControlID="txtboxMessage" />
+
+                                    <asp:HtmlEditorExtender ID="htmleditorMessage" runat="server" TargetControlID="txtboxMessage" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
+                                        <Toolbar>
+                                            <ajaxToolkit:Undo />
+                                            <ajaxToolkit:Redo />
+                                            <ajaxToolkit:Bold />
+                                            <ajaxToolkit:Italic />
+                                            <ajaxToolkit:Underline />
+                                            <ajaxToolkit:StrikeThrough />
+                                            <ajaxToolkit:InsertUnorderedList />
+                                            <ajaxToolkit:CreateLink />
+                                            <ajaxToolkit:UnLink />
+                                            <ajaxToolkit:RemoveFormat />
+                                            <ajaxToolkit:SelectAll />
+                                            <ajaxToolkit:UnSelect />
+                                            <ajaxToolkit:Delete />
+                                            <ajaxToolkit:Cut />
+                                            <ajaxToolkit:Copy />
+                                            <ajaxToolkit:Paste />
+                                            <ajaxToolkit:Indent />
+                                            <ajaxToolkit:Outdent />
+                                            <ajaxToolkit:InsertHorizontalRule />
+                                            <ajaxToolkit:HorizontalSeparator />
+                                        </Toolbar>
+                                    </asp:HtmlEditorExtender>
+
                                 </div>
                                 <div id="lnkBtn_envoiMessage">
                                     <asp:LinkButton ID="lnkbtnEnvoiMessage" runat="server"

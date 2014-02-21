@@ -7,6 +7,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAALPbYyNn+3UKC7daAxt8GLwAAAAACAAAAAAAQZgAAAAEAACAAAADH+9S4dFwF0JdJwdyT8birR/G323iE5yolz7/HDcvh5AAAAAAOgAAAAAIAACAAAADgpcaaU9GfN/HosPoNCS1rkusP2oazaukmbSXUBmWLXDAAAABeezLaPbzFWj4T1EE+eGg2l16h7IcYbdqW6irJxVETwu3Uy4pzUNkbVkHgSKI9qMlAAAAAyLMh9DimmDa7oaoEvg2jcVG0Vekm56CJuFK+bjcj5f88HzUC8r6wxJOPozJnpq5JPoWQaKgJjU/mmPk1oiROCA==</EncryptedPassword>
+    <_PublishTargetUrl>ftp://sqlinfo.cegepgranby.qc.ca/</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AjaxControlToolkit.dll">
