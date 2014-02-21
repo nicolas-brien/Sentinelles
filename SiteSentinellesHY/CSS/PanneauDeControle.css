@@ -1,5 +1,4 @@
-﻿.lnkBtn_menuConfig
-{
+﻿.lnkBtn_menuConfig {
     color: #000;
     font-family: 'AgencyR';
     font-size: x-large;
@@ -13,56 +12,50 @@
     clear: both;
     border-radius: 2px;
 }
-    .lnkBtn_menuConfig:hover
-    {
+
+    .lnkBtn_menuConfig:hover {
         -moz-transition-duration: 100ms;
         -webkit-transition-duration: 100ms;
         text-decoration: none;
         color: #FFF;
         background-color: #e71f1f;
     }
-.lnkBtn_menuConfig_active
-{
+
+.lnkBtn_menuConfig_active {
     text-decoration: none;
     color: #FFF;
     background-color: #e71f1f;
 }
-#imgBtn_EnvoiMessage
-{
+
+#imgBtn_EnvoiMessage {
     width: 55px;
     height: 30px;
 }
-#divAvatar
-{
+
+#divAvatar {
     position: relative;
 }
-.divConfig_margin
-{
+
+.divConfig_margin {
     margin-bottom: 15px;
 }
-.lblTitreConfig
-{
+
+.lblTitreConfig {
     font-size: xx-large;
     font-family: 'AgencyR';
     margin-bottom: 25px;
     margin-left: 20px;
 }
-.content_centrer
-{
+
+.content_centrer {
     text-align: center;
 }
-.paddingRow
-{
+
+.paddingRow {
     padding: 20px 50px 0px 50px;
 }
-.encadrerModification
-{
-    border: 1px dashed blue;
-    padding: 25px;
-    margin-bottom: 50px;
-}
-.btnAccepterModification
-{
+
+.btnAccepterModification {
     display: inline-block;
     padding: 4px;
     font-size: 15px;
@@ -79,222 +72,256 @@
     -moz-border-radius: 10px;
     border-radius: 8px;
 }
-.txtBoxModifier
-{
+
+.txtBoxModifier {
     margin-top: 10px;
     width: 800px;
     max-width: 800px;
     height: 200px;
 }
+/*--------------------------------------------------------------------------------*/
+/*---------------------------------Style des listes-------------------------------*/
+/*--------------------------------------------------------------------------------*/
+.titreListe{
+   margin-left:3px;
+   font-weight:bold;
+}
+
+.ItemTemplate div a {
+    color: #0066d5;
+    margin: 3px 3px 3px 7px;
+}
+
+    .ItemTemplate div a:hover {
+        color: white;
+        background-color: #0066d5;
+        text-decoration:none;
+    }
+
+.ItemTemplate:hover > div{
+    background-color: #0066d5;
+}
+
+.ItemTemplate:hover > div a{
+    color:white;
+}
+
+.SelectedItemTemplate div a {
+    margin: 3px 3px 3px 7px;
+    color: white;
+    background-color: #0066d5;
+}
+    .SelectedItemTemplate div a:hover {
+        text-decoration:none;
+    }
+
+.SelectedItemTemplate div {
+    background-color: #0066d5;
+}
+
+
 /*-------------------------------------Message ----------------------------------*/
-#div_titreMessage
-{
-    margin-left:2px;
+#div_titreMessage {
+    margin-left: 2px;
 }
-#txtboxTitreMessage
-{
-    width:400px;
+
+#txtboxTitreMessage {
+    width: 400px;
 }
-#lnkBtn_envoiMessage
-{
-    margin-top:25px;
-}
-.AvecSucces
-{
-    color: green;
-}
-#lblErreur
-{
-    margin: 25px 0px 0px 25px;
-}
-.htmlEditor
-{
-    width:814px;
-    height:210px;
-}
-/*-------------------------------------Options ----------------------------------*/
-#accordionOptions
-{
-    margin-left: 30px;
-}
-#div_lblHistoriqueFR
-{
-    margin-bottom:10px;
-}
-#div_lblHistoriqueEN
-{
-    margin-top:5px;
-    margin-bottom:10px;
-}
-.htmleditorMaltraitance
-{
-    width:814px;
-    height:210px;
-}
-#div_lnkbtnMaltraitance
-{
+
+#lnkBtn_envoiMessage {
     margin-top: 25px;
 }
-#div_lblMaltraitanceFR
-{
-     margin-bottom:10px;
+
+.AvecSucces {
+    color: green;
 }
-.htmleditorHistorique
-{
-    width:814px;
-    height:210px;
+
+#lblErreur {
+    margin: 25px 0px 0px 25px;
 }
-#div_lnkbtnHistorique
-{
-    margin-top:25px;
+
+.htmlEditor {
+    width: 814px;
+    height: 210px;
 }
-.txtboxtemoignageFR
-{
-    margin-left:4px;
+/*-------------------------------------Options ----------------------------------*/
+#accordionOptions {
+    margin-left: 30px;
+}
+
+#div_lblHistoriqueFR {
+    margin-bottom: 10px;
+}
+
+#div_lblHistoriqueEN {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.htmleditorMaltraitance {
+    width: 814px;
+    height: 210px;
+}
+
+#div_lnkbtnMaltraitance {
+    margin-top: 25px;
+}
+
+#div_lblMaltraitanceFR {
+    margin-bottom: 10px;
+}
+
+.htmleditorHistorique {
+    width: 814px;
+    height: 210px;
+}
+
+#div_lnkbtnHistorique {
+    margin-top: 25px;
+}
+
+.txtboxtemoignageFR {
+    margin-left: 4px;
     margin-top: 10px;
     width: 590px;
     max-width: 590px;
     height: 20px;
 }
-.txtboxtemoignageEN
-{
+
+.txtboxtemoignageEN {
     margin-top: 10px;
     width: 590px;
     max-width: 590px;
     height: 20px;
 }
-.txtboxPenseeFR
-{
-    margin-left:4px;
-    margin-top:10px;
+
+.txtboxPenseeFR {
+    margin-left: 4px;
+    margin-top: 10px;
     width: 600px;
     min-width: 500px;
     max-width: 600px;
     height: 20px;
 }
-.txtboxPenseeEN
-{
+
+.txtboxPenseeEN {
     width: 600px;
     max-width: 600px;
     height: 20px;
 }
-.marginbottom_divImgCarrousel
-{
+
+.marginbottom_divImgCarrousel {
     margin-bottom: 25px;
 }
-#lblFormatImgMessage
-{
+
+#lblFormatImgMessage {
     font-size: 9px;
 }
-.lblAccordeon
-{
+
+.lblAccordeon {
     width: 235px;
 }
-#txtboxCourrielAdmin
-{
+
+#txtboxCourrielAdmin {
     margin: -1px 0px 0px 10px;
 }
-#lnkbtnCourrielAdmin
-{
+
+#lnkbtnCourrielAdmin {
     margin-top: 15px;
 }
 /*-------------------------------------Nouvelle----------------------------------*/
-#txtboxtitreFR
-{
+#txtboxtitreFR {
     margin-left: 10px;
 }
-.txtBoxModifier_Titre
-{
+
+.txtBoxModifier_Titre {
     margin-top: 10px;
     width: 300px;
     height: auto;
 }
-.div_AjoutNouvelle
-{
+
+.div_AjoutNouvelle {
     position: relative;
 }
-.divDateRedaction
-{
+
+.divDateRedaction {
     float: right;
     margin-right: 40px;
 }
-#lnkBtnAjoutNouvelle
-{
+
+#lnkBtnAjoutNouvelle {
     position: absolute;
     top: 15px;
     left: 25px;
 }
-.boutonsNouvelleMargin
-{
+
+.boutonsNouvelleMargin {
     margin-top: 25px;
 }
 /*--------------------------------------Evenement-----------------------------------*/
-#lnkBtnAjoutEvenement
-{
+#lnkBtnAjoutEvenement {
     position: absolute;
     top: 15px;
     left: 25px;
 }
-.calendrierEvenement
-{
+
+.calendrierEvenement {
     position: absolute;
     background-color: white;
 }
-.tbEvenement
-{
+
+.tbEvenement {
     width: 175px;
 }
 /*-------------------------------------Utilisateur----------------------------------*/
-.petitsPoints
-{
+.petitsPoints {
     border: 1px dashed blue;
     padding: 25px;
     margin-bottom: 50px;
 }
-.petitsPointsListeUtilisateurs
-{
+
+.petitsPointsListeUtilisateurs {
     border: 1px dashed blue;
-    padding: 15px;
     margin-bottom: 50px;
-    height: 100px;
 }
-.petitsPointsPadding
-{
+
+.petitsPointsPadding {
     border: 1px dashed blue;
     padding: 25px 25px 125px 25px;
     margin-bottom: 50px;
 }
-.overflow
-{
+
+.overflow {
     overflow: scroll;
 }
-.lviewInfoUtilisateur_centrer
-{
+
+.lviewInfoUtilisateur_centrer {
     margin-top: 15px;
 }
-.lnkbtnAjouter_margin
-{
+
+.lnkbtnAjouter_margin {
     margin-top: 5px;
     margin-bottom: 5px;
 }
-.lblTitreConfig
-{
+
+.lblTitreConfig {
     font-size: xx-large;
     font-family: 'AgencyR';
     margin-bottom: 25px;
     margin-left: 20px;
 }
-.lblUtilisateur
-{
+
+.lblUtilisateur {
     vertical-align: bottom;
     Width: 250px;
 }
-.txtboxUtilisateur
-{
+
+.txtboxUtilisateur {
     Width: 300px;
 }
-.btnAjouter
-{
+
+.btnAjouter {
     margin: 0px 5px;
     display: inline-block;
     padding: 4px 6px;
@@ -313,57 +340,44 @@
     border-radius: 8px;
     background-image: linear-gradient(to bottom, #ECECEC, #C7C6C6);
 }
-.encadrerBoutons
-{
+
+.encadrerBoutons {
     width: 250px;
     border: 1px dashed blue;
     text-align: center;
     padding: 5px 5px 5px 5px;
 }
-.rbtnSexe
-{
+
+.rbtnSexe {
     width: 200px;
     margin-left: 25px;
 }
-.ItemTemplateNom
-{
-    color: black;
-    padding-left: 75px;
-    margin: 3px 0px;
-}
-.SelectedItemTemplateNom
-{
-    padding-left: 75px;
-    margin: 3px 0px;
-    color: none;
-    text-decoration: underline;
-}
-.lblMessageErreur
-{
+
+.lblMessageErreur {
     margin-top: 10px;
     color: red;
 }
-#lnkBtnUpload
-{
+
+#lnkBtnUpload {
     font-size: xx-large;
 }
-#divFileUpload
-{
+
+#divFileUpload {
     position: absolute;
     left: 150px;
     top: 5px;
     width: 150px;
 }
-.centrerVerticalement
-{
+
+.centrerVerticalement {
     vertical-align: middle;
 }
-#rowBouton
-{
+
+#rowBouton {
     margin-bottom: 10px;
 }
-.Avatar_margin
-{
+
+.Avatar_margin {
     margin-top: 25px;
     margin-bottom: 25px;
 }

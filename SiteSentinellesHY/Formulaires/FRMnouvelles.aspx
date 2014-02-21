@@ -34,10 +34,13 @@
                 <div class="clear-both">
                     <div class="cadrageItems">
                         <div>
-                            <h6><%# Left(Eval("dateRedaction"),10)%></h6>
+                            <p><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ")%></b><%# Left(Eval("dateRedaction"),10)%></p>
                         </div>
                         <div class="clear-both">
-                            <asp:Label ID="lblNouvelle" runat="server" Text='<%# Eval(outils.obtenirLangue("contenuFR|contenuEN"))%>'></asp:Label>
+                            <br />
+                            
+                            <asp:Label ID="lblNouvelle" runat="server" Text='<%# Eval(outils.obtenirLangue("contenuFR|contenuEN"))%>' ></asp:Label>
+                            
                         </div>
                     </div>
                 </div>
@@ -72,6 +75,4 @@
             </Fields>
         </asp:DataPager>
     </div>
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>
