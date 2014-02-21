@@ -371,6 +371,12 @@ Public Class FRMPanneauDeControle
             lviewNouvelle.SelectedIndex = 0
         End If
     End Sub
+
+    Private Sub lviewNouvelle_LayoutCreated(sender As Object, e As EventArgs) Handles lviewNouvelle.LayoutCreated
+        If lviewNouvelle.Items.Count > 0 Then
+            CType(lviewNouvelle.FindControl("lbNouvelleTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+        End If
+    End Sub
     Private Sub lviewNouvelle_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewNouvelle.SelectedIndexChanged
         ViewState("modeNouvelle") = ""
         lblMessageErreurNouvelle.Text = ""
@@ -401,6 +407,12 @@ Public Class FRMPanneauDeControle
 #End Region
 
 #Region "Événement"
+
+    Private Sub lvEvenement_LayoutCreated(sender As Object, e As EventArgs) Handles lvEvenement.LayoutCreated
+        If lvEvenement.Items.Count > 0 Then
+            CType(lvEvenement.FindControl("lbEvenementTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+        End If
+    End Sub
     Private Sub lvEvenement_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvEvenement.SelectedIndexChanged
         ViewState("modeEvenement") = ""
         lblMessageErreurEvenement.Text = ""
