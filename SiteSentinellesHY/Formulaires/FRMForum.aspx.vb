@@ -362,17 +362,19 @@ Public Class FRMForum
                             Where pub.idParent = idParent Or pub.idPublication = idParent).ToList
         Dim pubAValider As ModeleSentinellesHY.Publication = Nothing
         pubAValider = ModeleSentinellesHY.outils.leContexte.PublicationJeu.Find(PubADelete.idPublication)
-        If pubAValider.idParent Is Nothing Then
-            For Each pub As ModeleSentinellesHY.Publication In listePublication
-                ModeleSentinellesHY.outils.leContexte.PublicationJeu.Remove(pub)
-            Next
-            MultiViewForum.ActiveViewIndex = 1
-        Else
-            If (Not IsDBNull(pubAValider)) Then
+
+        If (Not pubAValider Is Nothing) Then
+            If pubAValider.idParent Is Nothing Then
+                For Each pub As ModeleSentinellesHY.Publication In listePublication
+                    ModeleSentinellesHY.outils.leContexte.PublicationJeu.Remove(pub)
+                Next
+                MultiViewForum.ActiveViewIndex = 1
+            Else
                 ModeleSentinellesHY.outils.leContexte.PublicationJeu.Remove(pubAValider)
             End If
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
         End If
-        ModeleSentinellesHY.outils.leContexte.SaveChanges()
+
         lviewForum_accueil.DataBind()
         lviewCategorie.DataBind()
         'Redirige afin d'empecher le rafraichissement
