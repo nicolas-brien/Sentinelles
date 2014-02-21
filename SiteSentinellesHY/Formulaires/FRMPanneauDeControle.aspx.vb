@@ -143,8 +143,8 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Protected Sub lnkCreateBackup_Click(sender As Object, e As EventArgs)
-        Dim controler As DBControler = New DBControler()
-        controler.CreateBackup(Server.MapPath("../Upload/Backup/"), "sentinelle_" & Date.Now().ToString("dd/MMM/yyyy") & ".bak")
+        'Dim controler As DBControler = New DBControler()
+        'controler.CreateBackup(Server.MapPath("../Upload/Backup/"), "sentinelle_" & Date.Now().ToString("dd/MMM/yyyy") & ".bak")
     End Sub
 
 #End Region
@@ -398,9 +398,9 @@ Public Class FRMPanneauDeControle
             CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = False
             CType(lviewInfoNouvelles.FindControl("lnkBtnAjoutNouvelle"), LinkButton).Visible = False
         Else
-                CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = True
-                CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
-                CType(lviewInfoNouvelles.FindControl("lnkBtnAjoutNouvelle"), LinkButton).Visible = True
+            CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = True
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
+            CType(lviewInfoNouvelles.FindControl("lnkBtnAjoutNouvelle"), LinkButton).Visible = True
         End If
     End Sub
 #End Region
@@ -522,21 +522,17 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Private Sub lvInfoEvenement_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lvInfoEvenement.ItemDataBound
-        If ViewState("modeEvenement") = "AjoutEvenement" Then
-            CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
-        Else
-            Dim listeEvenements As List(Of ModeleSentinellesHY.Événement) = Nothing
-            listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateEvenement Descending).ToList
-            If listeEvenements.Count = 0 Then
+        Dim listeEvenements As List(Of ModeleSentinellesHY.Événement) = Nothing
+        listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateEvenement Descending).ToList
 
-                CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
-                CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = False
-                CType(lvInfoEvenement.FindControl("lnkBtnAjoutEvenement"), LinkButton).Visible = False
-            Else
-                CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = True
-                CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
-                CType(lvInfoEvenement.FindControl("lnkBtnAjoutEvenement"), LinkButton).Visible = True
-            End If
+        If ViewState("modeEvenement") = "AjoutEvenement" Or listeEvenements.Count = 0 Then
+            CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = False
+            CType(lvInfoEvenement.FindControl("lnkBtnAjoutEvenement"), LinkButton).Visible = False
+        Else
+            CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = True
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
+            CType(lvInfoEvenement.FindControl("lnkBtnAjoutEvenement"), LinkButton).Visible = True
         End If
     End Sub
 #End Region
@@ -743,8 +739,19 @@ Public Class FRMPanneauDeControle
     End Function
 
     Private Sub lviewInfoUtilisateur_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewInfoUtilisateur.ItemDataBound
+        Dim listeUtilisateurs As New List(Of ModeleSentinellesHY.Utilisateur)
+        listeUtilisateurs = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu Order By uti.prenom).ToList
+
+        If ViewState("modeUtilisateur") = "AjoutUtilisateur" Or listeUtilisateurs.Count = 0 Then
+            CType(e.Item.FindControl("btnSupprimerUti"), LinkButton).Visible = False
+            CType(lviewInfoUtilisateur.FindControl("lnkbtnAjouter"), LinkButton).Visible = False
+        Else
+            CType(e.Item.FindControl("btnSupprimerUti"), LinkButton).Visible = True
+            CType(lviewInfoUtilisateur.FindControl("lnkbtnAjouter"), LinkButton).Visible = True
+        End If
+
         If CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idUtilisateur = CType(e.Item.DataItem, ModeleSentinellesHY.Utilisateur).idUtilisateur Then
-            CType(e.Item.FindControl("btnSupprimerUtilisateur"), Button).Visible = False
+            CType(e.Item.FindControl("btnSupprimerUti"), LinkButton).Visible = False
         End If
     End Sub
 
