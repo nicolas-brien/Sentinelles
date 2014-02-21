@@ -375,20 +375,17 @@ Public Class FRMPanneauDeControle
         lviewInfoNouvelles.DataBind()
     End Sub
     Private Sub lviewInfoNouvelles_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewInfoNouvelles.ItemDataBound
-        If ViewState("modeNouvelle") = "AjoutNouvelle" Then
+        Dim listeNouvelle As List(Of ModeleSentinellesHY.Nouvelle) = Nothing
+        listeNouvelle = (From nou In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By nou.dateRedaction Descending).ToList
+
+        If ViewState("modeNouvelle") = "AjoutNouvelle" Or listeNouvelle.Count = 0 Then
             CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = False
+            CType(lviewInfoNouvelles.FindControl("lnkBtnAjoutNouvelle"), LinkButton).Visible = False
         Else
-            Dim listeNouvelle As List(Of ModeleSentinellesHY.Nouvelle) = Nothing
-            listeNouvelle = (From nou In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By nou.dateRedaction Descending).ToList
-            If listeNouvelle.Count = 0 Then
-                CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
-                CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = False
-                CType(lviewInfoNouvelles.FindControl("lnkBtnAjoutNouvelle"), LinkButton).Visible = False
-            Else
                 CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = True
                 CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
                 CType(lviewInfoNouvelles.FindControl("lnkBtnAjoutNouvelle"), LinkButton).Visible = True
-            End If
         End If
     End Sub
 #End Region
@@ -653,21 +650,17 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Private Sub lvInfoRDP_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lvInfoRDP.ItemDataBound
-        If ViewState("modeRDP") = "AjoutRDP" Then
-            CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
-        Else
-            Dim listeRDP As List(Of ModeleSentinellesHY.RevueDePresse) = Nothing
-            listeRDP = (From rdp In ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).ToList
-            If listeRDP.Count = 0 Then
+        Dim listeRDP As List(Of ModeleSentinellesHY.RevueDePresse) = Nothing
+        listeRDP = (From rdp In ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).ToList
 
-                CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
-                CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = False
-                CType(lvInfoRDP.FindControl("lnkBtnAjoutRDP"), LinkButton).Visible = False
-            Else
-                CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = True
-                CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
-                CType(lvInfoRDP.FindControl("lnkBtnAjoutRDP"), LinkButton).Visible = True
-            End If
+        If ViewState("modeRDP") = "AjoutRDP" Or listeRDP.Count = 0 Then
+            CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = False
+            CType(lvInfoRDP.FindControl("lnkBtnAjoutRDP"), LinkButton).Visible = False
+        Else
+            CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = True
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
+            CType(lvInfoRDP.FindControl("lnkBtnAjoutRDP"), LinkButton).Visible = True
         End If
     End Sub
 #End Region
