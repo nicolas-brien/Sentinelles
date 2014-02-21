@@ -325,6 +325,9 @@
         $("#monCaroussel").carousel({
             interval: 6000
         });
+        $('#ModalConnexion').on('shown', function () {
+            $('#tbLoginUsername').focus();
+        });
     });
 </script>
 </html>
