@@ -6,3 +6,15 @@
     background-color: white;
     float: left;
 }
+
+.justify 
+{
+    text-align:justify;
+}
+
+.visage 
+{
+    width:90px;
+    height:90px;
+    position:absolute;
+}
