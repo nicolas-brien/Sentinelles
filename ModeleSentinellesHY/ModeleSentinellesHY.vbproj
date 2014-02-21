@@ -95,7 +95,6 @@
     <Compile Include="Classes Partielles\Utilisateur.vb" />
     <Compile Include="Classes Partielles\Événement.vb" />
     <Compile Include="Classes\clsErreur.vb" />
-    <Compile Include="Classes\DBControler.vb" />
     <Compile Include="Classes\ExceptionUtility.vb" />
     <Compile Include="Classes\FormulaireSentinelle.vb" />
     <Compile Include="Classes\FRMdeBase.vb">
