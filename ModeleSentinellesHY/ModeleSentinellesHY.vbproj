@@ -60,6 +60,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -94,6 +95,7 @@
     <Compile Include="Classes Partielles\Utilisateur.vb" />
     <Compile Include="Classes Partielles\Événement.vb" />
     <Compile Include="Classes\clsErreur.vb" />
+    <Compile Include="Classes\DBControler.vb" />
     <Compile Include="Classes\ExceptionUtility.vb" />
     <Compile Include="Classes\FormulaireSentinelle.vb" />
     <Compile Include="Classes\FRMdeBase.vb">
