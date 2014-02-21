@@ -326,7 +326,7 @@
                                                     <div class="accordion-inner">
                                                         <div>
                                                             <asp:Label ID="lblFormatImgMessage" runat="server">
-                                                                <%= outils.obtenirLangue("*Les images du carrousel doivent être approximativement de 960 x 200 et de types .png ou .jpg|*The images of the caroussel must be approximately 960 x 200 and with the type .png or .jpg")%>
+                                                                <%= outils.obtenirLangue("*Les images du carrousel doivent être approximativement de 960 x 400 et de types .png ou .jpg|*The images of the caroussel must be approximately 960 x 400 and with the type .png or .jpg")%>
                                                             </asp:Label>
                                                         </div>
                                                         <div class="marginbottom_divImgCarrousel">
@@ -357,6 +357,28 @@
                                                             <asp:LinkButton ID="Carrousel3" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
                                                             <img id="imgCarrousel3" width="360" src="../Upload/Carrousel3.jpg" />
                                                             <asp:FileUpload ID="fuplPhotoCarrousel3" onchange="PreviewImage('imgCarrousel3','fuplPhotoCarrousel3');" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-group">
+                                                <div class="accordion-heading">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseBackup">
+                                                        <%= outils.obtenirLangue("Sauvegarde de la base de données |Database Backup")%>
+                                                        
+                                                    </a>
+                                                </div>
+                                                <div id="collapseBackup" class="accordion-body collapse">
+                                                    <div class="accordion-inner">
+                                                        <div>
+                                                            <asp:LinkButton ID="lnkCreateBackup" runat="server" style="color: #000;" OnClientClick="return confirm('Êtes vous certain de vouloir créer une nouvelle sauvegarde?')" OnClick="lnkCreateBackup_Click">
+                                                                <%= outils.obtenirLangue("Créer une sauvegarde |Create backup ")%>
+                                                            </asp:LinkButton>                               
+                                                        </div>
+                                                        <div>
+                                                            <asp:LinkButton ID="LinkButton2" runat="server" style="color: #000;">
+                                                                <%= outils.obtenirLangue("Restaurer une sauvegarde |Restore backup ")%>
+                                                            </asp:LinkButton> 
                                                         </div>
                                                     </div>
                                                 </div>
@@ -421,8 +443,8 @@
                                     UpdateMethod="UpdateNouvelle"
                                     DeleteMethod="DeleteNouvelle"
                                     DataKeyNames="idNouvelle">
-                                    <LayoutTemplate>
-                                        <div class="div_AjoutNouvelle">
+                                    <LayoutTemplate runat="server">
+                                        <div class="div_AjoutNouvelle" runat="server">
                                             <asp:LinkButton ID="lnkBtnAjoutNouvelle" runat="server" OnClick="lnkBtnAjoutNouvelle_Click">+ <% =outils.obtenirLangue("Ajouter une nouvelle|Add a news")%></asp:LinkButton>
                                         </div>
                                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
@@ -593,7 +615,7 @@
                                     DeleteMethod="DeleteEvenement"
                                     DataKeyNames="idEvenement">
                                     <LayoutTemplate>
-                                        <div class="div_AjoutNouvelle">
+                                        <div class="div_AjoutNouvelle" runat="server">
                                             <asp:LinkButton ID="lnkBtnAjoutEvenement" runat="server" OnClick="lnkBtnAjoutEvenement_Click">+ <% =outils.obtenirLangue("Ajouter un événement|Add an event")%></asp:LinkButton>
                                         </div>
                                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
