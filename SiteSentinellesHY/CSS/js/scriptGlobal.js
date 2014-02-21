@@ -23,4 +23,6 @@ $(document).ready(function(){
 		$(this).hide();
 		falseButton.insertAfter($(this));
 	});
+
+	$('[data-toggle="tooltip"]').tooltip();
 });
