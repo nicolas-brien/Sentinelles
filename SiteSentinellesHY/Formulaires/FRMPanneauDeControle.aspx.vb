@@ -656,13 +656,24 @@ Public Class FRMPanneauDeControle
         lviewInfoUtilisateur.DataBind()
     End Sub
 
-    Public Shared Function GetUtilisateurs() As IQueryable(Of ModeleSentinellesHY.Utilisateur)
+    Private Sub btnRechercheUtilisateur_Click(sender As Object, e As EventArgs) Handles btnRechercheUtilisateur.Click
+        lviewUtilisateurs.DataBind()
+    End Sub
+
+    Public Function GetUtilisateurs() As IQueryable(Of ModeleSentinellesHY.Utilisateur)
         Dim listeUtilisateurs As New List(Of ModeleSentinellesHY.Utilisateur)
 
-        listeUtilisateurs = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu Order By uti.prenom).ToList
-
+        If txtboxRechercheUtilisateur.Text <> "" Then
+            Dim txtRecherche As String = txtboxRechercheUtilisateur.Text
+            listeUtilisateurs = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu
+                                 Where uti.nom.Contains(txtRecherche) Or uti.prenom.Contains(txtRecherche) Or
+                                 uti.courriel.Contains(txtRecherche) Or uti.milieu.Contains(txtRecherche) Or
+                                 uti.nomUtilisateur.Contains(txtRecherche)
+                                 Order By uti.prenom).ToList
+        Else
+            listeUtilisateurs = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu Order By uti.prenom).ToList
+        End If
         Return listeUtilisateurs.AsQueryable()
-
     End Function
 
     Public Function getInfoUtilisateur() As ModeleSentinellesHY.Utilisateur
@@ -861,4 +872,5 @@ Public Class FRMPanneauDeControle
 
     End Sub
 #End Region
+
 End Class

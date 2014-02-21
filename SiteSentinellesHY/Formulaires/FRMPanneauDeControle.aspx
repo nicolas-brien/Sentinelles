@@ -109,8 +109,8 @@
                                                                 </asp:Label>
                                                             </div>
                                                             <asp:TextBox ID="txtboxHistoriqueFR" TextMode="MultiLine" CssClass="htmleditorHistorique" runat="server" Text='<%# BindItem.historiqueFR%>' />
-                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueFR" runat="server" TargetControlID="txtboxHistoriqueFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
-                                                                  <Toolbar> 
+                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueFR" runat="server" TargetControlID="txtboxHistoriqueFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                                                <Toolbar>
                                                                     <ajaxToolkit:Undo />
                                                                     <ajaxToolkit:Redo />
                                                                     <ajaxToolkit:Bold />
@@ -132,7 +132,7 @@
                                                                     <ajaxToolkit:InsertHorizontalRule />
                                                                     <ajaxToolkit:HorizontalSeparator />
                                                                 </Toolbar>
-                                                          </asp:HtmlEditorExtender>
+                                                            </asp:HtmlEditorExtender>
                                                         </div>
                                                         <hr />
                                                         <div>
@@ -142,8 +142,8 @@
                                                                 </asp:Label>
                                                             </div>
                                                             <asp:TextBox ID="txtboxHistoriqueEN" TextMode="MultiLine" CssClass="htmleditorHistorique" runat="server" Text='<%# BindItem.historiqueEN%>' />
-                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueEN" runat="server" TargetControlID="txtboxHistoriqueEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
-                                                                  <Toolbar> 
+                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueEN" runat="server" TargetControlID="txtboxHistoriqueEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                                                <Toolbar>
                                                                     <ajaxToolkit:Undo />
                                                                     <ajaxToolkit:Redo />
                                                                     <ajaxToolkit:Bold />
@@ -165,7 +165,7 @@
                                                                     <ajaxToolkit:InsertHorizontalRule />
                                                                     <ajaxToolkit:HorizontalSeparator />
                                                                 </Toolbar>
-                                                          </asp:HtmlEditorExtender>
+                                                            </asp:HtmlEditorExtender>
                                                         </div>
                                                         <div id="div_lnkbtnHistorique">
                                                             <asp:LinkButton ID="lnkbtnHistorique" runat="server"
@@ -193,7 +193,7 @@
                                                             </div>
                                                             <asp:TextBox ID="txtboxMaltraitanceFR" TextMode="MultiLine" CssClass="htmleditorMaltraitance" runat="server" Text='<%# BindItem.maltraitanceFR%>' />
                                                             <asp:HtmlEditorExtender ID="htmleditorMaltraitanceFR" runat="server" TargetControlID="txtboxMaltraitanceFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
-                                                                  <Toolbar> 
+                                                                <Toolbar>
                                                                     <ajaxToolkit:Undo />
                                                                     <ajaxToolkit:Redo />
                                                                     <ajaxToolkit:Bold />
@@ -215,7 +215,7 @@
                                                                     <ajaxToolkit:InsertHorizontalRule />
                                                                     <ajaxToolkit:HorizontalSeparator />
                                                                 </Toolbar>
-                                                          </asp:HtmlEditorExtender>
+                                                            </asp:HtmlEditorExtender>
                                                         </div>
                                                         <hr />
                                                         <div>
@@ -227,7 +227,7 @@
                                                             <asp:TextBox ID="txtboxMaltraitanceEN" TextMode="MultiLine" CssClass="htmleditorMaltraitance" runat="server" Text='<%# BindItem.maltraitanceEN%>' />
 
                                                             <asp:HtmlEditorExtender ID="HtmlEditorExtender1" runat="server" TargetControlID="txtboxMaltraitanceEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
-                                                                  <Toolbar> 
+                                                                <Toolbar>
                                                                     <ajaxToolkit:Undo />
                                                                     <ajaxToolkit:Redo />
                                                                     <ajaxToolkit:Bold />
@@ -249,7 +249,7 @@
                                                                     <ajaxToolkit:InsertHorizontalRule />
                                                                     <ajaxToolkit:HorizontalSeparator />
                                                                 </Toolbar>
-                                                          </asp:HtmlEditorExtender>
+                                                            </asp:HtmlEditorExtender>
 
 
                                                         </div>
@@ -439,7 +439,7 @@
                                         <div>
                                             <asp:TextBox ID="txtboxcontenuFR" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuFR%>' runat="server" />
 
-                                            <asp:HtmlEditorExtender ID="htmleditorContenuFR" runat="server" TargetControlID="txtboxcontenuFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
+                                            <asp:HtmlEditorExtender ID="htmleditorContenuFR" runat="server" TargetControlID="txtboxcontenuFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
                                                 <Toolbar>
                                                     <ajaxToolkit:Undo />
                                                     <ajaxToolkit:Redo />
@@ -472,7 +472,7 @@
                                         </div>
                                         <asp:TextBox ID="txtboxcontenuEN" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuEN%>' runat="server" />
 
-                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
+                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
                                             <Toolbar>
                                                 <ajaxToolkit:Undo />
                                                 <ajaxToolkit:Redo />
@@ -773,7 +773,7 @@
                                         </div>
                                         <asp:TextBox ID="txtboxcontenuEN" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuEN%>' runat="server" />
 
-                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN"   ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
                                             <Toolbar>
                                                 <ajaxToolkit:Undo />
                                                 <ajaxToolkit:Redo />
@@ -840,6 +840,11 @@
 
                         <asp:View ID="ViewUtilisateur" runat="server">
                             <div class="row paddingRow">
+                                <div class="pull-right">
+                                    <asp:TextBox ID="txtboxRechercheUtilisateur" runat="server" />
+                                    <asp:Button ID="btnRechercheUtilisateur" runat="server" Text="Rechercher" CssClass="btn btnAjouter" />
+                                </div>
+                                <div class="clear-both"></div>
                                 <div class="petitsPointsListeUtilisateurs overflow">
                                     <%--------lviewUtilisateur-------%>
                                     <asp:ListView ID="lviewUtilisateurs" runat="server"
@@ -1066,7 +1071,7 @@
                                 <div>
                                     <asp:TextBox ID="txtboxMessage" runat="server" CssClass="htmlEditor" TextMode="MultiLine"></asp:TextBox>
 
-                                    <asp:HtmlEditorExtender ID="htmleditorMessage" runat="server" TargetControlID="txtboxMessage" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
+                                    <asp:HtmlEditorExtender ID="htmleditorMessage" runat="server" TargetControlID="txtboxMessage" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
                                         <Toolbar>
                                             <ajaxToolkit:Undo />
                                             <ajaxToolkit:Redo />
