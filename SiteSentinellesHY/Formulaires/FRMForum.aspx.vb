@@ -362,17 +362,23 @@ Public Class FRMForum
                             Where pub.idParent = idParent Or pub.idPublication = idParent).ToList
         Dim pubAValider As ModeleSentinellesHY.Publication = Nothing
         pubAValider = ModeleSentinellesHY.outils.leContexte.PublicationJeu.Find(PubADelete.idPublication)
-        If pubAValider.idParent Is Nothing Then
-            For Each pub As ModeleSentinellesHY.Publication In listePublication
-                ModeleSentinellesHY.outils.leContexte.PublicationJeu.Remove(pub)
-            Next
-            MultiViewForum.ActiveViewIndex = 1
-        Else
-            ModeleSentinellesHY.outils.leContexte.PublicationJeu.Remove(pubAValider)
+
+        If (Not pubAValider Is Nothing) Then
+            If pubAValider.idParent Is Nothing Then
+                For Each pub As ModeleSentinellesHY.Publication In listePublication
+                    ModeleSentinellesHY.outils.leContexte.PublicationJeu.Remove(pub)
+                Next
+                MultiViewForum.ActiveViewIndex = 1
+            Else
+                ModeleSentinellesHY.outils.leContexte.PublicationJeu.Remove(pubAValider)
+            End If
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
         End If
-        ModeleSentinellesHY.outils.leContexte.SaveChanges()
+
         lviewForum_accueil.DataBind()
         lviewCategorie.DataBind()
+        'Redirige afin d'empecher le rafraichissement
+        Response.Redirect("FRMForum.aspx")
     End Sub
     Protected Sub retourCategorie_Click(sender As Object, e As EventArgs)
         'On vérifie si le Viewstate Recherche contient un résultat de recherche. Si c'est le cas,
@@ -919,6 +925,59 @@ Public Class FRMForum
             If listeResultat.Count > 1 Then
                 lblReponse.Text = ModeleSentinellesHY.outils.obtenirLangue("RÉSULTATS|RESULTS")
             End If
+        Else
+            'Cette section a été ajouter au cas ou la personne veut faire une recherche sur les critères au lieu du text
+            'Effectue une recherche de catégorie et par date
+            Dim listeResultatTemp As New List(Of ModeleSentinellesHY.Publication)
+            Dim listeResultatPartiel As New List(Of ModeleSentinellesHY.Publication)
+            If DDLRechercheAvancee.SelectedValue = 0 Then
+                Dim dateDeDebut As Date
+                Dim dateDeFin As Date
+
+                If tbDateDebut.Text & "" <> "" Then
+                    If tbDateFin.Text & "" <> "" Then
+                        If Date.TryParse(tbDateDebut.Text, dateDeDebut) Or Date.TryParse(tbDateFin.Text, dateDeFin) Then
+                            listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.datePublication >= dateDeDebut And pub.datePublication <= dateDeFin).ToList()
+                        End If
+                    Else
+                        If Date.TryParse(tbDateDebut.Text, dateDeDebut) Then
+                            listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.datePublication >= dateDeDebut).ToList()
+                        End If
+                    End If
+                Else
+                    listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu).ToList()
+                End If
+            Else
+                Dim dateDeDebut As Date
+                Dim dateDeFin As Date
+
+                If tbDateDebut.Text & "" <> "" Then
+                    If tbDateFin.Text & "" <> "" Then
+                        If Date.TryParse(tbDateDebut.Text, dateDeDebut) Or Date.TryParse(tbDateFin.Text, dateDeFin) Then
+                            listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.Categorie.idCategorie = DDLRechercheAvancee.SelectedValue And pub.datePublication >= dateDeDebut And pub.datePublication <= dateDeFin).ToList()
+                        End If
+                    Else
+                        If Date.TryParse(tbDateDebut.Text, dateDeDebut) Then
+                            listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.Categorie.idCategorie = DDLRechercheAvancee.SelectedValue And pub.datePublication >= dateDeDebut).ToList()
+                        End If
+                    End If
+                Else
+                    listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.Categorie.idCategorie = DDLRechercheAvancee.SelectedValue).ToList()
+                End If
+
+            End If
+
+            listeResultatTemp.AddRange(listeResultatPartiel)
+
+            For Each pub As ModeleSentinellesHY.Publication In listeResultatTemp
+                If pub.idParent Is Nothing Then
+                    listeResultat.Add(pub)
+                Else
+                    Dim parent = (From unePub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                                  Where unePub.idPublication = pub.idParent).FirstOrDefault
+                    listeResultat.Add(parent)
+                End If
+            Next
         End If
 
         Return listeResultat.AsQueryable

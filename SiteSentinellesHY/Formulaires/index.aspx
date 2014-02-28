@@ -120,7 +120,7 @@
                             <asp:Label ID="lblRDP" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("contenuFR|contenuEN")),500) & IIf(outils.obtenirLangue("contenuFR|contenuEN").Count > 500, "...", "") %>'></asp:Label>
                         <div>
                             <asp:Label runat="server"><b><%= outils.obtenirLangue("Lien vers la revue de presse : |Link to the press review : ") %></b></asp:Label>
-                            <a target="_blank" href='<%# IIf(Eval("urlDocument").ToString.Contains("http://"), Eval("urlDocument"), "../Upload/" & Eval("urldocument"))%>'><%# IIf(Eval("urlDocument").ToString.Count > 50,Left(Eval("urlDocument"),47) & "..." , Eval("urlDocument")) %></a>
+                            <a target="_blank" href='<%# IIf(Eval("urlDocument").ToString.StartsWith("http://") or Eval("urlDocument").ToString.StartsWith("https://"), Eval("urlDocument"), "../Upload/" & Eval("urldocument"))%>'><%# IIf(Eval("urlDocument").ToString.Count > 50,Left(Eval("urlDocument"),47) & "..." , Eval("urlDocument")) %></a>
                         </div>
                         </div>
                         <div class="btnListe">

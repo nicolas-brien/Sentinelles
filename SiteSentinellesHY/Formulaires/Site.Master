@@ -282,7 +282,7 @@
                         <h5><%= outils.obtenirLangue("Entrez vos informations afin de vous authentifier.|Enter your information to log in.")%></h5>
                         <div class="row">
                             <asp:Label ID="lblLoginUsername" CssClass="lblFormulaire" runat="server"><%= outils.obtenirLangue("Nom d'utilisateur|Username")%></asp:Label>
-                            <asp:TextBox ID="tbLoginUsername" CssClass="tbFormulaire formLogin" runat="server" ClientIDMode="Static"></asp:TextBox>
+                            <asp:TextBox ID="tbLoginUsername" CssClass="tbFormulaire formLogin" runat="server" ClientIDMode="Static" autofocus="true"></asp:TextBox>
                         </div>
                         <div class="row">
                             <asp:Label ID="lblLoginPassword" CssClass="lblFormulaire" runat="server"><%= outils.obtenirLangue("Mot de passe|Password")%></asp:Label>
@@ -328,8 +328,10 @@
             interval: 6000
         });
         $('#ModalConnexion').on('shown', function () {
-            $('#tbLoginUsername').focus();
-        });
+            setTimeout(function () {
+                $('#tbLoginUsername').focus();
+            }, 1);
+        })
     });
 </script>
 </html>
