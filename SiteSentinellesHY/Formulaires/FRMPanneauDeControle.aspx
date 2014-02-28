@@ -415,7 +415,7 @@
                                                             <br />
                                                             <asp:Image runat="server" ID="cropbox" Width="800px" ClientIDMode="Static" />
                                                             <br />
-                                                            <asp:Button ID="btCropGo" runat="server" Text="Sauvegarder" CssClass="btn btn-default"  OnClick="btCropGo_Click" />
+                                                            <asp:Button ID="btCropGo" runat="server" Text="Sauvegarder" CssClass="btn btn-default" OnClick="btCropGo_Click" />
 
                                                             <asp:HiddenField ID="X" runat="server" ClientIDMode="Static" />
                                                             <asp:HiddenField ID="Y" runat="server" ClientIDMode="Static" />
