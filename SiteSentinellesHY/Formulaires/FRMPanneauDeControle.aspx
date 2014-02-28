@@ -858,6 +858,7 @@
                                         </asp:HtmlEditorExtender>
 
                                         <hr />
+                                        <asp:Label runat="server" Text='Veuillez-vous assurer que "http://" est présent dans un lien vers un site externe (Ex: http://www.google.ca)' CssClass="label label-important" /><br />
                                         <asp:Label runat="server"><%= outils.obtenirLangue("Fichier ou lien vers la revue de presse : |File or link to the press review : ")%></asp:Label>
                                         <asp:TextBox ID="txtboxUrlDocument" CssClass="txtBoxModifier" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.urlDocument%>' Width="300" runat="server" />
                                         <div>
