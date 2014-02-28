@@ -265,24 +265,9 @@ Public Class FRMPanneauDeControle
 #Region "Carouselle"
     Protected Sub lnkUploadPhotoCarrousel_Click(sender As Object, e As EventArgs)
         CType(lviewOptions.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 1
+        Dim nomImage = CType(lviewOptions.Items(0).FindControl("nomImage"), System.Web.UI.WebControls.HiddenField)
+        nomImage.Value = sender.text
 
-
-        'Méthode pour les photos du carousel
-        '    Dim nomFichierID = Right((CType(sender, LinkButton).ID.ToString), 1)
-        '    Dim controlUpload = CType(lviewOptions.Items(0).FindControl("fuplPhotoCarrousel" & nomFichierID), FileUpload)
-        '    Dim extension As String = ""
-        '    Dim nomFichier As String = ""
-        '    If controlUpload.HasFile Then
-        '        If controlUpload.PostedFile.ContentType = "image/jpeg" Or controlUpload.PostedFile.ContentType = "image/png" Then
-        '            nomFichier = CType(sender, LinkButton).ID.ToString
-
-        '            'On redimensionne les photos pour qu'elles correspondent aux dimensions du carrousel
-        '            ResizeImageFile(controlUpload.PostedFile.InputStream, 120, Server.MapPath("../Upload/" & nomFichier & ".jpg"), "typeCarrousel")
-        '            CType(lviewOptions.Items(0).FindControl("txtboxImg" & nomFichier), TextBox).Text = nomFichier
-        '        Else
-        '            lblMessageErreurOptions.Text = ModeleSentinellesHY.outils.obtenirLangue("Carrousel : Le type de fichier doit être .png ou .jpg|Carousel : File extension must be .png or .jpg")
-        '        End If
-        '    End If
     End Sub
     Protected Sub vCrop_Activate(sender As Object, e As EventArgs)
         ' Dim nomFichierID = Right((CType(sender, LinkButton).ID.ToString), 1)
@@ -326,7 +311,7 @@ Public Class FRMPanneauDeControle
         Dim image As System.Drawing.Image = Bitmap.FromFile(Server.MapPath(cropbox.ImageUrl))
         Dim unFichier As String = Server.MapPath(cropbox.ImageUrl)
         Dim ratio As Double = image.Width / 800.0
-        Dim nomFichier As String = CType(sender, LinkButton).ID.ToString
+
         'Get the Cordinates
         Dim X = CType(lviewOptions.Items(0).FindControl("X"), System.Web.UI.WebControls.HiddenField)
         Dim Y = CType(lviewOptions.Items(0).FindControl("Y"), System.Web.UI.WebControls.HiddenField)
@@ -343,8 +328,9 @@ Public Class FRMPanneauDeControle
         Dim g As Graphics = Graphics.FromImage(bmp)
         g.DrawImage(image, New Rectangle(0, 0, 960, 400), New Rectangle(x__1, y__2, w__3, h__4), GraphicsUnit.Pixel)
         'Save the file and reload to the control
-        bmp.Save(Server.MapPath("~/Upload/") + nomFichier + ".jpg", image.RawFormat)
-
+        Dim nomImage = CType(lviewOptions.Items(0).FindControl("nomImage"), System.Web.UI.WebControls.HiddenField)
+        bmp.Save(Server.MapPath("../Upload/") + nomImage.Value + ".jpg", image.RawFormat)
+        bmp.Save(Server.MapPath("../Upload/") + nomImage.Value + ".png", image.RawFormat)
         lviewOptions.DataBind()
         CType(lviewOptions.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 0
 

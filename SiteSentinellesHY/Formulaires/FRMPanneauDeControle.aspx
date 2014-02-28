@@ -279,7 +279,7 @@
                                                             <div class="accordion-inner">
                                                                 <div>
                                                                     <asp:Label ID="lblFormatImgMessage" runat="server">
-                                                                <%= outils.obtenirLangue("*Les images du carrousel doivent être approximativement de 960 x 200 et de types .png ou .jpg|*The images of the caroussel must be approximately 960 x 200 and with the type .png or .jpg")%>
+                                                                <%= outils.obtenirLangue("*Les images du carrousel doivent être approximativement de 960 x 400 et de types jpg|*The images of the caroussel must be approximately 960 x 200 and with the type jpg")%>
                                                                     </asp:Label>
                                                                 </div>
                                                                 <div class="marginbottom_divImgCarrousel">
@@ -289,7 +289,7 @@
                                                                     <asp:LinkButton ID="btCarrousel1" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
                                                                     <img id="imgCarrousel1" width="360" src="../Upload/Carrousel1.jpg" />
                                                                     <asp:FileUpload runat="server" ID="fuplPhotoCarrousel1"  ClientIDMode="Static" onpropertychange="$('[id$=uploadButton]').click(); return false;" onchange="$('[id$=uploadButton]').click(); return false;"  Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
-                                                                    <asp:Button ID="uploadButton" runat="server" Text="Upload!"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click" />
+                                                                    <asp:Button ID="uploadButton" runat="server" Text="Carrousel1"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click"  Style="Display: none"/>
                                                                 </div>
                                                                 <div class="marginbottom_divImgCarrousel">
                                                                     <asp:Label ID="Label7" runat="server"> <%= outils.obtenirLangue("Image carrousel 2 : |Photo caroussel 2 : ")%></asp:Label>
@@ -305,22 +305,23 @@
                                                                     <asp:TextBox ID="txtboxImgCarrousel3" runat="server" Enabled=" false" />
                                                                     <a onclick="$('[id$=fuplPhotoCarrousel3]').click(); return false;"
                                                                         href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
-                                                            <asp:LinkButton ID="Carrousel3" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
+                                                                    <asp:LinkButton ID="Carrousel3" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
                                                                     <img id="imgCarrousel3" width="360" src="../Upload/Carrousel3.jpg" />
                                                                     <asp:FileUpload ID="fuplPhotoCarrousel3" onchange="PreviewImage('imgCarrousel3','fuplPhotoCarrousel3');" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
                                                                 </div>
+                                                                <asp:HiddenField ID="nomImage" runat="server" ClientIDMode="Static" />
                                                             </div>
                                                         </div>
                                                     </asp:View>
                                                     <asp:View runat="server" ID="vCrop" OnActivate="vCrop_Activate">
                                                         <div>
 
-                                                            <asp:Button runat="server" ID="imageRotateLeft" CssClass="btn rotateImgLeft" meta:resourcekey="imageRotateLeftResource1" />
-                                                            <asp:Button runat="server" ID="imageRotateRight" CssClass="btn rotateImgRight" meta:resourcekey="imageRotateRightResource1" />
+                                                            <asp:Button runat="server" ID="imageRotateLeft" CssClass="rotateImgLeft" OnClick="imageRotateLeft_Click" />
+                                                            <asp:Button runat="server" ID="imageRotateRight" CssClass="rotateImgRight" OnClick="imageRotateRght_Click"/>
                                                             <br />
-                                                            <asp:Image runat="server" ID="cropbox" Width="800px" ClientIDMode="Static" meta:resourcekey="cropboxResource1" />
+                                                            <asp:Image runat="server" ID="cropbox" Width="800px" ClientIDMode="Static"  />
                                                             <br />
-                                                            <asp:Button ID="btCropGo" runat="server" Text="Sauvegarder" CssClass="btn btn-default" meta:resourcekey="btCropGoResource1" />
+                                                            <asp:Button ID="btCropGo" runat="server" Text="Sauvegarder" CssClass="btn btn-default" OnClick="btCropGo_Click" />
 
                                                             <asp:HiddenField ID="X" runat="server" ClientIDMode="Static" />
                                                             <asp:HiddenField ID="Y" runat="server" ClientIDMode="Static" />
@@ -659,7 +660,7 @@
                             </div>
                         </asp:View>
 
- <asp:View ID="ViewUtilisateur" runat="server">
+                        <asp:View ID="ViewUtilisateur" runat="server">
                             <div class="row paddingRow">
                                 <div class="pull-right">
                                     <asp:TextBox ID="txtboxRechercheUtilisateur" runat="server" />
