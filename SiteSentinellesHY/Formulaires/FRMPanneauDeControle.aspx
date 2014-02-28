@@ -54,53 +54,50 @@
 	<title>Les Sentinelles Haute-Yamaska</title>
 
 </head>
-
 <body>
+    <div id="wrapper">
+        <form id="form1" runat="server">
+            <ajaxToolkit:ToolkitScriptManager ID="tsmTest" runat="server" />
+            <%-------------------------------------Header---------------------------------%>
+            <div id="header2">
+                <div id="header-contenant">
+                    <asp:ImageButton ID="imgbtnLogo" runat="server" ImageUrl="../Images/LogoOfficielHYSmallFR.png" PostBackUrl="~/Formulaires/index.aspx" />
+                    <div class="pull-right">
+                        <div class="pull-right">
+                            <a class="liens" id="lnkAccueil" href="../Formulaires/index.aspx"><%= outils.obtenirLangue("ACCUEIL|HOME")%></a>
+                            <asp:Label ID="Label1" runat="server" Text="  |  " CssClass="pipes"></asp:Label>
+                            <a class="liens" id="lnkLiensUtiles" href="../Formulaires/FRMliensutiles.aspx"><%= outils.obtenirLangue("LIENS UTILES|USEFUL LINKS")%></a>
+                            <asp:Label ID="Label2" runat="server" Text="  |  " CssClass="pipes"></asp:Label>
+                            <a class="liens" runat="server" id="lnkConnexion" data-toggle="modal" href="../Formulaires/FRMForum.aspx"><%= outils.obtenirLangue("ZONE SENTINELLE|SENTINEL AREA")%></a>
+                            <asp:Label ID="Label3" runat="server" Text="  |  " CssClass="pipes"></asp:Label>
+                            <asp:LinkButton CssClass="liens" ID="lnkAnglais" runat="server" OnClick="lnkAnglais_Click"><%= outils.obtenirLangue("ENGLISH|FRANÇAIS")%></asp:LinkButton>
+                        </div>
+                        <a runat="server" id="iconSetting" class="pull-right" href="../Formulaires/FRMPanneauDeControle.aspx" visible="false">
+                            <img alt="configuration" src="../Images/configuration.png" /></a>
+                        <div runat="server" id="divLogin" class="pull-right" visible="false">
+                            <a runat="server" id="lblInfoUtilisateur" href="../Formulaires/FRMForum.aspx?view=4"></a>
+                            <asp:Label ID="lblPipeLogin" runat="server" Text="  |  "></asp:Label>
+                            <asp:LinkButton ID="lnkbtnLogout" runat="server" OnClick="lnkbtnLogout_Click"><%= outils.obtenirLangue(" Déconnexion | Logout ")%></asp:LinkButton>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <asp:Label runat="server" ID="lblTitreConfig" CssClass="lblTitreConfig"><%= outils.obtenirLangue("PANNEAU DE CONTRÔLE|CONTROL PANEL")%></asp:Label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="text-center">
+                    <asp:ImageButton ID="imgBtn_EnvoiMessage" ImageUrl="~/Images/enveloppe.png" runat="server" />
+                    <asp:LinkButton ID="lnkButton_accueil" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("GÉNÉRAL|GENERAL")%></asp:LinkButton>
+                    <asp:LinkButton ID="lnkButton_nouvelle" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("NOUVELLES|NEWS")%></asp:LinkButton>
+                    <asp:LinkButton ID="lnkButton_evenement" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("ÉVÉNEMENTS|EVENTS")%></asp:LinkButton>
+                    <asp:LinkButton ID="lnkButton_revueDePresse" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("REVUES DE PRESSE|PRESS REVIEW")%></asp:LinkButton>
+                    <asp:LinkButton ID="lnkButton_utilisateur" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("UTILISATEURS|USERS")%></asp:LinkButton>
+                </ul>
+            </div>
+            <%---------------------------------End Header---------------------------------%>
 
-
-	<div id="wrapper">
-		<form id="form1" runat="server">
-			<ajaxToolkit:ToolkitScriptManager ID="tsmTest" runat="server" />
-			<%-------------------------------------Header---------------------------------%>
-			<div id="header2">
-				<div id="header-contenant">
-					<asp:ImageButton ID="imgbtnLogo" runat="server" ImageUrl="../Images/LogoOfficielHYSmallFR.png" PostBackUrl="~/Formulaires/index.aspx" />
-					<div class="pull-right">
-						<div class="pull-right">
-							<a class="liens" id="lnkAccueil" href="../Formulaires/index.aspx"><%= outils.obtenirLangue("ACCUEIL|HOME")%></a>
-							<asp:Label ID="Label1" runat="server" Text="  |  " CssClass="pipes"></asp:Label>
-							<a class="liens" id="lnkLiensUtiles" href="../Formulaires/FRMliensutiles.aspx"><%= outils.obtenirLangue("LIENS UTILES|USEFUL LINKS")%></a>
-							<asp:Label ID="Label2" runat="server" Text="  |  " CssClass="pipes"></asp:Label>
-							<a class="liens" runat="server" id="lnkConnexion" data-toggle="modal" href="../Formulaires/FRMForum.aspx"><%= outils.obtenirLangue("ZONE SENTINELLE|SENTINEL AREA")%></a>
-							<asp:Label ID="Label3" runat="server" Text="  |  " CssClass="pipes"></asp:Label>
-							<asp:LinkButton CssClass="liens" ID="lnkAnglais" runat="server" OnClick="lnkAnglais_Click"><%= outils.obtenirLangue("ENGLISH|FRANÇAIS")%></asp:LinkButton>
-						</div>
-						<a runat="server" id="iconSetting" class="pull-right" href="../Formulaires/FRMPanneauDeControle.aspx" visible="false">
-							<img alt="configuration" src="../Images/configuration.png" /></a>
-						<div runat="server" id="divLogin" class="pull-right" visible="false">
-							<a runat="server" id="lblInfoUtilisateur" href="../Formulaires/FRMForum.aspx?view=4"></a>
-							<asp:Label ID="lblPipeLogin" runat="server" Text="  |  "></asp:Label>
-							<asp:LinkButton ID="lnkbtnLogout" runat="server" OnClick="lnkbtnLogout_Click"><%= outils.obtenirLangue(" Déconnexion | Logout ")%></asp:LinkButton>
-						</div>
-					</div>
-					<div class="text-center">
-						<asp:Label runat="server" ID="lblTitreConfig" CssClass="lblTitreConfig"><%= outils.obtenirLangue("PANNEAU DE CONTRÔLE|CONTROL PANEL")%></asp:Label>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<ul class="text-center">
-					<asp:ImageButton ID="imgBtn_EnvoiMessage" ImageUrl="~/Images/enveloppe.png" runat="server" />
-					<asp:LinkButton ID="lnkButton_accueil" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("GÉNÉRAL|GENERAL")%></asp:LinkButton>
-					<asp:LinkButton ID="lnkButton_nouvelle" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("NOUVELLES|NEWS")%></asp:LinkButton>
-					<asp:LinkButton ID="lnkButton_evenement" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("ÉVÉNEMENTS|EVENTS")%></asp:LinkButton>
-					<asp:LinkButton ID="lnkButton_revueDePresse" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("REVUES DE PRESSE|PRESS REVIEW")%></asp:LinkButton>
-					<asp:LinkButton ID="lnkButton_utilisateur" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("UTILISATEURS|USERS")%></asp:LinkButton>
-				</ul>
-			</div>
-			<%---------------------------------End Header---------------------------------%>
-
-			<%-----------------------------------Content----------------------------------%>
+            <%-----------------------------------Content----------------------------------%>
 
 			<div id="content">
 				<div class="row paddingRow">
@@ -294,71 +291,69 @@
 														  </asp:HtmlEditorExtender>
 
 
-														</div>
-														<div id="div_lnkbtnMaltraitance">
-															<asp:LinkButton ID="lnkbtnMaltraitance" runat="server"
-																CssClass="btn btnAjouter disabled-button"
-																CommandName="Update"
-																Text="<i aria-hidden=true class=icon-check></i>"><% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="accordion-group">
-												<div class="accordion-heading">
-													<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapsePensee">
-														<%= outils.obtenirLangue("Modifier la pensée|Edit the thought")%>
-
-													</a>
-												</div>
-												<div id="collapsePensee" class="accordion-body collapse">
-													<div class="accordion-inner">
-														<div>
-															<asp:Label ID="Label4" runat="server"><%= outils.obtenirLangue("Contenu de la pensée (français) : |Content of the thought (french) : ")%>
-															</asp:Label>
-															<asp:TextBox ID="txtboxPenseeFR" CssClass="txtboxPenseeFR" TextMode="MultiLine" Height="40px" runat="server" Text='<%# BindItem.penseeFR%>' />
-														</div>
-														<div>
-															<asp:Label ID="Label5" runat="server"><%= outils.obtenirLangue("Contenu de la pensée (english) : |Content of the thought (english) : ")%></asp:Label>
-															<asp:TextBox ID="txtboxPenseeEN" CssClass="txtboxPenseeEN" TextMode="MultiLine" Height="40px" runat="server" Text='<%# BindItem.penseeEN%>' />
-														</div>
-														<asp:LinkButton ID="LinkButton4" runat="server"
-															CssClass="btn btnAjouter disabled-button"
-															CommandName="Update"
-															Text="<i aria-hidden=true class=icon-check></i>"> <% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
-													</div>
-												</div>
-											</div>
-											<div class="accordion-group">
-												<div class="accordion-heading">
-													<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseTemoignage">
-														<%= outils.obtenirLangue("Modifier le témoignage|Edit testimonial")%>
-
-													</a>
-												</div>
-												<div id="collapseTemoignage" class="accordion-body collapse">
-													<div class="accordion-inner">
-														<div>
-															<asp:Label ID="Label9" runat="server">
-																<%= outils.obtenirLangue("Contenu du témoignage (français) : |Content of the testimonial (french) : ")%>
-															</asp:Label>
-															<asp:TextBox ID="txtboxtemoignageFR" CssClass="txtboxtemoignageFR" TextMode="MultiLine" Height="40px" runat="server" Text='<%# BindItem.temoignageFR%>' />
-														</div>
-														<div>
-															<asp:Label ID="Label6" runat="server">
-															   <%= outils.obtenirLangue("Contenu du témoignage (anglais) : |Content of the testimonial (english) : ")%>
-															</asp:Label>
-															<asp:TextBox ID="txtboxtemoignageEN" runat="server" CssClass="txtboxtemoignageEN" TextMode="MultiLine" Height="40px" Text='<%# BindItem.temoignageEN%>' />
-														</div>
-														<asp:LinkButton ID="LinkButton5" runat="server"
-															CssClass="btn btnAjouter disabled-button"
-															CommandName="Update"
-															Text="<i aria-hidden=true class=icon-check></i>"><% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
-													</div>
-												</div>
-											</div>
-
-
+                                                        </div>
+                                                        <div id="div_lnkbtnMaltraitance">
+                                                            <asp:LinkButton ID="lnkbtnMaltraitance" runat="server"
+                                                                CssClass="btn btnAjouter disabled-button"
+                                                                CommandName="Update"
+                                                                Text="<i aria-hidden=true class=icon-check></i>"><% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-group">
+                                                <div class="accordion-heading">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapsePensee">
+                                                        <%= outils.obtenirLangue("Modifier la pensée|Edit the thought")%>
+                                                        
+                                                    </a>
+                                                </div>
+                                                <div id="collapsePensee" class="accordion-body collapse">
+                                                    <div class="accordion-inner">
+                                                        <div>
+                                                            <asp:Label ID="Label4" runat="server"><%= outils.obtenirLangue("Contenu de la pensée (français) : |Content of the thought (french) : ")%>
+                                                            </asp:Label>
+                                                            <asp:TextBox ID="txtboxPenseeFR" CssClass="txtboxPenseeFR" TextMode="MultiLine" Height="40px" runat="server" Text='<%# BindItem.penseeFR%>' />
+                                                        </div>
+                                                        <div>
+                                                            <asp:Label ID="Label5" runat="server"><%= outils.obtenirLangue("Contenu de la pensée (english) : |Content of the thought (english) : ")%></asp:Label>
+                                                            <asp:TextBox ID="txtboxPenseeEN" CssClass="txtboxPenseeEN" TextMode="MultiLine" Height="40px" runat="server" Text='<%# BindItem.penseeEN%>' />
+                                                        </div>
+                                                        <asp:LinkButton ID="LinkButton4" runat="server"
+                                                            CssClass="btn btnAjouter disabled-button"
+                                                            CommandName="Update"
+                                                            Text="<i aria-hidden=true class=icon-check></i>"> <% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-group">
+                                                <div class="accordion-heading">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseTemoignage">
+                                                        <%= outils.obtenirLangue("Modifier le témoignage|Edit testimonial")%>
+                                                        
+                                                    </a>
+                                                </div>
+                                                <div id="collapseTemoignage" class="accordion-body collapse">
+                                                    <div class="accordion-inner">
+                                                        <div>
+                                                            <asp:Label ID="Label9" runat="server">
+                                                                <%= outils.obtenirLangue("Contenu du témoignage (français) : |Content of the testimonial (french) : ")%>
+                                                            </asp:Label>
+                                                            <asp:TextBox ID="txtboxtemoignageFR" CssClass="txtboxtemoignageFR" TextMode="MultiLine" Height="40px" runat="server" Text='<%# BindItem.temoignageFR%>' />
+                                                        </div>
+                                                        <div>
+                                                            <asp:Label ID="Label6" runat="server">
+                                                               <%= outils.obtenirLangue("Contenu du témoignage (anglais) : |Content of the testimonial (english) : ")%>
+                                                            </asp:Label>
+                                                            <asp:TextBox ID="txtboxtemoignageEN" runat="server" CssClass="txtboxtemoignageEN" TextMode="MultiLine" Height="40px" Text='<%# BindItem.temoignageEN%>' />
+                                                        </div>
+                                                        <asp:LinkButton ID="LinkButton5" runat="server"
+                                                            CssClass="btn btnAjouter disabled-button"
+                                                            CommandName="Update"
+                                                            Text="<i aria-hidden=true class=icon-check></i>"><% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
+                                                    </div>
+                                                </div>
+                                            </div>
 											<%-- Carousel Images --%>
 
 											<div class="accordion-group">
@@ -427,276 +422,254 @@
 													</asp:View>
 												</asp:MultiView>
 											</div>
-											<div class="accordion-group">
-												<div class="accordion-heading">
-													<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseBackup">
-														<%= outils.obtenirLangue("Sauvegarde de la base de données |Database Backup")%>
+                                        </div>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:ListView>
+                        </asp:View>
 
-													</a>
-												</div>
-												<div id="collapseBackup" class="accordion-body collapse">
-													<div class="accordion-inner">
-														<div>
-															<asp:LinkButton ID="lnkCreateBackup" runat="server" style="color: #000;" OnClientClick="return confirm('Êtes vous certain de vouloir créer une nouvelle sauvegarde?')" OnClick="lnkCreateBackup_Click">
-																<%= outils.obtenirLangue("Créer une sauvegarde |Create backup ")%>
-															</asp:LinkButton>
-														</div>
-														<div>
-															<asp:LinkButton ID="LinkButton2" runat="server" style="color: #000;">
-																<%= outils.obtenirLangue("Restaurer une sauvegarde |Restore backup ")%>
-															</asp:LinkButton>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</ItemTemplate>
-							</asp:ListView>
-						</asp:View>
+                        <asp:View ID="ViewNouvelle" runat="server">
+                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 120px;">
+                                <asp:ListView ID="lviewNouvelle" runat="server"
+                                    ItemType="ModeleSentinellesHY.nouvelle"
+                                    SelectMethod="GetNouvelle"
+                                    DataKeyNames="idNouvelle"
+                                    GroupItemCount="3">
+                                    <LayoutTemplate>
+                                        <div style="width: 85%; float: left;">
+                                            <asp:LinkButton ID="lbNouvelleTitre" runat="server" CommandName="sort" CommandArgument="TitreFR" class="titreListe"><%= outils.obtenirLangue("Titre Français|English title")%></asp:LinkButton>
+                                        </div>
+                                        <div style="width: 15%; float: right;">
+                                            <asp:LinkButton runat="server" CommandName="sort" CommandArgument="dateRedaction" class="titreListe"><%= outils.obtenirLangue("Date publication|Publish date")%></asp:LinkButton>
+                                        </div>
+                                        <asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
+                                    </LayoutTemplate>
+                                    <GroupTemplate>
+                                        <div class="clear-both">
+                                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                        </div>
+                                    </GroupTemplate>
+                                    <ItemTemplate>
+                                        <div class="ItemTemplate">
+                                            <div style="width: 85%; float: left;">
+                                                <asp:LinkButton CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 75)%>' />
+                                            </div>
+                                            <div style="width: 15%; float: right;">
+                                                <asp:LinkButton runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                    <SelectedItemTemplate>
+                                        <div class="SelectedItemTemplate">
+                                            <div style="width: 85%; float: left;">
+                                                <asp:LinkButton CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                            </div>
+                                            <div style="width: 15%; float: right;">
+                                                <asp:LinkButton runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                            </div>
+                                        </div>
+                                    </SelectedItemTemplate>
+                                    <EmptyDataTemplate>
+                                        <h5><% =outils.obtenirLangue("Aucune nouvelle pour le moment.|There's no news at this time.") %></h5>
+                                    </EmptyDataTemplate>
+                                </asp:ListView>
+                            </div>
+                            <div class="petitsPoints">
+                                <asp:Label ID="lblMessageErreurNouvelle" CssClass="lblMessageErreur" runat="server" Text="" />
+                                <asp:ListView ID="lviewInfoNouvelles" runat="server"
+                                    ItemType="ModeleSentinellesHY.nouvelle"
+                                    SelectMethod="getInfoNouvelle"
+                                    UpdateMethod="UpdateNouvelle"
+                                    DeleteMethod="DeleteNouvelle"
+                                    DataKeyNames="idNouvelle">
+                                    <LayoutTemplate runat="server">
+                                        <div class="div_AjoutNouvelle" runat="server">
+                                            <asp:LinkButton ID="lnkBtnAjoutNouvelle" runat="server" OnClick="lnkBtnAjoutNouvelle_Click">+ <% =outils.obtenirLangue("Ajouter une nouvelle|Add a news")%></asp:LinkButton>
+                                        </div>
+                                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                    </LayoutTemplate>
+                                    <ItemTemplate>
+                                        <div style="position: relative;">
+                                            <asp:Label ID="lblTitreFR" runat="server"><%= outils.obtenirLangue("Titre (français) |Title (french)")%></asp:Label>
+                                            <asp:TextBox ID="txtboxtitreFR" CssClass="txtBoxModifier_Titre" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.titreFR%>' runat="server" />
+                                            <div id="divDateRedaction" class="divDateRedaction" runat="server">
+                                                <asp:Label ID="lblRedigele" runat="server"><%= outils.obtenirLangue("Rédigé le |Posted the ")%></asp:Label>
+                                                <asp:Label ID="lblDateRedaction" runat="server" Text='<%# Eval("dateRedaction")%>' />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <asp:TextBox ID="txtboxcontenuFR" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuFR%>' runat="server" />
 
-						<asp:View ID="ViewNouvelle" runat="server">
-							<div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 120px;">
-								<asp:ListView ID="lviewNouvelle" runat="server"
-									ItemType="ModeleSentinellesHY.nouvelle"
-									SelectMethod="GetNouvelle"
-									DataKeyNames="idNouvelle"
-									GroupItemCount="3">
-									<LayoutTemplate>
-										<div style="width: 85%; float: left;">
-											<asp:LinkButton ID="lbNouvelleTitre" runat="server" CommandName="sort" CommandArgument="TitreFR" class="titreListe"><%= outils.obtenirLangue("Titre Français|English title")%></asp:LinkButton>
-										</div>
-										<div style="width: 15%; float: right;">
-											<asp:LinkButton runat="server" CommandName="sort" CommandArgument="dateRedaction" class="titreListe"><%= outils.obtenirLangue("Date publication|Publish date")%></asp:LinkButton>
-										</div>
-										<asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
-									</LayoutTemplate>
-									<GroupTemplate>
-										<div class="clear-both">
-											<asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-										</div>
-									</GroupTemplate>
-									<ItemTemplate>
-										<div class="ItemTemplate">
-											<div style="width: 85%; float: left;">
-												<asp:LinkButton CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 75)%>' />
-											</div>
-											<div style="width: 15%; float: right;">
-												<asp:LinkButton runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
-											</div>
-										</div>
-									</ItemTemplate>
-									<SelectedItemTemplate>
-										<div class="SelectedItemTemplate">
-											<div style="width: 85%; float: left;">
-												<asp:LinkButton CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
-											</div>
-											<div style="width: 15%; float: right;">
-												<asp:LinkButton runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
-											</div>
-										</div>
-									</SelectedItemTemplate>
-									<EmptyDataTemplate>
-										<h5><% =outils.obtenirLangue("Aucune nouvelle pour le moment.|There's no news at this time.") %></h5>
-									</EmptyDataTemplate>
-								</asp:ListView>
-							</div>
-							<div class="petitsPoints">
-								<asp:Label ID="lblMessageErreurNouvelle" CssClass="lblMessageErreur" runat="server" Text="" />
-								<asp:ListView ID="lviewInfoNouvelles" runat="server"
-									ItemType="ModeleSentinellesHY.nouvelle"
-									SelectMethod="getInfoNouvelle"
-									UpdateMethod="UpdateNouvelle"
-									DeleteMethod="DeleteNouvelle"
-									DataKeyNames="idNouvelle">
-									<LayoutTemplate runat="server">
-										<div class="div_AjoutNouvelle" runat="server">
-											<asp:LinkButton ID="lnkBtnAjoutNouvelle" runat="server" OnClick="lnkBtnAjoutNouvelle_Click">+ <% =outils.obtenirLangue("Ajouter une nouvelle|Add a news")%></asp:LinkButton>
-										</div>
-										<asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-									</LayoutTemplate>
-									<ItemTemplate>
-										<div style="position: relative;">
-											<asp:Label ID="lblTitreFR" runat="server"><%= outils.obtenirLangue("Titre (français) |Title (french)")%></asp:Label>
-											<asp:TextBox ID="txtboxtitreFR" CssClass="txtBoxModifier_Titre" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.titreFR%>' runat="server" />
-											<div id="divDateRedaction" class="divDateRedaction" runat="server">
-												<asp:Label ID="lblRedigele" runat="server"><%= outils.obtenirLangue("Rédigé le |Posted the ")%></asp:Label>
-												<asp:Label ID="lblDateRedaction" runat="server" Text='<%# Eval("dateRedaction")%>' />
-											</div>
-										</div>
-										<div>
-											<asp:TextBox ID="txtboxcontenuFR" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuFR%>' runat="server" />
+                                            <asp:HtmlEditorExtender ID="htmleditorContenuFR" runat="server" TargetControlID="txtboxcontenuFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                                <Toolbar>
+                                                    <ajaxToolkit:Undo />
+                                                    <ajaxToolkit:Redo />
+                                                    <ajaxToolkit:Bold />
+                                                    <ajaxToolkit:Italic />
+                                                    <ajaxToolkit:Underline />
+                                                    <ajaxToolkit:StrikeThrough />
+                                                    <ajaxToolkit:InsertUnorderedList />
+                                                    <ajaxToolkit:CreateLink />
+                                                    <ajaxToolkit:UnLink />
+                                                    <ajaxToolkit:RemoveFormat />
+                                                    <ajaxToolkit:SelectAll />
+                                                    <ajaxToolkit:UnSelect />
+                                                    <ajaxToolkit:Delete />
+                                                    <ajaxToolkit:Cut />
+                                                    <ajaxToolkit:Copy />
+                                                    <ajaxToolkit:Paste />
+                                                    <ajaxToolkit:Indent />
+                                                    <ajaxToolkit:Outdent />
+                                                    <ajaxToolkit:InsertHorizontalRule />
+                                                    <ajaxToolkit:HorizontalSeparator />
+                                                </Toolbar>
+                                            </asp:HtmlEditorExtender>
 
-											<asp:HtmlEditorExtender ID="htmleditorContenuFR" runat="server" TargetControlID="txtboxcontenuFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
-												<Toolbar>
-													<ajaxToolkit:Undo />
-													<ajaxToolkit:Redo />
-													<ajaxToolkit:Bold />
-													<ajaxToolkit:Italic />
-													<ajaxToolkit:Underline />
-													<ajaxToolkit:StrikeThrough />
-													<ajaxToolkit:InsertUnorderedList />
-													<ajaxToolkit:CreateLink />
-													<ajaxToolkit:UnLink />
-													<ajaxToolkit:RemoveFormat />
-													<ajaxToolkit:SelectAll />
-													<ajaxToolkit:UnSelect />
-													<ajaxToolkit:Delete />
-													<ajaxToolkit:Cut />
-													<ajaxToolkit:Copy />
-													<ajaxToolkit:Paste />
-													<ajaxToolkit:Indent />
-													<ajaxToolkit:Outdent />
-													<ajaxToolkit:InsertHorizontalRule />
-													<ajaxToolkit:HorizontalSeparator />
-												</Toolbar>
-											</asp:HtmlEditorExtender>
+                                        </div>
+                                        <hr />
+                                        <div>
+                                            <asp:Label ID="lblTitreEN" runat="server"><%= outils.obtenirLangue("Tite (anglais) |Title (english)")%></asp:Label>
+                                            <asp:TextBox ID="txtboxtitreEN" CssClass="txtBoxModifier_Titre" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.titreEN%>' runat="server" />
+                                        </div>
+                                        <asp:TextBox ID="txtboxcontenuEN" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuEN%>' runat="server" />
 
-										</div>
-										<hr />
-										<div>
-											<asp:Label ID="lblTitreEN" runat="server"><%= outils.obtenirLangue("Tite (anglais) |Title (english)")%></asp:Label>
-											<asp:TextBox ID="txtboxtitreEN" CssClass="txtBoxModifier_Titre" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.titreEN%>' runat="server" />
-										</div>
-										<asp:TextBox ID="txtboxcontenuEN" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuEN%>' runat="server" />
+                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                            <Toolbar>
+                                                <ajaxToolkit:Undo />
+                                                <ajaxToolkit:Redo />
+                                                <ajaxToolkit:Bold />
+                                                <ajaxToolkit:Italic />
+                                                <ajaxToolkit:Underline />
+                                                <ajaxToolkit:StrikeThrough />
+                                                <ajaxToolkit:InsertUnorderedList />
+                                                <ajaxToolkit:CreateLink />
+                                                <ajaxToolkit:UnLink />
+                                                <ajaxToolkit:RemoveFormat />
+                                                <ajaxToolkit:SelectAll />
+                                                <ajaxToolkit:UnSelect />
+                                                <ajaxToolkit:Delete />
+                                                <ajaxToolkit:Cut />
+                                                <ajaxToolkit:Copy />
+                                                <ajaxToolkit:Paste />
+                                                <ajaxToolkit:Indent />
+                                                <ajaxToolkit:Outdent />
+                                                <ajaxToolkit:InsertHorizontalRule />
+                                                <ajaxToolkit:HorizontalSeparator />
+                                            </Toolbar>
+                                        </asp:HtmlEditorExtender>
 
-										<asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
-											<Toolbar>
-												<ajaxToolkit:Undo />
-												<ajaxToolkit:Redo />
-												<ajaxToolkit:Bold />
-												<ajaxToolkit:Italic />
-												<ajaxToolkit:Underline />
-												<ajaxToolkit:StrikeThrough />
-												<ajaxToolkit:InsertUnorderedList />
-												<ajaxToolkit:CreateLink />
-												<ajaxToolkit:UnLink />
-												<ajaxToolkit:RemoveFormat />
-												<ajaxToolkit:SelectAll />
-												<ajaxToolkit:UnSelect />
-												<ajaxToolkit:Delete />
-												<ajaxToolkit:Cut />
-												<ajaxToolkit:Copy />
-												<ajaxToolkit:Paste />
-												<ajaxToolkit:Indent />
-												<ajaxToolkit:Outdent />
-												<ajaxToolkit:InsertHorizontalRule />
-												<ajaxToolkit:HorizontalSeparator />
-											</Toolbar>
-										</asp:HtmlEditorExtender>
+                                        <div class="boutonsNouvelleMargin">
+                                            <asp:LinkButton ID="btnModifierNouvelle" runat="server"
+                                                CommandName="Update"
+                                                CssClass="btn btnAjouter disabled-button">
+                                                <i aria-hidden="true" class="icon-check"></i> <% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkbtnSupprimerNouvelle" runat="server"
+                                                href="#myModal"
+                                                role="button"
+                                                class="btn btnAjouter disabled-button"
+                                                data-toggle="modal">
+                                                <i aria-hidden="true" class="icon-remove"></i><% =outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
+                                            <!-- Modal -->
+                                            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <asp:Label runat="server" ID="myModalLabel" CssClass="modalTitle"><% =outils.obtenirLangue("Attention!|Warning!")%></asp:Label>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p><% =outils.obtenirLangue("Vous êtes sur le point de supprimer cette nouvelle. Souhaitez-vous continuez?|You are about to delete this news. Would you like to continue?")%></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn" data-dismiss="modal" aria-hidden="true"><% =outils.obtenirLangue("Annuler|Cancel")%></button>
+                                                    <asp:LinkButton ID="btnSupprimerNouv" runat="server" CommandName="Delete" class="btn btn-primary"><% =outils.obtenirLangue("Supprimer|Delete")%></asp:LinkButton>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:ListView>
+                            </div>
+                        </asp:View>
 
-										<div class="boutonsNouvelleMargin">
-											<asp:LinkButton ID="btnModifierNouvelle" runat="server"
-												CommandName="Update"
-												CssClass="btn btnAjouter disabled-button">
-												<i aria-hidden="true" class="icon-check"></i> <% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
-											<asp:LinkButton ID="lnkbtnSupprimerNouvelle" runat="server"
-												href="#myModal"
-												role="button"
-												class="btn btnAjouter disabled-button"
-												data-toggle="modal">
-												<i aria-hidden="true" class="icon-remove"></i><% =outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
-											<!-- Modal -->
-											<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-												<div class="modal-header">
-													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-													<asp:Label runat="server" ID="myModalLabel" CssClass="modalTitle"><% =outils.obtenirLangue("Attention!|Warning!")%></asp:Label>
-												</div>
-												<div class="modal-body">
-													<p><% =outils.obtenirLangue("Vous êtes sur le point de supprimer cette nouvelle. Souhaitez-vous continuez?|You are about to delete this news. Would you like to continue?")%></p>
-												</div>
-												<div class="modal-footer">
-													<button class="btn" data-dismiss="modal" aria-hidden="true"><% =outils.obtenirLangue("Annuler|Cancel")%></button>
-													<asp:LinkButton ID="btnSupprimerNouv" runat="server" CommandName="Delete" class="btn btn-primary"><% =outils.obtenirLangue("Supprimer|Delete")%></asp:LinkButton>
-												</div>
-											</div>
-										</div>
-									</ItemTemplate>
-								</asp:ListView>
-							</div>
-						</asp:View>
+                        <asp:View ID="ViewEvenement" runat="server">
+                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 120px;">
+                                <asp:ListView ID="lvEvenement" runat="server"
+                                    ItemType="ModeleSentinellesHY.événement"
+                                    SelectMethod="GetEvenement"
+                                    DataKeyNames="idEvenement"
+                                    GroupItemCount="3">
+                                    <LayoutTemplate>
+                                        <div style="width: 70%; float: left;">
+                                            <asp:LinkButton ID="lbEvenementTitre" runat="server" CommandName="sort" CommandArgument="TitreFR" class="titreListe"><%= outils.obtenirLangue("Titre Français|English title")%></asp:LinkButton>
+                                        </div>
+                                        <div style="width: 15%; float: right;">
+                                            <asp:LinkButton runat="server" CommandName="sort" CommandArgument="dateRedaction" class="titreListe"><%= outils.obtenirLangue("Date publication|Publish date")%></asp:LinkButton>
+                                        </div>
+                                        <div style="width: 15%; float: right;">
+                                            <asp:LinkButton runat="server" CommandName="sort" CommandArgument="dateEvenement" class="titreListe"><%= outils.obtenirLangue("Date événement|Event date")%></asp:LinkButton>
+                                        </div>
+                                        <asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
+                                    </LayoutTemplate>
+                                    <GroupTemplate>
+                                        <div class="clear-both">
+                                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                        </div>
+                                    </GroupTemplate>
+                                    <ItemTemplate>
+                                        <div class="ItemTemplate">
+                                            <div style="width: 70%; float: left;">
+                                                <asp:LinkButton CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 50)%>' />
+                                            </div>
+                                            <div style="width: 15%; float: right;">
+                                                <asp:LinkButton runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                            </div>
+                                            <div style="width: 15%; float: right;">
+                                                <asp:LinkButton runat="server" CommandName="Select"><%# Left(Eval("dateEvenement"),10)%></asp:LinkButton>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                    <SelectedItemTemplate>
+                                        <div class="SelectedItemTemplate">
+                                            <div style="width: 70%; float: left;">
+                                                <asp:LinkButton ID="LinkButton1" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 50)%>' />
+                                            </div>
+                                            <div style="width: 15%; float: right;">
+                                                <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                            </div>
+                                            <div style="width: 15%; float: right;">
+                                                <asp:LinkButton ID="LinkButton3" runat="server" CommandName="Select"><%# Left(Eval("dateEvenement"),10)%></asp:LinkButton>
+                                            </div>
+                                        </div>
+                                    </SelectedItemTemplate>
+                                    <EmptyDataTemplate>
+                                        <h5><% =outils.obtenirLangue("Aucun événement pour le moment.|There's no event at this time.") %></h5>
+                                    </EmptyDataTemplate>
+                                </asp:ListView>
+                            </div>
 
-						<asp:View ID="ViewEvenement" runat="server">
-							<div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 120px;">
-								<asp:ListView ID="lvEvenement" runat="server"
-									ItemType="ModeleSentinellesHY.événement"
-									SelectMethod="GetEvenement"
-									DataKeyNames="idEvenement"
-									GroupItemCount="3">
-									<LayoutTemplate>
-										<div style="width: 70%; float: left;">
-											<asp:LinkButton ID="lbEvenementTitre" runat="server" CommandName="sort" CommandArgument="TitreFR" class="titreListe"><%= outils.obtenirLangue("Titre Français|English title")%></asp:LinkButton>
-										</div>
-										<div style="width: 15%; float: right;">
-											<asp:LinkButton runat="server" CommandName="sort" CommandArgument="dateRedaction" class="titreListe"><%= outils.obtenirLangue("Date publication|Publish date")%></asp:LinkButton>
-										</div>
-										<div style="width: 15%; float: right;">
-											<asp:LinkButton runat="server" CommandName="sort" CommandArgument="dateEvenement" class="titreListe"><%= outils.obtenirLangue("Date événement|Event date")%></asp:LinkButton>
-										</div>
-										<asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
-									</LayoutTemplate>
-									<GroupTemplate>
-										<div class="clear-both">
-											<asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-										</div>
-									</GroupTemplate>
-									<ItemTemplate>
-										<div class="ItemTemplate">
-											<div style="width: 70%; float: left;">
-												<asp:LinkButton CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 50)%>' />
-											</div>
-											<div style="width: 15%; float: right;">
-												<asp:LinkButton runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
-											</div>
-											<div style="width: 15%; float: right;">
-												<asp:LinkButton runat="server" CommandName="Select"><%# Left(Eval("dateEvenement"),10)%></asp:LinkButton>
-											</div>
-										</div>
-									</ItemTemplate>
-									<SelectedItemTemplate>
-										<div class="SelectedItemTemplate">
-											<div style="width: 70%; float: left;">
-												<asp:LinkButton ID="LinkButton1" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 50)%>' />
-											</div>
-											<div style="width: 15%; float: right;">
-												<asp:LinkButton ID="LinkButton2" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
-											</div>
-											<div style="width: 15%; float: right;">
-												<asp:LinkButton ID="LinkButton3" runat="server" CommandName="Select"><%# Left(Eval("dateEvenement"),10)%></asp:LinkButton>
-											</div>
-										</div>
-									</SelectedItemTemplate>
-									<EmptyDataTemplate>
-										<h5><% =outils.obtenirLangue("Aucun événement pour le moment.|There's no event at this time.") %></h5>
-									</EmptyDataTemplate>
-								</asp:ListView>
-							</div>
-
-							<div class="encadrerModification">
-								<asp:Label ID="lblMessageErreurEvenement" CssClass="lblMessageErreur" runat="server" Text="" />
-								<asp:ListView ID="lvInfoEvenement" runat="server"
-									ItemType="ModeleSentinellesHY.événement"
-									SelectMethod="getInfoEvenement"
-									UpdateMethod="UpdateEvenement"
-									DeleteMethod="DeleteEvenement"
-									DataKeyNames="idEvenement">
-									<LayoutTemplate>
-										<div class="div_AjoutNouvelle" runat="server">
-											<asp:LinkButton ID="lnkBtnAjoutEvenement" runat="server" OnClick="lnkBtnAjoutEvenement_Click">+ <% =outils.obtenirLangue("Ajouter un événement|Add an event")%></asp:LinkButton>
-										</div>
-										<asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-									</LayoutTemplate>
-									<ItemTemplate>
-										<div style="position: relative;">
-											<asp:Label ID="lblTitreFR" runat="server"><%= outils.obtenirLangue("Titre Français : |French Title : ")%></asp:Label>
-											<asp:TextBox ID="txtboxtitreFR" CssClass="txtBoxModifier_Titre" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.titreFR%>' runat="server" />
-											<div id="divDateRedaction" class="divDateRedaction" runat="server">
-												<asp:Label ID="lblRedigele" runat="server"><%= outils.obtenirLangue("Rédigé le |Posted on ")%></asp:Label>
-												<asp:Label ID="lblDateRedaction" runat="server" Text='<%# Eval("dateRedaction")%>' />
-											</div>
-										</div>
-										<div>
-											<asp:TextBox ID="txtboxcontenuFR" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuFR%>' runat="server" />
+                            <div class="encadrerModification">
+                                <asp:Label ID="lblMessageErreurEvenement" CssClass="lblMessageErreur" runat="server" Text="" />
+                                <asp:ListView ID="lvInfoEvenement" runat="server"
+                                    ItemType="ModeleSentinellesHY.événement"
+                                    SelectMethod="getInfoEvenement"
+                                    UpdateMethod="UpdateEvenement"
+                                    DeleteMethod="DeleteEvenement"
+                                    DataKeyNames="idEvenement">
+                                    <LayoutTemplate>
+                                        <div class="div_AjoutNouvelle" runat="server">
+                                            <asp:LinkButton ID="lnkBtnAjoutEvenement" runat="server" OnClick="lnkBtnAjoutEvenement_Click">+ <% =outils.obtenirLangue("Ajouter un événement|Add an event")%></asp:LinkButton>
+                                        </div>
+                                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                    </LayoutTemplate>
+                                    <ItemTemplate>
+                                        <div style="position: relative;">
+                                            <asp:Label ID="lblTitreFR" runat="server"><%= outils.obtenirLangue("Titre Français : |French Title : ")%></asp:Label>
+                                            <asp:TextBox ID="txtboxtitreFR" CssClass="txtBoxModifier_Titre" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.titreFR%>' runat="server" />
+                                            <div id="divDateRedaction" class="divDateRedaction" runat="server">
+                                                <asp:Label ID="lblRedigele" runat="server"><%= outils.obtenirLangue("Rédigé le |Posted on ")%></asp:Label>
+                                                <asp:Label ID="lblDateRedaction" runat="server" Text='<%# Eval("dateRedaction")%>' />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <asp:TextBox ID="txtboxcontenuFR" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuFR%>' runat="server" />
 
 											<asp:HtmlEditorExtender ID="htmleditorContenuFR" runat="server" TargetControlID="txtboxcontenuFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
 												<Toolbar>
@@ -963,75 +936,80 @@
 							</div>
 						</asp:View>
 
-						<asp:View ID="ViewUtilisateur" runat="server">
-							<div class="row paddingRow">
-								<div class="petitsPointsListeUtilisateurs overflow">
-									<%--------lviewUtilisateur-------%>
-									<asp:ListView ID="lviewUtilisateurs" runat="server"
-										ItemType="ModeleSentinellesHY.utilisateur"
-										SelectMethod="GetUtilisateurs"
-										DataKeyNames="idUtilisateur"
-										GroupItemCount="3">
-										<LayoutTemplate>
-											<asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
-										</LayoutTemplate>
-										<GroupTemplate>
-											<asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-										</GroupTemplate>
-										<ItemTemplate>
-											<div class="span3">
-												<div id="divNom" style="color: black;" class="ItemTemplateNom">
-													<asp:LinkButton ID="lblPrenom" CssClass="lnkBtnPrenom" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
-												</div>
-											</div>
-										</ItemTemplate>
-										<SelectedItemTemplate>
-											<div class="span3">
-												<div id="divNom" class="SelectedItemTemplateNom">
-													<asp:LinkButton ID="lblPrenom" title='<%# Eval("prenom")%>' CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
-												</div>
-											</div>
-										</SelectedItemTemplate>
-										<EmptyDataTemplate>
-											<%= outils.obtenirLangue("Il n'y présentement aucun utilisateur d'enregistrer.|There's actually no registered user.")%>
-										</EmptyDataTemplate>
-									</asp:ListView>
-								</div>
-								<div class="petitsPoints">
-									<asp:Label ID="lblMessageErreurInfoUtilisateur" CssClass="lblMessageErreur" runat="server" Text="" />
-									<%-- lview info d'un utilisateur--%>
-									<asp:ListView ID="lviewInfoUtilisateur" runat="server"
-										ItemType="ModeleSentinellesHY.utilisateur"
-										SelectMethod="getInfoUtilisateur"
-										UpdateMethod="UpdateUtilisateur"
-										DeleteMethod="DeleteUtilisateur"
-										DataKeyNames="idUtilisateur">
-										<LayoutTemplate>
-											<div>
-												<asp:LinkButton ID="lnkbtnAjouter" runat="server" OnClick="lnkbtnAjouter_Click"><%= outils.obtenirLangue("+ Ajouter un utilisateur|+ Add user")%></asp:LinkButton>
-											</div>
-											<div class="lviewInfoUtilisateur_centrer">
-												<asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-											</div>
-										</LayoutTemplate>
-										<EmptyDataTemplate>
-											<asp:LinkButton ID="lnkbtnAjouter" CssClass="lnkbtnAjouter_margin" runat="server" OnClick="lnkbtnAjouter_Click"><%= outils.obtenirLangue("+ Ajouter un utilisateur|+ Add user")%></asp:LinkButton>
-										</EmptyDataTemplate>
-										<ItemTemplate>
-											<div id="divIdUtilisateur" class="row centrerVerticalement" style="clear: both">
-												<asp:TextBox runat="server" ID="lblIdUtilisateur" Visible="false" Text='<%# BindItem.idUtilisateur%>' />
-											</div>
-											<div id="divNomUtilisateur" class="row centrerVerticalement" style="clear: both">
-												<div class="span3" style="margin-left: 35px;">
-													<asp:Label ID="lblNomUtilisateur" CssClass="lblUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server"><%= outils.obtenirLangue("Nom d'utilisateur:|Username :")%></asp:Label>
-												</div>
-												<div class="span6" style="float: right;">
-													<asp:TextBox ID="txtboxnomUtilisateur" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nomUtilisateur%>' />
-												</div>
-											</div>
-											<div id="divPrenom" class="row" style="clear: both">
-												<div class="span3" style="margin-left: 35px;">
-													<asp:Label ID="lblPrenom" CssClass="lblUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server"><%= outils.obtenirLangue("Prénom:|First name :")%></asp:Label>
+                        <asp:View ID="ViewUtilisateur" runat="server">
+                            <div class="row paddingRow">
+                                <div class="pull-right">
+                                    <asp:TextBox ID="txtboxRechercheUtilisateur" runat="server" />
+                                    <asp:Button ID="btnRechercheUtilisateur" runat="server" Text="Rechercher" CssClass="btn btnAjouter" />
+                                </div>
+                                <div class="clear-both"></div>
+                                <div class="petitsPointsListeUtilisateurs overflow">
+                                    <%--------lviewUtilisateur-------%>
+                                    <asp:ListView ID="lviewUtilisateurs" runat="server"
+                                        ItemType="ModeleSentinellesHY.utilisateur"
+                                        SelectMethod="GetUtilisateurs"
+                                        DataKeyNames="idUtilisateur"
+                                        GroupItemCount="3">
+                                        <LayoutTemplate>
+                                            <asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
+                                        </LayoutTemplate>
+                                        <GroupTemplate>
+                                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                        </GroupTemplate>
+                                        <ItemTemplate>
+                                            <div class="span3">
+                                                <div id="divNom" style="color: black;" class="ItemTemplateNom">
+                                                    <asp:LinkButton ID="lblPrenom" CssClass="lnkBtnPrenom" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
+                                                </div>
+                                            </div>
+                                        </ItemTemplate>
+                                        <SelectedItemTemplate>
+                                            <div class="span3">
+                                                <div id="divNom" class="SelectedItemTemplateNom">
+                                                    <asp:LinkButton ID="lblPrenom" title='<%# Eval("prenom")%>' CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
+                                                </div>
+                                            </div>
+                                        </SelectedItemTemplate>
+                                        <EmptyDataTemplate>
+                                            <%= outils.obtenirLangue("Il n'y présentement aucun utilisateur d'enregistrer.|There's actually no registered user.")%>
+                                        </EmptyDataTemplate>
+                                    </asp:ListView>
+                                </div>
+                                <div class="petitsPoints">
+                                    <asp:Label ID="lblMessageErreurInfoUtilisateur" CssClass="lblMessageErreur" runat="server" Text="" />
+                                    <%-- lview info d'un utilisateur--%>
+                                    <asp:ListView ID="lviewInfoUtilisateur" runat="server"
+                                        ItemType="ModeleSentinellesHY.utilisateur"
+                                        SelectMethod="getInfoUtilisateur"
+                                        UpdateMethod="UpdateUtilisateur"
+                                        DeleteMethod="DeleteUtilisateur"
+                                        DataKeyNames="idUtilisateur">
+                                        <LayoutTemplate>
+                                            <div>
+                                                <asp:LinkButton ID="lnkbtnAjouter" runat="server" OnClick="lnkbtnAjouter_Click"><%= outils.obtenirLangue("+ Ajouter un utilisateur|+ Add user")%></asp:LinkButton>
+                                            </div>
+                                            <div class="lviewInfoUtilisateur_centrer">
+                                                <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                            </div>
+                                        </LayoutTemplate>
+                                        <EmptyDataTemplate>
+                                            <asp:LinkButton ID="lnkbtnAjouter" CssClass="lnkbtnAjouter_margin" runat="server" OnClick="lnkbtnAjouter_Click"><%= outils.obtenirLangue("+ Ajouter un utilisateur|+ Add user")%></asp:LinkButton>
+                                        </EmptyDataTemplate>
+                                        <ItemTemplate>
+                                            <div id="divIdUtilisateur" class="row centrerVerticalement" style="clear: both">
+                                                <asp:TextBox runat="server" ID="lblIdUtilisateur" Visible="false" Text='<%# BindItem.idUtilisateur%>' />
+                                            </div>
+                                            <div id="divNomUtilisateur" class="row centrerVerticalement" style="clear: both">
+                                                <div class="span3" style="margin-left: 35px;">
+                                                    <asp:Label ID="lblNomUtilisateur" CssClass="lblUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server"><%= outils.obtenirLangue("Nom d'utilisateur:|Username :")%></asp:Label>
+                                                </div>
+                                                <div class="span6" style="float: right;">
+                                                    <asp:TextBox ID="txtboxnomUtilisateur" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nomUtilisateur%>' />
+                                                </div>
+                                            </div>
+                                            <div id="divPrenom" class="row" style="clear: both">
+                                                <div class="span3" style="margin-left: 35px;">
+                                                    <asp:Label ID="lblPrenom" CssClass="lblUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server"><%= outils.obtenirLangue("Prénom:|First name :")%></asp:Label>
 
 												</div>
 												<div class="span6" style="float: right;">
