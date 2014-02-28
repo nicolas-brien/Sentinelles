@@ -8,53 +8,56 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
-	<link href="../CSS/bootstrap.css" rel="stylesheet" />
-	<link href="../CSS/PanneauDeControle.css" rel="stylesheet" />
-	<link href="../CSS/SiteMaster.css" rel="stylesheet" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+    <link href="../CSS/bootstrap.css" rel="stylesheet" />
+    <link href="../CSS/PanneauDeControle.css" rel="stylesheet" />
+    <link href="../CSS/SiteMaster.css" rel="stylesheet" />
 
-	<script src="../CSS/js/jqueryCrop.min.js"></script>
-	<script src="../CSS/js/jquery.Jcrop.min.js"></script>
-	<script src="../CSS/js/jquery.Jcrop.js"></script>
+    <script src="../CSS/js/jqueryCrop.min.js"></script>
+    <script src="../CSS/js/jquery.Jcrop.min.js"></script>
+    <script src="../CSS/js/jquery.Jcrop.js"></script>
 
-	<link rel="stylesheet" href="../CSS/jquery.Jcrop.css" type="text/css" />
+    <link rel="stylesheet" href="../CSS/jquery.Jcrop.css" type="text/css" />
 
-	<script language="Javascript">
+    <script language="Javascript">
 
-		jQuery(function ($) {
-			var img = $('#cropbox');
-			var width = img.width();
-			var height = img.height();
-			var ratio = 12 / 5;
-			var widthCrop = 0;
-			var heightCrop = 0;
+        jQuery(function ($) {
+            var img = $('#cropbox');
+            var width = img.width();
+            var height = img.height();
+            var ratio = 12 / 5;
+            var widthCrop = 0;
+            var heightCrop = 0;
 
-			widthCrop = width;
-			heightCrop = widthCrop / ratio;
+            widthCrop = width;
+            heightCrop = widthCrop / ratio;
 
-			$('#cropbox').Jcrop({
-				onSelect: updateCoords,
-				onChange: updateCoords,
-				setSelect: [0, (height - heightCrop) / 2, widthCrop, (height + heightCrop) / 2],
-				aspectRatio: 12 / 5,
-				bgOpacity: .25
-			});
-		});
+            $('#cropbox').Jcrop({
+                onSelect: updateCoords,
+                onChange: updateCoords,
+                setSelect: [0, (height - heightCrop) / 2, widthCrop, (height + heightCrop) / 2],
+                aspectRatio: 12 / 5,
+                bgOpacity: .25
+            });
+        });
 
-		function updateCoords(c) {
-			jQuery('#X').val(c.x);
-			jQuery('#Y').val(c.y);
-			jQuery('#W').val(c.w);
-			jQuery('#H').val(c.h);
-		};
+        function updateCoords(c) {
+            jQuery('#X').val(c.x);
+            jQuery('#Y').val(c.y);
+            jQuery('#W').val(c.w);
+            jQuery('#H').val(c.h);
+        };
 
-		</script>
+    </script>
 
 
-	<title>Les Sentinelles Haute-Yamaska</title>
+    <title>Les Sentinelles Haute-Yamaska</title>
 
 </head>
+
 <body>
+
+
     <div id="wrapper">
         <form id="form1" runat="server">
             <ajaxToolkit:ToolkitScriptManager ID="tsmTest" runat="server" />
@@ -99,57 +102,57 @@
 
             <%-----------------------------------Content----------------------------------%>
 
-			<div id="content">
-				<div class="row paddingRow">
-					<asp:MultiView ID="MultiView" runat="server">
-						<asp:View ID="viewOptions" runat="server">
-							<asp:Label ID="lblMessageErreurOptions" CssClass="lblMessageErreur" runat="server" Text="" Style="margin-left: 10px;" />
-							<asp:ListView ID="lviewOptions" runat="server"
-								ItemType="ModeleSentinellesHY.InfoGenerale"
-								SelectMethod="GetInfoGenerale"
-								UpdateMethod="UpdateInfoGenerale"
-								DataKeyNames="idInfo">
-								<LayoutTemplate>
-									<asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-								</LayoutTemplate>
-								<ItemTemplate>
-									<div class="row">
-										<div class="accordion" id="accordionOptions">
-											<div class="accordion-group">
-												<div class="accordion-heading">
-													<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseCourriel"><%= outils.obtenirLangue("Changer l'adresse courriel de l'administrateur|Change the Administrator's email")%>
-													</a>
-												</div>
-												<div id="collapseCourriel" class="accordion-body collapse in">
-													<div class="accordion-inner">
-														<div>
-															<asp:Label ID="lblcourrielFormulaire" runat="server"><%= outils.obtenirLangue("Adresse courriel de l'administrateur : |Administrator's email : ")%> </asp:Label>
-															<asp:TextBox ID="txtboxcourrielFormulaire" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.courrielFormulaire%>' />
-														</div>
-														<asp:LinkButton ID="lnkbtnCourrielAdmin" runat="server"
-															CssClass="btn btnAjouter disabled-button"
-															CommandName="Update"
-															Text="<i aria-hidden=true class=icon-check></i>"><% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
-													</div>
-												</div>
-											</div>
-											<div class="accordion-group">
-												<div class="accordion-heading">
-													<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseHistorique">
-														<%= outils.obtenirLangue("Modifier l'historique|Edit the history")%>
-													</a>
-												</div>
-												<div id="collapseHistorique" class="accordion-body collapse">
-													<div class="accordion-inner">
-														<div>
-															<div id="div_lblHistoriqueFR">
-																<asp:Label ID="lblHistoriqueFR" runat="server">
+            <div id="content">
+                <div class="row paddingRow">
+                    <asp:MultiView ID="MultiView" runat="server">
+                        <asp:View ID="viewOptions" runat="server">
+                            <asp:Label ID="lblMessageErreurOptions" CssClass="lblMessageErreur" runat="server" Text="" Style="margin-left: 10px;" />
+                            <asp:ListView ID="lviewOptions" runat="server"
+                                ItemType="ModeleSentinellesHY.InfoGenerale"
+                                SelectMethod="GetInfoGenerale"
+                                UpdateMethod="UpdateInfoGenerale"
+                                DataKeyNames="idInfo">
+                                <LayoutTemplate>
+                                    <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                </LayoutTemplate>
+                                <ItemTemplate>
+                                    <div class="row">
+                                        <div class="accordion" id="accordionOptions">
+                                            <div class="accordion-group">
+                                                <div class="accordion-heading">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseCourriel"><%= outils.obtenirLangue("Changer l'adresse courriel de l'administrateur|Change the Administrator's email")%>
+                                                    </a>
+                                                </div>
+                                                <div id="collapseCourriel" class="accordion-body collapse in">
+                                                    <div class="accordion-inner">
+                                                        <div>
+                                                            <asp:Label ID="lblcourrielFormulaire" runat="server"><%= outils.obtenirLangue("Adresse courriel de l'administrateur : |Administrator's email : ")%> </asp:Label>
+                                                            <asp:TextBox ID="txtboxcourrielFormulaire" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.courrielFormulaire%>' />
+                                                        </div>
+                                                        <asp:LinkButton ID="lnkbtnCourrielAdmin" runat="server"
+                                                            CssClass="btn btnAjouter disabled-button"
+                                                            CommandName="Update"
+                                                            Text="<i aria-hidden=true class=icon-check></i>"><% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-group">
+                                                <div class="accordion-heading">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseHistorique">
+                                                        <%= outils.obtenirLangue("Modifier l'historique|Edit the history")%>
+                                                    </a>
+                                                </div>
+                                                <div id="collapseHistorique" class="accordion-body collapse">
+                                                    <div class="accordion-inner">
+                                                        <div>
+                                                            <div id="div_lblHistoriqueFR">
+                                                                <asp:Label ID="lblHistoriqueFR" runat="server">
 																	<%= outils.obtenirLangue("Contenu de l'historique (français) : |History content (French) : ")%>
-																</asp:Label>
-															</div>
-															<asp:TextBox ID="txtboxHistoriqueFR" TextMode="MultiLine" CssClass="htmleditorHistorique" runat="server" Text='<%# BindItem.historiqueFR%>' />
-                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueFR" runat="server" TargetControlID="txtboxHistoriqueFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
-                                                                  <Toolbar> 
+                                                                </asp:Label>
+                                                            </div>
+                                                            <asp:TextBox ID="txtboxHistoriqueFR" TextMode="MultiLine" CssClass="htmleditorHistorique" runat="server" Text='<%# BindItem.historiqueFR%>' />
+                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueFR" runat="server" TargetControlID="txtboxHistoriqueFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                                                <Toolbar>
                                                                     <ajaxToolkit:Undo />
                                                                     <ajaxToolkit:Redo />
                                                                     <ajaxToolkit:Bold />
@@ -171,124 +174,124 @@
                                                                     <ajaxToolkit:InsertHorizontalRule />
                                                                     <ajaxToolkit:HorizontalSeparator />
                                                                 </Toolbar>
-                                                          </asp:HtmlEditorExtender>
+                                                            </asp:HtmlEditorExtender>
                                                         </div>
                                                         <hr />
                                                         <div>
                                                             <div id="div_lblHistoriqueEN">
                                                                 <asp:Label ID="lblHistoriqueEN" runat="server">
-                                                                     <%= outils.obtenirLangue("Contenu de l'historique (anglais) : |History content (english) : ")%>
+																	 <%= outils.obtenirLangue("Contenu de l'historique (anglais) : |History content (english) : ")%>
                                                                 </asp:Label>
                                                             </div>
                                                             <asp:TextBox ID="txtboxHistoriqueEN" TextMode="MultiLine" CssClass="htmleditorHistorique" runat="server" Text='<%# BindItem.historiqueEN%>' />
-                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueEN" runat="server" TargetControlID="txtboxHistoriqueEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
-																  <Toolbar>
-																	<ajaxToolkit:Undo />
-																	<ajaxToolkit:Redo />
-																	<ajaxToolkit:Bold />
-																	<ajaxToolkit:Italic />
-																	<ajaxToolkit:Underline />
-																	<ajaxToolkit:StrikeThrough />
-																	<ajaxToolkit:InsertUnorderedList />
-																	<ajaxToolkit:CreateLink />
-																	<ajaxToolkit:UnLink />
-																	<ajaxToolkit:RemoveFormat />
-																	<ajaxToolkit:SelectAll />
-																	<ajaxToolkit:UnSelect />
-																	<ajaxToolkit:Delete />
-																	<ajaxToolkit:Cut />
-																	<ajaxToolkit:Copy />
-																	<ajaxToolkit:Paste />
-																	<ajaxToolkit:Indent />
-																	<ajaxToolkit:Outdent />
-																	<ajaxToolkit:InsertHorizontalRule />
-																	<ajaxToolkit:HorizontalSeparator />
-																</Toolbar>
-														  </asp:HtmlEditorExtender>
-														</div>
-														<div id="div_lnkbtnHistorique">
-															<asp:LinkButton ID="lnkbtnHistorique" runat="server"
-																CssClass="btn btnAjouter disabled-button"
-																CommandName="Update"
-																Text="<i aria-hidden=true class=icon-check></i>"><% =outils.obtenirLangue(" Sauvegarder| Save")%> </asp:LinkButton>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="accordion-group">
-												<div class="accordion-heading">
-													<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseMaltraitance">
-														<%= outils.obtenirLangue("Modifier l'information sur la maltraitance|Edit the information on the elderly abuse")%>
+                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueEN" runat="server" TargetControlID="txtboxHistoriqueEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                                                <Toolbar>
+                                                                    <ajaxToolkit:Undo />
+                                                                    <ajaxToolkit:Redo />
+                                                                    <ajaxToolkit:Bold />
+                                                                    <ajaxToolkit:Italic />
+                                                                    <ajaxToolkit:Underline />
+                                                                    <ajaxToolkit:StrikeThrough />
+                                                                    <ajaxToolkit:InsertUnorderedList />
+                                                                    <ajaxToolkit:CreateLink />
+                                                                    <ajaxToolkit:UnLink />
+                                                                    <ajaxToolkit:RemoveFormat />
+                                                                    <ajaxToolkit:SelectAll />
+                                                                    <ajaxToolkit:UnSelect />
+                                                                    <ajaxToolkit:Delete />
+                                                                    <ajaxToolkit:Cut />
+                                                                    <ajaxToolkit:Copy />
+                                                                    <ajaxToolkit:Paste />
+                                                                    <ajaxToolkit:Indent />
+                                                                    <ajaxToolkit:Outdent />
+                                                                    <ajaxToolkit:InsertHorizontalRule />
+                                                                    <ajaxToolkit:HorizontalSeparator />
+                                                                </Toolbar>
+                                                            </asp:HtmlEditorExtender>
+                                                        </div>
+                                                        <div id="div_lnkbtnHistorique">
+                                                            <asp:LinkButton ID="lnkbtnHistorique" runat="server"
+                                                                CssClass="btn btnAjouter disabled-button"
+                                                                CommandName="Update"
+                                                                Text="<i aria-hidden=true class=icon-check></i>"><% =outils.obtenirLangue(" Sauvegarder| Save")%> </asp:LinkButton>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-group">
+                                                <div class="accordion-heading">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseMaltraitance">
+                                                        <%= outils.obtenirLangue("Modifier l'information sur la maltraitance|Edit the information on the elderly abuse")%>
 
-													</a>
-												</div>
-												<div id="collapseMaltraitance" class="accordion-body collapse">
-													<div class="accordion-inner">
-														<div>
-															<div id="div_lblMaltraitanceFR">
-																<asp:Label ID="lblMaltraitanceFR" runat="server">
+                                                    </a>
+                                                </div>
+                                                <div id="collapseMaltraitance" class="accordion-body collapse">
+                                                    <div class="accordion-inner">
+                                                        <div>
+                                                            <div id="div_lblMaltraitanceFR">
+                                                                <asp:Label ID="lblMaltraitanceFR" runat="server">
 																	 <%= outils.obtenirLangue("Contenu de l'information sur la maltraitance (français) : |Content of the information about the elderly abuse (french) : ")%>
-																</asp:Label>
-															</div>
-															<asp:TextBox ID="txtboxMaltraitanceFR" TextMode="MultiLine" CssClass="htmleditorMaltraitance" runat="server" Text='<%# BindItem.maltraitanceFR%>' />
+                                                                </asp:Label>
+                                                            </div>
+                                                            <asp:TextBox ID="txtboxMaltraitanceFR" TextMode="MultiLine" CssClass="htmleditorMaltraitance" runat="server" Text='<%# BindItem.maltraitanceFR%>' />
                                                             <asp:HtmlEditorExtender ID="htmleditorMaltraitanceFR" runat="server" TargetControlID="txtboxMaltraitanceFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
-																  <Toolbar>
-																	<ajaxToolkit:Undo />
-																	<ajaxToolkit:Redo />
-																	<ajaxToolkit:Bold />
-																	<ajaxToolkit:Italic />
-																	<ajaxToolkit:Underline />
-																	<ajaxToolkit:StrikeThrough />
-																	<ajaxToolkit:InsertUnorderedList />
-																	<ajaxToolkit:CreateLink />
-																	<ajaxToolkit:UnLink />
-																	<ajaxToolkit:RemoveFormat />
-																	<ajaxToolkit:SelectAll />
-																	<ajaxToolkit:UnSelect />
-																	<ajaxToolkit:Delete />
-																	<ajaxToolkit:Cut />
-																	<ajaxToolkit:Copy />
-																	<ajaxToolkit:Paste />
-																	<ajaxToolkit:Indent />
-																	<ajaxToolkit:Outdent />
-																	<ajaxToolkit:InsertHorizontalRule />
-																	<ajaxToolkit:HorizontalSeparator />
-																</Toolbar>
-														  </asp:HtmlEditorExtender>
-														</div>
-														<hr />
-														<div>
-															<div id="div_lblMaltraitanceEN">
-																<asp:Label ID="lblMaltraitanceEN" runat="server">
+                                                                <Toolbar>
+                                                                    <ajaxToolkit:Undo />
+                                                                    <ajaxToolkit:Redo />
+                                                                    <ajaxToolkit:Bold />
+                                                                    <ajaxToolkit:Italic />
+                                                                    <ajaxToolkit:Underline />
+                                                                    <ajaxToolkit:StrikeThrough />
+                                                                    <ajaxToolkit:InsertUnorderedList />
+                                                                    <ajaxToolkit:CreateLink />
+                                                                    <ajaxToolkit:UnLink />
+                                                                    <ajaxToolkit:RemoveFormat />
+                                                                    <ajaxToolkit:SelectAll />
+                                                                    <ajaxToolkit:UnSelect />
+                                                                    <ajaxToolkit:Delete />
+                                                                    <ajaxToolkit:Cut />
+                                                                    <ajaxToolkit:Copy />
+                                                                    <ajaxToolkit:Paste />
+                                                                    <ajaxToolkit:Indent />
+                                                                    <ajaxToolkit:Outdent />
+                                                                    <ajaxToolkit:InsertHorizontalRule />
+                                                                    <ajaxToolkit:HorizontalSeparator />
+                                                                </Toolbar>
+                                                            </asp:HtmlEditorExtender>
+                                                        </div>
+                                                        <hr />
+                                                        <div>
+                                                            <div id="div_lblMaltraitanceEN">
+                                                                <asp:Label ID="lblMaltraitanceEN" runat="server">
 																	<%= outils.obtenirLangue("Contenu de l'information du la maltraitance (anglais) : |Content of the information about the elderly abuse (english) : ")%>
-																</asp:Label>
-															</div>
-															<asp:TextBox ID="txtboxMaltraitanceEN" TextMode="MultiLine" CssClass="htmleditorMaltraitance" runat="server" Text='<%# BindItem.maltraitanceEN%>' />
+                                                                </asp:Label>
+                                                            </div>
+                                                            <asp:TextBox ID="txtboxMaltraitanceEN" TextMode="MultiLine" CssClass="htmleditorMaltraitance" runat="server" Text='<%# BindItem.maltraitanceEN%>' />
 
-															<asp:HtmlEditorExtender ID="HtmlEditorExtender1" runat="server" TargetControlID="txtboxMaltraitanceEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
-																  <Toolbar>
-																	<ajaxToolkit:Undo />
-																	<ajaxToolkit:Redo />
-																	<ajaxToolkit:Bold />
-																	<ajaxToolkit:Italic />
-																	<ajaxToolkit:Underline />
-																	<ajaxToolkit:StrikeThrough />
-																	<ajaxToolkit:InsertUnorderedList />
-																	<ajaxToolkit:CreateLink />
-																	<ajaxToolkit:UnLink />
-																	<ajaxToolkit:RemoveFormat />
-																	<ajaxToolkit:SelectAll />
-																	<ajaxToolkit:UnSelect />
-																	<ajaxToolkit:Delete />
-																	<ajaxToolkit:Cut />
-																	<ajaxToolkit:Copy />
-																	<ajaxToolkit:Paste />
-																	<ajaxToolkit:Indent />
-																	<ajaxToolkit:Outdent />
-																	<ajaxToolkit:InsertHorizontalRule />
-																	<ajaxToolkit:HorizontalSeparator />
-																</Toolbar>
-														  </asp:HtmlEditorExtender>
+                                                            <asp:HtmlEditorExtender ID="HtmlEditorExtender1" runat="server" TargetControlID="txtboxMaltraitanceEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                                                <Toolbar>
+                                                                    <ajaxToolkit:Undo />
+                                                                    <ajaxToolkit:Redo />
+                                                                    <ajaxToolkit:Bold />
+                                                                    <ajaxToolkit:Italic />
+                                                                    <ajaxToolkit:Underline />
+                                                                    <ajaxToolkit:StrikeThrough />
+                                                                    <ajaxToolkit:InsertUnorderedList />
+                                                                    <ajaxToolkit:CreateLink />
+                                                                    <ajaxToolkit:UnLink />
+                                                                    <ajaxToolkit:RemoveFormat />
+                                                                    <ajaxToolkit:SelectAll />
+                                                                    <ajaxToolkit:UnSelect />
+                                                                    <ajaxToolkit:Delete />
+                                                                    <ajaxToolkit:Cut />
+                                                                    <ajaxToolkit:Copy />
+                                                                    <ajaxToolkit:Paste />
+                                                                    <ajaxToolkit:Indent />
+                                                                    <ajaxToolkit:Outdent />
+                                                                    <ajaxToolkit:InsertHorizontalRule />
+                                                                    <ajaxToolkit:HorizontalSeparator />
+                                                                </Toolbar>
+                                                            </asp:HtmlEditorExtender>
 
 
                                                         </div>
@@ -305,7 +308,7 @@
                                                 <div class="accordion-heading">
                                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapsePensee">
                                                         <%= outils.obtenirLangue("Modifier la pensée|Edit the thought")%>
-                                                        
+
                                                     </a>
                                                 </div>
                                                 <div id="collapsePensee" class="accordion-body collapse">
@@ -330,20 +333,20 @@
                                                 <div class="accordion-heading">
                                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseTemoignage">
                                                         <%= outils.obtenirLangue("Modifier le témoignage|Edit testimonial")%>
-                                                        
+
                                                     </a>
                                                 </div>
                                                 <div id="collapseTemoignage" class="accordion-body collapse">
                                                     <div class="accordion-inner">
                                                         <div>
                                                             <asp:Label ID="Label9" runat="server">
-                                                                <%= outils.obtenirLangue("Contenu du témoignage (français) : |Content of the testimonial (french) : ")%>
+																<%= outils.obtenirLangue("Contenu du témoignage (français) : |Content of the testimonial (french) : ")%>
                                                             </asp:Label>
                                                             <asp:TextBox ID="txtboxtemoignageFR" CssClass="txtboxtemoignageFR" TextMode="MultiLine" Height="40px" runat="server" Text='<%# BindItem.temoignageFR%>' />
                                                         </div>
                                                         <div>
                                                             <asp:Label ID="Label6" runat="server">
-                                                               <%= outils.obtenirLangue("Contenu du témoignage (anglais) : |Content of the testimonial (english) : ")%>
+															   <%= outils.obtenirLangue("Contenu du témoignage (anglais) : |Content of the testimonial (english) : ")%>
                                                             </asp:Label>
                                                             <asp:TextBox ID="txtboxtemoignageEN" runat="server" CssClass="txtboxtemoignageEN" TextMode="MultiLine" Height="40px" Text='<%# BindItem.temoignageEN%>' />
                                                         </div>
@@ -354,74 +357,98 @@
                                                     </div>
                                                 </div>
                                             </div>
-											<%-- Carousel Images --%>
 
-											<div class="accordion-group">
-												<div class="accordion-heading">
-													<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseCarrousel">
-														<%= outils.obtenirLangue("Modifier les images du carrousel|Edit the pictures of the caroussel")%>
 
-													</a>
-												</div>
-												<asp:MultiView runat="server" ID="mvPhotos" ActiveViewIndex="0">
-													<asp:View runat="server" ID="vSelect">
-														<div id="collapseCarrousel" class="accordion-body collapse">
-															<div class="accordion-inner">
-																<div>
-																	<asp:Label ID="lblFormatImgMessage" runat="server">
+                                            <%-- Carousel Images --%>
+
+                                            <div class="accordion-group">
+                                                <div class="accordion-heading">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseCarrousel">
+                                                        <%= outils.obtenirLangue("Modifier les images du carrousel|Edit the pictures of the caroussel")%>
+
+                                                    </a>
+                                                </div>
+                                                <asp:MultiView runat="server" ID="mvPhotos" ActiveViewIndex="0">
+                                                    <asp:View runat="server" ID="vSelect">
+                                                        <div id="collapseCarrousel" class="accordion-body collapse">
+                                                            <div class="accordion-inner">
+                                                                <div>
+                                                                    <asp:Label ID="lblFormatImgMessage" runat="server">
 																<%= outils.obtenirLangue("*Les images du carrousel doivent être approximativement de 960 x 400 et de types .png ou .jpg|*The images of the caroussel must be approximately 960 x 400 and with the type .png or .jpg")%>
-																	</asp:Label>
-																</div>
-																<div class="marginbottom_divImgCarrousel">
-																	<asp:Label ID="Label10" runat="server"><%= outils.obtenirLangue("Image carrousel 1 : |Photo caroussel 1 : ")%></asp:Label>
-																	<asp:TextBox ID="txtboxImgCarrousel1" Enabled=" false" runat="server" />
-																	<a onclick="$('[id$=fuplPhotoCarrousel1]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
+                                                                    </asp:Label>
+                                                                </div>
+                                                                <div class="marginbottom_divImgCarrousel">
+                                                                    <asp:Label ID="Label10" runat="server"><%= outils.obtenirLangue("Image carrousel 1 : |Photo caroussel 1 : ")%></asp:Label>
+                                                                    <asp:TextBox ID="txtboxImgCarrousel1" Enabled=" false" runat="server" />
+                                                                    <a onclick="$('[id$=fuplPhotoCarrousel1]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
 																	<asp:LinkButton ID="btCarrousel1" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
-																	<img id="imgCarrousel1" width="360" src="../Upload/Carrousel1.jpg" />
-																	<asp:FileUpload runat="server" ID="fuplPhotoCarrousel1"  ClientIDMode="Static" onpropertychange="$('[id$=uploadButton]').click(); return false;" onchange="$('[id$=uploadButton]').click(); return false;"  Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
-																	<asp:Button ID="uploadButton" runat="server" Text="Upload!"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click" />
-																</div>
-																<div class="marginbottom_divImgCarrousel">
-																	<asp:Label ID="Label7" runat="server"> <%= outils.obtenirLangue("Image carrousel 2 : |Photo caroussel 2 : ")%></asp:Label>
-																	<asp:TextBox ID="txtboxImgCarrousel2" runat="server" Enabled=" false" />
-																	<a onclick="$('[id$=fuplPhotoCarrousel2]').click(); return false;"
-																		href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
+                                                                    <img id="imgCarrousel1" width="360" src="../Upload/Carrousel1.jpg" />
+                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel1" ClientIDMode="Static" onpropertychange="$('[id$=uploadButton]').click(); return false;" onchange="$('[id$=uploadButton]').click(); return false;" Style="display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                                                    <asp:Button ID="uploadButton" runat="server" Text="Upload!" ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click" />
+                                                                </div>
+                                                                <div class="marginbottom_divImgCarrousel">
+                                                                    <asp:Label ID="Label7" runat="server"> <%= outils.obtenirLangue("Image carrousel 2 : |Photo caroussel 2 : ")%></asp:Label>
+                                                                    <asp:TextBox ID="txtboxImgCarrousel2" runat="server" Enabled=" false" />
+                                                                    <a onclick="$('[id$=fuplPhotoCarrousel2]').click(); return false;"
+                                                                        href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
 															<asp:LinkButton ID="Carrousel2" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
-																	<img id="imgCarrousel2" width="360" src="../Upload/Carrousel2.jpg" />
-																	<asp:FileUpload ID="fuplPhotoCarrousel2" onchange="PreviewImage('imgCarrousel2','fuplPhotoCarrousel2');" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
-																</div>
-																<div>
-																	<asp:Label ID="Label8" runat="server"> <%= outils.obtenirLangue("Image carrousel 3 : |Photo caroussel 3 : ")%></asp:Label>
-																	<asp:TextBox ID="txtboxImgCarrousel3" runat="server" Enabled=" false" />
-																	<a onclick="$('[id$=fuplPhotoCarrousel3]').click(); return false;"
-																		href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
+                                                                    <img id="imgCarrousel2" width="360" src="../Upload/Carrousel2.jpg" />
+                                                                    <asp:FileUpload ID="fuplPhotoCarrousel2" onchange="PreviewImage('imgCarrousel2','fuplPhotoCarrousel2');" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                                                </div>
+                                                                <div>
+                                                                    <asp:Label ID="Label8" runat="server"> <%= outils.obtenirLangue("Image carrousel 3 : |Photo caroussel 3 : ")%></asp:Label>
+                                                                    <asp:TextBox ID="txtboxImgCarrousel3" runat="server" Enabled=" false" />
+                                                                    <a onclick="$('[id$=fuplPhotoCarrousel3]').click(); return false;"
+                                                                        href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
 															<asp:LinkButton ID="Carrousel3" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
-																	<img id="imgCarrousel3" width="360" src="../Upload/Carrousel3.jpg" />
-																	<asp:FileUpload ID="fuplPhotoCarrousel3" onchange="PreviewImage('imgCarrousel3','fuplPhotoCarrousel3');" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
-																</div>
-															</div>
-														</div>
-													</asp:View>
-													<asp:View runat="server" ID="vCrop" OnActivate="vCrop_Activate">
-														<div>
+                                                                    <img id="imgCarrousel3" width="360" src="../Upload/Carrousel3.jpg" />
+                                                                    <asp:FileUpload ID="fuplPhotoCarrousel3" onchange="PreviewImage('imgCarrousel3','fuplPhotoCarrousel3');" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </asp:View>
+                                                    <asp:View runat="server" ID="vCrop" OnActivate="vCrop_Activate">
+                                                        <div>
 
-															<asp:Button runat="server" ID="imageRotateLeft" CssClass="btn rotateImgLeft" meta:resourcekey="imageRotateLeftResource1" />
-															<asp:Button runat="server" ID="imageRotateRight" CssClass="btn rotateImgRight" meta:resourcekey="imageRotateRightResource1" />
-															<br />
-															<asp:Image runat="server" ID="cropbox" Width="800px" ClientIDMode="Static" meta:resourcekey="cropboxResource1" />
-															<br />
-															<asp:Button ID="btCropGo" runat="server" Text="Sauvegarder" CssClass="btn btn-default" meta:resourcekey="btCropGoResource1" />
+                                                            <asp:Button runat="server" ID="imageRotateLeft" CssClass="rotateImgLeft" OnClick="imageRotateLeft_Click" />
+                                                            <asp:Button runat="server" ID="imageRotateRight" CssClass="rotateImgRight" OnClick="imageRotateRght_Click" />
+                                                            <br />
+                                                            <asp:Image runat="server" ID="cropbox" Width="800px" ClientIDMode="Static" />
+                                                            <br />
+                                                            <asp:Button ID="btCropGo" runat="server" Text="Sauvegarder" CssClass="btn btn-default" OnClick="btCropGo_Click" />
 
-															<asp:HiddenField ID="X" runat="server" ClientIDMode="Static" />
-															<asp:HiddenField ID="Y" runat="server" ClientIDMode="Static" />
-															<asp:HiddenField ID="W" runat="server" ClientIDMode="Static" />
-															<asp:HiddenField ID="H" runat="server" ClientIDMode="Static" />
+                                                            <asp:HiddenField ID="X" runat="server" ClientIDMode="Static" />
+                                                            <asp:HiddenField ID="Y" runat="server" ClientIDMode="Static" />
+                                                            <asp:HiddenField ID="W" runat="server" ClientIDMode="Static" />
+                                                            <asp:HiddenField ID="H" runat="server" ClientIDMode="Static" />
 
-														</div>
+                                                        </div>
 
-													</asp:View>
-												</asp:MultiView>
-											</div>
+                                                    </asp:View>
+                                                </asp:MultiView>
+                                            </div>
+                                            <div class="accordion-group">
+                                                <div class="accordion-heading">
+                                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseBackup">
+                                                        <%= outils.obtenirLangue("Sauvegarde de la base de données |Database Backup")%>
+
+                                                    </a>
+                                                </div>
+                                                <div id="collapseBackup" class="accordion-body collapse">
+                                                    <div class="accordion-inner">
+                                                        <div>
+                                                            <asp:LinkButton ID="lnkCreateBackup" runat="server" Style="color: #000;" OnClientClick="return confirm('Êtes vous certain de vouloir créer une nouvelle sauvegarde?')" OnClick="lnkCreateBackup_Click">
+																<%= outils.obtenirLangue("Créer une sauvegarde |Create backup ")%>
+                                                            </asp:LinkButton>
+                                                        </div>
+                                                        <div>
+                                                            <asp:LinkButton ID="LinkButton2" runat="server" Style="color: #000;">
+																<%= outils.obtenirLangue("Restaurer une sauvegarde |Restore backup ")%>
+                                                            </asp:LinkButton>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </ItemTemplate>
@@ -429,7 +456,7 @@
                         </asp:View>
 
                         <asp:View ID="ViewNouvelle" runat="server">
-                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 160px;">
+                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 120px;">
                                 <asp:ListView ID="lviewNouvelle" runat="server"
                                     ItemType="ModeleSentinellesHY.nouvelle"
                                     SelectMethod="GetNouvelle"
@@ -562,13 +589,13 @@
                                             <asp:LinkButton ID="btnModifierNouvelle" runat="server"
                                                 CommandName="Update"
                                                 CssClass="btn btnAjouter disabled-button">
-                                                <i aria-hidden="true" class="icon-check"></i> <% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
+												<i aria-hidden="true" class="icon-check"></i> <% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
                                             <asp:LinkButton ID="lnkbtnSupprimerNouvelle" runat="server"
                                                 href="#myModal"
                                                 role="button"
                                                 class="btn btnAjouter disabled-button"
                                                 data-toggle="modal">
-                                                <i aria-hidden="true" class="icon-remove"></i><% =outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
+												<i aria-hidden="true" class="icon-remove"></i><% =outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
                                             <!-- Modal -->
                                             <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                 <div class="modal-header">
@@ -739,13 +766,13 @@
                                             <asp:LinkButton ID="btnModifierNouvelle" runat="server"
                                                 CommandName="Update"
                                                 CssClass="btn btnAjouter disabled-button">
-                                                <i aria-hidden="true" class="icon-check"></i> <% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
+												<i aria-hidden="true" class="icon-check"></i> <% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
                                             <asp:LinkButton ID="lnkbtnSupprimerNouvelle" runat="server"
                                                 href="#myModal"
                                                 role="button"
                                                 class="btn btnAjouter disabled-button"
                                                 data-toggle="modal">
-                                                <i aria-hidden="true" class="icon-remove"></i><% =outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
+												<i aria-hidden="true" class="icon-remove"></i><% =outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
                                             <!-- Modal -->
                                             <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                 <div class="modal-header">
@@ -766,77 +793,77 @@
                             </div>
                         </asp:View>
 
-						<asp:View ID="ViewRevueDePresse" runat="server">
-							<div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 120px;">
-								<asp:ListView ID="lvRDP" runat="server"
-									ItemType="ModeleSentinellesHY.revuedepresse"
-									SelectMethod="GetRDP"
-									DataKeyNames="idRDP"
-									GroupItemCount="3">
-									<LayoutTemplate>
-										<div style="width: 85%; float: left;">
-											<asp:LinkButton ID="lbRDPTitre" runat="server" CommandName="sort" CommandArgument="TitreFR" class="titreListe"><%= outils.obtenirLangue("Titre Français|English title")%></asp:LinkButton>
-										</div>
-										<div style="width: 15%; float: right;">
-											<asp:LinkButton runat="server" CommandName="sort" CommandArgument="dateRedaction" class="titreListe"><%= outils.obtenirLangue("Date publication|Publish date")%></asp:LinkButton>
-										</div>
-										<asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
-									</LayoutTemplate>
-									<GroupTemplate>
-										<div class="clear-both">
-											<asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-										</div>
-									</GroupTemplate>
-									<ItemTemplate>
-										<div class="ItemTemplate">
-											<div style="width: 85%; float: left;">
-												<asp:LinkButton ID="LinkButton6" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 75)%>' />
-											</div>
-											<div style="width: 15%; float: right;">
-												<asp:LinkButton ID="LinkButton7" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
-											</div>
-										</div>
-									</ItemTemplate>
-									<SelectedItemTemplate>
-										<div class="SelectedItemTemplate">
-											<div style="width: 85%; float: left;">
-												<asp:LinkButton ID="LinkButton8" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
-											</div>
-											<div style="width: 15%; float: right;">
-												<asp:LinkButton ID="LinkButton9" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
-											</div>
-										</div>
-									</SelectedItemTemplate>
-									<EmptyDataTemplate>
-										<h5><% =outils.obtenirLangue("Aucune revue de presse pour le moment.|There's no press review at this time.") %></h5>
-									</EmptyDataTemplate>
-								</asp:ListView>
-							</div>
-							<div class="encadrerModification">
-								<asp:Label ID="lblMessageErreurRDP" CssClass="lblMessageErreur" runat="server" Text="" />
-								<asp:ListView ID="lvInfoRDP" runat="server"
-									ItemType="ModeleSentinellesHY.revuedepresse"
-									SelectMethod="getInfoRDP"
-									UpdateMethod="UpdateRDP"
-									DeleteMethod="DeleteRDP"
-									DataKeyNames="idRDP">
-									<LayoutTemplate>
-										<div class="div_AjoutNouvelle">
-											<asp:LinkButton ID="lnkBtnAjoutRDP" runat="server" OnClick="lnkBtnAjoutRDP_Click">+ <% =outils.obtenirLangue("Ajouter une revue de presse|Add a press review")%></asp:LinkButton>
-										</div>
-										<asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-									</LayoutTemplate>
-									<ItemTemplate>
-										<div style="position: relative;">
-											<asp:Label ID="lblTitreFR" runat="server"><%= outils.obtenirLangue("Titre Français : |French Title : ")%></asp:Label>
-											<asp:TextBox ID="txtboxtitreFR" CssClass="txtBoxModifier_Titre" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.titreFR%>' runat="server" />
-											<div id="divDateRedaction" class="divDateRedaction" runat="server">
-												<asp:Label ID="lblRedigele" runat="server"><%= outils.obtenirLangue("Rédigé le |Posted on ")%></asp:Label>
-												<asp:Label ID="lblDateRedaction" runat="server" Text='<%# Eval("dateRedaction")%>' />
-											</div>
-										</div>
-										<div>
-											<asp:TextBox ID="txtboxcontenuFR" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuFR%>' runat="server" />
+                        <asp:View ID="ViewRevueDePresse" runat="server">
+                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 120px;">
+                                <asp:ListView ID="lvRDP" runat="server"
+                                    ItemType="ModeleSentinellesHY.revuedepresse"
+                                    SelectMethod="GetRDP"
+                                    DataKeyNames="idRDP"
+                                    GroupItemCount="3">
+                                    <LayoutTemplate>
+                                        <div style="width: 85%; float: left;">
+                                            <asp:LinkButton ID="lbRDPTitre" runat="server" CommandName="sort" CommandArgument="TitreFR" class="titreListe"><%= outils.obtenirLangue("Titre Français|English title")%></asp:LinkButton>
+                                        </div>
+                                        <div style="width: 15%; float: right;">
+                                            <asp:LinkButton runat="server" CommandName="sort" CommandArgument="dateRedaction" class="titreListe"><%= outils.obtenirLangue("Date publication|Publish date")%></asp:LinkButton>
+                                        </div>
+                                        <asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
+                                    </LayoutTemplate>
+                                    <GroupTemplate>
+                                        <div class="clear-both">
+                                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                        </div>
+                                    </GroupTemplate>
+                                    <ItemTemplate>
+                                        <div class="ItemTemplate">
+                                            <div style="width: 85%; float: left;">
+                                                <asp:LinkButton ID="LinkButton6" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 75)%>' />
+                                            </div>
+                                            <div style="width: 15%; float: right;">
+                                                <asp:LinkButton ID="LinkButton7" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                    <SelectedItemTemplate>
+                                        <div class="SelectedItemTemplate">
+                                            <div style="width: 85%; float: left;">
+                                                <asp:LinkButton ID="LinkButton8" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                            </div>
+                                            <div style="width: 15%; float: right;">
+                                                <asp:LinkButton ID="LinkButton9" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                            </div>
+                                        </div>
+                                    </SelectedItemTemplate>
+                                    <EmptyDataTemplate>
+                                        <h5><% =outils.obtenirLangue("Aucune revue de presse pour le moment.|There's no press review at this time.") %></h5>
+                                    </EmptyDataTemplate>
+                                </asp:ListView>
+                            </div>
+                            <div class="encadrerModification">
+                                <asp:Label ID="lblMessageErreurRDP" CssClass="lblMessageErreur" runat="server" Text="" />
+                                <asp:ListView ID="lvInfoRDP" runat="server"
+                                    ItemType="ModeleSentinellesHY.revuedepresse"
+                                    SelectMethod="getInfoRDP"
+                                    UpdateMethod="UpdateRDP"
+                                    DeleteMethod="DeleteRDP"
+                                    DataKeyNames="idRDP">
+                                    <LayoutTemplate>
+                                        <div class="div_AjoutNouvelle">
+                                            <asp:LinkButton ID="lnkBtnAjoutRDP" runat="server" OnClick="lnkBtnAjoutRDP_Click">+ <% =outils.obtenirLangue("Ajouter une revue de presse|Add a press review")%></asp:LinkButton>
+                                        </div>
+                                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                    </LayoutTemplate>
+                                    <ItemTemplate>
+                                        <div style="position: relative;">
+                                            <asp:Label ID="lblTitreFR" runat="server"><%= outils.obtenirLangue("Titre Français : |French Title : ")%></asp:Label>
+                                            <asp:TextBox ID="txtboxtitreFR" CssClass="txtBoxModifier_Titre" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.titreFR%>' runat="server" />
+                                            <div id="divDateRedaction" class="divDateRedaction" runat="server">
+                                                <asp:Label ID="lblRedigele" runat="server"><%= outils.obtenirLangue("Rédigé le |Posted on ")%></asp:Label>
+                                                <asp:Label ID="lblDateRedaction" runat="server" Text='<%# Eval("dateRedaction")%>' />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <asp:TextBox ID="txtboxcontenuFR" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuFR%>' runat="server" />
 
                                             <asp:HtmlEditorExtender ID="htmleditorContenuFR" runat="server" TargetControlID="txtboxcontenuFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
                                                 <Toolbar>
@@ -903,20 +930,20 @@
                                         <div>
                                             <a onclick="$('[id$=fuplRDP]').click(); return false;"
                                                 href="#"><%= outils.obtenirLangue("Choisir|Select") %></a> |
-                                                <asp:LinkButton ID="lnkUploadRDP" runat="server" Text="Upload" OnClick="lnkUploadRDP_Click" />
+												<asp:LinkButton ID="lnkUploadRDP" runat="server" Text="Upload" OnClick="lnkUploadRDP_Click" />
                                             <asp:FileUpload ID="fuplRDP" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
                                         </div>
                                         <div class="boutonsNouvelleMargin">
                                             <asp:LinkButton ID="btnModifierNouvelle" runat="server"
                                                 CommandName="Update"
                                                 CssClass="btn btnAjouter">
-                                                <i aria-hidden="true" class="icon-check"></i> <% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
+												<i aria-hidden="true" class="icon-check"></i> <% =outils.obtenirLangue(" Sauvegarder| Save")%></asp:LinkButton>
                                             <asp:LinkButton ID="lnkbtnSupprimerNouvelle" runat="server"
                                                 href="#myModal"
                                                 role="button"
                                                 class="btn btnAjouter"
                                                 data-toggle="modal">
-                                                <i aria-hidden="true" class="icon-remove"></i><% =outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
+												<i aria-hidden="true" class="icon-remove"></i><% =outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
                                             <!-- Modal -->
                                             <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                 <div class="modal-header">
@@ -939,11 +966,6 @@
 
                         <asp:View ID="ViewUtilisateur" runat="server">
                             <div class="row paddingRow">
-                                <div class="pull-right">
-                                    <asp:TextBox ID="txtboxRechercheUtilisateur" runat="server" />
-                                    <asp:Button ID="btnRechercheUtilisateur" runat="server" Text="Rechercher" CssClass="btn btnAjouter" />
-                                </div>
-                                <div class="clear-both"></div>
                                 <div class="petitsPointsListeUtilisateurs overflow">
                                     <%--------lviewUtilisateur-------%>
                                     <asp:ListView ID="lviewUtilisateurs" runat="server"
@@ -952,54 +974,22 @@
                                         DataKeyNames="idUtilisateur"
                                         GroupItemCount="3">
                                         <LayoutTemplate>
-                                            <div style="width: 20%; float: left;">
-                                                <asp:LinkButton runat="server" CommandName="sort" CommandArgument="nomUtilisateur" class="titreListe"><%= outils.obtenirLangue("Nom Utilisateur|Username")%></asp:LinkButton>
-                                            </div>
-                                            <div style="width: 26.6%; float: left;">
-                                                <asp:LinkButton runat="server" CommandName="sort" CommandArgument="prenom" class="titreListe"><%= outils.obtenirLangue("Prénom|First Name")%></asp:LinkButton>
-                                            </div>
-                                            <div style="width: 26.6%; float: left;">
-                                                <asp:LinkButton runat="server" CommandName="sort" CommandArgument="nom" class="titreListe"><%= outils.obtenirLangue("Nom|Last Name")%></asp:LinkButton>
-                                            </div>
-                                            <div style="width: 26.7%; float: left;">
-                                                <asp:LinkButton runat="server" CommandName="sort" CommandArgument="milieu" class="titreListe"><%= outils.obtenirLangue("Milieu Travail|Workplace")%></asp:LinkButton>
-                                            </div>
                                             <asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
                                         </LayoutTemplate>
                                         <GroupTemplate>
-                                            <div class="clear-both">
-                                                <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-                                            </div>
+                                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                         </GroupTemplate>
                                         <ItemTemplate>
-                                            <div class="ItemTemplate">
-                                                <div style="width: 20%; float: left;">
-                                                    <asp:LinkButton ID="LinkButton10" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
-                                                </div>
-                                                <div style="width: 26.6%; float: left;">
-                                                    <asp:LinkButton ID="LinkButton11" CommandName="Select" runat="server" Text='<%# Eval("prenom")%>' />
-                                                </div>
-                                                <div style="width: 26.6%; float: left;">
-                                                    <asp:LinkButton ID="LinkButton12" CommandName="Select" runat="server" Text='<%# Eval("nom")%>' />
-                                                </div>
-                                                <div style="width: 26.7%; float: left;">
-                                                    <asp:LinkButton ID="LinkButton13" CommandName="Select" runat="server" Text='<%# Eval("milieu")%>' />
+                                            <div class="span3">
+                                                <div id="divNom" style="color: black;" class="ItemTemplateNom">
+                                                    <asp:LinkButton ID="lblPrenom" CssClass="lnkBtnPrenom" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
                                                 </div>
                                             </div>
                                         </ItemTemplate>
                                         <SelectedItemTemplate>
-                                            <div class="SelectedItemTemplate">
-                                                <div style="width: 20%; float: left;">
-                                                    <asp:LinkButton ID="LinkButton10" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
-                                                </div>
-                                                <div style="width: 26.6%; float: left;">
-                                                    <asp:LinkButton ID="LinkButton11" CommandName="Select" runat="server" Text='<%# Eval("prenom")%>' />
-                                                </div>
-                                                <div style="width: 26.6%; float: left;">
-                                                    <asp:LinkButton ID="LinkButton12" CommandName="Select" runat="server" Text='<%# Eval("nom")%>' />
-                                                </div>
-                                                <div style="width: 26.7%; float: left;">
-                                                    <asp:LinkButton ID="LinkButton13" CommandName="Select" runat="server" Text='<%# Eval("milieu")%>' />
+                                            <div class="span3">
+                                                <div id="divNom" class="SelectedItemTemplateNom">
+                                                    <asp:LinkButton ID="lblPrenom" title='<%# Eval("prenom")%>' CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
                                                 </div>
                                             </div>
                                         </SelectedItemTemplate>
@@ -1102,9 +1092,9 @@
                                                 </div>
                                             </div>
 
-											<div id="divMilieu" class="row" style="clear: both">
-												<div class="span3" style="margin-left: 35px;">
-													<asp:Label ID="lblMilieu" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Milieu de travail:|Work place:")%></asp:Label>
+                                            <div id="divMilieu" class="row" style="clear: both">
+                                                <div class="span3" style="margin-left: 35px;">
+                                                    <asp:Label ID="lblMilieu" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Milieu de travail:|Work place:")%></asp:Label>
 
                                                 </div>
                                                 <div class="span6" style="float: right;">
@@ -1139,7 +1129,7 @@
                                                     <div id="divFileUpload">
                                                         <a onclick="$('[id$=fuplPhoto]').click(); return false;"
                                                             href="#"><%= outils.obtenirLangue("Choisir|Select") %></a> |
-                                                        <asp:LinkButton ID="lnkUpload" runat="server" Text="Upload" OnClick="lnkUpload_Click" />
+														<asp:LinkButton ID="lnkUpload" runat="server" Text="Upload" OnClick="lnkUpload_Click" />
                                                     </div>
                                                 </div>
                                                 <div class="span6" style="float: right;">
@@ -1159,9 +1149,9 @@
                                                         CssClass="btn btnAjouter"
                                                         CausesValidation="true"
                                                         ValidationGroup="sommaire">
-                                                    <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Mettre à jour| Update")%></asp:LinkButton>
+													<i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Mettre à jour| Update")%></asp:LinkButton>
                                                     <asp:LinkButton ID="btnSupprimerUti" runat="server" href="#myModal" role="button" class="btn btnAjouter" data-toggle="modal" CommandName="Update">
-                                                    <i aria-hidden="true" class="icon-remove"></i><%= outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
+													<i aria-hidden="true" class="icon-remove"></i><%= outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
                                                     <!-- Modal -->
                                                     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                         <div class="modal-header">
@@ -1189,7 +1179,7 @@
                             <div class="encadrerModification">
                                 <div>
                                     <asp:Label ID="Label11" runat="server">
-                                        <%= outils.obtenirLangue("Veuillez prendre note que ce message sera distribué à tous les utilisateurs présentement inscrits.|Please take note that this email will be sent to all the users actually registered.")%>
+										<%= outils.obtenirLangue("Veuillez prendre note que ce message sera distribué à tous les utilisateurs présentement inscrits.|Please take note that this email will be sent to all the users actually registered.")%>
                                     </asp:Label>
                                 </div>
                                 <div class="pull-right">
@@ -1202,7 +1192,7 @@
                                 <div>
                                     <asp:TextBox ID="txtboxMessage" runat="server" CssClass="htmlEditor" TextMode="MultiLine"></asp:TextBox>
 
-                                    <asp:HtmlEditorExtender ID="htmleditorMessage" runat="server" TargetControlID="txtboxMessage" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
+                                    <asp:HtmlEditorExtender ID="htmleditorMessage" runat="server" TargetControlID="txtboxMessage" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
                                         <Toolbar>
                                             <ajaxToolkit:Undo />
                                             <ajaxToolkit:Redo />
@@ -1232,7 +1222,7 @@
                                     <asp:LinkButton ID="lnkbtnEnvoiMessage" runat="server"
                                         CssClass="btn btnAjouter"
                                         CommandName="Update">
-                                        <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
+										<i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
                                     </asp:LinkButton>
                                 </div>
                             </div>
