@@ -7,6 +7,7 @@ Imports System.Drawing.Imaging
 Imports System.Drawing.Drawing2D
 Imports System.Data.Entity.Validation
 Imports System.ComponentModel.DataAnnotations
+Imports ModeleSentinellesHY
 
 Public Class FRMPanneauDeControle
     Inherits ModeleSentinellesHY.FRMdeBase
@@ -140,6 +141,12 @@ Public Class FRMPanneauDeControle
     Private Sub imgBtn_EnvoiMessage_Click(sender As Object, e As ImageClickEventArgs) Handles imgBtn_EnvoiMessage.Click
         MultiView.ActiveViewIndex = 5
     End Sub
+
+    Protected Sub lnkCreateBackup_Click(sender As Object, e As EventArgs)
+        'Dim controler As DBControler = New DBControler()
+        'controler.CreateBackup(Server.MapPath("../Upload/Backup/"), "sentinelle_" & Date.Now().ToString("dd/MMM/yyyy") & ".bak")
+    End Sub
+
 #End Region
 
 #Region "EnvoiMessage"
@@ -300,6 +307,7 @@ Public Class FRMPanneauDeControle
 #End Region
 
 #Region "Nouvelle"
+
     Public Shared Function GetNouvelle() As IQueryable(Of ModeleSentinellesHY.Nouvelle)
         Dim listeNouvelles As List(Of ModeleSentinellesHY.Nouvelle) = Nothing
 
@@ -389,6 +397,13 @@ Public Class FRMPanneauDeControle
             lviewNouvelle.SelectedIndex = 0
         End If
     End Sub
+
+    Private Sub lviewNouvelle_PreRender(sender As Object, e As EventArgs) Handles lviewNouvelle.PreRender
+        If lviewNouvelle.Items.Count > 0 Then
+            CType(lviewNouvelle.FindControl("lbNouvelleTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+            lviewNouvelle.Sort(ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN"), SortDirection.Ascending)
+        End If
+    End Sub
     Private Sub lviewNouvelle_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewNouvelle.SelectedIndexChanged
         ViewState("modeNouvelle") = ""
         lblMessageErreurNouvelle.Text = ""
@@ -400,13 +415,29 @@ Public Class FRMPanneauDeControle
         lviewInfoNouvelles.DataBind()
     End Sub
     Private Sub lviewInfoNouvelles_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewInfoNouvelles.ItemDataBound
-        If ViewState("modeNouvelle") = "AjoutNouvelle" Then
+        Dim listeNouvelle As List(Of ModeleSentinellesHY.Nouvelle) = Nothing
+        listeNouvelle = (From nou In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By nou.dateRedaction Descending).ToList
+
+        If ViewState("modeNouvelle") = "AjoutNouvelle" Or listeNouvelle.Count = 0 Then
             CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = False
+            CType(lviewInfoNouvelles.FindControl("lnkBtnAjoutNouvelle"), LinkButton).Visible = False
+        Else
+                CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = True
+                CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
+                CType(lviewInfoNouvelles.FindControl("lnkBtnAjoutNouvelle"), LinkButton).Visible = True
         End If
     End Sub
 #End Region
 
 #Region "Événement"
+    Private Sub lvEvenement_PreRender(sender As Object, e As EventArgs) Handles lvEvenement.PreRender
+        If lvEvenement.Items.Count > 0 Then
+            CType(lvEvenement.FindControl("lbEvenementTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+            lvEvenement.Sort(ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN"), SortDirection.Ascending)
+        End If
+    End Sub
+
     Private Sub lvEvenement_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvEvenement.SelectedIndexChanged
         ViewState("modeEvenement") = ""
         lblMessageErreurEvenement.Text = ""
@@ -424,6 +455,7 @@ Public Class FRMPanneauDeControle
         Dim listeEvenements As List(Of ModeleSentinellesHY.Événement) = Nothing
         listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateEvenement Descending).ToList
 
+
         Return listeEvenements.AsQueryable()
     End Function
 
@@ -433,6 +465,9 @@ Public Class FRMPanneauDeControle
             Dim idEvenement As Integer = lvEvenement.SelectedDataKey(0)
             unEvenement = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Where eve.idEvenement = idEvenement).FirstOrDefault
             ModeleSentinellesHY.outils.leContexte.Entry(unEvenement).Reload()
+
+        Else
+
         End If
 
         Return unEvenement
@@ -514,11 +549,31 @@ Public Class FRMPanneauDeControle
     Private Sub lvInfoEvenement_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lvInfoEvenement.ItemDataBound
         If ViewState("modeEvenement") = "AjoutEvenement" Then
             CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
+        Else
+            Dim listeEvenements As List(Of ModeleSentinellesHY.Événement) = Nothing
+            listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateEvenement Descending).ToList
+            If listeEvenements.Count = 0 Then
+
+                CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
+                CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = False
+                CType(lvInfoEvenement.FindControl("lnkBtnAjoutEvenement"), LinkButton).Visible = False
+            Else
+                CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = True
+                CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
+                CType(lvInfoEvenement.FindControl("lnkBtnAjoutEvenement"), LinkButton).Visible = True
+            End If
         End If
     End Sub
 #End Region
 
 #Region "Revue de Presse"
+    Private Sub lvRDP_PreRender(sender As Object, e As EventArgs) Handles lvRDP.PreRender
+        If lvRDP.Items.Count > 0 Then
+            CType(lvRDP.FindControl("lbRDPTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+            lvRDP.Sort(ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN"), SortDirection.Ascending)
+        End If
+    End Sub
+
     Private Sub lvRDP_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvRDP.SelectedIndexChanged
         ViewState("modeRDP") = ""
         lblMessageErreurRDP.Text = ""
@@ -649,8 +704,17 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Private Sub lvInfoRDP_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lvInfoRDP.ItemDataBound
-        If ViewState("modeRDP") = "AjoutRDP" Then
+        Dim listeRDP As List(Of ModeleSentinellesHY.RevueDePresse) = Nothing
+        listeRDP = (From rdp In ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).ToList
+
+        If ViewState("modeRDP") = "AjoutRDP" Or listeRDP.Count = 0 Then
             CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = False
+            CType(lvInfoRDP.FindControl("lnkBtnAjoutRDP"), LinkButton).Visible = False
+        Else
+            CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = True
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
+            CType(lvInfoRDP.FindControl("lnkBtnAjoutRDP"), LinkButton).Visible = True
         End If
     End Sub
 #End Region
@@ -702,6 +766,12 @@ Public Class FRMPanneauDeControle
 
         Return unUtilisateur
     End Function
+
+    Private Sub lviewInfoUtilisateur_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewInfoUtilisateur.ItemDataBound
+        If CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idUtilisateur = CType(e.Item.DataItem, ModeleSentinellesHY.Utilisateur).idUtilisateur Then
+            CType(e.Item.FindControl("btnSupprimerUtilisateur"), Button).Visible = False
+        End If
+    End Sub
 
     Public Sub DeleteUtilisateur(ByVal utilisateurASupprimer As ModeleSentinellesHY.Utilisateur)
 
@@ -842,7 +912,7 @@ Public Class FRMPanneauDeControle
                 targetH = CInt(original.Height * (CSng(targetSize) / CSng(original.Width)))
             End If
         Else
-            targetH = 200
+            targetH = 400
             targetW = 960
         End If
 
@@ -880,4 +950,5 @@ Public Class FRMPanneauDeControle
 
     End Sub
 #End Region
+
 End Class

@@ -123,6 +123,7 @@
     <Content Include="CSS\bootstrap.css" />
     <Content Include="CSS\bootstrap.min.css" />
     <Content Include="CSS\Forum.css" />
+    <Content Include="CSS\FRMCreateurs.css" />
     <Content Include="CSS\FRMhistorique.css" />
     <Content Include="CSS\index.css" />
     <Content Include="CSS\Jcrop.gif" />
@@ -138,6 +139,7 @@
     <Content Include="CSS\SiteMaster.css" />
     <Content Include="default.aspx" />
     <Content Include="Formulaires\FRMConfirmation.aspx" />
+    <Content Include="Formulaires\FRMCreateurs.aspx" />
     <Content Include="Formulaires\FRMdevenirsentinelle.aspx" />
     <Content Include="Formulaires\FRMevenements.aspx" />
     <Content Include="Formulaires\FRMForum.aspx" />
@@ -194,6 +196,13 @@
     <Compile Include="Formulaires\FRMConfirmation.aspx.vb">
       <DependentUpon>FRMConfirmation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FRMCreateurs.aspx.designer.vb">
+      <DependentUpon>FRMCreateurs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FRMCreateurs.aspx.vb">
+      <DependentUpon>FRMCreateurs.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Formulaires\FRMdevenirsentinelle.aspx.designer.vb">
       <DependentUpon>FRMdevenirsentinelle.aspx</DependentUpon>

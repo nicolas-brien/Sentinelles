@@ -6,6 +6,19 @@
     font-family: 'AgencyR';
         src: url(../Upload/AGENCYR.ttf);
 }
+@font-face {
+    font-family: 'Lucida';
+        src: url(../Upload/Lucida_webfont.eot);
+}
+@font-face {
+    font-family: 'Lucida';
+        src: url(../Upload/Lucida_webfont.ttf);
+}
+@font-face {
+    font-family: 'Lucida';
+        src: url(../Upload/Lucida_webfont.woff);
+}
+
 *
 {
     margin: 0px;
@@ -88,7 +101,7 @@ body
 /*-------------------------------------HEADER----------------------------------*/
 #header
 {
-    height: 435px;
+    height: 635px;
 }
 
 #header-contenant
@@ -192,7 +205,7 @@ body
 .banniere
 {
     z-index: 10;
-    top: 110px;
+    top: 305px;
 }
 
 /*-------------------------------CONTENT----------------------------------------*/
