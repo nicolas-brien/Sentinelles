@@ -356,6 +356,24 @@ Partial Public Class FRMPanneauDeControle
     Protected WithEvents ViewUtilisateur As Global.System.Web.UI.WebControls.View
 
     '''<summary>
+    '''Contrôle txtboxRechercheUtilisateur.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents txtboxRechercheUtilisateur As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Contrôle btnRechercheUtilisateur.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents btnRechercheUtilisateur As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''Contrôle lviewUtilisateurs.
     '''</summary>
     '''<remarks>
