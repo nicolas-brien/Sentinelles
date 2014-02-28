@@ -90,7 +90,7 @@
 
 .ItemTemplate div a {
     color: #0066d5;
-    margin: 3px;
+    margin-left: 3px;
 }
 
     .ItemTemplate div a:hover {
@@ -108,7 +108,7 @@
 }
 
 .SelectedItemTemplate div a {
-    margin: 3px;
+    margin-left: 3px;
     color: white;
     background-color: #0066d5;
 }
@@ -120,6 +120,11 @@
     background-color: #0066d5;
 }
 
+.listeLigneComplete{
+    display:block;
+    margin:0px;
+    padding:0px;
+}
 
 /*-------------------------------------Message ----------------------------------*/
 #div_titreMessage {
