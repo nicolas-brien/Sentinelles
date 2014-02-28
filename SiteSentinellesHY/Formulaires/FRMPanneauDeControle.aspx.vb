@@ -266,12 +266,20 @@ Public Class FRMPanneauDeControle
     Protected Sub lnkUploadPhotoCarrousel_Click(sender As Object, e As EventArgs)
         CType(lviewOptions.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 1
         Dim nomImage = CType(lviewOptions.Items(0).FindControl("nomImage"), System.Web.UI.WebControls.HiddenField)
+        Dim nonFileUpdatege = CType(lviewOptions.Items(0).FindControl("nonFileUpdate"), System.Web.UI.WebControls.HiddenField)
         nomImage.Value = sender.text
+        If nomImage.Value = "Carrousel1" Then
+            nonFileUpdatege.Value = "fuplPhotoCarrousel1"
+        ElseIf nomImage.Value = "Carrousel2" Then
+            nonFileUpdatege.Value = "fuplPhotoCarrousel2"
+        ElseIf nomImage.Value = "Carrousel3" Then
+            nonFileUpdatege.Value = "fuplPhotoCarrousel3"
+        End If
 
     End Sub
     Protected Sub vCrop_Activate(sender As Object, e As EventArgs)
-        ' Dim nomFichierID = Right((CType(sender, LinkButton).ID.ToString), 1)
-        Dim controlUpload = CType(lviewOptions.Items(0).FindControl("fuplPhotoCarrousel1"), FileUpload)
+        Dim nonFileUpdatege = CType(lviewOptions.Items(0).FindControl("nonFileUpdate"), System.Web.UI.WebControls.HiddenField)
+        Dim controlUpload = CType(lviewOptions.Items(0).FindControl(nonFileUpdatege.Value), FileUpload)
 
 
         If controlUpload.PostedFile.ContentType = "image/jpeg" Then
@@ -290,6 +298,7 @@ Public Class FRMPanneauDeControle
         End If
 
     End Sub
+
     Protected Sub imageRotateLeft_Click(sender As Object, e As EventArgs)
         Dim cropbox = CType(lviewOptions.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
         Dim path As [String] = Server.MapPath(cropbox.ImageUrl)
