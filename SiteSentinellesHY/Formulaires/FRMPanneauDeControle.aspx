@@ -109,8 +109,8 @@
                                                                 </asp:Label>
                                                             </div>
                                                             <asp:TextBox ID="txtboxHistoriqueFR" TextMode="MultiLine" CssClass="htmleditorHistorique" runat="server" Text='<%# BindItem.historiqueFR%>' />
-                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueFR" runat="server" TargetControlID="txtboxHistoriqueFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
-                                                                  <Toolbar> 
+                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueFR" runat="server" TargetControlID="txtboxHistoriqueFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                                                <Toolbar>
                                                                     <ajaxToolkit:Undo />
                                                                     <ajaxToolkit:Redo />
                                                                     <ajaxToolkit:Bold />
@@ -132,7 +132,7 @@
                                                                     <ajaxToolkit:InsertHorizontalRule />
                                                                     <ajaxToolkit:HorizontalSeparator />
                                                                 </Toolbar>
-                                                          </asp:HtmlEditorExtender>
+                                                            </asp:HtmlEditorExtender>
                                                         </div>
                                                         <hr />
                                                         <div>
@@ -142,8 +142,8 @@
                                                                 </asp:Label>
                                                             </div>
                                                             <asp:TextBox ID="txtboxHistoriqueEN" TextMode="MultiLine" CssClass="htmleditorHistorique" runat="server" Text='<%# BindItem.historiqueEN%>' />
-                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueEN" runat="server" TargetControlID="txtboxHistoriqueEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
-                                                                  <Toolbar> 
+                                                            <asp:HtmlEditorExtender ID="htmleditorHistoriqueEN" runat="server" TargetControlID="txtboxHistoriqueEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                                                <Toolbar>
                                                                     <ajaxToolkit:Undo />
                                                                     <ajaxToolkit:Redo />
                                                                     <ajaxToolkit:Bold />
@@ -165,7 +165,7 @@
                                                                     <ajaxToolkit:InsertHorizontalRule />
                                                                     <ajaxToolkit:HorizontalSeparator />
                                                                 </Toolbar>
-                                                          </asp:HtmlEditorExtender>
+                                                            </asp:HtmlEditorExtender>
                                                         </div>
                                                         <div id="div_lnkbtnHistorique">
                                                             <asp:LinkButton ID="lnkbtnHistorique" runat="server"
@@ -193,7 +193,7 @@
                                                             </div>
                                                             <asp:TextBox ID="txtboxMaltraitanceFR" TextMode="MultiLine" CssClass="htmleditorMaltraitance" runat="server" Text='<%# BindItem.maltraitanceFR%>' />
                                                             <asp:HtmlEditorExtender ID="htmleditorMaltraitanceFR" runat="server" TargetControlID="txtboxMaltraitanceFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
-                                                                  <Toolbar> 
+                                                                <Toolbar>
                                                                     <ajaxToolkit:Undo />
                                                                     <ajaxToolkit:Redo />
                                                                     <ajaxToolkit:Bold />
@@ -215,7 +215,7 @@
                                                                     <ajaxToolkit:InsertHorizontalRule />
                                                                     <ajaxToolkit:HorizontalSeparator />
                                                                 </Toolbar>
-                                                          </asp:HtmlEditorExtender>
+                                                            </asp:HtmlEditorExtender>
                                                         </div>
                                                         <hr />
                                                         <div>
@@ -227,7 +227,7 @@
                                                             <asp:TextBox ID="txtboxMaltraitanceEN" TextMode="MultiLine" CssClass="htmleditorMaltraitance" runat="server" Text='<%# BindItem.maltraitanceEN%>' />
 
                                                             <asp:HtmlEditorExtender ID="HtmlEditorExtender1" runat="server" TargetControlID="txtboxMaltraitanceEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
-                                                                  <Toolbar> 
+                                                                <Toolbar>
                                                                     <ajaxToolkit:Undo />
                                                                     <ajaxToolkit:Redo />
                                                                     <ajaxToolkit:Bold />
@@ -249,7 +249,7 @@
                                                                     <ajaxToolkit:InsertHorizontalRule />
                                                                     <ajaxToolkit:HorizontalSeparator />
                                                                 </Toolbar>
-                                                          </asp:HtmlEditorExtender>
+                                                            </asp:HtmlEditorExtender>
 
 
                                                         </div>
@@ -365,22 +365,7 @@
                                                 <div class="accordion-heading">
                                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseBackup">
                                                         <%= outils.obtenirLangue("Sauvegarde de la base de données |Database Backup")%>
-                                                        
                                                     </a>
-                                                </div>
-                                                <div id="collapseBackup" class="accordion-body collapse">
-                                                    <div class="accordion-inner">
-                                                        <div>
-                                                            <asp:LinkButton ID="lnkCreateBackup" runat="server" style="color: #000;" OnClientClick="return confirm('Êtes vous certain de vouloir créer une nouvelle sauvegarde?')" OnClick="lnkCreateBackup_Click">
-                                                                <%= outils.obtenirLangue("Créer une sauvegarde |Create backup ")%>
-                                                            </asp:LinkButton>                               
-                                                        </div>
-                                                        <div>
-                                                            <asp:LinkButton ID="LinkButton2" runat="server" style="color: #000;">
-                                                                <%= outils.obtenirLangue("Restaurer une sauvegarde |Restore backup ")%>
-                                                            </asp:LinkButton> 
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -390,7 +375,7 @@
                         </asp:View>
 
                         <asp:View ID="ViewNouvelle" runat="server">
-                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 120px;">
+                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 160px;">
                                 <asp:ListView ID="lviewNouvelle" runat="server"
                                     ItemType="ModeleSentinellesHY.nouvelle"
                                     SelectMethod="GetNouvelle"
@@ -461,7 +446,7 @@
                                         <div>
                                             <asp:TextBox ID="txtboxcontenuFR" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuFR%>' runat="server" />
 
-                                            <asp:HtmlEditorExtender ID="htmleditorContenuFR" runat="server" TargetControlID="txtboxcontenuFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
+                                            <asp:HtmlEditorExtender ID="htmleditorContenuFR" runat="server" TargetControlID="txtboxcontenuFR" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
                                                 <Toolbar>
                                                     <ajaxToolkit:Undo />
                                                     <ajaxToolkit:Redo />
@@ -494,7 +479,7 @@
                                         </div>
                                         <asp:TextBox ID="txtboxcontenuEN" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuEN%>' runat="server" />
 
-                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
+                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
                                             <Toolbar>
                                                 <ajaxToolkit:Undo />
                                                 <ajaxToolkit:Redo />
@@ -551,7 +536,7 @@
                         </asp:View>
 
                         <asp:View ID="ViewEvenement" runat="server">
-                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 120px;">
+                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 160px;">
                                 <asp:ListView ID="lvEvenement" runat="server"
                                     ItemType="ModeleSentinellesHY.événement"
                                     SelectMethod="GetEvenement"
@@ -728,7 +713,7 @@
                         </asp:View>
 
                         <asp:View ID="ViewRevueDePresse" runat="server">
-                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 120px;">
+                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 160px;">
                                 <asp:ListView ID="lvRDP" runat="server"
                                     ItemType="ModeleSentinellesHY.revuedepresse"
                                     SelectMethod="GetRDP"
@@ -832,7 +817,7 @@
                                         </div>
                                         <asp:TextBox ID="txtboxcontenuEN" CssClass="txtBoxModifier" TextMode="MultiLine" Text='<%# BindItem.contenuEN%>' runat="server" />
 
-                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN"   ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
+                                        <asp:HtmlEditorExtender ID="htmleditorContenuEN" runat="server" TargetControlID="txtboxcontenuEN" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
                                             <Toolbar>
                                                 <ajaxToolkit:Undo />
                                                 <ajaxToolkit:Redo />
@@ -898,8 +883,7 @@
                         </asp:View>
 
                         <asp:View ID="ViewUtilisateur" runat="server">
-                            <div class="row paddingRow">
-                                <div class="petitsPointsListeUtilisateurs overflow">
+                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 160px;">
                                     <%--------lviewUtilisateur-------%>
                                     <asp:ListView ID="lviewUtilisateurs" runat="server"
                                         ItemType="ModeleSentinellesHY.utilisateur"
@@ -907,22 +891,54 @@
                                         DataKeyNames="idUtilisateur"
                                         GroupItemCount="3">
                                         <LayoutTemplate>
+                                            <div style="width: 20%; float: left;">
+                                                <asp:LinkButton runat="server" CommandName="sort" CommandArgument="nomUtilisateur" class="titreListe"><%= outils.obtenirLangue("Nom Utilisateur|Username")%></asp:LinkButton>
+                                            </div>
+                                            <div style="width: 26.6%; float: left;">
+                                                <asp:LinkButton runat="server" CommandName="sort" CommandArgument="prenom" class="titreListe"><%= outils.obtenirLangue("Prénom|First Name")%></asp:LinkButton>
+                                            </div>
+                                            <div style="width: 26.6%; float: left;">
+                                                <asp:LinkButton runat="server" CommandName="sort" CommandArgument="nom" class="titreListe"><%= outils.obtenirLangue("Nom|Last Name")%></asp:LinkButton>
+                                            </div>
+                                            <div style="width: 26.7%; float: left;">
+                                                <asp:LinkButton runat="server" CommandName="sort" CommandArgument="milieu" class="titreListe"><%= outils.obtenirLangue("Milieu Travail|Workplace")%></asp:LinkButton>
+                                            </div>
                                             <asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
                                         </LayoutTemplate>
                                         <GroupTemplate>
-                                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                            <div class="clear-both">
+                                                <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                            </div>
                                         </GroupTemplate>
                                         <ItemTemplate>
-                                            <div class="span3">
-                                                <div id="divNom" style="color: black;" class="ItemTemplateNom">
-                                                    <asp:LinkButton ID="lblPrenom" CssClass="lnkBtnPrenom" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
+                                            <div class="ItemTemplate">
+                                                <div style="width: 20%; float: left;">
+                                                    <asp:LinkButton ID="LinkButton10" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
+                                                </div>
+                                                <div style="width: 26.6%; float: left;">
+                                                    <asp:LinkButton ID="LinkButton11" CommandName="Select" runat="server" Text='<%# Eval("prenom")%>' />
+                                                </div>
+                                                <div style="width: 26.6%; float: left;">
+                                                    <asp:LinkButton ID="LinkButton12" CommandName="Select" runat="server" Text='<%# Eval("nom")%>' />
+                                                </div>
+                                                <div style="width: 26.7%; float: left;">
+                                                    <asp:LinkButton ID="LinkButton13" CommandName="Select" runat="server" Text='<%# Eval("milieu")%>' />
                                                 </div>
                                             </div>
                                         </ItemTemplate>
                                         <SelectedItemTemplate>
-                                            <div class="span3">
-                                                <div id="divNom" class="SelectedItemTemplateNom">
-                                                    <asp:LinkButton ID="lblPrenom" title='<%# Eval("prenom")%>' CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
+                                            <div class="SelectedItemTemplate">
+                                                <div style="width: 20%; float: left;">
+                                                    <asp:LinkButton ID="LinkButton10" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
+                                                </div>
+                                                <div style="width: 26.6%; float: left;">
+                                                    <asp:LinkButton ID="LinkButton11" CommandName="Select" runat="server" Text='<%# Eval("prenom")%>' />
+                                                </div>
+                                                <div style="width: 26.6%; float: left;">
+                                                    <asp:LinkButton ID="LinkButton12" CommandName="Select" runat="server" Text='<%# Eval("nom")%>' />
+                                                </div>
+                                                <div style="width: 26.7%; float: left;">
+                                                    <asp:LinkButton ID="LinkButton13" CommandName="Select" runat="server" Text='<%# Eval("milieu")%>' />
                                                 </div>
                                             </div>
                                         </SelectedItemTemplate>
@@ -1027,7 +1043,7 @@
 
                                             <div id="divMilieu" class="row" style="clear: both">
                                                 <div class="span3" style="margin-left: 35px;">
-                                                    <asp:Label ID="lblMilieu" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Milieu de travail:|Work place:")%></asp:Label>
+                                                    <asp:Label ID="lblMilieu" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Milieu de travail:|Workplace:")%></asp:Label>
 
                                                 </div>
                                                 <div class="span6" style="float: right;">
@@ -1105,7 +1121,6 @@
                                         </ItemTemplate>
                                     </asp:ListView>
                                 </div>
-                            </div>
                         </asp:View>
 
                         <asp:View ID="viewMessage" runat="server">
@@ -1125,7 +1140,7 @@
                                 <div>
                                     <asp:TextBox ID="txtboxMessage" runat="server" CssClass="htmlEditor" TextMode="MultiLine"></asp:TextBox>
 
-                                    <asp:HtmlEditorExtender ID="htmleditorMessage" runat="server" TargetControlID="txtboxMessage" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true" >
+                                    <asp:HtmlEditorExtender ID="htmleditorMessage" runat="server" TargetControlID="txtboxMessage" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
                                         <Toolbar>
                                             <ajaxToolkit:Undo />
                                             <ajaxToolkit:Redo />
@@ -1219,6 +1234,9 @@
                         </p>
                         <p>
                             <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" data-toggle="modal" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
+                        </p>
+                        <p>
+                            <asp:LinkButton ID="LinkButton1" CssClass="lnkBtn_Footer" runat="server" PostBackUrl="~/Formulaires/FRMCreateurs.aspx" href="#ModalConnexion"><%= outils.obtenirLangue("Page des développeurs|Developer's page")%></asp:LinkButton>
                         </p>
                     </div>
                 </div>

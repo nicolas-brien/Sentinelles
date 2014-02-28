@@ -923,7 +923,7 @@ Public Class FRMForum
             'Cette section a été ajouter au cas ou la personne veut faire une recherche sur les critères au lieu du text
             'Effectue une recherche de catégorie et par date
             Dim listeResultatTemp As New List(Of ModeleSentinellesHY.Publication)
-            Dim listeResultatPartiel
+            Dim listeResultatPartiel As New List(Of ModeleSentinellesHY.Publication)
             If DDLRechercheAvancee.SelectedValue = 0 Then
                 Dim dateDeDebut As Date
                 Dim dateDeFin As Date

@@ -534,4 +534,13 @@ Partial Public Class FRMPanneauDeControle
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents LnkBtnZoneSentinelle_footer As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Contrôle LinkButton1.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents LinkButton1 As Global.System.Web.UI.WebControls.LinkButton
 End Class

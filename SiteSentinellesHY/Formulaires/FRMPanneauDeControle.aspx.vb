@@ -142,10 +142,10 @@ Public Class FRMPanneauDeControle
         MultiView.ActiveViewIndex = 5
     End Sub
 
-    Protected Sub lnkCreateBackup_Click(sender As Object, e As EventArgs)
-        'Dim controler As DBControler = New DBControler()
-        'controler.CreateBackup(Server.MapPath("../Upload/Backup/"), "sentinelle_" & Date.Now().ToString("dd/MMM/yyyy") & ".bak")
-    End Sub
+    'Protected Sub lnkCreateBackup_Click(sender As Object, e As EventArgs)
+    '    Dim controler As DBControler = New DBControler()
+    '    controler.CreateBackup(Server.MapPath("../Upload/Backup/"), "sentinelle_" & Date.Now().ToString("dd/MMM/yyyy") & ".bak")
+    'End Sub
 
 #End Region
 
@@ -714,6 +714,14 @@ Public Class FRMPanneauDeControle
         Return listeStatutUtilisateur.AsQueryable
     End Function
 #End Region
+
+    Private Sub lviewUtilisateurs_ItemCommand(sender As Object, e As ListViewCommandEventArgs) Handles lviewUtilisateurs.ItemCommand
+        If e.CommandName.ToLower.Contains("sort") Then
+            lviewUtilisateurs.SelectedIndex = 0
+            lviewInfoUtilisateur.DataBind()
+        End If
+    End Sub
+
     Private Sub lviewUtilisateurs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewUtilisateurs.SelectedIndexChanged
         ViewState("modeUtilisateur") = ""
         lblMessageErreurInfoUtilisateur.Text = ""
