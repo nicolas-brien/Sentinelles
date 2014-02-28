@@ -83,13 +83,14 @@
 /*---------------------------------Style des listes-------------------------------*/
 /*--------------------------------------------------------------------------------*/
 .titreListe{
-   margin-left:3px;
+   padding-left:3px;
+   text-align:center;
    font-weight:bold;
 }
 
 .ItemTemplate div a {
     color: #0066d5;
-    margin: 3px 3px 3px 7px;
+    margin: 3px;
 }
 
     .ItemTemplate div a:hover {
@@ -107,7 +108,7 @@
 }
 
 .SelectedItemTemplate div a {
-    margin: 3px 3px 3px 7px;
+    margin: 3px;
     color: white;
     background-color: #0066d5;
 }
@@ -382,3 +383,23 @@
     margin-bottom: 25px;
 }
 /*--------------------------------FOOTER----------------------------------------*/
+/*CarouselEdit ------------------------------------------------------------------------------------------------------------------------*/
+.thumbnailCarouselEdit {
+    padding: 13px;
+}
+
+.rotateImgLeft {
+    background-position: center center;
+    background-image: url('../images/iconRotateLeft.png');
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+}
+
+.rotateImgRight {
+    background-position: center center;
+    background-image: url('../images/iconRotateRight.png');
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+}
