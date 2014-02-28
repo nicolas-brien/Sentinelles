@@ -15,6 +15,7 @@
     </asp:ContentPlaceHolder>
     <title><%= outils.obtenirLangue("Les Sentinelles Haute-Yamaska|Haute-Yamaska's Sentinels")%></title>
     <script src="../CSS/js/jquery.js"></script>
+    <script src="../CSS/js/bootstrap.min.js"></script>
     <script src="../CSS/js/scriptGlobal.js"></script>
 </head>
 <body>
@@ -277,7 +278,7 @@
                         <h5><%= outils.obtenirLangue("Entrez vos informations afin de vous authentifier.|Enter your information to log in.")%></h5>
                         <div class="row">
                             <asp:Label ID="lblLoginUsername" CssClass="lblFormulaire" runat="server"><%= outils.obtenirLangue("Nom d'utilisateur|Username")%></asp:Label>
-                            <asp:TextBox ID="tbLoginUsername" CssClass="tbFormulaire formLogin" runat="server" ClientIDMode="Static"></asp:TextBox>
+                            <asp:TextBox ID="tbLoginUsername" CssClass="tbFormulaire formLogin" runat="server" ClientIDMode="Static" autofocus="true"></asp:TextBox>
                         </div>
                         <div class="row">
                             <asp:Label ID="lblLoginPassword" CssClass="lblFormulaire" runat="server"><%= outils.obtenirLangue("Mot de passe|Password")%></asp:Label>
@@ -324,6 +325,11 @@
         $("#monCaroussel").carousel({
             interval: 6000
         });
+        $('#ModalConnexion').on('shown', function () {
+            setTimeout(function () {
+                $('#tbLoginUsername').focus();
+            }, 1);
+        })
     });
 </script>
 </html>

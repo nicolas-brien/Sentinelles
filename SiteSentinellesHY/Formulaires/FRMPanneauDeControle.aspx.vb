@@ -7,6 +7,7 @@ Imports System.Drawing.Imaging
 Imports System.Drawing.Drawing2D
 Imports System.Data.Entity.Validation
 Imports System.ComponentModel.DataAnnotations
+Imports ModeleSentinellesHY
 
 Public Class FRMPanneauDeControle
     Inherits ModeleSentinellesHY.FRMdeBase
@@ -140,6 +141,12 @@ Public Class FRMPanneauDeControle
     Private Sub imgBtn_EnvoiMessage_Click(sender As Object, e As ImageClickEventArgs) Handles imgBtn_EnvoiMessage.Click
         MultiView.ActiveViewIndex = 5
     End Sub
+
+    'Protected Sub lnkCreateBackup_Click(sender As Object, e As EventArgs)
+    '    Dim controler As DBControler = New DBControler()
+    '    controler.CreateBackup(Server.MapPath("../Upload/Backup/"), "sentinelle_" & Date.Now().ToString("dd/MMM/yyyy") & ".bak")
+    'End Sub
+
 #End Region
 
 #Region "EnvoiMessage"
@@ -253,28 +260,100 @@ Public Class FRMPanneauDeControle
         Next
 
     End Sub
+#End Region
 
+#Region "Carouselle"
     Protected Sub lnkUploadPhotoCarrousel_Click(sender As Object, e As EventArgs)
-        'Méthode pour les photos du carousel
-        Dim nomFichierID = Right((CType(sender, LinkButton).ID.ToString), 1)
-        Dim controlUpload = CType(lviewOptions.Items(0).FindControl("fuplPhotoCarrousel" & nomFichierID), FileUpload)
-        Dim extension As String = ""
-        Dim nomFichier As String = ""
-        If controlUpload.HasFile Then
-            If controlUpload.PostedFile.ContentType = "image/jpeg" Or controlUpload.PostedFile.ContentType = "image/png" Then
-                nomFichier = CType(sender, LinkButton).ID.ToString
+        CType(lviewOptions.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 1
 
-                'On redimensionne les photos pour qu'elles correspondent aux dimensions du carrousel
-                ResizeImageFile(controlUpload.PostedFile.InputStream, 120, Server.MapPath("../Upload/" & nomFichier & ".jpg"), "typeCarrousel")
-                CType(lviewOptions.Items(0).FindControl("txtboxImg" & nomFichier), TextBox).Text = nomFichier
-            Else
-                lblMessageErreurOptions.Text = ModeleSentinellesHY.outils.obtenirLangue("Carrousel : Le type de fichier doit être .png ou .jpg|Carousel : File extension must be .png or .jpg")
-            End If
-        End If
+
+        'Méthode pour les photos du carousel
+        '    Dim nomFichierID = Right((CType(sender, LinkButton).ID.ToString), 1)
+        '    Dim controlUpload = CType(lviewOptions.Items(0).FindControl("fuplPhotoCarrousel" & nomFichierID), FileUpload)
+        '    Dim extension As String = ""
+        '    Dim nomFichier As String = ""
+        '    If controlUpload.HasFile Then
+        '        If controlUpload.PostedFile.ContentType = "image/jpeg" Or controlUpload.PostedFile.ContentType = "image/png" Then
+        '            nomFichier = CType(sender, LinkButton).ID.ToString
+
+        '            'On redimensionne les photos pour qu'elles correspondent aux dimensions du carrousel
+        '            ResizeImageFile(controlUpload.PostedFile.InputStream, 120, Server.MapPath("../Upload/" & nomFichier & ".jpg"), "typeCarrousel")
+        '            CType(lviewOptions.Items(0).FindControl("txtboxImg" & nomFichier), TextBox).Text = nomFichier
+        '        Else
+        '            lblMessageErreurOptions.Text = ModeleSentinellesHY.outils.obtenirLangue("Carrousel : Le type de fichier doit être .png ou .jpg|Carousel : File extension must be .png or .jpg")
+        '        End If
+        '    End If
     End Sub
+    Protected Sub vCrop_Activate(sender As Object, e As EventArgs)
+        ' Dim nomFichierID = Right((CType(sender, LinkButton).ID.ToString), 1)
+        Dim controlUpload = CType(lviewOptions.Items(0).FindControl("fuplPhotoCarrousel1"), FileUpload)
+
+
+        If controlUpload.PostedFile.ContentType = "image/jpeg" Then
+            Dim newFileName As String = ""
+            Dim nomFichier As String = Path.GetFileName(controlUpload.FileName)
+            'Save it in the server images folder
+            Dim random As New Random()
+            Dim rndnbr As Integer = 0
+            rndnbr = random.[Next](0, 99999)
+            newFileName = "AvantCrop-" + rndnbr.ToString + nomFichier
+
+            controlUpload.SaveAs(Server.MapPath("../Upload/" & newFileName))
+
+            Dim cropbox = CType(lviewOptions.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
+            cropbox.ImageUrl = "~/Upload/" & newFileName
+        End If
+
+    End Sub
+    Protected Sub imageRotateLeft_Click(sender As Object, e As EventArgs)
+        Dim cropbox = CType(lviewOptions.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
+        Dim path As [String] = Server.MapPath(cropbox.ImageUrl)
+        Dim img As System.Drawing.Image = System.Drawing.Image.FromFile(path)
+        img.RotateFlip(RotateFlipType.Rotate270FlipNone)
+        img.Save(path)
+    End Sub
+
+    Protected Sub imageRotateRght_Click(sender As Object, e As EventArgs)
+        Dim cropbox = CType(lviewOptions.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
+        Dim path As [String] = Server.MapPath(cropbox.ImageUrl)
+        Dim img As System.Drawing.Image = System.Drawing.Image.FromFile(path)
+        img.RotateFlip(RotateFlipType.Rotate90FlipNone)
+        img.Save(path)
+    End Sub
+    Protected Sub btCropGo_Click(sender As Object, e As EventArgs)
+        'Load the Image from the location
+        Dim cropbox = CType(lviewOptions.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
+        Dim image As System.Drawing.Image = Bitmap.FromFile(Server.MapPath(cropbox.ImageUrl))
+        Dim unFichier As String = Server.MapPath(cropbox.ImageUrl)
+        Dim ratio As Double = image.Width / 800.0
+        Dim nomFichier As String = CType(sender, LinkButton).ID.ToString
+        'Get the Cordinates
+        Dim X = CType(lviewOptions.Items(0).FindControl("X"), System.Web.UI.WebControls.HiddenField)
+        Dim Y = CType(lviewOptions.Items(0).FindControl("Y"), System.Web.UI.WebControls.HiddenField)
+        Dim W = CType(lviewOptions.Items(0).FindControl("W"), System.Web.UI.WebControls.HiddenField)
+        Dim H = CType(lviewOptions.Items(0).FindControl("H"), System.Web.UI.WebControls.HiddenField)
+
+        Dim x__1 As Integer = Convert.ToInt32(Convert.ToDouble(X.Value) * (ratio))
+        Dim y__2 As Integer = Convert.ToInt32(Convert.ToDouble(Y.Value) * (ratio))
+        Dim w__3 As Integer = Convert.ToInt32(Convert.ToDouble(W.Value) * (ratio))
+        Dim h__4 As Integer = Convert.ToInt32(Convert.ToDouble(H.Value) * (ratio))
+        'Create a new image from the specified location to
+        'specified height and width
+        Dim bmp As New Bitmap(960, 400, image.PixelFormat)
+        Dim g As Graphics = Graphics.FromImage(bmp)
+        g.DrawImage(image, New Rectangle(0, 0, 960, 400), New Rectangle(x__1, y__2, w__3, h__4), GraphicsUnit.Pixel)
+        'Save the file and reload to the control
+        bmp.Save(Server.MapPath("~/Upload/") + nomFichier + ".jpg", image.RawFormat)
+
+        lviewOptions.DataBind()
+        CType(lviewOptions.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 0
+
+    End Sub
+
 #End Region
 
 #Region "Nouvelle"
+
     Public Shared Function GetNouvelle() As IQueryable(Of ModeleSentinellesHY.Nouvelle)
         Dim listeNouvelles As List(Of ModeleSentinellesHY.Nouvelle) = Nothing
 
@@ -364,6 +443,13 @@ Public Class FRMPanneauDeControle
             lviewNouvelle.SelectedIndex = 0
         End If
     End Sub
+
+    Private Sub lviewNouvelle_PreRender(sender As Object, e As EventArgs) Handles lviewNouvelle.PreRender
+        If lviewNouvelle.Items.Count > 0 Then
+            CType(lviewNouvelle.FindControl("lbNouvelleTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+            lviewNouvelle.Sort(ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN"), SortDirection.Ascending)
+        End If
+    End Sub
     Private Sub lviewNouvelle_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewNouvelle.SelectedIndexChanged
         ViewState("modeNouvelle") = ""
         lblMessageErreurNouvelle.Text = ""
@@ -375,13 +461,29 @@ Public Class FRMPanneauDeControle
         lviewInfoNouvelles.DataBind()
     End Sub
     Private Sub lviewInfoNouvelles_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewInfoNouvelles.ItemDataBound
-        If ViewState("modeNouvelle") = "AjoutNouvelle" Then
+        Dim listeNouvelle As List(Of ModeleSentinellesHY.Nouvelle) = Nothing
+        listeNouvelle = (From nou In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By nou.dateRedaction Descending).ToList
+
+        If ViewState("modeNouvelle") = "AjoutNouvelle" Or listeNouvelle.Count = 0 Then
             CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = False
+            CType(lviewInfoNouvelles.FindControl("lnkBtnAjoutNouvelle"), LinkButton).Visible = False
+        Else
+            CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = True
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
+            CType(lviewInfoNouvelles.FindControl("lnkBtnAjoutNouvelle"), LinkButton).Visible = True
         End If
     End Sub
 #End Region
 
 #Region "Événement"
+    Private Sub lvEvenement_PreRender(sender As Object, e As EventArgs) Handles lvEvenement.PreRender
+        If lvEvenement.Items.Count > 0 Then
+            CType(lvEvenement.FindControl("lbEvenementTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+            lvEvenement.Sort(ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN"), SortDirection.Ascending)
+        End If
+    End Sub
+
     Private Sub lvEvenement_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvEvenement.SelectedIndexChanged
         ViewState("modeEvenement") = ""
         lblMessageErreurEvenement.Text = ""
@@ -399,6 +501,7 @@ Public Class FRMPanneauDeControle
         Dim listeEvenements As List(Of ModeleSentinellesHY.Événement) = Nothing
         listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateEvenement Descending).ToList
 
+
         Return listeEvenements.AsQueryable()
     End Function
 
@@ -408,6 +511,9 @@ Public Class FRMPanneauDeControle
             Dim idEvenement As Integer = lvEvenement.SelectedDataKey(0)
             unEvenement = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Where eve.idEvenement = idEvenement).FirstOrDefault
             ModeleSentinellesHY.outils.leContexte.Entry(unEvenement).Reload()
+
+        Else
+
         End If
 
         Return unEvenement
@@ -487,13 +593,29 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Private Sub lvInfoEvenement_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lvInfoEvenement.ItemDataBound
-        If ViewState("modeEvenement") = "AjoutEvenement" Then
+        Dim listeEvenements As List(Of ModeleSentinellesHY.Événement) = Nothing
+        listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateEvenement Descending).ToList
+
+        If ViewState("modeEvenement") = "AjoutEvenement" Or listeEvenements.Count = 0 Then
             CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = False
+            CType(lvInfoEvenement.FindControl("lnkBtnAjoutEvenement"), LinkButton).Visible = False
+        Else
+            CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = True
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
+            CType(lvInfoEvenement.FindControl("lnkBtnAjoutEvenement"), LinkButton).Visible = True
         End If
     End Sub
 #End Region
 
 #Region "Revue de Presse"
+    Private Sub lvRDP_PreRender(sender As Object, e As EventArgs) Handles lvRDP.PreRender
+        If lvRDP.Items.Count > 0 Then
+            CType(lvRDP.FindControl("lbRDPTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+            lvRDP.Sort(ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN"), SortDirection.Ascending)
+        End If
+    End Sub
+
     Private Sub lvRDP_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvRDP.SelectedIndexChanged
         ViewState("modeRDP") = ""
         lblMessageErreurRDP.Text = ""
@@ -624,8 +746,17 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Private Sub lvInfoRDP_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lvInfoRDP.ItemDataBound
-        If ViewState("modeRDP") = "AjoutRDP" Then
+        Dim listeRDP As List(Of ModeleSentinellesHY.RevueDePresse) = Nothing
+        listeRDP = (From rdp In ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).ToList
+
+        If ViewState("modeRDP") = "AjoutRDP" Or listeRDP.Count = 0 Then
             CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = False
+            CType(lvInfoRDP.FindControl("lnkBtnAjoutRDP"), LinkButton).Visible = False
+        Else
+            CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = True
+            CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
+            CType(lvInfoRDP.FindControl("lnkBtnAjoutRDP"), LinkButton).Visible = True
         End If
     End Sub
 #End Region
@@ -650,19 +781,38 @@ Public Class FRMPanneauDeControle
         Return listeStatutUtilisateur.AsQueryable
     End Function
 #End Region
+
+    Private Sub lviewUtilisateurs_ItemCommand(sender As Object, e As ListViewCommandEventArgs) Handles lviewUtilisateurs.ItemCommand
+        If e.CommandName.ToLower.Contains("sort") Then
+            lviewUtilisateurs.SelectedIndex = 0
+            lviewInfoUtilisateur.DataBind()
+        End If
+    End Sub
+
     Private Sub lviewUtilisateurs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewUtilisateurs.SelectedIndexChanged
         ViewState("modeUtilisateur") = ""
         lblMessageErreurInfoUtilisateur.Text = ""
         lviewInfoUtilisateur.DataBind()
     End Sub
 
-    Public Shared Function GetUtilisateurs() As IQueryable(Of ModeleSentinellesHY.Utilisateur)
+    Private Sub btnRechercheUtilisateur_Click(sender As Object, e As EventArgs) Handles btnRechercheUtilisateur.Click
+        lviewUtilisateurs.DataBind()
+    End Sub
+
+    Public Function GetUtilisateurs() As IQueryable(Of ModeleSentinellesHY.Utilisateur)
         Dim listeUtilisateurs As New List(Of ModeleSentinellesHY.Utilisateur)
 
-        listeUtilisateurs = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu Order By uti.prenom).ToList
-
+        If txtboxRechercheUtilisateur.Text <> "" Then
+            Dim txtRecherche As String = txtboxRechercheUtilisateur.Text
+            listeUtilisateurs = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu
+                                 Where uti.nom.Contains(txtRecherche) Or uti.prenom.Contains(txtRecherche) Or
+                                 uti.courriel.Contains(txtRecherche) Or uti.milieu.Contains(txtRecherche) Or
+                                 uti.nomUtilisateur.Contains(txtRecherche)
+                                 Order By uti.prenom).ToList
+        Else
+            listeUtilisateurs = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu Order By uti.prenom).ToList
+        End If
         Return listeUtilisateurs.AsQueryable()
-
     End Function
 
     Public Function getInfoUtilisateur() As ModeleSentinellesHY.Utilisateur
@@ -677,6 +827,23 @@ Public Class FRMPanneauDeControle
 
         Return unUtilisateur
     End Function
+
+    Private Sub lviewInfoUtilisateur_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewInfoUtilisateur.ItemDataBound
+        Dim listeUtilisateurs As New List(Of ModeleSentinellesHY.Utilisateur)
+        listeUtilisateurs = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu Order By uti.prenom).ToList
+
+        If ViewState("modeUtilisateur") = "AjoutUtilisateur" Or listeUtilisateurs.Count = 0 Then
+            CType(e.Item.FindControl("btnSupprimerUti"), LinkButton).Visible = False
+            CType(lviewInfoUtilisateur.FindControl("lnkbtnAjouter"), LinkButton).Visible = False
+        Else
+            CType(e.Item.FindControl("btnSupprimerUti"), LinkButton).Visible = True
+            CType(lviewInfoUtilisateur.FindControl("lnkbtnAjouter"), LinkButton).Visible = True
+        End If
+
+        If CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idUtilisateur = CType(e.Item.DataItem, ModeleSentinellesHY.Utilisateur).idUtilisateur Then
+            CType(e.Item.FindControl("btnSupprimerUti"), LinkButton).Visible = False
+        End If
+    End Sub
 
     Public Sub DeleteUtilisateur(ByVal utilisateurASupprimer As ModeleSentinellesHY.Utilisateur)
 
@@ -817,7 +984,7 @@ Public Class FRMPanneauDeControle
                 targetH = CInt(original.Height * (CSng(targetSize) / CSng(original.Width)))
             End If
         Else
-            targetH = 200
+            targetH = 400
             targetW = 960
         End If
 
@@ -855,4 +1022,5 @@ Public Class FRMPanneauDeControle
 
     End Sub
 #End Region
+
 End Class
