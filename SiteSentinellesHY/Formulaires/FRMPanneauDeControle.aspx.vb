@@ -142,10 +142,10 @@ Public Class FRMPanneauDeControle
         MultiView.ActiveViewIndex = 5
     End Sub
 
-    Protected Sub lnkCreateBackup_Click(sender As Object, e As EventArgs)
-        Dim controler As DBControler = New DBControler()
-        controler.CreateBackup(Server.MapPath("../Upload/Backup/"), "sentinelle_" & Date.Now().ToString("dd/MMM/yyyy") & ".bak")
-    End Sub
+    'Protected Sub lnkCreateBackup_Click(sender As Object, e As EventArgs)
+    '    Dim controler As DBControler = New DBControler()
+    '    controler.CreateBackup(Server.MapPath("../Upload/Backup/"), "sentinelle_" & Date.Now().ToString("dd/MMM/yyyy") & ".bak")
+    'End Sub
 
 #End Region
 

@@ -7,10 +7,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="content">
-        <h1>Nous voici, nous voilà !</h1>
+        <h1>Les créateurs du site web</h1>
         <hr/>
-                 <h2>L'idée</h2>
-        <hr/>
+                 <h3>L'idée</h3>
 
         <p class="justify">
 L’idée d’un site web pour promouvoir les activités des sentinelles germait depuis quelques temps dans la tête des responsables de l'organisme. Un site web en améliorerait grandement la visibilité en plus de favoriser la communication entre les différents intervenants.
@@ -37,8 +36,8 @@ Le département de Technique Informatique ainsi que les responsables des sentine
         <p class="justify" style="font-size:smaller;"> Sur cette photo: Jean-Sébastien Arès, Frédéric Bourdeau, Nicolas Brien, Éric Fontaine, Charles Lacoste, Michael O. Lambert, Guillaume Racicot, Ghislain Rousseau, Mathieu Vallée, Louis-Alexandre Vallières-Lavoie.</p>
         
 
-        <h2>Le projet</h2>
-        <hr/>
+        <h3>Le projet</h3>
+        
         <p class="justify">
 Le but du projet était premièrement de donner l’opportunité aux finissants de Technique informatique de vivre une expérience réelle en travaillant à concevoir un site web réel pour de "vrais" clients. Ce site sera par la suite publié et sera réellement utilisé.
              Dans le cadre du cours ils ont aussi appris à utiliser une méthode d’analyse et d’organisation du travail afin de parfaire leur formation.

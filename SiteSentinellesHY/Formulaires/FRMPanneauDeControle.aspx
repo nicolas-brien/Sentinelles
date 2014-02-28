@@ -13,9 +13,17 @@
     <link href="../CSS/PanneauDeControle.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
     <script src="../CSS/js/jquery.js"></script>
+    <script src="../CSS/js/bootstrap.min.js"></script>
+    <script src="../CSS/js/loading-link.js"></script>
+    <script src="../CSS/js/scriptGlobal.js"></script>
     <title>Les Sentinelles Haute-Yamaska</title>
 </head>
 <body>
+    <script>
+        $(document).ready(function () {
+            $('.disabled-button').loadingLink("<%= outils.obtenirLangue("Chargement..|Loading...")%>");
+        });
+    </script>
     <div id="wrapper">
         <form id="form1" runat="server">
             <ajaxToolkit:ToolkitScriptManager ID="tsmTest" runat="server" />
@@ -368,20 +376,7 @@
                                                         
                                                     </a>
                                                 </div>
-                                                <div id="collapseBackup" class="accordion-body collapse">
-                                                    <div class="accordion-inner">
-                                                        <div>
-                                                            <asp:LinkButton ID="lnkCreateBackup" runat="server" style="color: #000;" OnClientClick="return confirm('Êtes vous certain de vouloir créer une nouvelle sauvegarde?')" OnClick="lnkCreateBackup_Click">
-                                                                <%= outils.obtenirLangue("Créer une sauvegarde |Create backup ")%>
-                                                            </asp:LinkButton>                               
-                                                        </div>
-                                                        <div>
-                                                            <asp:LinkButton ID="LinkButton2" runat="server" style="color: #000;">
-                                                                <%= outils.obtenirLangue("Restaurer une sauvegarde |Restore backup ")%>
-                                                            </asp:LinkButton> 
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -1178,7 +1173,7 @@
                     </div>
                     <div>
                         <a href="http://www.cegepgranby.qc.ca/" target="_blank">
-                            <img id="imgCegep" width="225" class="footerImages" src="../Images/CGHY.jpg" />
+                            <img id="imgCegep" width="225" class="footerImages" src="../Images/CGHY.png" />
                         </a>
                         <a>
                             <img id="imgPreventionSuicide" width="225" class="footerImages" src="../Images/CPS.jpg" />
@@ -1220,7 +1215,10 @@
                         <p>
                             <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" data-toggle="modal" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
-                    </div>
+                        <p>
+                        <asp:LinkButton ID="lnkBtnPageCreateurs" CssClass="lnkBtn_Footer" runat="server" PostBackUrl="~/Formulaires/FRMCreateurs.aspx"><%= outils.obtenirLangue("Page des créateurs|Developer's page")%></asp:LinkButton>
+                        </p>
+                     </div>
                 </div>
                 <div style="clear: both;">
                 </div>
@@ -1230,8 +1228,6 @@
         </form>
     </div>
 </body>
-<script src="../CSS/js/jquery.js"></script>
-<script src="../CSS/js/bootstrap.min.js"></script>
 <script>
     $(function () {
         $('#myModal').modal('hide')
