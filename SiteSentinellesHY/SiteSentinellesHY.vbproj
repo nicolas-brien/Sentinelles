@@ -125,9 +125,14 @@
     <Content Include="CSS\Forum.css" />
     <Content Include="CSS\FRMhistorique.css" />
     <Content Include="CSS\index.css" />
+    <Content Include="CSS\Jcrop.gif" />
+    <Content Include="CSS\jquery.Jcrop.css" />
     <Content Include="CSS\js\bootstrap.js" />
     <Content Include="CSS\js\bootstrap.min.js" />
+    <Content Include="CSS\js\jquery.Jcrop.js" />
+    <Content Include="CSS\js\jquery.Jcrop.min.js" />
     <Content Include="CSS\js\jquery.js" />
+    <Content Include="CSS\js\jqueryCrop.min.js" />
     <Content Include="CSS\js\scriptGlobal.js" />
     <Content Include="CSS\PanneauDeControle.css" />
     <Content Include="CSS\SiteMaster.css" />

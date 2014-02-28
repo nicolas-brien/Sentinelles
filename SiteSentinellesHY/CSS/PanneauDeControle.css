@@ -382,3 +382,23 @@
     margin-bottom: 25px;
 }
 /*--------------------------------FOOTER----------------------------------------*/
+/*CarouselEdit ------------------------------------------------------------------------------------------------------------------------*/
+.thumbnailCarouselEdit {
+    padding: 13px;
+}
+
+.rotateImgLeft {
+    background-position: center center;
+    background-image: url('../images/iconRotateLeft.png');
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+}
+
+.rotateImgRight {
+    background-position: center center;
+    background-image: url('../images/iconRotateRight.png');
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+}

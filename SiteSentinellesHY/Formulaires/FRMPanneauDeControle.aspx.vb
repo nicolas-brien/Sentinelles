@@ -255,23 +255,48 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Protected Sub lnkUploadPhotoCarrousel_Click(sender As Object, e As EventArgs)
-        'Méthode pour les photos du carousel
-        Dim nomFichierID = Right((CType(sender, LinkButton).ID.ToString), 1)
-        Dim controlUpload = CType(lviewOptions.Items(0).FindControl("fuplPhotoCarrousel" & nomFichierID), FileUpload)
-        Dim extension As String = ""
-        Dim nomFichier As String = ""
-        If controlUpload.HasFile Then
-            If controlUpload.PostedFile.ContentType = "image/jpeg" Or controlUpload.PostedFile.ContentType = "image/png" Then
-                nomFichier = CType(sender, LinkButton).ID.ToString
+        CType(lviewOptions.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 1
 
-                'On redimensionne les photos pour qu'elles correspondent aux dimensions du carrousel
-                ResizeImageFile(controlUpload.PostedFile.InputStream, 120, Server.MapPath("../Upload/" & nomFichier & ".jpg"), "typeCarrousel")
-                CType(lviewOptions.Items(0).FindControl("txtboxImg" & nomFichier), TextBox).Text = nomFichier
-            Else
-                lblMessageErreurOptions.Text = ModeleSentinellesHY.outils.obtenirLangue("Carrousel : Le type de fichier doit être .png ou .jpg|Carousel : File extension must be .png or .jpg")
-            End If
-        End If
+
+        'Méthode pour les photos du carousel
+        '    Dim nomFichierID = Right((CType(sender, LinkButton).ID.ToString), 1)
+        '    Dim controlUpload = CType(lviewOptions.Items(0).FindControl("fuplPhotoCarrousel" & nomFichierID), FileUpload)
+        '    Dim extension As String = ""
+        '    Dim nomFichier As String = ""
+        '    If controlUpload.HasFile Then
+        '        If controlUpload.PostedFile.ContentType = "image/jpeg" Or controlUpload.PostedFile.ContentType = "image/png" Then
+        '            nomFichier = CType(sender, LinkButton).ID.ToString
+
+        '            'On redimensionne les photos pour qu'elles correspondent aux dimensions du carrousel
+        '            ResizeImageFile(controlUpload.PostedFile.InputStream, 120, Server.MapPath("../Upload/" & nomFichier & ".jpg"), "typeCarrousel")
+        '            CType(lviewOptions.Items(0).FindControl("txtboxImg" & nomFichier), TextBox).Text = nomFichier
+        '        Else
+        '            lblMessageErreurOptions.Text = ModeleSentinellesHY.outils.obtenirLangue("Carrousel : Le type de fichier doit être .png ou .jpg|Carousel : File extension must be .png or .jpg")
+        '        End If
+        '    End If
     End Sub
+    Protected Sub vCrop_Activate(sender As Object, e As EventArgs)
+        ' Dim nomFichierID = Right((CType(sender, LinkButton).ID.ToString), 1)
+        Dim controlUpload = CType(lviewOptions.Items(0).FindControl("fuplPhotoCarrousel1"), FileUpload)
+
+
+        If controlUpload.PostedFile.ContentType = "image/jpeg" Then
+            Dim newFileName As String = ""
+            Dim nomFichier As String = Path.GetFileName(controlUpload.FileName)
+            'Save it in the server images folder
+            Dim random As New Random()
+            Dim rndnbr As Integer = 0
+            rndnbr = random.[Next](0, 99999)
+            newFileName = "AvantCrop-" + rndnbr.ToString + nomFichier
+
+            controlUpload.SaveAs(Server.MapPath("../Upload/" & newFileName))
+
+            Dim cropbox = CType(lviewOptions.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
+            cropbox.ImageUrl = "~/Upload/" & newFileName
+        End If
+
+    End Sub
+
 #End Region
 
 #Region "Nouvelle"
