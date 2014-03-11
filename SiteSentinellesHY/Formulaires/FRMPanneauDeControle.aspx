@@ -373,64 +373,63 @@
                                                 </div>
                                                 <asp:MultiView runat="server" ID="mvPhotos" ActiveViewIndex="0">
                                                     <asp:View runat="server" ID="vSelect">
-                                                <div id="collapseCarrousel" class="accordion-body collapse">
-                                                    <div class="accordion-inner">
-                                                        <div>
-                                                            <asp:Label ID="lblFormatImgMessage" runat="server">
-                                                                <%= outils.obtenirLangue("*Les images du carrousel doivent être approximativement de 960 x 200 et de types .png ou .jpg|*The images of the caroussel must be approximately 960 x 200 and with the type .png or .jpg")%>
-                                                            </asp:Label>
-                                                        </div>
-                                                        <div class="marginbottom_divImgCarrousel">
+                                                        <div id="collapseCarrousel" class="accordion-body collapse">
+                                                            <div class="accordion-inner">
+                                                                <div>
+                                                                    <asp:Label ID="lblFormatImgMessage" runat="server">
+                                                                <%= outils.obtenirLangue("*Les images du carrousel doivent être approximativement de 960 x 400 et de types jpg|*The images of the caroussel must be approximately 960 x 200 and with the type jpg")%>
+                                                                    </asp:Label>
+                                                                </div>
+                                                                <div class="marginbottom_divImgCarrousel">
                                                                     <asp:Label ID="Label10" runat="server"><%= outils.obtenirLangue("Image carrousel 1 : |Photo caroussel 1 : ")%></asp:Label>
-                                                            <asp:TextBox ID="txtboxImgCarrousel1" Enabled=" false" runat="server" />
-                                                                    <a onclick="$('[id$=fuplPhotoCarrousel1]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
-                                                                    <asp:LinkButton ID="btCarrousel1" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
-                                                            <img id="imgCarrousel1" width="360" src="../Upload/Carrousel1.jpg" />
-                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel1"  ClientIDMode="Static" onpropertychange="$('[id$=uploadButton]').click(); return false;" onchange="$('[id$=uploadButton]').click(); return false;"  Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
-                                                                    <asp:Button ID="uploadButton" runat="server" Text="Upload!"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click" />
+                                                                    <asp:TextBox ID="txtboxImgCarrousel1" Enabled=" false" runat="server" />
+                                                                    <a onclick="$('[id$=fuplPhotoCarrousel1]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> 
+                                                                    <img id="imgCarrousel1" width="360" src="../Upload/Carrousel1.jpg" />
+                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel1"  ClientIDMode="Static" onpropertychange="$('[id$=uploadButton1]').click(); return false;" onchange="$('[id$=uploadButton1]').click(); return false;"  Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                                                    <asp:Button ID="uploadButton1" runat="server" Text="Carrousel1"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click"  Style="Display: none"/>
+                                                                </div>
+                                                                <div class="marginbottom_divImgCarrousel">
+                                                                    <asp:Label ID="Label7" runat="server"> <%= outils.obtenirLangue("Image carrousel 2 : |Photo caroussel 2 : ")%></asp:Label>
+                                                                    <asp:TextBox ID="txtboxImgCarrousel2" runat="server" Enabled=" false" />
+                                                                    <a onclick="$('[id$=fuplPhotoCarrousel2]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> 
+                                                                    <img id="imgCarrousel2" width="360" src="../Upload/Carrousel2.jpg" />
+                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel2"  ClientIDMode="Static" onpropertychange="$('[id$=uploadButton2]').click(); return false;" onchange="$('[id$=uploadButton2]').click(); return false;"  Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                                                    <asp:Button ID="uploadButton2" runat="server" Text="Carrousel2"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click"  Style="Display: none"/>
+                                                               
+                                                                </div>
+                                                                <div>
+                                                                    <asp:Label ID="Label8" runat="server"> <%= outils.obtenirLangue("Image carrousel 3 : |Photo caroussel 3 : ")%></asp:Label>
+                                                                    <asp:TextBox ID="txtboxImgCarrousel3" runat="server" Enabled=" false" />
+                                                                    <a onclick="$('[id$=fuplPhotoCarrousel3]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> 
+                                                                    <img id="imgCarrousel3" width="360" src="../Upload/Carrousel3.jpg" />
+                                                                    <asp:FileUpload ID="fuplPhotoCarrousel3" onchange="PreviewImage('imgCarrousel3','fuplPhotoCarrousel3');" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                                                </div>
+                                                                <asp:HiddenField ID="nomImage" runat="server" ClientIDMode="Static" />
+                                                                <asp:HiddenField ID="nonFileUpdate" runat="server" ClientIDMode="Static" />
+                                                            </div>
                                                         </div>
-                                                        <div class="marginbottom_divImgCarrousel">
-                                                            <asp:Label ID="Label7" runat="server"> <%= outils.obtenirLangue("Image carrousel 2 : |Photo caroussel 2 : ")%></asp:Label>
-                                                            <asp:TextBox ID="txtboxImgCarrousel2" runat="server" Enabled=" false" />
-                                                            <a onclick="$('[id$=fuplPhotoCarrousel2]').click(); return false;"
-                                                                href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
-                                                            <asp:LinkButton ID="Carrousel2" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
-                                                            <img id="imgCarrousel2" width="360" src="../Upload/Carrousel2.jpg" />
-                                                            <asp:FileUpload ID="fuplPhotoCarrousel2" onchange="PreviewImage('imgCarrousel2','fuplPhotoCarrousel2');" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
-                                                        </div>
-                                                        <div>
-                                                            <asp:Label ID="Label8" runat="server"> <%= outils.obtenirLangue("Image carrousel 3 : |Photo caroussel 3 : ")%></asp:Label>
-                                                            <asp:TextBox ID="txtboxImgCarrousel3" runat="server" Enabled=" false" />
-                                                            <a onclick="$('[id$=fuplPhotoCarrousel3]').click(); return false;"
-                                                                href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
-                                                            <asp:LinkButton ID="Carrousel3" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
-                                                            <img id="imgCarrousel3" width="360" src="../Upload/Carrousel3.jpg" />
-                                                            <asp:FileUpload ID="fuplPhotoCarrousel3" onchange="PreviewImage('imgCarrousel3','fuplPhotoCarrousel3');" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                     </asp:View>
                                                     <asp:View runat="server" ID="vCrop" OnActivate="vCrop_Activate">
                                                         <div>
 
-                                                            <asp:Button runat="server" ID="imageRotateLeft" CssClass="btn rotateImgLeft" meta:resourcekey="imageRotateLeftResource1" />
-                                                            <asp:Button runat="server" ID="imageRotateRight" CssClass="btn rotateImgRight" meta:resourcekey="imageRotateRightResource1" />
+                                                            <asp:Button runat="server" ID="imageRotateLeft" CssClass="rotateImgLeft" OnClick="imageRotateLeft_Click" />
+                                                            <asp:Button runat="server" ID="imageRotateRight" CssClass="rotateImgRight" OnClick="imageRotateRght_Click"/>
                                                             <br />
-                                                            <asp:Image runat="server" ID="cropbox" Width="800px" ClientIDMode="Static" meta:resourcekey="cropboxResource1" />
+                                                            <asp:Image runat="server" ID="cropbox" Width="800px" ClientIDMode="Static"  />
                                                             <br />
-                                                            <asp:Button ID="btCropGo" runat="server" Text="Sauvegarder" CssClass="btn btn-default" meta:resourcekey="btCropGoResource1" />
+                                                            <asp:Button ID="btCropGo" runat="server" Text="Sauvegarder" CssClass="btn btn-default" OnClick="btCropGo_Click" />
 
                                                             <asp:HiddenField ID="X" runat="server" ClientIDMode="Static" />
                                                             <asp:HiddenField ID="Y" runat="server" ClientIDMode="Static" />
                                                             <asp:HiddenField ID="W" runat="server" ClientIDMode="Static" />
                                                             <asp:HiddenField ID="H" runat="server" ClientIDMode="Static" />
 
-                                            </div>
-                                                        
+                                                        </div>
+        
                                                     </asp:View>
                                                 </asp:MultiView>
-                                                </div>
-                                                        </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </ItemTemplate>
                             </asp:ListView>
@@ -975,7 +974,7 @@
                                         </LayoutTemplate>
                                         <GroupTemplate>
                                             <div class="clear-both">
-                                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                                <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                             </div>
                                         </GroupTemplate>
                                         <ItemTemplate>
@@ -1262,7 +1261,7 @@
                     </div>
                     <div>
                         <a href="http://www.cegepgranby.qc.ca/" target="_blank">
-                            <img id="imgCegep" width="225" class="footerImages" src="../Images/CGHY.png" />
+                            <img id="imgCegep" width="225" class="footerImages" src="../Images/CGHY.jpg" />
                         </a>
                         <a>
                             <img id="imgPreventionSuicide" width="225" class="footerImages" src="../Images/CPS.jpg" />
