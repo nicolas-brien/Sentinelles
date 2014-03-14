@@ -45,7 +45,7 @@ Public Class FormulaireSentinelleValidation
     Public Property courriel As String
 
     <DisplayName("À Propos"), _
-    Required(ErrorMessage:="Veuillez remplir le champ À Propos|The field More About You must contains something."), _
-    StringLength(500, ErrorMessage:="Le champ à propos doit contenir moins de 500 caractères.|The field More About You must contains less than 500 characters.")>
+    Required(ErrorMessage:="Veuillez remplir le champ 'À Propos'|The field 'More About You' must contains something."), _
+    StringLength(500, ErrorMessage:="Le champ 'À Propos' doit contenir moins de 500 caractères.|The field 'More About You' must contains less than 500 characters.")>
     Public Property aPropos As String
 End Class
