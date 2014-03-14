@@ -134,6 +134,7 @@
     <Content Include="CSS\js\jquery.Jcrop.min.js" />
     <Content Include="CSS\js\jquery.js" />
     <Content Include="CSS\js\jqueryCrop.min.js" />
+    <Content Include="CSS\js\loading-link.js" />
     <Content Include="CSS\js\scriptGlobal.js" />
     <Content Include="CSS\PanneauDeControle.css" />
     <Content Include="CSS\SiteMaster.css" />
