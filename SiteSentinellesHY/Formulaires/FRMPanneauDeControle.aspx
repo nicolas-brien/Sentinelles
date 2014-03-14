@@ -366,7 +366,7 @@
                                             <%-- Carousel Images --%>
 
                                             <div class="accordion-group">
-                                                <div class="accordion-heading">
+                                                <div class="accordion-headingro">
                                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseCarrousel">
                                                         <%= outils.obtenirLangue("Modifier les images du carrousel|Edit the pictures of the caroussel")%>
                                                         
@@ -384,8 +384,7 @@
                                                                 <div class="marginbottom_divImgCarrousel">
                                                                     <asp:Label ID="Label10" runat="server"><%= outils.obtenirLangue("Image carrousel 1 : |Photo caroussel 1 : ")%></asp:Label>
                                                                     <asp:TextBox ID="txtboxImgCarrousel1" Enabled=" false" runat="server" />
-                                                                    <a onclick="$('[id$=fuplPhotoCarrousel1]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
-                                                                    <asp:LinkButton ID="btCarrousel1" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
+                                                                    <a onclick="$('[id$=fuplPhotoCarrousel1]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a>
                                                                     <img id="imgCarrousel1" width="360" src="../Upload/Carrousel1.jpg" />
                                                                     <asp:FileUpload runat="server" ID="fuplPhotoCarrousel1"  ClientIDMode="Static" onpropertychange="$('[id$=uploadButton1]').click(); return false;" onchange="$('[id$=uploadButton1]').click(); return false;"  Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
                                                                     <asp:Button ID="uploadButton1" runat="server" Text="Carrousel1"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click"  Style="Display: none"/>
