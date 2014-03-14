@@ -13,10 +13,8 @@
     <link href="../CSS/PanneauDeControle.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
 
-    <script src="../CSS/js/jqueryCrop.min.js"></script>
-    <script src="../CSS/js/jquery.Jcrop.min.js"></script>
-    <script src="../CSS/js/jquery.Jcrop.js"></script>
     <script src="../CSS/js/jquery.js"></script>
+    <script src="../CSS/js/jquery.Jcrop.min.js"></script>
     <script src="../CSS/js/bootstrap.min.js"></script>
     <script src="../CSS/js/scriptGlobal.js"></script>
     <script src="../CSS/js/loading-link.js"></script>
