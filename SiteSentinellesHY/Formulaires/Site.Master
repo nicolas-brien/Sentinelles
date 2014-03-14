@@ -134,25 +134,29 @@
             <%-----------------------------------Footer-----------------------------------%>
             <div id="footer">
                 <div class="span6">
-                    <div>
+                    <div style="height:135px; width:500px;">
                         <a href="http://www.santemonteregie.qc.ca/granby-region/index.fr.html" target="_blank">
                             <img id="imgCSSSHY" width="225" class="footerImages" src="../Images/CSSSHY.jpg" />
                         </a>
-                        <a href="http://www.aqdr.org/" target="_blank">
-                            <img id="imgAQDR" width="225" class="footerImages" src="../Images/AQDR.jpg" />
-                        </a>
-                    </div>
-                    <div>
-                        <a href="http://www.cegepgranby.qc.ca/" target="_blank" >
-                            <img id="imgCegep" width="225" class="footerImages" src="../Images/CGHY.png"/>
-                        </a>
                         <a>
-                            <img id="imgPreventionSuicide" width="225" class="footerImages" src="../Images/CPS.jpg"/>
+                            <img id="imgPreventionSuicide" width="225" src="../Images/CPS.jpg"/>
+                        </a>
+                        
+                    </div>
+                    <div style="width:550px;">
+                        <a href="http://www.cegepgranby.qc.ca/" class="distanceEntreLogo" target="_blank" >
+                            <img id="imgCegep" width="150" class="footerImages" src="../Images/CGHY.png"/>
+                        </a>
+                        <a href="http://www.aqdr.org/" class="distanceEntreLogo" target="_blank">
+                            <img id="imgAQDR" width="150" class="footerImages" src="../Images/AQDR.jpg" />
+                        </a>
+                        <a href="http://www.servicecanada.gc.ca/" target="_blank">
+                            <img id="imgServiceCanada" width="150" class="footerImages" src="../Images/servicecanada.png" />
                         </a>
                     </div>
                 </div>
                 <div class="span6">
-                    <div class="span3">
+                    <div id="liensNav" class="span3">
                         <b class="p_footer">NAVIGATION</b>
                         <hr class="hr_Footer" />
                         <p>
