@@ -366,7 +366,7 @@
                                             <%-- Carousel Images --%>
 
                                             <div class="accordion-group">
-                                                <div class="accordion-headingro">
+                                                <div class="accordion-heading">
                                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionOptions" href="#collapseCarrousel">
                                                         <%= outils.obtenirLangue("Modifier les images du carrousel|Edit the pictures of the caroussel")%>
                                                         
