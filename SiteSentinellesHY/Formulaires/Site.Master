@@ -16,6 +16,7 @@
     <title><%= outils.obtenirLangue("Les Sentinelles Haute-Yamaska|Haute-Yamaska's Sentinels")%></title>
     <script src="../CSS/js/jquery.js"></script>
     <script src="../CSS/js/bootstrap.min.js"></script>
+    <script src="../CSS/js/loading-link.js"></script>
     <script src="../CSS/js/scriptGlobal.js"></script>
 </head>
 <body>
@@ -143,7 +144,7 @@
                     </div>
                     <div>
                         <a href="http://www.cegepgranby.qc.ca/" target="_blank" >
-                            <img id="imgCegep" width="225" class="footerImages" src="../Images/CGHY.jpg"/>
+                            <img id="imgCegep" width="225" class="footerImages" src="../Images/CGHY.png"/>
                         </a>
                         <a>
                             <img id="imgPreventionSuicide" width="225" class="footerImages" src="../Images/CPS.jpg"/>
@@ -185,7 +186,10 @@
                         <p>
                             <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" data-toggle="modal"  href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
-                    </div>
+                        <p>
+                        <asp:LinkButton ID="lnkBtnPageCreateurs" CssClass="lnkBtn_Footer" runat="server" PostBackUrl="~/Formulaires/FRMCreateurs.aspx"><%= outils.obtenirLangue("Page des créateurs|Developer's page")%></asp:LinkButton>
+                        </p>
+                     </div>
                 </div>
                 <div style="clear: both;">
                 </div>
@@ -318,8 +322,6 @@
         </form>
     </div>
 </body>
-<script src="../CSS/js/jquery.js"></script>
-<script src="../CSS/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#monCaroussel").carousel({

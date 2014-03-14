@@ -15,10 +15,16 @@
     <link href="../CSS/Forum.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
     <script src="../CSS/js/jquery.js"></script>
+    <script src="../CSS/js/bootstrap.min.js"></script>
     <script src="../CSS/js/scriptGlobal.js"></script>
-
+    <script src="../CSS/js/loading-link.js"></script>
 </head>
 <body>
+    <script>
+        $(document).ready(function () {
+            $('.disabled-button').loadingLink("<%= outils.obtenirLangue("Chargement..|Loading...")%>");
+        });
+    </script>
     <div id="wrapper">
         <form id="form1" runat="server">
             <ajaxToolkit:ToolkitScriptManager ID="tsmTest" runat="server" />
@@ -29,7 +35,7 @@
                     <div class="pull-right">
                         <a class="liens" id="lnkAccueil" href="../Formulaires/index.aspx"><%= outils.obtenirLangue("ACCUEIL|HOME")%></a>
                         <asp:Label ID="Label1" runat="server" Text="  |  " CssClass="pipes"></asp:Label>
-                        <a class="liens" id="lnkLiensUtiles" href="../Formulaires/FRMliensutiles.aspx"><%= outils.obtenirLangue("LIENS UTILES|USEFUL LINKS")%></a>
+                        <a class="liens" id="lnkLiensUtiles" href="../Formulaires/FRMliensutiles.aspx"><%= outils.obtenirLangue("LIENS UTILES|HELPFUL LINKS")%></a>
                         <asp:Label ID="Label2" runat="server" Text="  |  " CssClass="pipes"></asp:Label>
                         <a class="liens" runat="server" id="lnkConnexion" data-toggle="modal" href="../Formulaires/FRMForum.aspx"><%= outils.obtenirLangue("ZONE SENTINELLE|SENTINEL AREA")%></a>
                         <asp:Label ID="Label3" runat="server" Text="  |  " CssClass="pipes"></asp:Label>
@@ -156,7 +162,7 @@
                                     <div id="divCadrageItems" class="cadrageItems">
 
                                         <div style="float: right;">
-                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><<%# "Créé le " + Eval("DatePublication","{0:d MMMM, yyyy}")%></asp:Label><br />
+                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# "Créé le " + Eval("DatePublication","{0:d MMMM, yyyy}")%></asp:Label><br />
                                             <asp:Label ID="lblPubliePar" CssClass="lblInfoPublication" runat="server"></asp:Label>
                                         </div>
                                         <img id="pinnedIcon" runat="server" src="../Images/icon-pin.png" class="pull-left" style="display: none;" />
@@ -225,17 +231,17 @@
                                 <asp:Label runat="server" ID="Label6" CssClass="lblTitreConfig"><%= outils.obtenirLangue("ZONE SENTINELLE|SENTINEL AREA")%></asp:Label>
                             </div>
                             <div class="row paddingRow">
-                                                                        <div class="div_BoutonsRetour">
-                                            <asp:ImageButton ID="imgbtnRetour" ImageUrl="~/Images/flecheRetour.png" runat="server" CssClass="imgbtnRetour" AlternateText="Page précédente" OnClick="retourCategorie_Click" />
-                                            <asp:LinkButton ID="lnkBtnRetour" CssClass="lnkBtnRetour" runat="server" OnClick="retourCategorie_Click"><%= outils.obtenirlangue("Retour|Back") %></asp:LinkButton>
-                                        </div>
+                                <div class="div_BoutonsRetour">
+                                    <asp:ImageButton ID="imgbtnRetour" ImageUrl="~/Images/flecheRetour.png" runat="server" CssClass="imgbtnRetour" AlternateText="Page précédente" OnClick="retourCategorie_Click" />
+                                    <asp:LinkButton ID="lnkBtnRetour" CssClass="lnkBtnRetour" runat="server" OnClick="retourCategorie_Click"><%= outils.obtenirlangue("Retour|Back") %></asp:LinkButton>
+                                </div>
                                 <asp:ListView runat="server" ID="lviewConsulterPublication"
                                     ItemType="ModeleSentinellesHY.Publication"
                                     DataKeyNames="idPublication"
                                     UpdateMethod="UpdatePublication"
                                     DeleteMethod="DeletePublication"
                                     SelectMethod="getConsulterPublication">
-                                    
+
                                     <LayoutTemplate>
 
                                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
@@ -498,9 +504,9 @@
                                 <LayoutTemplate>
                                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                     <div class="clear-both" style="padding-top: 10px;">
-                                        <asp:panel id="divMessageErreur" style="margin:0;" Visible="false" CssClass="alert alert-error" runat="server">
+                                        <asp:Panel ID="divMessageErreur" Style="margin: 0;" Visible="false" CssClass="alert alert-error" runat="server">
                                             <asp:Label ID="lblMessageErreur" runat="server" Text="" />
-                                        </asp:panel>
+                                        </asp:Panel>
                                     </div>
                                 </LayoutTemplate>
                                 <ItemTemplate>
@@ -738,7 +744,7 @@
                     </div>
                     <div>
                         <a href="http://www.cegepgranby.qc.ca/" target="_blank">
-                            <img id="imgCegep" width="225" class="footerImages" src="../Images/CGHY.jpg" />
+                            <img id="imgCegep" width="225" class="footerImages" src="../Images/CGHY.png" />
                         </a>
                         <a>
                             <img id="imgPreventionSuicide" width="225" class="footerImages" src="../Images/CPS.jpg" />
@@ -780,6 +786,9 @@
                         <p>
                             <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
+                        <p>
+                        <asp:LinkButton ID="lnkBtnPageCreateurs" CssClass="lnkBtn_Footer" runat="server" PostBackUrl="~/Formulaires/FRMCreateurs.aspx"><%= outils.obtenirLangue("Page des créateurs|Developer's page")%></asp:LinkButton>
+                        </p>
                     </div>
                 </div>
                 <div style="clear: both;">
@@ -790,8 +799,6 @@
         </form>
     </div>
 </body>
-<script src="../CSS/js/jquery.js"></script>
-<script src="../CSS/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     String.prototype.trunc = String.prototype.trunc ||
     function (n) {
