@@ -222,5 +222,6 @@ bin/
 !.gitignore
 merge-all.sh
 ErrorLog.txt
+ErrorTemp.txt
 Upload/
 *.orig
