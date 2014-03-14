@@ -6,8 +6,8 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA//nlM7qrNUulyTdAMiGh1gAAAAACAAAAAAAQZgAAAAEAACAAAACHxCQf9UU1oqVoHbhqmSM7x7kN/eYw6r6Gubp4srMWpAAAAAAOgAAAAAIAACAAAAC0x4PCb3RHSBzDXMVaTBRASF+YHCrM4R+yEhuz+VdAQyAAAADfRGnjXdGuN7EPB8VvoZbrjxqKUYJkO2pht1nib6BJ3kAAAABO3QsSXVphjAA37XBZ5EyKUA8ac2ypKdd847fDtCuWSArQUx5q96h7aietO0ZXPaqY8rdX2RHu7Ey8JkpziBYz</EncryptedPassword>
-    <_PublishTargetUrl>ftp://ftp.sentinelleshy.ca/sentinelleshy.ca/wwwroot/</_PublishTargetUrl>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAALPbYyNn+3UKC7daAxt8GLwAAAAACAAAAAAAQZgAAAAEAACAAAADH+9S4dFwF0JdJwdyT8birR/G323iE5yolz7/HDcvh5AAAAAAOgAAAAAIAACAAAADgpcaaU9GfN/HosPoNCS1rkusP2oazaukmbSXUBmWLXDAAAABeezLaPbzFWj4T1EE+eGg2l16h7IcYbdqW6irJxVETwu3Uy4pzUNkbVkHgSKI9qMlAAAAAyLMh9DimmDa7oaoEvg2jcVG0Vekm56CJuFK+bjcj5f88HzUC8r6wxJOPozJnpq5JPoWQaKgJjU/mmPk1oiROCA==</EncryptedPassword>
+    <_PublishTargetUrl>ftp://sqlinfo.cegepgranby.qc.ca/</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AjaxControlToolkit.dll">
@@ -35,7 +35,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/31/2014 14:47:27</publishTime>
     </File>
     <File Include="bin/fr/EntityFramework.resources.dll">
-      <publishTime>01/31/2014 14:47:28</publishTime>
+      <publishTime>09/23/2013 12:34:47</publishTime>
     </File>
     <File Include="bin/he/AjaxControlToolkit.resources.dll">
       <publishTime>01/31/2014 14:47:27</publishTime>
@@ -56,7 +56,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/31/2014 14:47:27</publishTime>
     </File>
     <File Include="bin/ModeleSentinellesHY.dll">
-      <publishTime>02/28/2014 10:53:19</publishTime>
+      <publishTime>02/14/2014 13:59:37</publishTime>
     </File>
     <File Include="bin/nl/AjaxControlToolkit.resources.dll">
       <publishTime>01/31/2014 14:47:27</publishTime>
@@ -71,10 +71,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/31/2014 14:47:27</publishTime>
     </File>
     <File Include="bin/SiteSentinellesHY.dll">
-      <publishTime>02/28/2014 10:53:20</publishTime>
+      <publishTime>02/14/2014 13:59:37</publishTime>
     </File>
     <File Include="bin/SiteSentinellesHY.xml">
-      <publishTime>02/28/2014 10:53:20</publishTime>
+      <publishTime>02/14/2014 13:59:37</publishTime>
     </File>
     <File Include="bin/tr-TR/AjaxControlToolkit.resources.dll">
       <publishTime>01/31/2014 14:47:27</publishTime>
@@ -100,9 +100,6 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="CSS/Forum.css">
       <publishTime>02/07/2014 13:24:50</publishTime>
     </File>
-    <File Include="CSS/FRMCreateurs.css">
-      <publishTime>02/21/2014 13:29:13</publishTime>
-    </File>
     <File Include="CSS/FRMhistorique.css">
       <publishTime>01/31/2014 14:47:26</publishTime>
     </File>
@@ -110,22 +107,22 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>02/14/2014 13:50:58</publishTime>
     </File>
     <File Include="CSS/js/bootstrap.js">
-      <publishTime>02/21/2014 13:29:13</publishTime>
+      <publishTime>01/31/2014 14:47:26</publishTime>
     </File>
     <File Include="CSS/js/bootstrap.min.js">
-      <publishTime>02/21/2014 13:29:13</publishTime>
+      <publishTime>01/31/2014 14:47:26</publishTime>
     </File>
     <File Include="CSS/js/jquery.js">
       <publishTime>01/31/2014 14:47:26</publishTime>
     </File>
     <File Include="CSS/js/scriptGlobal.js">
-      <publishTime>02/21/2014 13:29:13</publishTime>
+      <publishTime>02/07/2014 13:24:50</publishTime>
     </File>
     <File Include="CSS/PanneauDeControle.css">
-      <publishTime>02/21/2014 20:19:18</publishTime>
+      <publishTime>02/09/2014 19:39:12</publishTime>
     </File>
     <File Include="CSS/SiteMaster.css">
-      <publishTime>02/21/2014 13:29:13</publishTime>
+      <publishTime>02/14/2014 13:50:58</publishTime>
     </File>
     <File Include="default.aspx">
       <publishTime>01/31/2014 14:47:27</publishTime>
@@ -138,9 +135,6 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     </File>
     <File Include="Formulaires/FRMcontact.aspx">
       <publishTime>09/26/2013 09:43:59</publishTime>
-    </File>
-    <File Include="Formulaires/FRMCreateurs.aspx">
-      <publishTime>02/21/2014 13:29:13</publishTime>
     </File>
     <File Include="Formulaires/FRMdevenirsentinelle.aspx">
       <publishTime>02/07/2014 10:53:15</publishTime>
@@ -167,7 +161,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/31/2014 14:47:26</publishTime>
     </File>
     <File Include="Formulaires/FRMPanneauDeControle.aspx">
-      <publishTime>02/21/2014 20:33:41</publishTime>
+      <publishTime>02/14/2014 13:50:58</publishTime>
     </File>
     <File Include="Formulaires/FRMrevuedepresse.aspx">
       <publishTime>02/07/2014 10:53:15</publishTime>
@@ -176,7 +170,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>02/07/2014 13:24:51</publishTime>
     </File>
     <File Include="Formulaires/Site.Master">
-      <publishTime>02/21/2014 13:29:13</publishTime>
+      <publishTime>02/14/2014 08:40:43</publishTime>
     </File>
     <File Include="Formulaires/WebForm1.aspx">
       <publishTime>10/29/2013 14:47:03</publishTime>
@@ -332,7 +326,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>10/09/2013 13:23:12</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/28/2014 10:53:36</publishTime>
+      <publishTime>02/07/2014 10:01:50</publishTime>
     </File>
   </ItemGroup>
 </Project>

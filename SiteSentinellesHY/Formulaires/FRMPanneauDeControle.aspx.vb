@@ -440,10 +440,10 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Private Sub lviewNouvelle_PreRender(sender As Object, e As EventArgs) Handles lviewNouvelle.PreRender
-        If lviewNouvelle.Items.Count > 0 And Not Page.IsPostBack Then
+        If lviewNouvelle.Items.Count > 0 Then
             CType(lviewNouvelle.FindControl("lbNouvelleTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+            lviewNouvelle.Sort(ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN"), SortDirection.Ascending)
         End If
-        lviewInfoNouvelles.DataBind()
     End Sub
     Private Sub lviewNouvelle_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewNouvelle.SelectedIndexChanged
         ViewState("modeNouvelle") = ""
@@ -473,10 +473,10 @@ Public Class FRMPanneauDeControle
 
 #Region "Événement"
     Private Sub lvEvenement_PreRender(sender As Object, e As EventArgs) Handles lvEvenement.PreRender
-        If lvEvenement.Items.Count > 0 And Not Page.IsPostBack Then
+        If lvEvenement.Items.Count > 0 Then
             CType(lvEvenement.FindControl("lbEvenementTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+            lvEvenement.Sort(ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN"), SortDirection.Ascending)
         End If
-        lvInfoEvenement.DataBind()
     End Sub
 
     Private Sub lvEvenement_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvEvenement.SelectedIndexChanged
@@ -607,8 +607,8 @@ Public Class FRMPanneauDeControle
     Private Sub lvRDP_PreRender(sender As Object, e As EventArgs) Handles lvRDP.PreRender
         If lvRDP.Items.Count > 0 Then
             CType(lvRDP.FindControl("lbRDPTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+            lvRDP.Sort(ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN"), SortDirection.Ascending)
         End If
-        lvInfoRDP.DataBind()
     End Sub
 
     Private Sub lvRDP_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvRDP.SelectedIndexChanged
@@ -777,8 +777,11 @@ Public Class FRMPanneauDeControle
     End Function
 #End Region
 
-    Private Sub lviewUtilisateurs_PreRender(sender As Object, e As EventArgs) Handles lviewUtilisateurs.PreRender
-        lviewInfoUtilisateur.DataBind()
+    Private Sub lviewUtilisateurs_ItemCommand(sender As Object, e As ListViewCommandEventArgs) Handles lviewUtilisateurs.ItemCommand
+        If e.CommandName.ToLower.Contains("sort") Then
+            lviewUtilisateurs.SelectedIndex = 0
+            lviewInfoUtilisateur.DataBind()
+        End If
     End Sub
 
     Private Sub lviewUtilisateurs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewUtilisateurs.SelectedIndexChanged
