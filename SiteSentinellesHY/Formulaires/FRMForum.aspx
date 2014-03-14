@@ -138,13 +138,8 @@
                                                 <asp:LinkButton ID="lnkbtnAjoutCategorie" runat="server" Width="82px" CssClass="btn disabled-button" OnClick="lnkbtnAjoutCategorie_Click"><%= outils.obtenirLangue("Ajouter|Add")%></asp:LinkButton>
                                             </div>
                                         </div>
-                                        <div class="clear-both" style="padding-top: 10px;">
-                                            <asp:panel id="divMessageErreur" style="margin:0;" Visible="<% IIf(lblErreurCategorie.Text IsNot "", True, False)%>" CssClass="alert alert-error" runat="server">
-                                                <asp:Label runat="server" ID="lblErreurCategorie" CssClass="lblMessageErreur"></asp:Label>
-                                            </asp:panel>
-                                        </div>
                                         <div class="clear-both">
-                                            
+                                            <asp:Label runat="server" ID="lblErreurCategorie" CssClass="lblMessageErreur"></asp:Label>
                                         </div>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
