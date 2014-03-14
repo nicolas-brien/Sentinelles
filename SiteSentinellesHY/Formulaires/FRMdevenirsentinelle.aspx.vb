@@ -42,7 +42,7 @@
             'Puisque le formulaire est valide, on procède à l'envoi du courriel
         Else
             Dim destinataire As String = (From info In ModeleSentinellesHY.outils.leContexte.InfoGeneraleJeu).FirstOrDefault.courrielFormulaire
-            Dim expediteur As String = "info@SentinellesHY.qc.ca"
+            Dim expediteur As String = "info@sentinelleshy.ca"
             Dim mail As System.Net.Mail.MailMessage = New System.Net.Mail.MailMessage()
             mail.To.Add(destinataire)
             mail.From = New System.Net.Mail.MailAddress(expediteur, "Inscription de " & tbnom.Text, System.Text.Encoding.UTF8)
@@ -59,11 +59,14 @@
             mail.Priority = System.Net.Mail.MailPriority.High
             Dim client As System.Net.Mail.SmtpClient = New System.Net.Mail.SmtpClient()
 
-            client.Credentials = New System.Net.NetworkCredential("cpsSentinelle@gmail.com", "projetcghy2013")
+            client.Credentials = New System.Net.NetworkCredential("info@sentinelleshy.ca", "Vs2H7!Etu")
 
-            client.Port = 587 ' Gmail port
-            client.Host = "smtp.gmail.com"
-            client.EnableSsl = True 'Gmail Secured Layer
+            client.Port = 25
+            client.Host = "mail.sentinelleshy.ca"
+            'client.EnableSsl = True 'Gmail Secured Layer
+            'client.Port = 587 ' Gmail port
+            'client.Host = "smtp.gmail.com"
+            'client.EnableSsl = True 'Gmail Secured Layer
 
             client.Send(mail)
             Response.Redirect("~/Formulaires/FRMConfirmation.aspx", False)
