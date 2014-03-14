@@ -304,7 +304,8 @@
                                                                     <asp:TextBox ID="txtboxImgCarrousel3" runat="server" Enabled=" false" />
                                                                     <a onclick="$('[id$=fuplPhotoCarrousel3]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> 
                                                                     <img id="imgCarrousel3" width="360" src="../Upload/Carrousel3.jpg" />
-                                                                    <asp:FileUpload ID="fuplPhotoCarrousel3" onchange="PreviewImage('imgCarrousel3','fuplPhotoCarrousel3');" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel3" ClientIDMode="Static"  onpropertychange="$('[id$=uploadButton3]').click(); return false;" onchange="$('[id$=uploadButton3]').click(); return false;" Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                                                 <asp:Button ID="uploadButton3" runat="server" Text="Carrousel3"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click"  Style="Display: none"/>
                                                                 </div>
                                                                 <asp:HiddenField ID="nomImage" runat="server" ClientIDMode="Static" />
                                                                 <asp:HiddenField ID="nonFileUpdate" runat="server" ClientIDMode="Static" />

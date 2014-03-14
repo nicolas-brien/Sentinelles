@@ -264,7 +264,7 @@ Public Class FRMPanneauDeControle
 
 #Region "Carouselle"
     Protected Sub lnkUploadPhotoCarrousel_Click(sender As Object, e As EventArgs)
-        CType(lviewOptions.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 1
+
         Dim nomImage = CType(lviewOptions.Items(0).FindControl("nomImage"), System.Web.UI.WebControls.HiddenField)
         Dim nonFileUpdatege = CType(lviewOptions.Items(0).FindControl("nonFileUpdate"), System.Web.UI.WebControls.HiddenField)
         nomImage.Value = sender.text
@@ -275,6 +275,7 @@ Public Class FRMPanneauDeControle
         ElseIf nomImage.Value = "Carrousel3" Then
             nonFileUpdatege.Value = "fuplPhotoCarrousel3"
         End If
+        CType(lviewOptions.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 1
 
     End Sub
     Protected Sub vCrop_Activate(sender As Object, e As EventArgs)
