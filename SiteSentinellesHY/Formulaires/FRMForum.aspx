@@ -11,13 +11,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
     <title>Les Sentinelles Haute-Yamaska</title>
-    <script src="../CSS/js/jquery.js"></script>
-    <script src="../CSS/js/bootstrap.min.js"></script>
-    <script src="../CSS/js/loading-link.js"></script>
     <link href="../CSS/bootstrap.css" rel="stylesheet" />
     <link href="../CSS/Forum.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
+    <script src="../CSS/js/jquery.js"></script>
+    <script src="../CSS/js/bootstrap.min.js"></script>
     <script src="../CSS/js/scriptGlobal.js"></script>
+    <script src="../CSS/js/loading-link.js"></script>
 </head>
 <body>
     <script>
