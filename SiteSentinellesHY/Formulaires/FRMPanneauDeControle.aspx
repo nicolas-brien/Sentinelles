@@ -13,10 +13,9 @@
     <link href="../CSS/PanneauDeControle.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
 
-    <script src="../CSS/js/jqueryCrop.min.js"></script>
-    <script src="../CSS/js/jquery.Jcrop.min.js"></script>
-    <script src="../CSS/js/jquery.Jcrop.js"></script>
     <script src="../CSS/js/jquery.js"></script>
+    <script src="../CSS/js/jquery.Jcrop.min.js"></script>
+
     <script src="../CSS/js/bootstrap.min.js"></script>
     <script src="../CSS/js/scriptGlobal.js"></script>
     <script src="../CSS/js/loading-link.js"></script>
@@ -365,7 +364,7 @@
                                             </div>
 
 
-                                            <%-- Carousel Images --%>
+<%-- Carousel Images --%>
 
                                             <div class="accordion-group">
                                                 <div class="accordion-heading">
@@ -380,7 +379,7 @@
                                                             <div class="accordion-inner">
                                                                 <div>
                                                                     <asp:Label ID="lblFormatImgMessage" runat="server">
-                                                                <%= outils.obtenirLangue("*Les images du carrousel doivent être approximativement de 960 x 400 et de types jpg|*The images of the caroussel must be approximately 960 x 200 and with the type jpg")%>
+                                                                <%= outils.obtenirLangue("*Les images du carrousel doivent être approximativement de 960 x 200 et de types .png ou .jpg|*The images of the caroussel must be approximately 960 x 200 and with the type .png or .jpg")%>
                                                                     </asp:Label>
                                                                 </div>
                                                                 <div class="marginbottom_divImgCarrousel">
@@ -389,22 +388,22 @@
                                                                     <a onclick="$('[id$=fuplPhotoCarrousel1]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
                                                                     <asp:LinkButton ID="btCarrousel1" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
                                                                     <img id="imgCarrousel1" width="360" src="../Upload/Carrousel1.jpg" />
-                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel1"  ClientIDMode="Static" onpropertychange="$('[id$=uploadButton1]').click(); return false;" onchange="$('[id$=uploadButton1]').click(); return false;"  Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
-                                                                    <asp:Button ID="uploadButton1" runat="server" Text="Carrousel1"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click"  Style="Display: none"/>
+                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel1"  ClientIDMode="Static" onpropertychange="$('[id$=uploadButton]').click(); return false;" onchange="$('[id$=uploadButton]').click(); return false;"  Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                                                    <asp:Button ID="uploadButton" runat="server" Text="Carrousel1"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click" />
                                                                 </div>
                                                                 <div class="marginbottom_divImgCarrousel">
                                                                     <asp:Label ID="Label7" runat="server"> <%= outils.obtenirLangue("Image carrousel 2 : |Photo caroussel 2 : ")%></asp:Label>
                                                                     <asp:TextBox ID="txtboxImgCarrousel2" runat="server" Enabled=" false" />
-                                                                    <a onclick="$('[id$=fuplPhotoCarrousel2]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> 
+                                                                    <a onclick="$('[id$=fuplPhotoCarrousel2]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
+                                                                    <asp:LinkButton ID="Carrousel2" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
                                                                     <img id="imgCarrousel2" width="360" src="../Upload/Carrousel2.jpg" />
-                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel2"  ClientIDMode="Static" onpropertychange="$('[id$=uploadButton2]').click(); return false;" onchange="$('[id$=uploadButton2]').click(); return false;"  Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
-                                                                    <asp:Button ID="uploadButton2" runat="server" Text="Carrousel2"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click"  Style="Display: none"/>
-                                                               
+                                                                    <asp:FileUpload ID="fuplPhotoCarrousel2" onchange="PreviewImage('imgCarrousel2','fuplPhotoCarrousel2');" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
                                                                 </div>
                                                                 <div>
                                                                     <asp:Label ID="Label8" runat="server"> <%= outils.obtenirLangue("Image carrousel 3 : |Photo caroussel 3 : ")%></asp:Label>
                                                                     <asp:TextBox ID="txtboxImgCarrousel3" runat="server" Enabled=" false" />
-                                                                    <a onclick="$('[id$=fuplPhotoCarrousel3]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> 
+                                                                    <a onclick="$('[id$=fuplPhotoCarrousel3]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
+                                                                    <asp:LinkButton ID="Carrousel3" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
                                                                     <img id="imgCarrousel3" width="360" src="../Upload/Carrousel3.jpg" />
                                                                     <asp:FileUpload runat="server" ID="fuplPhotoCarrousel3" ClientIDMode="Static"  onpropertychange="$('[id$=uploadButton3]').click(); return false;" onchange="$('[id$=uploadButton3]').click(); return false;" Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
                                                                  <asp:Button ID="uploadButton3" runat="server" Text="Carrousel3"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click"  Style="Display: none"/>
