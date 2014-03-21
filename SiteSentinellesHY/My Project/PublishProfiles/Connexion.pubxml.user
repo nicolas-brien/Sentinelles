@@ -10,6 +10,9 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <_PublishTargetUrl>ftp://ftp.sentinelleshy.ca/sentinelleshy.ca/wwwroot/</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="BackControl/CleanBDControler.aspx">
+      <publishTime>03/21/2014 09:06:09</publishTime>
+    </File>
     <File Include="bin/AjaxControlToolkit.dll">
       <publishTime>01/31/2014 14:47:27</publishTime>
     </File>
@@ -56,7 +59,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/31/2014 14:47:27</publishTime>
     </File>
     <File Include="bin/ModeleSentinellesHY.dll">
-      <publishTime>02/28/2014 10:53:19</publishTime>
+      <publishTime>03/14/2014 11:11:20</publishTime>
     </File>
     <File Include="bin/nl/AjaxControlToolkit.resources.dll">
       <publishTime>01/31/2014 14:47:27</publishTime>
@@ -71,10 +74,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/31/2014 14:47:27</publishTime>
     </File>
     <File Include="bin/SiteSentinellesHY.dll">
-      <publishTime>02/28/2014 10:53:20</publishTime>
+      <publishTime>03/21/2014 09:09:03</publishTime>
     </File>
     <File Include="bin/SiteSentinellesHY.xml">
-      <publishTime>02/28/2014 10:53:20</publishTime>
+      <publishTime>03/21/2014 09:09:03</publishTime>
     </File>
     <File Include="bin/tr-TR/AjaxControlToolkit.resources.dll">
       <publishTime>01/31/2014 14:47:27</publishTime>
@@ -109,23 +112,41 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="CSS/index.css">
       <publishTime>02/14/2014 13:50:58</publishTime>
     </File>
+    <File Include="CSS/Jcrop.gif">
+      <publishTime>02/28/2014 14:44:05</publishTime>
+    </File>
+    <File Include="CSS/jquery.Jcrop.css">
+      <publishTime>02/28/2014 14:44:05</publishTime>
+    </File>
     <File Include="CSS/js/bootstrap.js">
       <publishTime>02/21/2014 13:29:13</publishTime>
     </File>
     <File Include="CSS/js/bootstrap.min.js">
       <publishTime>02/21/2014 13:29:13</publishTime>
     </File>
+    <File Include="CSS/js/jquery.Jcrop.js">
+      <publishTime>02/28/2014 14:44:05</publishTime>
+    </File>
+    <File Include="CSS/js/jquery.Jcrop.min.js">
+      <publishTime>02/28/2014 14:44:05</publishTime>
+    </File>
     <File Include="CSS/js/jquery.js">
-      <publishTime>01/31/2014 14:47:26</publishTime>
+      <publishTime>02/28/2014 14:44:05</publishTime>
+    </File>
+    <File Include="CSS/js/jqueryCrop.min.js">
+      <publishTime>02/28/2014 14:44:05</publishTime>
+    </File>
+    <File Include="CSS/js/loading-link.js">
+      <publishTime>03/14/2014 08:55:22</publishTime>
     </File>
     <File Include="CSS/js/scriptGlobal.js">
-      <publishTime>02/21/2014 13:29:13</publishTime>
+      <publishTime>03/14/2014 08:55:22</publishTime>
     </File>
     <File Include="CSS/PanneauDeControle.css">
-      <publishTime>02/21/2014 20:19:18</publishTime>
+      <publishTime>03/14/2014 10:22:56</publishTime>
     </File>
     <File Include="CSS/SiteMaster.css">
-      <publishTime>02/21/2014 13:29:13</publishTime>
+      <publishTime>03/21/2014 09:06:09</publishTime>
     </File>
     <File Include="default.aspx">
       <publishTime>01/31/2014 14:47:27</publishTime>
@@ -140,7 +161,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>09/26/2013 09:43:59</publishTime>
     </File>
     <File Include="Formulaires/FRMCreateurs.aspx">
-      <publishTime>02/21/2014 13:29:13</publishTime>
+      <publishTime>03/14/2014 08:55:22</publishTime>
     </File>
     <File Include="Formulaires/FRMdevenirsentinelle.aspx">
       <publishTime>02/07/2014 10:53:15</publishTime>
@@ -149,13 +170,13 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>02/07/2014 10:53:15</publishTime>
     </File>
     <File Include="Formulaires/FRMForum.aspx">
-      <publishTime>02/14/2014 13:50:58</publishTime>
+      <publishTime>03/14/2014 10:59:03</publishTime>
     </File>
     <File Include="Formulaires/FRMhistorique.aspx">
       <publishTime>02/07/2014 10:53:15</publishTime>
     </File>
     <File Include="Formulaires/FRMliensutiles.aspx">
-      <publishTime>02/07/2014 10:53:15</publishTime>
+      <publishTime>03/14/2014 08:55:23</publishTime>
     </File>
     <File Include="Formulaires/FRMmaltraitance.aspx">
       <publishTime>02/07/2014 10:53:15</publishTime>
@@ -167,16 +188,16 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/31/2014 14:47:26</publishTime>
     </File>
     <File Include="Formulaires/FRMPanneauDeControle.aspx">
-      <publishTime>02/21/2014 20:33:41</publishTime>
+      <publishTime>03/21/2014 09:06:09</publishTime>
     </File>
     <File Include="Formulaires/FRMrevuedepresse.aspx">
       <publishTime>02/07/2014 10:53:15</publishTime>
     </File>
     <File Include="Formulaires/index.aspx">
-      <publishTime>02/07/2014 13:24:51</publishTime>
+      <publishTime>02/28/2014 14:44:05</publishTime>
     </File>
     <File Include="Formulaires/Site.Master">
-      <publishTime>02/21/2014 13:29:13</publishTime>
+      <publishTime>03/21/2014 09:06:09</publishTime>
     </File>
     <File Include="Formulaires/WebForm1.aspx">
       <publishTime>10/29/2013 14:47:03</publishTime>
@@ -209,7 +230,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/31/2014 14:47:27</publishTime>
     </File>
     <File Include="Images/CGHY.jpg">
-      <publishTime>01/31/2014 14:47:27</publishTime>
+      <publishTime>03/14/2014 09:51:50</publishTime>
     </File>
     <File Include="Images/configuration.png">
       <publishTime>01/31/2014 14:47:27</publishTime>
@@ -332,7 +353,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>10/09/2013 13:23:12</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/28/2014 10:53:36</publishTime>
+      <publishTime>03/14/2014 11:11:25</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -12,6 +12,7 @@
     <link href="../CSS/bootstrap.css" rel="stylesheet" />
     <link href="../CSS/PanneauDeControle.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="../Images/LogoOfficielHY.png" />
 
     <script src="../CSS/js/jquery.js"></script>
     <script src="../CSS/js/jquery.Jcrop.min.js"></script>
@@ -49,7 +50,7 @@
             jQuery('#H').val(c.h);
         };
 
-		</script>
+    </script>
 
 
     <title>Les Sentinelles Haute-Yamaska</title>
@@ -427,7 +428,7 @@
                                                             <asp:HiddenField ID="H" runat="server" ClientIDMode="Static" />
 
                                                         </div>
-        
+
                                                     </asp:View>
                                                 </asp:MultiView>
                                             </div>

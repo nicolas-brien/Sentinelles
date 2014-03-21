@@ -31,6 +31,7 @@
         ' If the exception no longer exists, create a generic exception.
         If ex Is Nothing Then
             ex = New Exception(unhandledErrorMsg)
+            FriendlyErrorMsg.Text = ex.Message
         End If
 
         errorMessage = ""
