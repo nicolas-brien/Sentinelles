@@ -347,7 +347,8 @@
     -webkit-border-radius: 9px;
     -moz-border-radius: 10px;
     border-radius: 8px;
-    background-image: linear-gradient(to bottom, #ECECEC, #C7C6C6);
+    background-image: linear-gradient(to bottom, blue, darkblue);
+    /*background-image: linear-gradient(to bottom, #ECECEC, #C7C6C6);*/
 }
 
 .encadrerBoutons {
