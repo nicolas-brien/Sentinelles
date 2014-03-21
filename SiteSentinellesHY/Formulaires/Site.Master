@@ -20,6 +20,11 @@
     <script src="../CSS/js/scriptGlobal.js"></script>
 </head>
 <body>
+    <script>
+            $(document).ready(function () {
+                $('.disabled-button').loadingLink("<%= outils.obtenirLangue("Chargement..|Loading...")%>");
+        });
+    </script>
     <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
     </asp:ContentPlaceHolder>
     <div id="wrapper">
