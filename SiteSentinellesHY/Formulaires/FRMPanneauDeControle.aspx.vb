@@ -462,7 +462,9 @@ Public Class FRMPanneauDeControle
         If lviewNouvelle.Items.Count > 0 And Not Page.IsPostBack Then
             CType(lviewNouvelle.FindControl("lbNouvelleTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
         End If
-        lviewInfoNouvelles.DataBind()
+        If ViewState("modeNouvelle") <> "AjoutNouvelle" Then
+            lviewInfoNouvelles.DataBind()
+        End If
     End Sub
     Private Sub lviewNouvelle_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewNouvelle.SelectedIndexChanged
         ViewState("modeNouvelle") = ""
@@ -495,7 +497,9 @@ Public Class FRMPanneauDeControle
         If lvEvenement.Items.Count > 0 And Not Page.IsPostBack Then
             CType(lvEvenement.FindControl("lbEvenementTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
         End If
-        lvInfoEvenement.DataBind()
+        If ViewState("modeEvenement") <> "AjoutEvenement" Then
+            lvInfoEvenement.DataBind()
+        End If
     End Sub
 
     Private Sub lvEvenement_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvEvenement.SelectedIndexChanged
@@ -633,7 +637,10 @@ Public Class FRMPanneauDeControle
         If lvRDP.Items.Count > 0 Then
             CType(lvRDP.FindControl("lbRDPTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
         End If
-        lvInfoRDP.DataBind()
+
+        If ViewState("modeRDP") <> "AjoutRDP" Then
+            lvInfoRDP.DataBind()
+        End If
     End Sub
 
     Private Sub lvRDP_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvRDP.SelectedIndexChanged

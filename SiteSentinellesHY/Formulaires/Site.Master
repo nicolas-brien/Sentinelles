@@ -21,6 +21,11 @@
     <script src="../CSS/js/scriptGlobal.js"></script>
 </head>
 <body>
+    <script>
+            $(document).ready(function () {
+                $('.disabled-button').loadingLink("<%= outils.obtenirLangue("Chargement..|Loading...")%>");
+        });
+    </script>
     <div itemscope itemtype="http://schema.org/Organization" class="referencement">
         <span itemprop="name">Les Sentinelles Haute-Yamaska</span>
         <span itemprop="description">Les sentinelles sont des adultes qui désirent s’engager de façon volontaire pour agir comme RELAIS entre les personnes suicidaires et les ressources d’aide. Leur rôle peut être comparé à celui des personnes formées en premiers soins : assurer un soutien en attendant que des professionnels prennent la relève.</span>

@@ -834,41 +834,45 @@
             <%-----------------------------------Footer-----------------------------------%>
             <div id="footer">
                 <div class="span6">
-                    <div>
+                    <div style="height:135px; width:500px;">
                         <a href="http://www.santemonteregie.qc.ca/granby-region/index.fr.html" target="_blank">
                             <img id="imgCSSSHY" width="225" class="footerImages" src="../Images/CSSSHY.jpg" />
                         </a>
-                        <a href="http://www.aqdr.org/" target="_blank">
-                            <img id="imgAQDR" width="225" class="footerImages" src="../Images/AQDR.jpg" />
-                        </a>
-                    </div>
-                    <div>
-                        <a href="http://www.cegepgranby.qc.ca/" target="_blank">
-                            <img id="imgCegep" width="225" class="footerImages" src="../Images/CGHY.png" />
-                        </a>
                         <a>
-                            <img id="imgPreventionSuicide" width="225" class="footerImages" src="../Images/CPS.jpg" />
+                            <img id="imgPreventionSuicide" width="225" src="../Images/CPS.jpg"/>
+                        </a>
+                        
+                    </div>
+                    <div style="width:550px;">
+                        <a href="http://www.cegepgranby.qc.ca/" class="distanceEntreLogo" target="_blank" >
+                            <img id="imgCegep" width="150" class="footerImages" src="../Images/CGHY.png"/>
+                        </a>
+                        <a href="http://www.aqdr.org/" class="distanceEntreLogo" target="_blank">
+                            <img id="imgAQDR" width="150" class="footerImages" src="../Images/AQDR.jpg" />
+                        </a>
+                        <a href="http://www.servicecanada.gc.ca/" target="_blank">
+                            <img id="imgServiceCanada" width="150" class="footerImages" src="../Images/servicecanada.png" />
                         </a>
                     </div>
                 </div>
                 <div class="span6">
-                    <div class="span3">
+                    <div id="liensNav" class="span3">
                         <b class="p_footer">NAVIGATION</b>
                         <hr class="hr_Footer" />
                         <p>
-                            <asp:LinkButton ID="LnkBtnNavigation_footer" CssClass="lnkBtn_Footer" runat="server" PostBackUrl="~/Formulaires/index.aspx"><%= outils.obtenirLangue("Accueil|Home")%></asp:LinkButton>
+                            <a id="LnkBtnNavigation_footer" class="lnkBtn_Footer" href="../Formulaires/index.aspx"><%= outils.obtenirLangue("Accueil|Home")%></a>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnHistorique_footer" CssClass="lnkBtn_Footer" runat="server" PostBackUrl="~/Formulaires/FRMhistorique.aspx"><%= outils.obtenirLangue("Historique|History")%></asp:LinkButton>
+                            <a id="LnkBtnHistorique_footer" class="lnkBtn_Footer" href="../Formulaires/FRMhistorique.aspx"><%= outils.obtenirLangue("Historique|History")%></a>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnNouvelles_footer" PostBackUrl="~/Formulaires/FRMnouvelles.aspx" CssClass="lnkBtn_Footer" runat="server"><%= outils.obtenirLangue("Nouvelles|News")%></asp:LinkButton>
+                            <a id="LnkBtnNouvelles_footer" class="lnkBtn_Footer" href="../Formulaires/FRMnouvelles.aspx"><%= outils.obtenirLangue("Nouvelles|News")%></a>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnEvenement_footer" PostBackUrl="~/Formulaires/FRMevenements.aspx" CssClass="lnkBtn_Footer" runat="server"><%= outils.obtenirLangue("Événements|Events")%></asp:LinkButton>
+                            <a id="LnkBtnEvenement_footer" class="lnkBtn_Footer" href="../Formulaires/FRMevenements.aspx"><%= outils.obtenirLangue("Événements|Events")%></a>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnRDP_footer" PostBackUrl="~/Formulaires/FRMrevuedepresse.aspx" CssClass="lnkBtn_Footer" runat="server"><%= outils.obtenirLangue("Revues de presse|Press Reviews")%></asp:LinkButton>
+                            <a id="LnkBtnRDP_footer" class="lnkBtn_Footer" href="../Formulaires/FRMrevuedepresse.aspx"><%= outils.obtenirLangue("Revues de presse|Press Reviews")%></a>
                         </p>
                     </div>
                     <div>
@@ -884,12 +888,12 @@
                             <asp:LinkButton ID="LnkBtnInfoMaltraitance_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalInfoMaltraitance" data-toggle="modal"><%= outils.obtenirLangue("Info Maltraitance|Elder Abuse Information")%></asp:LinkButton>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
+                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" data-toggle="modal"  href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
                         <p>
                         <asp:LinkButton ID="lnkBtnPageCreateurs" CssClass="lnkBtn_Footer" runat="server" PostBackUrl="~/Formulaires/FRMCreateurs.aspx"><%= outils.obtenirLangue("Page des créateurs|Developer's page")%></asp:LinkButton>
                         </p>
-                    </div>
+                     </div>
                 </div>
                 <div style="clear: both;">
                 </div>

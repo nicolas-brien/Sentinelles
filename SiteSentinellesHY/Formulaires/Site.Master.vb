@@ -36,15 +36,18 @@ Partial Class Site
             lnkbtnRevueDePresse.Attributes("class") = "pull-right barreNavigationMenuCurrent"
         End If
 
-        If Session("Utilisateur") IsNot Nothing Then
-            divLogin.Visible = True
-            If CType(Session("Autorisation"), Integer) < 3 Then
-                iconSetting.Visible = True
-            End If
+        Try
+            If Session("Utilisateur") IsNot Nothing Then
+                divLogin.Visible = True
+                If CType(Session("Autorisation"), Integer) < 3 Then
+                    iconSetting.Visible = True
+                End If
 
-            CType(lnkConnexion, HtmlControl).Attributes("href") = "../Formulaires/FRMForum.aspx"
-            lblInfoUtilisateur.InnerText = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).nomUtilisateur
-        End If
+                CType(lnkConnexion, HtmlControl).Attributes("href") = "../Formulaires/FRMForum.aspx"
+                lblInfoUtilisateur.InnerText = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).nomUtilisateur
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 
 
@@ -72,7 +75,7 @@ Partial Class Site
             Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
             unUtilisateur = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu Where uti.nomUtilisateur = tbLoginUsername.Text).FirstOrDefault
             If unUtilisateur Is Nothing Then
-                lblLoginErrorMessage.Text = ModeleSentinellesHY.outils.obtenirLangue("Le nom d'utilisateur ou le mot de passe est incorrecte. |The username or the password is incorrect.")
+                lblLoginErrorMessage.Text = ModeleSentinellesHY.outils.obtenirLangue("Le nom d'utilisateur ou le mot de passe est incorrect. |The username or the password is incorrect.")
             Else
                 If ModeleSentinellesHY.outils.VerifierMotDePasse(unUtilisateur, tbLoginPassword.Text) Then
                     'On mémorise ces informations dans des objets session afin de les utiliser plus tard
@@ -80,7 +83,7 @@ Partial Class Site
                     Session("Autorisation") = unUtilisateur.idStatut
                     Response.Redirect("FRMForum.aspx")
                 Else
-                    lblLoginErrorMessage.Text = ModeleSentinellesHY.outils.obtenirLangue("Le nom d'utilisateur ou le mot de passe est incorrecte. |The username or the password is incorrect.")
+                    lblLoginErrorMessage.Text = ModeleSentinellesHY.outils.obtenirLangue("Le nom d'utilisateur ou le mot de passe est incorrect. |The username or the password is incorrect.")
                 End If
             End If
         Else
