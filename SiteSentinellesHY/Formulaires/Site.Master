@@ -21,6 +21,14 @@
     <script src="../CSS/js/scriptGlobal.js"></script>
 </head>
 <body>
+    <div itemscope itemtype="http://schema.org/Organization" class="referencement">
+        <span itemprop="name">Les Sentinelles Haute-Yamaska</span>
+        <span itemprop="description">Les sentinelles sont des adultes qui désirent s’engager de façon volontaire pour agir comme RELAIS entre les personnes suicidaires et les ressources d’aide. Leur rôle peut être comparé à celui des personnes formées en premiers soins : assurer un soutien en attendant que des professionnels prennent la relève.</span>
+        <a itemprop="url" href="http://sentinelleshy.ca/Formulaires/index.aspx"></a>
+        <a itemprop="image" href="http://sentinelleshy.ca/Images/LogoOfficielHYSmallFR.png"></a>
+        <span itemprop="foundingDate">2008-01-01</span>
+        <span itemprop="telephone">1-866-277-3553</span>
+    </div>
     <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
     </asp:ContentPlaceHolder>
     <div id="wrapper">
