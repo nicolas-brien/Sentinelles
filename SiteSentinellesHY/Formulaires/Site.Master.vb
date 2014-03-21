@@ -36,7 +36,7 @@ Partial Class Site
             lnkbtnRevueDePresse.Attributes("class") = "pull-right barreNavigationMenuCurrent"
         End If
 
-        If Not Session("Utilisateur") Is Nothing Then
+        If Session("Utilisateur") IsNot Nothing Then
             divLogin.Visible = True
             If CType(Session("Autorisation"), Integer) < 3 Then
                 iconSetting.Visible = True

@@ -12,6 +12,7 @@
     <link href="../CSS/bootstrap.css" rel="stylesheet" />
     <link href="../CSS/PanneauDeControle.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="../Images/LogoOfficielHY.png" />
 
     <script src="../CSS/js/jquery.js"></script>
     <script src="../CSS/js/jquery.Jcrop.min.js"></script>
@@ -49,7 +50,7 @@
             jQuery('#H').val(c.h);
         };
 
-		</script>
+    </script>
 
 
     <title>Les Sentinelles Haute-Yamaska</title>
@@ -384,8 +385,7 @@
                                                                 <div class="marginbottom_divImgCarrousel">
                                                                     <asp:Label ID="Label10" runat="server"><%= outils.obtenirLangue("Image carrousel 1 : |Photo caroussel 1 : ")%></asp:Label>
                                                                     <asp:TextBox ID="txtboxImgCarrousel1" Enabled=" false" runat="server" />
-                                                                    <a onclick="$('[id$=fuplPhotoCarrousel1]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> |
-                                                                    <asp:LinkButton ID="btCarrousel1" runat="server" Text="Upload" OnClick="lnkUploadPhotoCarrousel_Click" />
+                                                                    <a onclick="$('[id$=fuplPhotoCarrousel1]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a>
                                                                     <img id="imgCarrousel1" width="360" src="../Upload/Carrousel1.jpg" />
                                                                     <asp:FileUpload runat="server" ID="fuplPhotoCarrousel1"  ClientIDMode="Static" onpropertychange="$('[id$=uploadButton1]').click(); return false;" onchange="$('[id$=uploadButton1]').click(); return false;"  Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
                                                                     <asp:Button ID="uploadButton1" runat="server" Text="Carrousel1"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click"  Style="Display: none"/>
@@ -428,7 +428,7 @@
                                                             <asp:HiddenField ID="H" runat="server" ClientIDMode="Static" />
 
                                                         </div>
-        
+
                                                     </asp:View>
                                                 </asp:MultiView>
                                             </div>

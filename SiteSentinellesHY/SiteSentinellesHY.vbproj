@@ -95,6 +95,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BackControl\CleanBDControler.aspx" />
     <Content Include="bin\ar\AjaxControlToolkit.resources.dll" />
     <Content Include="bin\cs\AjaxControlToolkit.resources.dll" />
     <Content Include="bin\de\AjaxControlToolkit.resources.dll" />
@@ -153,37 +154,18 @@
     <Content Include="Formulaires\FRMrevuedepresse.aspx" />
     <Content Include="Formulaires\index.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Images\AQDR.jpg" />
-    <Content Include="Images\background.png" />
-    <Content Include="Images\BanniereEN.png" />
-    <Content Include="Images\BanniereFR.png" />
-    <Content Include="Images\Carrousel1.png" />
-    <Content Include="Images\Carrousel2.png" />
-    <Content Include="Images\Carrousel3.png" />
-    <Content Include="Images\CGHY.jpg" />
-    <Content Include="Images\configuration.png" />
-    <Content Include="Images\CPS.jpg" />
-    <Content Include="Images\CSSSHY.jpg" />
-    <Content Include="Images\enveloppe.png" />
-    <Content Include="Images\enveloppeSelected.png" />
-    <Content Include="Images\flecheRetour.png" />
-    <Content Include="Images\glyphicons-halflings.png" />
-    <Content Include="Images\icon-pin.png" />
-    <Content Include="Images\LogoOfficielHY.png" />
-    <Content Include="Images\LogoOfficielHYSmallEN.png" />
-    <Content Include="Images\LogoOfficielHYSmallFR.png" />
-    <Content Include="Images\PastilleDevenirSentinelleEN.png" />
-    <Content Include="Images\PastilleDevenirSentinelleFR.png" />
-    <Content Include="Images\PastilleInfoMaltraitanceEN.png" />
-    <Content Include="Images\PastilleInfoMaltraitanceFR.png" />
-    <Content Include="Images\PastilleInfoSuicideEN.png" />
-    <Content Include="Images\PastilleInfoSuicideFR.png" />
-    <Content Include="Images\TriangleFooter.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackControl\CleanBDControler.aspx.designer.vb">
+      <DependentUpon>CleanBDControler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BackControl\CleanBDControler.aspx.vb">
+      <DependentUpon>CleanBDControler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="default.aspx.designer.vb">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>

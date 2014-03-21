@@ -1,0 +1,25 @@
+CPANEL:
+
+http://www9.likuid.com
+
+user: sentinel
+pass: S7tX0j49rh
+
+----------------------
+BASE DE DONNÉES
+
+BD: Sentinelleshy
+UID: Sentinelle
+PASS: 289052599
+
+----------------------
+COURRIEL
+
+User: info@sentinelleshy.ca
+Pass: Vs2H7!Etu
+
+----------------------
+BACKCONTROL (BackUp Controler)
+
+User: cleanBD
+Pass: WrT185!r

@@ -94,7 +94,6 @@ Public Class FRMPanneauDeControle
             imgBtn_EnvoiMessage.ImageUrl = "~/Images/enveloppeSelected.png"
             lblMessageErreurEnvoiMessage.Text = ""
         End If
-
     End Sub
 
 #Region "Liens_Click"
@@ -441,8 +440,14 @@ Public Class FRMPanneauDeControle
     Public Sub DeleteNouvelle(ByVal nouvelleASupprimer As ModeleSentinellesHY.Nouvelle)
         Dim nouvelleAValider As ModeleSentinellesHY.Nouvelle = Nothing
         nouvelleAValider = ModeleSentinellesHY.outils.leContexte.NouvelleJeu.Find(nouvelleASupprimer.idNouvelle)
-        ModeleSentinellesHY.outils.leContexte.NouvelleJeu.Remove(nouvelleAValider)
-        ModeleSentinellesHY.outils.leContexte.SaveChanges()
+
+        If (Not nouvelleAValider Is Nothing) Then
+            ModeleSentinellesHY.outils.leContexte.NouvelleJeu.Remove(nouvelleAValider)
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+        End If
+
+        lviewNouvelle.DataBind()
+        lviewInfoNouvelles.DataBind()
 
         'On affiche l'index suivant ou précédent dépendamment de quelle nouvelle on supprime
         If lviewNouvelle.SelectedIndex = 0 Then
@@ -589,8 +594,14 @@ Public Class FRMPanneauDeControle
     Public Sub DeleteEvenement(ByVal evenementASupprimer As ModeleSentinellesHY.Événement)
         Dim unEvenement As ModeleSentinellesHY.Événement = Nothing
         unEvenement = ModeleSentinellesHY.outils.leContexte.ÉvénementJeu.Find(evenementASupprimer.idEvenement)
-        ModeleSentinellesHY.outils.leContexte.ÉvénementJeu.Remove(unEvenement)
-        ModeleSentinellesHY.outils.leContexte.SaveChanges()
+
+        If (Not unEvenement Is Nothing) Then
+            ModeleSentinellesHY.outils.leContexte.ÉvénementJeu.Remove(unEvenement)
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+        End If
+
+        lvEvenement.DataBind()
+        lvInfoEvenement.DataBind()
 
         'On affiche l'index suivant ou précédent dépendamment de quelle événement on supprime
         If lvEvenement.SelectedIndex = 0 Then
@@ -723,8 +734,14 @@ Public Class FRMPanneauDeControle
     Public Sub DeleteRDP(ByVal RDPASupprimer As ModeleSentinellesHY.RevueDePresse)
         Dim uneRDP As ModeleSentinellesHY.RevueDePresse = Nothing
         uneRDP = ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu.Find(RDPASupprimer.idRDP)
-        ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu.Remove(uneRDP)
-        ModeleSentinellesHY.outils.leContexte.SaveChanges()
+
+        If (Not uneRDP Is Nothing) Then
+            ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu.Remove(uneRDP)
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+        End If
+
+        lvRDP.DataBind()
+        lvInfoRDP.DataBind()
 
         'On affiche l'index suivant ou précédent dépendamment de quelle revue de presse on supprime
         If lvRDP.SelectedIndex = 0 Then
@@ -852,12 +869,16 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Public Sub DeleteUtilisateur(ByVal utilisateurASupprimer As ModeleSentinellesHY.Utilisateur)
-
         Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Nothing
         utilisateurAValider = ModeleSentinellesHY.outils.leContexte.UtilisateurJeu.Find(utilisateurASupprimer.idUtilisateur)
-        ModeleSentinellesHY.outils.leContexte.UtilisateurJeu.Remove(utilisateurAValider)
 
-        ModeleSentinellesHY.outils.leContexte.SaveChanges()
+        If (Not utilisateurAValider Is Nothing) Then
+            ModeleSentinellesHY.outils.leContexte.UtilisateurJeu.Remove(utilisateurAValider)
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+        End If
+
+        lviewUtilisateurs.DataBind()
+        lviewInfoUtilisateur.DataBind()
 
         'On affiche l'index suivant ou précédent dépendamment de quelle nouvelle on supprime
         If lviewUtilisateurs.SelectedIndex = 0 Then
