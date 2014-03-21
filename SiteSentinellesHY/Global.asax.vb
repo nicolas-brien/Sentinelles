@@ -35,15 +35,16 @@ Public Class Global_asax
         Dim unType = exc.GetType
 
         'Gestion d'erreur au niveau de l'application qui retourne de l'information à la page d'erreur
-        If TypeOf exc Is HttpUnhandledException Then
-            If Not exc.InnerException Is Nothing Then
-                exc = New Exception(exc.InnerException.Message)
-                Server.Transfer("FRMPageErreur.aspx?handler=Application_Error%20-%20Global.asax", True)
-            End If
-        ElseIf TypeOf exc Is HttpCompileException Then
+        If TypeOf exc Is HttpCompileException Then
             ModeleSentinellesHY.ExceptionUtility.LogException(exc, "BaseDeDonnée")
         End If
 
+        If TypeOf exc Is HttpUnhandledException Then
+            If Not exc.InnerException Is Nothing Then
+                exc = New Exception(exc.InnerException.Message)
+            End If
+        End If
+        Server.Transfer("FRMPageErreur.aspx?handler=Application_Error%20-%20Global.asax", True)
         Server.ClearError()
     End Sub
 
