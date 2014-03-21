@@ -663,7 +663,7 @@
                                 </asp:ListView>
                             </div>
 
-                            <div class="encadrerModification">
+                            <div class="encadrerModification petitsPoints">
                                 <asp:Label ID="lblMessageErreurEvenement" CssClass="lblMessageErreur" runat="server" Text="" />
                                 <asp:ListView ID="lvInfoEvenement" runat="server"
                                     ItemType="ModeleSentinellesHY.événement"
@@ -830,7 +830,7 @@
                                     </EmptyDataTemplate>
                                 </asp:ListView>
                             </div>
-                            <div class="encadrerModification">
+                            <div class="encadrerModification petitsPoints">
                                 <asp:Label ID="lblMessageErreurRDP" CssClass="lblMessageErreur" runat="server" Text="" />
                                 <asp:ListView ID="lvInfoRDP" runat="server"
                                     ItemType="ModeleSentinellesHY.revuedepresse"
@@ -840,7 +840,7 @@
                                     DataKeyNames="idRDP">
                                     <LayoutTemplate>
                                         <div class="div_AjoutNouvelle">
-                                            <asp:LinkButton ID="lnkBtnAjoutRDP" runat="server" OnClick="lnkBtnAjoutRDP_Click">+ <% =outils.obtenirLangue("Ajouter une revue de presse|Add a press review")%></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkBtnAjoutRDP" CssClass="btnAjouter" runat="server" OnClick="lnkBtnAjoutRDP_Click">+ <% =outils.obtenirLangue("Ajouter une revue de presse|Add a press review")%></asp:LinkButton>
                                         </div>
                                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                     </LayoutTemplate>
