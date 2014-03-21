@@ -15,9 +15,11 @@
     <link href="../CSS/Forum.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
     <script src="../CSS/js/jquery.js"></script>
+    <script src="../CSS/js/jquery.Jcrop.min.js"></script>
     <script src="../CSS/js/bootstrap.min.js"></script>
     <script src="../CSS/js/scriptGlobal.js"></script>
     <script src="../CSS/js/loading-link.js"></script>
+    <link rel="stylesheet" href="../CSS/jquery.Jcrop.css" type="text/css" />
 </head>
 <body>
     <script>
@@ -524,6 +526,8 @@
                                                         href="#"><%= outils.obtenirLangue("Choisir|Choose") %></a> |
                                                         <asp:LinkButton ID="lnkUpload" runat="server" Text="Upload" OnClick="lnkUpload_Click" />
                                                 </div>
+
+
                                                 <asp:FileUpload ID="fuplPhoto" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
                                             </div>
                                         </div>
