@@ -151,6 +151,7 @@
     <Content Include="Formulaires\FRMnouvelles.aspx" />
     <Content Include="Formulaires\FRMPageErreur.aspx" />
     <Content Include="Formulaires\FRMPanneauDeControle.aspx" />
+    <Content Include="Formulaires\FRMRecuperation.aspx" />
     <Content Include="Formulaires\FRMrevuedepresse.aspx" />
     <Content Include="Formulaires\index.aspx" />
     <Content Include="Global.asax" />
@@ -249,6 +250,13 @@
     <Compile Include="Formulaires\FRMPanneauDeControle.aspx.vb">
       <DependentUpon>FRMPanneauDeControle.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulaires\FRMRecuperation.aspx.designer.vb">
+      <DependentUpon>FRMRecuperation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulaires\FRMRecuperation.aspx.vb">
+      <DependentUpon>FRMRecuperation.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Formulaires\FRMrevuedepresse.aspx.designer.vb">
       <DependentUpon>FRMrevuedepresse.aspx</DependentUpon>
