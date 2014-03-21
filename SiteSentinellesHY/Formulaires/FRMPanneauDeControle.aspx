@@ -12,6 +12,7 @@
     <link href="../CSS/bootstrap.css" rel="stylesheet" />
     <link href="../CSS/PanneauDeControle.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="../Images/LogoOfficielHY.png" />
 
     <script src="../CSS/js/jquery.js"></script>
     <script src="../CSS/js/jquery.Jcrop.min.js"></script>
