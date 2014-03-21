@@ -10,6 +10,9 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <_PublishTargetUrl>ftp://ftp.sentinelleshy.ca/sentinelleshy.ca/wwwroot/</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="BackControl/CleanBDControler.aspx">
+      <publishTime>03/21/2014 09:06:09</publishTime>
+    </File>
     <File Include="bin/AjaxControlToolkit.dll">
       <publishTime>01/31/2014 14:47:27</publishTime>
     </File>
@@ -71,10 +74,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/31/2014 14:47:27</publishTime>
     </File>
     <File Include="bin/SiteSentinellesHY.dll">
-      <publishTime>03/14/2014 11:36:51</publishTime>
+      <publishTime>03/21/2014 09:09:03</publishTime>
     </File>
     <File Include="bin/SiteSentinellesHY.xml">
-      <publishTime>03/14/2014 11:36:51</publishTime>
+      <publishTime>03/21/2014 09:09:03</publishTime>
     </File>
     <File Include="bin/tr-TR/AjaxControlToolkit.resources.dll">
       <publishTime>01/31/2014 14:47:27</publishTime>
@@ -143,7 +146,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/14/2014 10:22:56</publishTime>
     </File>
     <File Include="CSS/SiteMaster.css">
-      <publishTime>02/21/2014 13:29:13</publishTime>
+      <publishTime>03/21/2014 09:06:09</publishTime>
     </File>
     <File Include="default.aspx">
       <publishTime>01/31/2014 14:47:27</publishTime>
@@ -185,7 +188,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/31/2014 14:47:26</publishTime>
     </File>
     <File Include="Formulaires/FRMPanneauDeControle.aspx">
-      <publishTime>03/14/2014 11:29:46</publishTime>
+      <publishTime>03/21/2014 09:06:09</publishTime>
     </File>
     <File Include="Formulaires/FRMrevuedepresse.aspx">
       <publishTime>02/07/2014 10:53:15</publishTime>
@@ -194,7 +197,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>02/28/2014 14:44:05</publishTime>
     </File>
     <File Include="Formulaires/Site.Master">
-      <publishTime>03/14/2014 08:55:23</publishTime>
+      <publishTime>03/21/2014 09:06:09</publishTime>
     </File>
     <File Include="Formulaires/WebForm1.aspx">
       <publishTime>10/29/2013 14:47:03</publishTime>
