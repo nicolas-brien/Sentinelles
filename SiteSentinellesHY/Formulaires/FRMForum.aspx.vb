@@ -684,6 +684,61 @@ Public Class FRMForum
 
     End Sub
 
+    Protected Sub imageRotateLeft_Click(sender As Object, e As EventArgs)
+        Dim cropbox = CType(lvInfoUtilisateur.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
+        Dim path As [String] = Server.MapPath(cropbox.ImageUrl)
+        Dim img As System.Drawing.Image = System.Drawing.Image.FromFile(path)
+        img.RotateFlip(RotateFlipType.Rotate270FlipNone)
+        img.Save(path)
+    End Sub
+
+    Protected Sub imageRotateRght_Click(sender As Object, e As EventArgs)
+        Dim cropbox = CType(lvInfoUtilisateur.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
+        Dim path As [String] = Server.MapPath(cropbox.ImageUrl)
+        Dim img As System.Drawing.Image = System.Drawing.Image.FromFile(path)
+        img.RotateFlip(RotateFlipType.Rotate90FlipNone)
+        img.Save(path)
+    End Sub
+    Protected Sub btCropGo_Click(sender As Object, e As EventArgs)
+        'Load the Image from the location
+        Dim cropbox = CType(lvInfoUtilisateur.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
+        Dim image As System.Drawing.Image = Bitmap.FromFile(Server.MapPath(cropbox.ImageUrl))
+        Dim unFichier As String = Server.MapPath(cropbox.ImageUrl)
+        Dim ratio As Double = image.Height / 250.0
+        Dim nomFichier As String = ""
+
+        Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Session("Utilisateur")
+
+        'Get the Cordinates
+        Dim X = CType(lvInfoUtilisateur.Items(0).FindControl("X"), System.Web.UI.WebControls.HiddenField)
+        Dim Y = CType(lvInfoUtilisateur.Items(0).FindControl("Y"), System.Web.UI.WebControls.HiddenField)
+        Dim W = CType(lvInfoUtilisateur.Items(0).FindControl("W"), System.Web.UI.WebControls.HiddenField)
+        Dim H = CType(lvInfoUtilisateur.Items(0).FindControl("H"), System.Web.UI.WebControls.HiddenField)
+
+        Dim x__1 As Integer = Convert.ToInt32(Convert.ToDouble(X.Value) * (ratio))
+        Dim y__2 As Integer = Convert.ToInt32(Convert.ToDouble(Y.Value) * (ratio))
+        Dim w__3 As Integer = Convert.ToInt32(Convert.ToDouble(W.Value) * (ratio))
+        Dim h__4 As Integer = Convert.ToInt32(Convert.ToDouble(H.Value) * (ratio))
+        'Create a new image from the specified location to
+        'specified height and width
+        Dim bmp As New Bitmap(120, 120, image.PixelFormat)
+        Dim g As Graphics = Graphics.FromImage(bmp)
+        g.DrawImage(image, New Rectangle(0, 0, 120, 120), New Rectangle(x__1, y__2, w__3, h__4), GraphicsUnit.Pixel)
+        'Save the file and reload to the control
+
+        'On ajoute un nombre aléatoire à la fin du fichier afin d'éviter d'écraser les photos existantes
+        Dim MyRandomNumber As New Random()
+        Dim xr As Integer = MyRandomNumber.Next(10000, 100000)
+        nomFichier = xr.ToString + ".jpg"
+
+        bmp.Save(Server.MapPath("../Upload/") + nomFichier, image.RawFormat)
+
+        utilisateurAValider.UrlAvatar = nomFichier
+        ModeleSentinellesHY.outils.leContexte.SaveChanges()
+        lvInfoUtilisateur.DataBind()
+        CType(lvInfoUtilisateur.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 0
+
+    End Sub
     Public Function getInfoUtilisateur() As ModeleSentinellesHY.Utilisateur
         Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
         If Not Session("Utilisateur") Is Nothing Then

@@ -27,7 +27,7 @@
                 var img = $('#cropbox');
                 var width = img.width();
                 var height = img.height();
-                var ratio = 5 / 5;
+                var ratio = 1 / 1;
                 var widthCrop = 0;
                 var heightCrop = 0;
 
@@ -38,7 +38,7 @@
                     onSelect: updateCoords,
                     onChange: updateCoords,
                     setSelect: [0, (height - heightCrop) / 2, widthCrop, (height + heightCrop) / 2],
-                    aspectRatio: 5 / 5,
+                    aspectRatio: 1 / 1,
                     bgOpacity: .25
                 });
             });
@@ -658,21 +658,22 @@
                                     </div>
 </asp:View>
                                                 <asp:View runat="server" ID="vCrop" OnActivate="vCrop_Activate">
-                                                    <div>
-
-                                                           <%-- <asp:Button runat="server" ID="imageRotateLeft" CssClass="rotateImgLeft" OnClick="imageRotateLeft_Click" />
-                                                            <asp:Button runat="server" ID="imageRotateRight" CssClass="rotateImgRight" OnClick="imageRotateRght_Click"/>--%>
-                                                            <br />
-                                                            <asp:Image runat="server" ID="cropbox" Width="200px" ClientIDMode="Static"  />
-                                                            <br />
-                                                            <%--<asp:Button ID="btCropGo" runat="server" Text="Sauvegarder" CssClass="btn btn-default" OnClick="btCropGo_Click" />--%>
+                                                    <div style="text-align:center">
+                                                        
+                                                        <div style="display: inline-block">
+                                                            <asp:Image runat="server" ID="cropbox" Height="250px" ClientIDMode="Static" />
 
                                                             <asp:HiddenField ID="X" runat="server" ClientIDMode="Static" />
                                                             <asp:HiddenField ID="Y" runat="server" ClientIDMode="Static" />
                                                             <asp:HiddenField ID="W" runat="server" ClientIDMode="Static" />
                                                             <asp:HiddenField ID="H" runat="server" ClientIDMode="Static" />
-
                                                         </div>
+                                                        <div>
+                                                                <asp:Button runat="server" ID="imageRotateLeft" CssClass="rotateImgLeft" OnClick="imageRotateLeft_Click" />
+                                                                <asp:Button runat="server" ID="imageRotateRight" CssClass="rotateImgRight" OnClick="imageRotateRght_Click" />
+                                                            <asp:Button ID="btCropGo" runat="server" Text="Sauvegarder" CssClass="btn btn-default" OnClick="btCropGo_Click" />
+                                                        </div>
+                                                    </div>
                                                 </asp:View>
                                             </asp:MultiView>
                                 </ItemTemplate>
