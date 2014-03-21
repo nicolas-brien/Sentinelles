@@ -95,6 +95,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BackControl\CleanBDControler.aspx" />
     <Content Include="bin\ar\AjaxControlToolkit.resources.dll" />
     <Content Include="bin\cs\AjaxControlToolkit.resources.dll" />
     <Content Include="bin\de\AjaxControlToolkit.resources.dll" />
@@ -158,6 +159,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackControl\CleanBDControler.aspx.designer.vb">
+      <DependentUpon>CleanBDControler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BackControl\CleanBDControler.aspx.vb">
+      <DependentUpon>CleanBDControler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="default.aspx.designer.vb">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
