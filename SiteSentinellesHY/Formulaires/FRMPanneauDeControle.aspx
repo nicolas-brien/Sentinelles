@@ -502,7 +502,7 @@
                                     DataKeyNames="idNouvelle">
                                     <LayoutTemplate runat="server">
                                         <div class="div_AjoutNouvelle" runat="server">
-                                            <asp:LinkButton ID="lnkBtnAjoutNouvelle" runat="server" OnClick="lnkBtnAjoutNouvelle_Click" CssClass="btn btn-success">+ <% =outils.obtenirLangue("Ajouter une nouvelle|Add a news")%></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkBtnAjoutNouvelle" runat="server" OnClick="lnkBtnAjoutNouvelle_Click" CssClass="btn btn-primary">+ <% =outils.obtenirLangue("Ajouter une nouvelle|Add a news")%></asp:LinkButton>
                                         </div>
                                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                     </LayoutTemplate>
@@ -673,7 +673,7 @@
                                     DataKeyNames="idEvenement">
                                     <LayoutTemplate>
                                         <div class="div_AjoutNouvelle" runat="server">
-                                            <asp:LinkButton ID="lnkBtnAjoutEvenement" runat="server" OnClick="lnkBtnAjoutEvenement_Click" CssClass="btn btn-success">+ <% =outils.obtenirLangue("Ajouter un événement|Add an event")%></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkBtnAjoutEvenement" runat="server" OnClick="lnkBtnAjoutEvenement_Click" CssClass="btn btn-primary">+ <% =outils.obtenirLangue("Ajouter un événement|Add an event")%></asp:LinkButton>
                                         </div>
                                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                     </LayoutTemplate>
@@ -840,7 +840,7 @@
                                     DataKeyNames="idRDP">
                                     <LayoutTemplate>
                                         <div class="div_AjoutNouvelle">
-                                            <asp:LinkButton ID="lnkBtnAjoutRDP" CssClass="btn btn-success" runat="server" OnClick="lnkBtnAjoutRDP_Click">+ <% =outils.obtenirLangue("Ajouter une revue de presse|Add a press review")%></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkBtnAjoutRDP" CssClass="btn btn-primary" runat="server" OnClick="lnkBtnAjoutRDP_Click">+ <% =outils.obtenirLangue("Ajouter une revue de presse|Add a press review")%></asp:LinkButton>
                                         </div>
                                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                     </LayoutTemplate>
@@ -1036,14 +1036,14 @@
                                     DataKeyNames="idUtilisateur">
                                     <LayoutTemplate>
                                         <div>
-                                            <asp:LinkButton ID="lnkbtnAjouter" CssClass="btn btn-success" runat="server" OnClick="lnkbtnAjouter_Click"><%= outils.obtenirLangue("+ Ajouter un utilisateur|+ Add user")%></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkbtnAjouter" CssClass="btn btn-primary" runat="server" OnClick="lnkbtnAjouter_Click"><%= outils.obtenirLangue("+ Ajouter un utilisateur|+ Add user")%></asp:LinkButton>
                                         </div>
                                         <div class="lviewInfoUtilisateur_centrer">
                                             <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                         </div>
                                     </LayoutTemplate>
                                     <EmptyDataTemplate>
-                                        <asp:LinkButton ID="lnkbtnAjouter" CssClass="lnkbtnAjouter_margin btn btn-success" runat="server" OnClick="lnkbtnAjouter_Click"><%= outils.obtenirLangue("+ Ajouter un utilisateur|+ Add user")%></asp:LinkButton>
+                                        <asp:LinkButton ID="lnkbtnAjouter" CssClass="lnkbtnAjouter_margin btn btn-primary" runat="server" OnClick="lnkbtnAjouter_Click"><%= outils.obtenirLangue("+ Ajouter un utilisateur|+ Add user")%></asp:LinkButton>
                                     </EmptyDataTemplate>
                                     <ItemTemplate>
                                         <div id="divIdUtilisateur" class="row centrerVerticalement" style="clear: both">
