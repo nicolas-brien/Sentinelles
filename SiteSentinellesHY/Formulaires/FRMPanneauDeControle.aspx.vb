@@ -634,7 +634,7 @@ Public Class FRMPanneauDeControle
 
 #Region "Revue de Presse"
     Private Sub lvRDP_PreRender(sender As Object, e As EventArgs) Handles lvRDP.PreRender
-        If lvRDP.Items.Count > 0 Then
+        If lvRDP.Items.Count > 0 And Not Page.IsPostBack Then
             CType(lvRDP.FindControl("lbRDPTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
         End If
 
@@ -816,7 +816,14 @@ Public Class FRMPanneauDeControle
 #End Region
 
     Private Sub lviewUtilisateurs_PreRender(sender As Object, e As EventArgs) Handles lviewUtilisateurs.PreRender
-        lviewInfoUtilisateur.DataBind()
+        If lviewUtilisateurs.Items.Count > 0 And Not Page.IsPostBack Then
+            CType(lviewUtilisateurs.FindControl("lblUtilisateurUsername"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+        End If
+
+        If ViewState("modeUtilisateur") <> "AjoutUtilisateur" Then
+            lviewInfoUtilisateur.DataBind()
+        End If
+
     End Sub
 
     Private Sub lviewUtilisateurs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewUtilisateurs.SelectedIndexChanged

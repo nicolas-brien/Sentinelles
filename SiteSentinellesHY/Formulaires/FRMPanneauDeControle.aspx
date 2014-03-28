@@ -970,7 +970,7 @@
                                     GroupItemCount="3">
                                        <LayoutTemplate>
                                         <div style="width: 20%; float: left;">
-                                            <asp:LinkButton runat="server" CommandName="sort" CommandArgument="nomUtilisateur" class="titreListe"><%= outils.obtenirLangue("Nom Utilisateur|Username")%></asp:LinkButton>
+                                            <asp:LinkButton runat="server" ID="lblUtilisateurUsername" CommandName="sort" CommandArgument="nomUtilisateur" class="titreListe"><%= outils.obtenirLangue("Nom Utilisateur|Username")%></asp:LinkButton>
                                         </div>
                                         <div style="width: 26.6%; float: left;">
                                             <asp:LinkButton runat="server" CommandName="sort" CommandArgument="prenom" class="titreListe"><%= outils.obtenirLangue("Prénom|First Name")%></asp:LinkButton>

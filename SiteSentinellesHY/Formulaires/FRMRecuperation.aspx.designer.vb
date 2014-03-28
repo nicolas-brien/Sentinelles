@@ -14,24 +14,6 @@ Option Explicit On
 Partial Public Class FRMRecuperation
 
     '''<summary>
-    '''Contrôle lblErreur.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents lblErreur As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Contrôle lblSucces.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents lblSucces As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''Contrôle tbCourriel.
     '''</summary>
     '''<remarks>
@@ -48,4 +30,22 @@ Partial Public Class FRMRecuperation
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents lbtnEnvoyer As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Contrôle lblErreur.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents lblErreur As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Contrôle lblSucces.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents lblSucces As Global.System.Web.UI.WebControls.Label
 End Class

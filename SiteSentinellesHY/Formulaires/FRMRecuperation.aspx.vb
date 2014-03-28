@@ -12,8 +12,11 @@
                       Select util).ToList.FirstOrDefault
         If usager Is Nothing Then
             lblErreur.Text = "Il n'y a aucun usager associé à cet adresse courriel!"
+            lblSucces.Visible = False
         Else
 
+            lblSucces.Text = "Un courriel vient de vous être envoyé avec un nouveau mot de passe!"
+            lblErreur.Visible = False
         End If
     End Sub
 End Class
