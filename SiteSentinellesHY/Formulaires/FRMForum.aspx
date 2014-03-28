@@ -203,8 +203,7 @@
                                         </h3>
                                     </div>
                                     <div id="divCadrageItems" class="cadrageItems">
-
-                                        <div style="float: right;">
+                                        <div style="float: right;width:18%">
                                             <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# "Créé le " + Eval("DatePublication","{0:d MMMM, yyyy}")%></asp:Label><br />
                                             <asp:Label ID="lblPubliePar" CssClass="lblInfoPublication" runat="server"></asp:Label>
                                         </div>

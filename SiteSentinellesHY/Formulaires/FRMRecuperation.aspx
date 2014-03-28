@@ -12,8 +12,10 @@
             <div class="span6 offset1">
                 <asp:TextBox ID="tbCourriel" runat="server" placeholder="courriel@courriel.com" MaxLength="150" /><br />
                 <asp:LinkButton ID="lbtnEnvoyer" runat="server" CssClass="btn btn-primary" OnClick="lbtnEnvoyer_Click"><i class="icon-chevron-right icon-white"></i> Obtenir un nouveau mot de passe</asp:LinkButton><br />
-                <asp:Label ID="lblErreur" CssClass="text-error" runat="server"></asp:Label>
-                <asp:Label ID="lblSucces" CssClass="text-success" runat="server"></asp:Label>
+                <div style="margin-top: 20px;">
+                    <asp:Label ID="lblErreur" CssClass="text-error" runat="server"></asp:Label>
+                    <asp:Label ID="lblSucces" CssClass="text-success" runat="server"></asp:Label>
+                </div>
             </div>
         </div>
     </div>

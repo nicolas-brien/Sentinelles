@@ -1,4 +1,8 @@
-﻿.lnkBtn_menuConfig {
+﻿a:hover{
+    text-decoration: none !important;
+}
+
+.lnkBtn_menuConfig {
     color: #000;
     font-family: 'AgencyR';
     font-size: x-large;
