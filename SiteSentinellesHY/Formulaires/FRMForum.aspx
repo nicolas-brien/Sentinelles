@@ -16,11 +16,53 @@
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="../Images/LogoOfficielHY.png" />
     <script src="../CSS/js/jquery.js"></script>
+    <script src="../CSS/js/jquery.Jcrop.min.js"></script>
     <script src="../CSS/js/bootstrap.min.js"></script>
     <script src="../CSS/js/scriptGlobal.js"></script>
     <script src="../CSS/js/loading-link.js"></script>
+    <link rel="stylesheet" href="../CSS/jquery.Jcrop.css" type="text/css" />
+
+        <script language="Javascript">
+
+            jQuery(function ($) {
+                var img = $('#cropbox');
+                var width = img.width();
+                var height = img.height();
+                var ratio = 1 / 1;
+                var widthCrop = 0;
+                var heightCrop = 0;
+
+                widthCrop = width;
+                heightCrop = widthCrop / ratio;
+
+                $('#cropbox').Jcrop({
+                    onSelect: updateCoords,
+                    onChange: updateCoords,
+                    setSelect: [0, (height - heightCrop) / 2, widthCrop, (height + heightCrop) / 2],
+                    aspectRatio: 1 / 1,
+                    bgOpacity: .25
+                });
+            });
+
+            function updateCoords(c) {
+                jQuery('#X').val(c.x);
+                jQuery('#Y').val(c.y);
+                jQuery('#W').val(c.w);
+                jQuery('#H').val(c.h);
+            };
+
+		</script>
+
 </head>
 <body>
+    <div itemscope itemtype="http://schema.org/Organization" class="referencement">
+        <span itemprop="name">Les Sentinelles Haute-Yamaska</span>
+        <span itemprop="description">Les sentinelles sont des adultes qui désirent s’engager de façon volontaire pour agir comme RELAIS entre les personnes suicidaires et les ressources d’aide. Leur rôle peut être comparé à celui des personnes formées en premiers soins : assurer un soutien en attendant que des professionnels prennent la relève.</span>
+        <a itemprop="url" href="http://sentinelleshy.ca/Formulaires/index.aspx"></a>
+        <a itemprop="image" href="http://sentinelleshy.ca/Images/LogoOfficielHYSmallFR.png"></a>
+        <span itemprop="foundingDate">2008-01-01</span>
+        <span itemprop="telephone">1-866-277-3553</span>
+    </div>
     <script>
         $(document).ready(function () {
             $('.disabled-button').loadingLink("<%= outils.obtenirLangue("Chargement..|Loading...")%>");
@@ -511,22 +553,58 @@
                                     </div>
                                 </LayoutTemplate>
                                 <ItemTemplate>
+                                    
+                                            <%-- Début pour le crop tool --%>
+
+
+
+                                            <asp:MultiView runat="server" ID="mvPhotos" ActiveViewIndex="0">
+                                                <asp:View runat="server" ID="vSelect">
+
                                     <div class="clear-both">
                                         <asp:TextBox runat="server" ID="lblIdUtilisateur" Visible="false" Text='<%# BindItem.idUtilisateur%>' />
                                     </div>
+                                                                       
                                     <div id="divAvatar" class="pull-left">
                                         <div>
-                                            <img id="imgUpload" class="pull-left" src='<%# String.Format("../Upload/{0}", Eval("UrlAvatar"))%>' runat="server" />
-                                            <div class="pull-right">
-                                                <asp:TextBox ID="tbAvatar" CssClass="tbInfoUtilisateur" ReadOnly="true" Text='<%# BindItem.UrlAvatar%>' runat="server" />
-                                                <asp:Label ID="nomAvatar" CssClass="clear-both pull-right" runat="server" ClientIDMode="Static"></asp:Label>
-                                                <div class="clear-both tbInfoUtilisateur">
-                                                    <a onclick="$('#fuplPhoto').click(); return false;"
-                                                        href="#"><%= outils.obtenirLangue("Choisir|Choose") %></a> |
-                                                        <asp:LinkButton ID="lnkUpload" runat="server" Text="Upload" OnClick="lnkUpload_Click" />
-                                                </div>
-                                                <asp:FileUpload ID="fuplPhoto" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
-                                            </div>
+
+
+
+                                                    <img id="imgUpload" class="pull-left" src='<%# String.Format("../Upload/{0}", Eval("UrlAvatar"))%>' runat="server" />
+
+                                                    <div class="pull-right">
+                                                        <asp:TextBox ID="tbAvatar" CssClass="tbInfoUtilisateur" ReadOnly="true" Text='<%# BindItem.UrlAvatar%>' runat="server" />
+                                                        <asp:Label ID="nomAvatar" CssClass="clear-both pull-right" runat="server" ClientIDMode="Static"></asp:Label>
+                                                        <div class="clear-both tbInfoUtilisateur">
+                                                            <a onclick="$('[id$=fuplPhoto]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a>
+                                                            <asp:Button ID="uploadButton" runat="server" Text="Upload" ClientIDMode="Static" OnClick="lnkUpload_Click" Style="Display: none" />
+
+
+                                                        </div>
+                                                        <asp:FileUpload runat="server" ID="fuplPhoto" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" onpropertychange="$('[id$=uploadButton]').click(); return false;" onchange="$('[id$=uploadButton]').click(); return false;" />
+
+                                                    </div>
+
+
+                                                    <%--<div class="marginbottom_divImgCarrousel">
+                                                                    <asp:Label ID="Label10" runat="server"><%= outils.obtenirLangue("Image carrousel 1 : |Photo caroussel 1 : ")%></asp:Label>
+                                                                    <asp:TextBox ID="txtboxImgCarrousel1" Enabled=" false" runat="server" />
+                                                                    <a onclick="$('[id$=fuplPhotoCarrousel1]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a>
+                                                                    <img id="imgCarrousel1" width="360" src="../Upload/Carrousel1.jpg" />
+                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel1"  ClientIDMode="Static" onpropertychange="$('[id$=uploadButton1]').click(); return false;" onchange="$('[id$=uploadButton1]').click(); return false;"  Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                                                    <asp:Button ID="uploadButton1" runat="server" Text="Carrousel1"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click"  Style="Display: none"/>
+                                                                </div>
+                                                               
+                                                                <asp:HiddenField ID="nomImage" runat="server" ClientIDMode="Static" />
+                                                                <asp:HiddenField ID="nonFileUpdate" runat="server" ClientIDMode="Static" />--%>
+                                               
+
+
+
+
+
+
+
                                         </div>
                                         <div class="clear-both" style="padding-top: 5px;">
                                             <asp:RadioButtonList ID="rbtnSexe" runat="server" RepeatDirection="Horizontal" CssClass="radio rbtnSexe"
@@ -587,7 +665,28 @@
                                                     <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Mettre à jour| Update")%></asp:LinkButton>
                                         </div>
                                     </div>
+</asp:View>
+                                                <asp:View runat="server" ID="vCrop" OnActivate="vCrop_Activate">
+                                                    <div style="text-align:center">
+                                                        
+                                                        <div style="display: inline-block">
+                                                            <asp:Image runat="server" ID="cropbox" Height="250px" ClientIDMode="Static" />
+
+                                                            <asp:HiddenField ID="X" runat="server" ClientIDMode="Static" />
+                                                            <asp:HiddenField ID="Y" runat="server" ClientIDMode="Static" />
+                                                            <asp:HiddenField ID="W" runat="server" ClientIDMode="Static" />
+                                                            <asp:HiddenField ID="H" runat="server" ClientIDMode="Static" />
+                                                        </div>
+                                                        <div>
+                                                                <asp:Button runat="server" ID="imageRotateLeft" CssClass="rotateImgLeft" OnClick="imageRotateLeft_Click" />
+                                                                <asp:Button runat="server" ID="imageRotateRight" CssClass="rotateImgRight" OnClick="imageRotateRght_Click" />
+                                                            <asp:Button ID="btCropGo" runat="server" Text="Sauvegarder" CssClass="btn btn-default" OnClick="btCropGo_Click" />
+                                                        </div>
+                                                    </div>
+                                                </asp:View>
+                                            </asp:MultiView>
                                 </ItemTemplate>
+                                 
                             </asp:ListView>
                         </div>
                     </asp:View>
@@ -735,41 +834,45 @@
             <%-----------------------------------Footer-----------------------------------%>
             <div id="footer">
                 <div class="span6">
-                    <div>
+                    <div style="height:135px; width:500px;">
                         <a href="http://www.santemonteregie.qc.ca/granby-region/index.fr.html" target="_blank">
                             <img id="imgCSSSHY" width="225" class="footerImages" src="../Images/CSSSHY.jpg" />
                         </a>
-                        <a href="http://www.aqdr.org/" target="_blank">
-                            <img id="imgAQDR" width="225" class="footerImages" src="../Images/AQDR.jpg" />
-                        </a>
-                    </div>
-                    <div>
-                        <a href="http://www.cegepgranby.qc.ca/" target="_blank">
-                            <img id="imgCegep" width="225" class="footerImages" src="../Images/CGHY.png" />
-                        </a>
                         <a>
-                            <img id="imgPreventionSuicide" width="225" class="footerImages" src="../Images/CPS.jpg" />
+                            <img id="imgPreventionSuicide" width="225" src="../Images/CPS.jpg"/>
+                        </a>
+                        
+                    </div>
+                    <div style="width:550px;">
+                        <a href="http://www.cegepgranby.qc.ca/" class="distanceEntreLogo" target="_blank" >
+                            <img id="imgCegep" width="150" class="footerImages" src="../Images/CGHY.png"/>
+                        </a>
+                        <a href="http://www.aqdr.org/" class="distanceEntreLogo" target="_blank">
+                            <img id="imgAQDR" width="150" class="footerImages" src="../Images/AQDR.jpg" />
+                        </a>
+                        <a href="http://www.servicecanada.gc.ca/" target="_blank">
+                            <img id="imgServiceCanada" width="150" class="footerImages" src="../Images/servicecanada.png" />
                         </a>
                     </div>
                 </div>
                 <div class="span6">
-                    <div class="span3">
+                    <div id="liensNav" class="span3">
                         <b class="p_footer">NAVIGATION</b>
                         <hr class="hr_Footer" />
                         <p>
-                            <asp:LinkButton ID="LnkBtnNavigation_footer" CssClass="lnkBtn_Footer" runat="server" PostBackUrl="~/Formulaires/index.aspx"><%= outils.obtenirLangue("Accueil|Home")%></asp:LinkButton>
+                            <a id="LnkBtnNavigation_footer" class="lnkBtn_Footer" href="../Formulaires/index.aspx"><%= outils.obtenirLangue("Accueil|Home")%></a>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnHistorique_footer" CssClass="lnkBtn_Footer" runat="server" PostBackUrl="~/Formulaires/FRMhistorique.aspx"><%= outils.obtenirLangue("Historique|History")%></asp:LinkButton>
+                            <a id="LnkBtnHistorique_footer" class="lnkBtn_Footer" href="../Formulaires/FRMhistorique.aspx"><%= outils.obtenirLangue("Historique|History")%></a>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnNouvelles_footer" PostBackUrl="~/Formulaires/FRMnouvelles.aspx" CssClass="lnkBtn_Footer" runat="server"><%= outils.obtenirLangue("Nouvelles|News")%></asp:LinkButton>
+                            <a id="LnkBtnNouvelles_footer" class="lnkBtn_Footer" href="../Formulaires/FRMnouvelles.aspx"><%= outils.obtenirLangue("Nouvelles|News")%></a>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnEvenement_footer" PostBackUrl="~/Formulaires/FRMevenements.aspx" CssClass="lnkBtn_Footer" runat="server"><%= outils.obtenirLangue("Événements|Events")%></asp:LinkButton>
+                            <a id="LnkBtnEvenement_footer" class="lnkBtn_Footer" href="../Formulaires/FRMevenements.aspx"><%= outils.obtenirLangue("Événements|Events")%></a>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnRDP_footer" PostBackUrl="~/Formulaires/FRMrevuedepresse.aspx" CssClass="lnkBtn_Footer" runat="server"><%= outils.obtenirLangue("Revues de presse|Press Reviews")%></asp:LinkButton>
+                            <a id="LnkBtnRDP_footer" class="lnkBtn_Footer" href="../Formulaires/FRMrevuedepresse.aspx"><%= outils.obtenirLangue("Revues de presse|Press Reviews")%></a>
                         </p>
                     </div>
                     <div>
@@ -785,12 +888,12 @@
                             <asp:LinkButton ID="LnkBtnInfoMaltraitance_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalInfoMaltraitance" data-toggle="modal"><%= outils.obtenirLangue("Info Maltraitance|Elder Abuse Information")%></asp:LinkButton>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
+                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" data-toggle="modal"  href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
                         <p>
                         <asp:LinkButton ID="lnkBtnPageCreateurs" CssClass="lnkBtn_Footer" runat="server" PostBackUrl="~/Formulaires/FRMCreateurs.aspx"><%= outils.obtenirLangue("Page des créateurs|Developer's page")%></asp:LinkButton>
                         </p>
-                    </div>
+                     </div>
                 </div>
                 <div style="clear: both;">
                 </div>
