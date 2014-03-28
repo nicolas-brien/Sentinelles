@@ -14,10 +14,6 @@
     font-family: 'Lucida';
         src: url(../Upload/Lucida_webfont.ttf);
 }
-@font-face {
-    font-family: 'Lucida';
-        src: url(../Upload/Lucida_webfont.woff);
-}
 
 *
 {
