@@ -929,13 +929,12 @@ Public Class FRMPanneauDeControle
 
             'Conditions pour Supprimer Avatar du fichier Upload
             If utilisateurAValider.UrlAvatar <> utilisateurAValider.urlAvatarTemp AndAlso utilisateurAValider.UrlAvatar <> "" _
-                AndAlso utilisateurAValider.UrlAvatar <> "default.png" Then
+                AndAlso utilisateurAValider.UrlAvatar = "default.png" Then
                 ModeleSentinellesHY.outils.SupprimerFichierUpload(utilisateurAValider.urlAvatarTemp)
             End If
             lviewUtilisateurs.DataBind()
             lviewInfoUtilisateur.DataBind()
         Else
-
             For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
                 If Not erreur.nomPropriete Is Nothing Then
                     CType(lviewInfoUtilisateur.Items(0).FindControl("txtbox" & erreur.nomPropriete), TextBox).BorderColor = Drawing.Color.Red
@@ -956,71 +955,10 @@ Public Class FRMPanneauDeControle
         lviewInfoUtilisateur.DataBind()
     End Sub
 
-    Protected Sub lnkUpload_Click(sender As Object, e As EventArgs)
-
-        'Upload de l'avatar des membres du forum
-        Dim controlUpload = CType(lviewInfoUtilisateur.Items(0).FindControl("fuplPhoto"), FileUpload)
-        Dim extension As String = ""
-        Dim nomFichier As String = ""
-        If controlUpload.HasFile Then
-            If controlUpload.PostedFile.ContentType = "image/jpeg" Or controlUpload.PostedFile.ContentType = "image/png" Then
-                nomFichier = Left(controlUpload.FileName, Len(controlUpload.FileName) - 4)
-                extension = Right(controlUpload.FileName, 4)
-                If nomFichier.Length > 30 Then
-                    nomFichier = Left(nomFichier, 30)
-                End If
-
-                'On ajoute un nombre aléatoire à la fin afin d'éviter d'écraser des fichiers existants
-                Dim MyRandomNumber As New Random()
-                Dim x As Integer = MyRandomNumber.Next(10000, 100000)
-                nomFichier &= x
-                nomFichier &= extension
-
-                ResizeImageFile(controlUpload.PostedFile.InputStream, 120, Server.MapPath("../Upload/" & nomFichier), "typeAvatar")
-                CType(lviewInfoUtilisateur.Items(0).FindControl("txtboxNomPhoto"), TextBox).Text = nomFichier
-                CType(lviewInfoUtilisateur.Items(0).FindControl("imgUpload"), HtmlImage).Src = "../../Upload/" & nomFichier
-            End If
-        End If
+    Protected Sub lnkbtnImgDefaut_Click(sender As Object, e As EventArgs)
+        CType(lviewInfoUtilisateur.Items(0).FindControl("txtboxNomPhoto"), TextBox).Text = "default.png"
+        CType(lviewInfoUtilisateur.Items(0).FindControl("imgUpload"), HtmlImage).Src = "../../Upload/default.png"
     End Sub
-
-    Public Shared Function ResizeImageFile(imageFileMS As Stream, targetSize As Integer, lepathfichier As String, typeUpload As String) As String
-
-        Dim original As Image = Image.FromStream(imageFileMS)
-        Dim targetH As Integer, targetW As Integer
-
-        'Redimensionne la photo selon s'il s'agit d'un avatar ou d'une image du carousel
-        If typeUpload.Contains("typeAvatar") Then
-            If original.Height > original.Width Then
-                targetH = targetSize
-                targetW = CInt(original.Width * (CSng(targetSize) / CSng(original.Height)))
-            Else
-                targetW = targetSize
-                targetH = CInt(original.Height * (CSng(targetSize) / CSng(original.Width)))
-            End If
-        Else
-            targetH = 400
-            targetW = 960
-        End If
-
-        Dim imgPhoto As Image = Image.FromStream(imageFileMS)
-        ' Create a new blank canvas.  The resized image will be drawn on this canvas.
-        Dim bmPhoto As New Bitmap(targetW, targetH, PixelFormat.Format24bppRgb)
-        bmPhoto.SetResolution(72, 72)
-
-        Dim grPhoto As Graphics = Graphics.FromImage(bmPhoto)
-        grPhoto.SmoothingMode = SmoothingMode.AntiAlias
-        grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic
-        grPhoto.PixelOffsetMode = PixelOffsetMode.HighQuality
-        grPhoto.DrawImage(imgPhoto, New Rectangle(0, 0, targetW, targetH), 0, 0, original.Width, original.Height, _
-            GraphicsUnit.Pixel)
-        bmPhoto.Save(lepathfichier, System.Drawing.Imaging.ImageFormat.Jpeg)
-        original.Dispose()
-        imgPhoto.Dispose()
-        bmPhoto.Dispose()
-        grPhoto.Dispose()
-
-        Return ""
-    End Function
 
     Protected Sub rbtnSexe_Init(sender As Object, e As EventArgs)
         Dim Homme As New ListItem
@@ -1036,5 +974,4 @@ Public Class FRMPanneauDeControle
 
     End Sub
 #End Region
-
 End Class

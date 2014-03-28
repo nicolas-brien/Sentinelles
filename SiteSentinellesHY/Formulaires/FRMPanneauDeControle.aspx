@@ -1146,9 +1146,7 @@
                                                 <div class="span3" style="margin-left: 35px;">
                                                     <asp:Label ID="lblAvatar" runat="server" Text="Photo:" />
                                                     <div id="divFileUpload">
-                                                        <a onclick="$('[id$=fuplPhoto]').click(); return false;"
-                                                            href="#"><%= outils.obtenirLangue("Choisir|Select") %></a> |
-                                                        <asp:LinkButton ID="lnkUpload" runat="server" Text="Upload" OnClick="lnkUpload_Click" />
+                                                        <asp:LinkButton ID="lnkbtnImgDefaut" CssClass="btn btn-warning" Text="<%= outils.obtenirLangue(" Image par défaut| Reset default image")%>" OnClick="lnkbtnImgDefaut_Click" runat="server"></asp:LinkButton>
                                                     </div>
                                                 </div>
                                                 <div class="span6" style="float: right;">
