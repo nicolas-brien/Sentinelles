@@ -21,16 +21,16 @@ Le département de Technique Informatique, ainsi que les responsables des Sentin
 </p>
         <div style="position:relative; height:510px;">
             <img id="imgCreateurs" src="../Images/createurs.jpg"­ />
-            <div id="Mic" class="visage" data-toggle="tooltip" title="Michaël O. Lambert" style="top: 220px; left: 70px;"></div>
-            <div id="Nic" class="visage" data-toggle="tooltip" title="Nicolas Brien" style="top: 220px; left: 70px;"></div>
-            <div id="Louis" class="visage" data-toggle="tooltip" title="Michaël O. Lambert"></div>
-            <div id="Js" class="visage" data-toggle="tooltip" title="Michaël O. Lambert"></div>
-            <div id="Fred" class="visage" data-toggle="tooltip" title="Michaël O. Lambert"></div>
-            <div id="Mathieu" class="visage" data-toggle="tooltip" title="Michaël O. Lambert"></div>
-            <div id="Eric" class="visage" data-toggle="tooltip" title="Michaël O. Lambert"></div>
-            <div id="Charles" class="visage" data-toggle="tooltip" title="Michaël O. Lambert"></div>
-            <div id="Ghislain" class="visage" data-toggle="tooltip" title="Michaël O. Lambert"></div>
-            <div id="Guillaume" class="visage" data-toggle="tooltip" title="Michaël O. Lambert"></div>
+            <div id="Mic" class="visage" data-toggle="tooltip" title="Michaël O. Lambert" style="top: 225px; left: 70px;"></div>
+            <div id="Nic" class="visage" data-toggle="tooltip" title="Nicolas Brien" style="top: 70px; left: 255px;"></div>
+            <div id="Louis" class="visage" data-toggle="tooltip" title="Louis-Alexandre Vallières-Lavoie" style="top: 250px; left: 290px;"></div>
+            <div id="Js" class="visage" data-toggle="tooltip" title="Jean-Sébastien Arès" style="top: 65px; left: 365px;"></div>
+            <div id="Fred" class="visage" data-toggle="tooltip" title="Frédéric Bourdeau" style="top: 235px; left: 180px;"></div>
+            <div id="Mathieu" class="visage" data-toggle="tooltip" title="Mathieu Vallée" style="top: 45px; left: 175px;"></div>
+            <div id="Eric" class="visage" data-toggle="tooltip" title="Eric Fontaine" style="top: 230px; left: 525px;"></div>
+            <div id="Charles" class="visage" data-toggle="tooltip" title="Charles Lacoste" style="top: 50px; left: 100px;"></div>
+            <div id="Ghislain" class="visage" data-toggle="tooltip" title="Ghislain Rousseau" style="top: 70px; left: 450px;"></div>
+            <div id="Guillaume" class="visage" data-toggle="tooltip" title="Guillaume Racicot" style="top: 240px; left: 395px;"></div>
        </div>
       
         <p class="justify" style="font-size:smaller;"> Sur cette photo: Jean-Sébastien Arès, Frédéric Bourdeau, Nicolas Brien, Éric Fontaine, Charles Lacoste, Michael O. Lambert, Guillaume Racicot, Ghislain Rousseau, Mathieu Vallée, Louis-Alexandre Vallières-Lavoie.</p>
@@ -45,8 +45,7 @@ Le but du projet était, premièrement, de donner l’opportunité aux finissant
 Les étudiants ont donc appris à vivre avec certaines des difficultés inhérentes au travail avec un client réel. Leur capacité d’adaptation a parfois été mise à l’épreuve. Il ne faut pas oublier que le client exprime ses besoins sans tenir compte des contraintes liées à l’utilisation de l’informatique
              et que celles-ci ne doivent en aucun cas être un motif pour ne pas y répondre. De plus, à mesure de l’avancement du projet, le client apprend de nouvelles choses ou s’aperçoit de certains oublis dans l’expression de ses besoins. L’équipe de développement doit alors le suivre dans ces nouvelles idées, peu importe les implications au niveau du travail de programmation. Cette expérience sera certainement très utile pour les étudiants et teintera probablement leur comportement lors de leurs prochaines interactions avec les utilisateurs de systèmes informatiques.
             <br/><br/>
-Finalement, on peut affirmer que cette expérience aura été très formatrice pour l’ensemble du groupe. Ils y auront acquis un ensemble de compétences et d’habiletés relationnelles qui leurs seront utiles dans leur cheminement respectif.
-L'équipe</p>
+Finalement, on peut affirmer que cette expérience aura été très formatrice pour l’ensemble du groupe. Ils y auront acquis un ensemble de compétences et d’habiletés relationnelles qui leurs seront utiles dans leur cheminement respectif.</p>
 
     </div>
 </asp:Content>
