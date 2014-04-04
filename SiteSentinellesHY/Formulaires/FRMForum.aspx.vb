@@ -719,6 +719,15 @@ Public Class FRMForum
         Dim y__2 As Integer = Convert.ToInt32(Convert.ToDouble(Y.Value) * (ratio))
         Dim w__3 As Integer = Convert.ToInt32(Convert.ToDouble(W.Value) * (ratio))
         Dim h__4 As Integer = Convert.ToInt32(Convert.ToDouble(H.Value) * (ratio))
+
+        If (w__3 = 0) Then
+            x__1 = 0
+            y__2 = 0
+            w__3 = image.Width
+            h__4 = image.Height
+
+        End If
+
         'Create a new image from the specified location to
         'specified height and width
         Dim bmp As New Bitmap(400, 400, image.PixelFormat)

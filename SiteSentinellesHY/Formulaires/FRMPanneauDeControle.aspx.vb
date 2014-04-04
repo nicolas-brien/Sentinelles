@@ -150,61 +150,103 @@ Public Class FRMPanneauDeControle
 
 #Region "EnvoiMessage"
     Private Sub lnkbtnEnvoiMessage_Click(sender As Object, e As EventArgs) Handles lnkbtnEnvoiMessage.Click
+        If Not File.Exists(Server.MapPath("/BackControl/properties.txt")) Then
+            Using fs As FileStream = File.Create(Server.MapPath("/BackControl/properties.txt"))
+                Dim info As [Byte]() = New UTF8Encoding(True).GetBytes("EmailSend=true")
+                fs.Write(info, 0, info.Length)
+            End Using
+        Else
+            Try
+                File.Delete(Server.MapPath("/BackControl/properties.txt"))
+                Using fs As FileStream = File.Create(Server.MapPath("/BackControl/properties.txt"))
+                    Dim info As [Byte]() = New UTF8Encoding(True).GetBytes("EmailSend=true")
+                    fs.Write(info, 0, info.Length)
+                End Using
+            Catch ex As Exception
+                Dim err = ex.Message
+            End Try
+
+        End If
+
+        CreateEmailFile("Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text, txtboxMessage.Text)
+        Response.Redirect("FRMPanneauDeControle.aspx")
         'Méthode servant à envoyer à tous les usagers du site web un courriel pour tous ceux qui possèdent une
         'adresse courriel
-        Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
-        Dim listeErreur As Integer = 0
-        Dim listeDestinataire As New List(Of ModeleSentinellesHY.Utilisateur)
-        Dim destinataires As String = ""
-        
-        listeDestinataire = (From info In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu _
-                                      Where info.courriel <> Nothing).ToList
-        For Each uti As ModeleSentinellesHY.Utilisateur In listeDestinataire
-            destinataires &= uti.courriel & ","
-        Next
+        'Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
+        'Dim listeErreur As Integer = 0
+        'Dim listeDestinataire As New List(Of ModeleSentinellesHY.Utilisateur)
+        'Dim destinataires As String = ""
 
-        'Sert à enlever la dernière virgule
-        destinataires.Remove(destinataires.Length - 1)
-        destinataires = "sansarrets@hotmail.com,jeansebastien.ares@gmail.com"
-
-
-        ' For Each uti As ModeleSentinellesHY.Utilisateur In listeDestinataire
-        If txtboxTitreMessage.Text = Nothing Then
-            lblMessageErreurEnvoiMessage.Text &= ModeleSentinellesHY.outils.obtenirLangue("*Vous devez entrer un titre|*You must enter a title") & "<br/>"
-            listeErreur += 1
-        End If
-        If txtboxMessage.Text = Nothing Then
-            lblMessageErreurEnvoiMessage.Text &= ModeleSentinellesHY.outils.obtenirLangue("*Vous devez entrer un message|*You must enter a message")
-            listeErreur += 1
-        End If
-        If listeErreur = 0 Then
-            Dim expediteur As String = "info@sentinelleshy.ca"
-            Dim mail As System.Net.Mail.MailMessage = New System.Net.Mail.MailMessage()
-            mail.To.Add(expediteur)
-            mail.Bcc.Add(destinataires)
-            mail.From = New System.Net.Mail.MailAddress(expediteur)
-            mail.Subject = "Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text
-            mail.SubjectEncoding = System.Text.Encoding.UTF8
-            mail.Body = txtboxMessage.Text
-            If Not txtboxMessage.Text = Nothing Then
-                txtboxMessage.Text = txtboxMessage.Text.Replace("<div></div>", "<br/><br/>")
-            End If
-            mail.BodyEncoding = System.Text.Encoding.UTF8
-            mail.IsBodyHtml = True
-            Dim client As System.Net.Mail.SmtpClient = New System.Net.Mail.SmtpClient()
-            client.Credentials = New System.Net.NetworkCredential("info@sentinelleshy.ca", "Vs2H7!Etu")
-
-            client.Port = 25
-            client.Host = "mail.sentinelleshy.ca"
-            'client.Port = 587 ' Gmail port
-            'client.Host = "smtp.gmail.com"
-            'client.EnableSsl = True 'Gmail Secured Layer
-
-            client.Send(mail)
-            lblMessageErreurEnvoiMessage.Text = ModeleSentinellesHY.outils.obtenirLangue("Le message a bel et bien été envoyé|The message has been sent")
-            lblMessageErreurEnvoiMessage.CssClass = "AvecSucces"
-        End If
+        'listeDestinataire = (From info In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu _
+        '                              Where info.courriel <> Nothing).ToList
+        'For Each uti As ModeleSentinellesHY.Utilisateur In listeDestinataire
+        '    destinataires &= uti.courriel & ","
         'Next
+
+        ''Sert à enlever la dernière virgule
+        'destinataires.Remove(destinataires.Length - 1)
+        'destinataires = "sansarrets@hotmail.com,jeansebastien.ares@gmail.com"
+
+
+        '' For Each uti As ModeleSentinellesHY.Utilisateur In listeDestinataire
+        'If txtboxTitreMessage.Text = Nothing Then
+        '    lblMessageErreurEnvoiMessage.Text &= ModeleSentinellesHY.outils.obtenirLangue("*Vous devez entrer un titre|*You must enter a title") & "<br/>"
+        '    listeErreur += 1
+        'End If
+        'If txtboxMessage.Text = Nothing Then
+        '    lblMessageErreurEnvoiMessage.Text &= ModeleSentinellesHY.outils.obtenirLangue("*Vous devez entrer un message|*You must enter a message")
+        '    listeErreur += 1
+        'End If
+        'If listeErreur = 0 Then
+        '    Dim expediteur As String = "info@sentinelleshy.ca"
+        '    Dim mail As System.Net.Mail.MailMessage = New System.Net.Mail.MailMessage()
+        '    mail.To.Add(expediteur)
+        '    mail.Bcc.Add(destinataires)
+        '    mail.From = New System.Net.Mail.MailAddress(expediteur)
+        '    mail.Subject = "Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text
+        '    mail.SubjectEncoding = System.Text.Encoding.UTF8
+        '    mail.Body = txtboxMessage.Text
+        '    If Not txtboxMessage.Text = Nothing Then
+        '        txtboxMessage.Text = txtboxMessage.Text.Replace("<div></div>", "<br/><br/>")
+        '    End If
+        '    mail.BodyEncoding = System.Text.Encoding.UTF8
+        '    mail.IsBodyHtml = True
+        '    Dim client As System.Net.Mail.SmtpClient = New System.Net.Mail.SmtpClient()
+        '    client.Credentials = New System.Net.NetworkCredential("info@sentinelleshy.ca", "Vs2H7!Etu")
+
+        '    client.Port = 25
+        '    client.Host = "mail.sentinelleshy.ca"
+        '    'client.Port = 587 ' Gmail port
+        '    'client.Host = "smtp.gmail.com"
+        '    'client.EnableSsl = True 'Gmail Secured Layer
+
+        '    client.Send(mail)
+        '    lblMessageErreurEnvoiMessage.Text = ModeleSentinellesHY.outils.obtenirLangue("Le message a bel et bien été envoyé|The message has been sent")
+        '    lblMessageErreurEnvoiMessage.CssClass = "AvecSucces"
+        'End If
+        'Next
+    End Sub
+
+    'Cette methode inscrit les informations envoyées dans un fichier texte pour être repris par la routine de courriel.
+    Public Sub CreateEmailFile(subject As String, msg As String)
+        If Not File.Exists(Server.MapPath("/BackControl/mailmsg.txt")) Then
+
+            Using fs As FileStream = File.Create(Server.MapPath("/BackControl/mailmsg.txt"))
+                Dim sw As New StreamWriter(fs)
+                sw.WriteLine("SUBJECT=" & subject)
+                sw.WriteLine("MESSAGE=" & msg)
+                sw.Close()
+            End Using
+        Else
+            File.Delete(Server.MapPath("/BackControl/mailmsg.txt"))
+
+            Using fs As FileStream = File.Create(Server.MapPath("/BackControl/mailmsg.txt"))
+                Dim sw As New StreamWriter(fs)
+                sw.WriteLine("SUBJECT=" & subject)
+                sw.WriteLine("MESSAGE=" & msg)
+                sw.Close()
+            End Using
+        End If
     End Sub
 #End Region
 
@@ -344,6 +386,14 @@ Public Class FRMPanneauDeControle
         Dim y__2 As Integer = Convert.ToInt32(Convert.ToDouble(Y.Value) * (ratio))
         Dim w__3 As Integer = Convert.ToInt32(Convert.ToDouble(W.Value) * (ratio))
         Dim h__4 As Integer = Convert.ToInt32(Convert.ToDouble(H.Value) * (ratio))
+
+        If (w__3 = 0) Then
+            x__1 = 0
+            y__2 = 0
+            w__3 = image.Width
+            h__4 = image.Height
+
+        End If
         'Create a new image from the specified location to
         'specified height and width
         Dim bmp As New Bitmap(960, 400, image.PixelFormat)
