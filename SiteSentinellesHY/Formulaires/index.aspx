@@ -12,7 +12,7 @@
             <asp:Label ID="lblPenseeAccueil" OnInit="lblPenseeAccueil_Init" runat="server" CssClass="pensee"></asp:Label>
         </blockquote>
     </div>
-
+    
     <%--------------------------------------NOUVELLES----------------------------------------------%>
     <div id="divContantNouvelles" class="listeAccueil" runat="server">
         <h3><%= outils.obtenirLangue("NOUVELLES|NEWS")%></h3>
