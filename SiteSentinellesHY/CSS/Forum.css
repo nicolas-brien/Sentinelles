@@ -90,6 +90,12 @@
 }
 /*-------------------------------------Publication---------------------------------------*/
 
+.Avatar_Publication {
+    width: 120px;
+    height: 120px;
+    margin-left: 2px;
+}
+
 .lblSupprimerPublication {
     color: red;
     position: absolute;

@@ -394,7 +394,7 @@
 
                                             <div class="pull-right divInfoPublication">
                                                 <div>
-                                                    <asp:Image ID="imgAvatar" CssClass="Avatar_Publication" runat="server" />
+                                                    <asp:Image ID="imgAvatar" CssClass="Avatar_Publication thumbnail" runat="server" />
                                                 </div>
                                                 <div>
                                                     <asp:Label ID="lblDatePublication" CssClass="lblInfoReponsePublication" runat="server"><%# Eval("DatePublication","{0:MMMM d, yyyy}")%></asp:Label><br />
@@ -772,7 +772,7 @@
                                                                 <asp:Label ID="lblPubliePar" CssClass="lblInfoReponsePublication" runat="server"></asp:Label>
                                                             </div>
                                                             <div class="pull-right div_marginAvatar">
-                                                                <asp:Image ID="imgAvatar" CssClass="Avatar_Publication" runat="server" />
+                                                                <asp:Image ID="imgAvatar" CssClass="Avatar_Publication thumbnail" runat="server" />
                                                             </div>
                                                         </div>
                                                         <div class="divContenu">
