@@ -314,7 +314,7 @@ h3 {
     margin: 20px 0px 20px 0px;
     overflow: auto;
     padding: 20px;
-    height:300px;
+    height:auto;
 }
 
 .tbInfoUtilisateur {

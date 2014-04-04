@@ -721,9 +721,9 @@ Public Class FRMForum
         Dim h__4 As Integer = Convert.ToInt32(Convert.ToDouble(H.Value) * (ratio))
         'Create a new image from the specified location to
         'specified height and width
-        Dim bmp As New Bitmap(120, 120, image.PixelFormat)
+        Dim bmp As New Bitmap(400, 400, image.PixelFormat)
         Dim g As Graphics = Graphics.FromImage(bmp)
-        g.DrawImage(image, New Rectangle(0, 0, 120, 120), New Rectangle(x__1, y__2, w__3, h__4), GraphicsUnit.Pixel)
+        g.DrawImage(image, New Rectangle(0, 0, 400, 400), New Rectangle(x__1, y__2, w__3, h__4), GraphicsUnit.Pixel)
         'Save the file and reload to the control
 
         'On ajoute un nombre aléatoire à la fin du fichier afin d'éviter d'écraser les photos existantes
@@ -813,38 +813,13 @@ Public Class FRMForum
     End Sub
 
     Protected Sub lnkUpload_Click(sender As Object, e As EventArgs)
-
+        Dim lblMessageErreur = CType(lvInfoUtilisateur.FindControl("lblMessageErreur"), Label)
+        Dim divMessageErreur = CType(lvInfoUtilisateur.FindControl("divMessageErreur"), Panel)
+        lblMessageErreur.Text = ""
+        divMessageErreur.CssClass = "alert alert-error"
+        divMessageErreur.Visible = False
         CType(lvInfoUtilisateur.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 1
 
-
-
-        'Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Session("Utilisateur")
-        'Dim controlUpload = CType(lvInfoUtilisateur.Items(0).FindControl("fuplPhoto"), FileUpload)
-        'Dim extension As String = ""
-        'Dim nomFichier As String = ""
-        'If controlUpload.HasFile Then
-        '    'On vérifie le type de fichier
-        '    If controlUpload.PostedFile.ContentType = "image/jpeg" Or controlUpload.PostedFile.ContentType = "image/png" Then
-        '        'On découpe le nom du fichier de son extension afin d'insérer un nombre aléatoire
-        '        nomFichier = Left(controlUpload.FileName, Len(controlUpload.FileName) - 4)
-        '        extension = Right(controlUpload.FileName, 4)
-        '        If nomFichier.Length > 30 Then
-        '            nomFichier = Left(nomFichier, 30)
-        '        End If
-        '        'On ajoute un nombre aléatoire à la fin du fichier afin d'éviter d'écraser les photos existantes
-        '        Dim MyRandomNumber As New Random()
-        '        Dim x As Integer = MyRandomNumber.Next(10000, 100000)
-        '        nomFichier &= x
-        '        nomFichier &= extension
-
-        '        'On redimensionne le fichier selon nos désirs dans cette fonction
-        '        ResizeImageFile(controlUpload.PostedFile.InputStream, 120, Server.MapPath("../Upload/" & nomFichier), "typeAvatar")
-        '        CType(lvInfoUtilisateur.Items(0).FindControl("tbAvatar"), TextBox).Text = nomFichier
-        '        CType(lvInfoUtilisateur.Items(0).FindControl("imgUpload"), HtmlImage).Src = "../Upload/" & nomFichier
-        '        utilisateurAValider.UrlAvatar = nomFichier
-        '        ModeleSentinellesHY.outils.leContexte.SaveChanges()
-        '    End If
-        'End If
     End Sub
 
     Public Shared Function ResizeImageFile(imageFileMS As Stream, targetSize As Integer, lepathfichier As String, typeUpload As String) As String
