@@ -12,7 +12,7 @@
     <link href="../CSS/bootstrap.css" rel="stylesheet" />
     <link href="../CSS/PanneauDeControle.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="../Images/favicon.png" />
+    <link rel="icon" type="image/png" href="../Images/LogoOfficielHY.png" />
 
     <script src="../CSS/js/jquery.js"></script>
     <script src="../CSS/js/jquery.Jcrop.min.js"></script>
@@ -395,25 +395,25 @@
                                                                     <asp:TextBox ID="txtboxImgCarrousel1" Enabled=" false" runat="server" />
                                                                     <a onclick="$('[id$=fuplPhotoCarrousel1]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a>
                                                                     <img id="imgCarrousel1" width="360" src="../Upload/Carrousel1.jpg" />
-                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel1"  ClientIDMode="Static" onpropertychange="$('[id$=uploadButton1]').click(); return false;" onchange="$('[id$=uploadButton1]').click(); return false;"  Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
-                                                                    <asp:Button ID="uploadButton1" runat="server" Text="Carrousel1"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click"  Style="Display: none"/>
+                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel1" ClientIDMode="Static" onpropertychange="$('[id$=uploadButton1]').click(); return false;" onchange="$('[id$=uploadButton1]').click(); return false;" Style="display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                                                    <asp:Button ID="uploadButton1" runat="server" Text="Carrousel1" ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click" Style="display: none" />
                                                                 </div>
                                                                 <div class="marginbottom_divImgCarrousel">
                                                                     <asp:Label ID="Label7" runat="server"> <%= outils.obtenirLangue("Image carrousel 2 : |Photo caroussel 2 : ")%></asp:Label>
                                                                     <asp:TextBox ID="txtboxImgCarrousel2" runat="server" Enabled=" false" />
-                                                                    <a onclick="$('[id$=fuplPhotoCarrousel2]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> 
+                                                                    <a onclick="$('[id$=fuplPhotoCarrousel2]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a>
                                                                     <img id="imgCarrousel2" width="360" src="../Upload/Carrousel2.jpg" />
-                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel2"  ClientIDMode="Static" onpropertychange="$('[id$=uploadButton2]').click(); return false;" onchange="$('[id$=uploadButton2]').click(); return false;"  Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
-                                                                    <asp:Button ID="uploadButton2" runat="server" Text="Carrousel2"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click"  Style="Display: none"/>
-                                                               
+                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel2" ClientIDMode="Static" onpropertychange="$('[id$=uploadButton2]').click(); return false;" onchange="$('[id$=uploadButton2]').click(); return false;" Style="display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                                                    <asp:Button ID="uploadButton2" runat="server" Text="Carrousel2" ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click" Style="display: none" />
+
                                                                 </div>
                                                                 <div>
                                                                     <asp:Label ID="Label8" runat="server"> <%= outils.obtenirLangue("Image carrousel 3 : |Photo caroussel 3 : ")%></asp:Label>
                                                                     <asp:TextBox ID="txtboxImgCarrousel3" runat="server" Enabled=" false" />
-                                                                    <a onclick="$('[id$=fuplPhotoCarrousel3]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a> 
+                                                                    <a onclick="$('[id$=fuplPhotoCarrousel3]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a>
                                                                     <img id="imgCarrousel3" width="360" src="../Upload/Carrousel3.jpg" />
-                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel3" ClientIDMode="Static"  onpropertychange="$('[id$=uploadButton3]').click(); return false;" onchange="$('[id$=uploadButton3]').click(); return false;" Style="Display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
-                                                                 <asp:Button ID="uploadButton3" runat="server" Text="Carrousel3"  ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click"  Style="Display: none"/>
+                                                                    <asp:FileUpload runat="server" ID="fuplPhotoCarrousel3" ClientIDMode="Static" onpropertychange="$('[id$=uploadButton3]').click(); return false;" onchange="$('[id$=uploadButton3]').click(); return false;" Style="display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                                                    <asp:Button ID="uploadButton3" runat="server" Text="Carrousel3" ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click" Style="display: none" />
                                                                 </div>
                                                                 <asp:HiddenField ID="nomImage" runat="server" ClientIDMode="Static" />
                                                                 <asp:HiddenField ID="nonFileUpdate" runat="server" ClientIDMode="Static" />
@@ -424,9 +424,9 @@
                                                         <div>
 
                                                             <asp:Button runat="server" ID="imageRotateLeft" CssClass="rotateImgLeft" OnClick="imageRotateLeft_Click" />
-                                                            <asp:Button runat="server" ID="imageRotateRight" CssClass="rotateImgRight" OnClick="imageRotateRght_Click"/>
+                                                            <asp:Button runat="server" ID="imageRotateRight" CssClass="rotateImgRight" OnClick="imageRotateRght_Click" />
                                                             <br />
-                                                            <asp:Image runat="server" ID="cropbox" Width="800px" ClientIDMode="Static"  />
+                                                            <asp:Image runat="server" ID="cropbox" Width="800px" ClientIDMode="Static" />
                                                             <br />
                                                             <asp:Button ID="btCropGo" runat="server" Text="Sauvegarder" CssClass="btn btn-default" OnClick="btCropGo_Click" />
 
@@ -470,20 +470,20 @@
                                     <ItemTemplate>
                                         <div class="ItemTemplate">
                                             <div style="width: 85%; float: left;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 75)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 75)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </ItemTemplate>
                                     <SelectedItemTemplate>
                                         <div class="SelectedItemTemplate">
                                             <div style="width: 85%; float: left;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </SelectedItemTemplate>
@@ -634,26 +634,26 @@
                                     <ItemTemplate>
                                         <div class="ItemTemplate">
                                             <div style="width: 70%; float: left;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 50)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 50)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateEvenement"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateEvenement"),10)%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </ItemTemplate>
                                     <SelectedItemTemplate>
                                         <div class="SelectedItemTemplate">
                                             <div style="width: 70%; float: left;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" ID="LinkButton1" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 50)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" ID="LinkButton1" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 50)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" ID="LinkButton2" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" ID="LinkButton2" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" ID="LinkButton3" runat="server" CommandName="Select"><%# Left(Eval("dateEvenement"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" ID="LinkButton3" runat="server" CommandName="Select"><%# Left(Eval("dateEvenement"),10)%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </SelectedItemTemplate>
@@ -808,20 +808,20 @@
                                     <ItemTemplate>
                                         <div class="ItemTemplate">
                                             <div style="width: 85%; float: left;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 75)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 75)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </ItemTemplate>
                                     <SelectedItemTemplate>
                                         <div class="SelectedItemTemplate">
                                             <div style="width: 85%; float: left;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </SelectedItemTemplate>
@@ -957,32 +957,34 @@
                         <asp:View ID="ViewUtilisateur" runat="server">
                             <div class="row paddingRow">
                                 <div class="pull-right">
-                                <asp:TextBox ID="txtboxRechercheUtilisateur" runat="server" />
-                                <asp:Button ID="btnRechercheUtilisateur" runat="server" Text="Rechercher" CssClass="btn btn-primary" />
-                            </div>
-                            <div class="clear-both"></div>
-                            <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 160px;">
-                                <%--------lviewUtilisateur-------%>
-                                <asp:ListView ID="lviewUtilisateurs" runat="server"
-                                    ItemType="ModeleSentinellesHY.utilisateur"
-                                    SelectMethod="GetUtilisateurs"
-                                    DataKeyNames="idUtilisateur"
-                                    GroupItemCount="3">
-                                       <LayoutTemplate>
-                                        <div style="width: 20%; float: left;">
-                                            <asp:LinkButton runat="server" ID="lblUtilisateurUsername" CommandName="sort" CommandArgument="nomUtilisateur" class="titreListe"><%= outils.obtenirLangue("Nom Utilisateur|Username")%></asp:LinkButton>
-                                        </div>
-                                        <div style="width: 26.6%; float: left;">
-                                            <asp:LinkButton runat="server" CommandName="sort" CommandArgument="prenom" class="titreListe"><%= outils.obtenirLangue("Prénom|First Name")%></asp:LinkButton>
-                                        </div>
-                                        <div style="width: 26.6%; float: left;">
-                                            <asp:LinkButton runat="server" CommandName="sort" CommandArgument="nom" class="titreListe"><%= outils.obtenirLangue("Nom|Last Name")%></asp:LinkButton>
-                                        </div>
-                                        <div style="width: 26.7%; float: left;">
-                                            <asp:LinkButton runat="server" CommandName="sort" CommandArgument="milieu" class="titreListe"><%= outils.obtenirLangue("Milieu Travail|Workplace")%></asp:LinkButton>
-                                        </div>
-                                        <asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
-                                    </LayoutTemplate>
+                                    <asp:TextBox ID="txtboxRechercheUtilisateur" runat="server" />
+                                    <asp:Button ID="btnRechercheUtilisateur" runat="server" Text="Rechercher" CssClass="btn btn-primary" />
+                                </div>
+                                <div class="clear-both"></div>
+                                <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 160px;">
+                                    <%--------lviewUtilisateur-------%>
+                                    <asp:ListView ID="lviewUtilisateurs" runat="server"
+                                        ItemType="ModeleSentinellesHY.utilisateur"
+                                        SelectMethod="GetUtilisateurs"
+                                        DataKeyNames="idUtilisateur"
+                                        GroupItemCount="3">
+
+                                        <LayoutTemplate>
+                                            <div style="width: 20%; float: left;">
+                                                <asp:LinkButton runat="server" ID="lblUtilisateurUsername" CommandName="sort" CommandArgument="nomUtilisateur" class="titreListe"><%= outils.obtenirLangue("Nom Utilisateur|Username")%></asp:LinkButton>
+                                            </div>
+                                            <div style="width: 26.6%; float: left;">
+                                                <asp:LinkButton runat="server" CommandName="sort" CommandArgument="prenom" class="titreListe"><%= outils.obtenirLangue("Prénom|First Name")%></asp:LinkButton>
+                                            </div>
+                                            <div style="width: 26.6%; float: left;">
+                                                <asp:LinkButton runat="server" CommandName="sort" CommandArgument="nom" class="titreListe"><%= outils.obtenirLangue("Nom|Last Name")%></asp:LinkButton>
+                                            </div>
+                                            <div style="width: 26.7%; float: left;">
+                                                <asp:LinkButton runat="server" CommandName="sort" CommandArgument="milieu" class="titreListe"><%= outils.obtenirLangue("Milieu Travail|Workplace")%></asp:LinkButton>
+                                            </div>
+                                            <asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
+                                        </LayoutTemplate>
+
                                     <GroupTemplate>
                                         <div class="clear-both">
                                             <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
@@ -991,32 +993,32 @@
                                     <ItemTemplate>
                                         <div class="ItemTemplate">
                                             <div style="width: 20%; float: left;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
                                             </div>
                                             <div style="width: 26.6%; float: left;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("prenom")%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("prenom")%>' />
                                             </div>
                                             <div style="width: 26.6%; float: left;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nom")%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nom")%>' />
                                             </div>
                                             <div style="width: 26.7%; float: left;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("milieu")%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("milieu")%>' />
                                             </div>
                                         </div>
                                     </ItemTemplate>
                                     <SelectedItemTemplate>
                                         <div class="SelectedItemTemplate">
                                             <div style="width: 20%; float: left;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
                                             </div>
                                             <div style="width: 26.6%; float: left;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("prenom")%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("prenom")%>' />
                                             </div>
                                             <div style="width: 26.6%; float: left;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nom")%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nom")%>' />
                                             </div>
                                             <div style="width: 26.7%; float: left;">
-                                                <asp:LinkButton CSSclass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("milieu")%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("milieu")%>' />
                                             </div>
                                         </div>
                                     </SelectedItemTemplate>
@@ -1154,16 +1156,11 @@
                                             <div class="span3" style="margin-left: 35px;">
                                                 <asp:Label ID="lblAvatar" runat="server" Text="Photo:" />
                                                 <div id="divFileUpload">
-                                                    <a onclick="$('[id$=fuplPhoto]').click(); return false;"
-                                                        href="#"><%= outils.obtenirLangue("Choisir|Select") %></a> |
-                                                    <asp:LinkButton ID="lnkUpload" runat="server" Text="Upload" OnClick="lnkUpload_Click" />
+                                                    <asp:Button ID="lnkbtnImgDefaut" CssClass="btn btn-warning" Text='<%# outils.obtenirLangue(" Image par défaut| Reset default image")%>' OnClientClick="lnkbtnImgDefaut_Click(); return false;" runat="server"></asp:Button>
                                                 </div>
                                             </div>
                                             <div class="span6" style="float: right;">
                                                 <asp:TextBox ID="txtboxNomPhoto" CssClass="txtboxUtilisateur" ReadOnly="true" Text='<%# BindItem.UrlAvatar%>' runat="server" />
-                                            </div>
-                                            <div>
-                                                <asp:FileUpload ID="fuplPhoto" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
                                             </div>
                                             <div class="span6 Avatar_margin" style="float: right;">
                                                 <img id="imgUpload" src='<%# String.Format("../Upload/{0}", Eval("UrlAvatar"))%>' runat="server" />
@@ -1261,18 +1258,18 @@
             <%-----------------------------------Footer-----------------------------------%>
             <div id="footer">
                 <div class="span6">
-                    <div style="height:135px; width:500px;">
+                    <div style="height: 135px; width: 500px;">
                         <a href="http://www.santemonteregie.qc.ca/granby-region/index.fr.html" target="_blank">
                             <img id="imgCSSSHY" width="225" class="footerImages" src="../Images/CSSSHY.jpg" />
                         </a>
                         <a>
-                            <img id="imgPreventionSuicide" width="225" src="../Images/CPS.jpg"/>
+                            <img id="imgPreventionSuicide" width="225" src="../Images/CPS.jpg" />
                         </a>
-                        
+
                     </div>
-                    <div style="width:550px;">
-                        <a href="http://www.cegepgranby.qc.ca/" class="distanceEntreLogo" target="_blank" >
-                            <img id="imgCegep" width="150" class="footerImages" src="../Images/CGHY.png"/>
+                    <div style="width: 550px;">
+                        <a href="http://www.cegepgranby.qc.ca/" class="distanceEntreLogo" target="_blank">
+                            <img id="imgCegep" width="150" class="footerImages" src="../Images/CGHY.png" />
                         </a>
                         <a href="http://www.aqdr.org/" class="distanceEntreLogo" target="_blank">
                             <img id="imgAQDR" width="150" class="footerImages" src="../Images/AQDR.jpg" />
@@ -1315,12 +1312,12 @@
                             <asp:LinkButton ID="LnkBtnInfoMaltraitance_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalInfoMaltraitance" data-toggle="modal"><%= outils.obtenirLangue("Info Maltraitance|Elder Abuse Information")%></asp:LinkButton>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" data-toggle="modal"  href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
+                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" data-toggle="modal" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
                         <p>
-                        <asp:LinkButton ID="lnkBtnPageCreateurs" CssClass="lnkBtn_Footer" runat="server" PostBackUrl="~/Formulaires/FRMCreateurs.aspx"><%= outils.obtenirLangue("Page des créateurs|Developer's page")%></asp:LinkButton>
+                            <asp:LinkButton ID="lnkBtnPageCreateurs" CssClass="lnkBtn_Footer" runat="server" PostBackUrl="~/Formulaires/FRMCreateurs.aspx"><%= outils.obtenirLangue("Page des créateurs|Developer's page")%></asp:LinkButton>
                         </p>
-                     </div>
+                    </div>
                 </div>
                 <div style="clear: both;">
                 </div>
