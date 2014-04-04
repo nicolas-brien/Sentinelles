@@ -318,6 +318,7 @@
     </None>
     <None Include="My Project\PublishProfiles\Connexion.pubxml" />
     <None Include="My Project\PublishProfiles\patate.pubxml" />
+    <None Include="My Project\PublishProfiles\SQIinfo.pubxml" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>

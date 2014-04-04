@@ -306,6 +306,9 @@
                             <asp:Label ID="lblLoginPassword" CssClass="lblFormulaire" runat="server"><%= outils.obtenirLangue("Mot de passe|Password")%></asp:Label>
                             <asp:TextBox ID="tbLoginPassword" TextMode="Password" CssClass="tbFormulaire formLogin" runat="server" ClientIDMode="Static"></asp:TextBox>
                         </div>
+                        <div class="row">
+                            <a href="../Formulaires/FRMRecuperation.aspx" class="tbFormulaire"><%= outils.obtenirLangue("Mot de passe oublié?|Forgot password?")%></a>
+                        </div>
                     </div>
                     <asp:UpdatePanel ID="upLogin" runat="server">
                         <ContentTemplate>

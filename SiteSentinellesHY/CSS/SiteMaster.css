@@ -26,6 +26,10 @@ hr
     margin-bottom: 2px;
 }
 
+a:hover{
+    text-decoration: none !important;
+}
+
 .relative
 {
     position: relative;
