@@ -97,7 +97,6 @@
   <ItemGroup>
     <Content Include="BackControl\CleanBDControler.aspx" />
     <Content Include="BackControl\EmailSendRoutine.aspx" />
-    <Content Include="BackControl\properties.txt" />
     <Content Include="bin\ar\AjaxControlToolkit.resources.dll" />
     <Content Include="bin\cs\AjaxControlToolkit.resources.dll" />
     <Content Include="bin\de\AjaxControlToolkit.resources.dll" />
@@ -359,7 +358,6 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Include="My Project\PublishProfiles\SentinellesHY.pubxml" />
-    <None Include="My Project\PublishProfiles\patate.pubxml" />
     <None Include="My Project\PublishProfiles\SQIinfo.pubxml" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

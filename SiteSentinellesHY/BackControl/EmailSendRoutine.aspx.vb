@@ -120,7 +120,7 @@ Public Class EmailSendRoutine
 
                                         client.Port = 25
                                         client.Host = "mail.sentinelleshy.ca"
-                                        'client.EnableSsl = True 'Gmail Secured Layer
+                                        client.EnableSsl = True 'Gmail Secured Layer
 
                                         client.Send(mail)
                                         Response.Write(item.courriel & "<br/>")
