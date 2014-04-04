@@ -470,7 +470,7 @@
                                     <ItemTemplate>
                                         <div class="ItemTemplate">
                                             <div style="width: 85%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 75)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 80)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
                                                 <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
@@ -480,7 +480,7 @@
                                     <SelectedItemTemplate>
                                         <div class="SelectedItemTemplate">
                                             <div style="width: 85%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 80)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
                                                 <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
@@ -634,7 +634,7 @@
                                     <ItemTemplate>
                                         <div class="ItemTemplate">
                                             <div style="width: 70%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 50)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 70)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
                                                 <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
@@ -647,7 +647,7 @@
                                     <SelectedItemTemplate>
                                         <div class="SelectedItemTemplate">
                                             <div style="width: 70%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" ID="LinkButton1" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 50)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" ID="LinkButton1" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 70)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
                                                 <asp:LinkButton CssClass="listeLigneComplete" ID="LinkButton2" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
@@ -808,7 +808,7 @@
                                     <ItemTemplate>
                                         <div class="ItemTemplate">
                                             <div style="width: 85%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 75)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 80)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
                                                 <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
@@ -818,7 +818,7 @@
                                     <SelectedItemTemplate>
                                         <div class="SelectedItemTemplate">
                                             <div style="width: 85%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 80)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
                                                 <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>

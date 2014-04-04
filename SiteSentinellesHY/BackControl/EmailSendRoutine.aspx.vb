@@ -18,7 +18,7 @@ Public Class EmailSendRoutine
 
         Dim filePropertiesName As String = "properties.txt"
 
-        Dim maxEmailSend As Integer = 50
+        Dim maxEmailSend As Integer = 5
 
         Dim mailList As List(Of Utilisateur) = New List(Of Utilisateur)
 
@@ -107,22 +107,22 @@ Public Class EmailSendRoutine
                                     End If
 
                                     Try
-                                        'Dim mail As New MailMessage
-                                        'mail.Subject = "This is a test"
-                                        'mail.From = New MailAddress("info@sentinelleshy.ca")
-                                        'mail.To.Add(item.courriel)
-                                        'mail.Body = "Un message test des sentinelles"
-                                        'mail.BodyEncoding = System.Text.Encoding.UTF8
-                                        'mail.IsBodyHtml = True
+                                        Dim mail As New MailMessage
+                                        mail.Subject = "This is a test"
+                                        mail.From = New MailAddress("info@sentinelleshy.ca")
+                                        mail.To.Add(item.courriel)
+                                        mail.Body = "Un message test des sentinelles"
+                                        mail.BodyEncoding = System.Text.Encoding.UTF8
+                                        mail.IsBodyHtml = True
 
-                                        'Dim client As System.Net.Mail.SmtpClient = New System.Net.Mail.SmtpClient()
-                                        'client.Credentials = New System.Net.NetworkCredential("info@sentinelleshy.ca", "Vs2H7!Etu")
+                                        Dim client As System.Net.Mail.SmtpClient = New System.Net.Mail.SmtpClient()
+                                        client.Credentials = New System.Net.NetworkCredential("info@sentinelleshy.ca", "Vs2H7!Etu")
 
-                                        'client.Port = 25
-                                        'client.Host = "mail.sentinelleshy.ca"
-                                        'client.EnableSsl = True 'Gmail Secured Layer
+                                        client.Port = 25
+                                        client.Host = "mail.sentinelleshy.ca"
+                                        client.EnableSsl = True 'Gmail Secured Layer
 
-                                        'client.Send(mail)
+                                        client.Send(mail)
                                     Catch ex As Exception
 
                                     End Try
