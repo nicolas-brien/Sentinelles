@@ -473,51 +473,6 @@ Partial Public Class FRMPanneauDeControle
     Protected WithEvents lnkbtnEnvoiMessage As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Contrôle LnkBtnNavigation_footer.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents LnkBtnNavigation_footer As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''Contrôle LnkBtnHistorique_footer.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents LnkBtnHistorique_footer As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''Contrôle LnkBtnNouvelles_footer.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents LnkBtnNouvelles_footer As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''Contrôle LnkBtnEvenement_footer.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents LnkBtnEvenement_footer As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''Contrôle LnkBtnRDP_footer.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents LnkBtnRDP_footer As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
     '''Contrôle LnkBtnDevenirSentinelle_footer.
     '''</summary>
     '''<remarks>

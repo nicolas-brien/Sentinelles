@@ -1,4 +1,8 @@
-﻿.lnkBtn_menuConfig {
+﻿a:hover{
+    text-decoration: none !important;
+}
+
+.lnkBtn_menuConfig {
     color: #000;
     font-family: 'AgencyR';
     font-size: x-large;
@@ -282,20 +286,23 @@
 }
 /*-------------------------------------Utilisateur----------------------------------*/
 .petitsPoints {
-    border: 1px dashed blue;
+    border: 1px solid #0A66A4;
+    box-shadow: 0px 2px 2px gray;
     padding: 25px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .petitsPointsListeUtilisateurs {
-    border: 1px dashed blue;
-    margin-bottom: 50px;
+    border: 1px solid #0A66A4;
+    box-shadow: 0px 2px 2px gray;
+    margin-bottom: 30px;
 }
 
 .petitsPointsPadding {
-    border: 1px dashed blue;
+    border: 1px solid #0A66A4;
+    box-shadow: 0px 2px 2px gray;
     padding: 25px 25px 125px 25px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .overflow {
@@ -344,7 +351,8 @@
     -webkit-border-radius: 9px;
     -moz-border-radius: 10px;
     border-radius: 8px;
-    background-image: linear-gradient(to bottom, #ECECEC, #C7C6C6);
+    background-image: linear-gradient(to bottom, blue, darkblue);
+    /*background-image: linear-gradient(to bottom, #ECECEC, #C7C6C6);*/
 }
 
 .encadrerBoutons {

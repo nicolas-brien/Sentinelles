@@ -663,6 +663,91 @@ Public Class FRMForum
 #End Region
 
 #Region "InfoUtilisateur Vue4"
+    Protected Sub vCrop_Activate(sender As Object, e As EventArgs)
+        Dim controlUpload = CType(lvInfoUtilisateur.Items(0).FindControl("fuplPhoto"), FileUpload)
+
+
+        If controlUpload.PostedFile.ContentType = "image/jpeg" Then
+            Dim newFileName As String = ""
+            Dim nomFichier As String = Path.GetFileName(controlUpload.FileName)
+            'Save it in the server images folder
+            Dim random As New Random()
+            Dim rndnbr As Integer = 0
+            rndnbr = random.[Next](0, 99999)
+            newFileName = "AvantCrop-" + rndnbr.ToString + nomFichier
+
+            controlUpload.SaveAs(Server.MapPath("../Upload/" & newFileName))
+
+            Dim cropbox = CType(lvInfoUtilisateur.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
+            cropbox.ImageUrl = "~/Upload/" & newFileName
+        End If
+
+    End Sub
+
+    Protected Sub imageRotateLeft_Click(sender As Object, e As EventArgs)
+        Dim cropbox = CType(lvInfoUtilisateur.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
+        Dim path As [String] = Server.MapPath(cropbox.ImageUrl)
+        Dim img As System.Drawing.Image = System.Drawing.Image.FromFile(path)
+        img.RotateFlip(RotateFlipType.Rotate270FlipNone)
+        img.Save(path)
+    End Sub
+
+    Protected Sub imageRotateRght_Click(sender As Object, e As EventArgs)
+        Dim cropbox = CType(lvInfoUtilisateur.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
+        Dim path As [String] = Server.MapPath(cropbox.ImageUrl)
+        Dim img As System.Drawing.Image = System.Drawing.Image.FromFile(path)
+        img.RotateFlip(RotateFlipType.Rotate90FlipNone)
+        img.Save(path)
+    End Sub
+    Protected Sub btCropGo_Click(sender As Object, e As EventArgs)
+        'Load the Image from the location
+        Dim cropbox = CType(lvInfoUtilisateur.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
+        Dim image As System.Drawing.Image = Bitmap.FromFile(Server.MapPath(cropbox.ImageUrl))
+        Dim unFichier As String = Server.MapPath(cropbox.ImageUrl)
+        Dim ratio As Double = image.Height / 250.0
+        Dim nomFichier As String = ""
+
+        Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Session("Utilisateur")
+
+        'Get the Cordinates
+        Dim X = CType(lvInfoUtilisateur.Items(0).FindControl("X"), System.Web.UI.WebControls.HiddenField)
+        Dim Y = CType(lvInfoUtilisateur.Items(0).FindControl("Y"), System.Web.UI.WebControls.HiddenField)
+        Dim W = CType(lvInfoUtilisateur.Items(0).FindControl("W"), System.Web.UI.WebControls.HiddenField)
+        Dim H = CType(lvInfoUtilisateur.Items(0).FindControl("H"), System.Web.UI.WebControls.HiddenField)
+
+        Dim x__1 As Integer = Convert.ToInt32(Convert.ToDouble(X.Value) * (ratio))
+        Dim y__2 As Integer = Convert.ToInt32(Convert.ToDouble(Y.Value) * (ratio))
+        Dim w__3 As Integer = Convert.ToInt32(Convert.ToDouble(W.Value) * (ratio))
+        Dim h__4 As Integer = Convert.ToInt32(Convert.ToDouble(H.Value) * (ratio))
+
+        If (w__3 = 0) Then
+            x__1 = 0
+            y__2 = 0
+            w__3 = image.Width
+            h__4 = image.Height
+
+        End If
+
+        'Create a new image from the specified location to
+        'specified height and width
+        Dim bmp As New Bitmap(400, 400, image.PixelFormat)
+        Dim g As Graphics = Graphics.FromImage(bmp)
+        g.DrawImage(image, New Rectangle(0, 0, 400, 400), New Rectangle(x__1, y__2, w__3, h__4), GraphicsUnit.Pixel)
+        'Save the file and reload to the control
+
+        'On ajoute un nombre aléatoire à la fin du fichier afin d'éviter d'écraser les photos existantes
+        Dim MyRandomNumber As New Random()
+        Dim xr As Integer = MyRandomNumber.Next(10000, 100000)
+        nomFichier = xr.ToString + ".jpg"
+
+        bmp.Save(Server.MapPath("../Upload/") + nomFichier, image.RawFormat)
+
+        utilisateurAValider.UrlAvatar = nomFichier
+        ModeleSentinellesHY.outils.leContexte.SaveChanges()
+        lvInfoUtilisateur.DataBind()
+        CType(lvInfoUtilisateur.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 0
+
+    End Sub
     Public Function getInfoUtilisateur() As ModeleSentinellesHY.Utilisateur
         Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
         If Not Session("Utilisateur") Is Nothing Then
@@ -737,33 +822,13 @@ Public Class FRMForum
     End Sub
 
     Protected Sub lnkUpload_Click(sender As Object, e As EventArgs)
-        Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Session("Utilisateur")
-        Dim controlUpload = CType(lvInfoUtilisateur.Items(0).FindControl("fuplPhoto"), FileUpload)
-        Dim extension As String = ""
-        Dim nomFichier As String = ""
-        If controlUpload.HasFile Then
-            'On vérifie le type de fichier
-            If controlUpload.PostedFile.ContentType = "image/jpeg" Or controlUpload.PostedFile.ContentType = "image/png" Then
-                'On découpe le nom du fichier de son extension afin d'insérer un nombre aléatoire
-                nomFichier = Left(controlUpload.FileName, Len(controlUpload.FileName) - 4)
-                extension = Right(controlUpload.FileName, 4)
-                If nomFichier.Length > 30 Then
-                    nomFichier = Left(nomFichier, 30)
-                End If
-                'On ajoute un nombre aléatoire à la fin du fichier afin d'éviter d'écraser les photos existantes
-                Dim MyRandomNumber As New Random()
-                Dim x As Integer = MyRandomNumber.Next(10000, 100000)
-                nomFichier &= x
-                nomFichier &= extension
+        Dim lblMessageErreur = CType(lvInfoUtilisateur.FindControl("lblMessageErreur"), Label)
+        Dim divMessageErreur = CType(lvInfoUtilisateur.FindControl("divMessageErreur"), Panel)
+        lblMessageErreur.Text = ""
+        divMessageErreur.CssClass = "alert alert-error"
+        divMessageErreur.Visible = False
+        CType(lvInfoUtilisateur.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 1
 
-                'On redimensionne le fichier selon nos désirs dans cette fonction
-                ResizeImageFile(controlUpload.PostedFile.InputStream, 120, Server.MapPath("../Upload/" & nomFichier), "typeAvatar")
-                CType(lvInfoUtilisateur.Items(0).FindControl("tbAvatar"), TextBox).Text = nomFichier
-                CType(lvInfoUtilisateur.Items(0).FindControl("imgUpload"), HtmlImage).Src = "../Upload/" & nomFichier
-                utilisateurAValider.UrlAvatar = nomFichier
-                ModeleSentinellesHY.outils.leContexte.SaveChanges()
-            End If
-        End If
     End Sub
 
     Public Shared Function ResizeImageFile(imageFileMS As Stream, targetSize As Integer, lepathfichier As String, typeUpload As String) As String

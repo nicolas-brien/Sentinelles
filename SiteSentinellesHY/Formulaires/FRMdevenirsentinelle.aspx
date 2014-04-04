@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="row">
-                <asp:LinkButton runat="server" ID="btnEnvoi" CssClass="btn btn-primary tbFormulaire" OnClick="btnEnvoi_Click"><%= outils.obtenirLangue("Envoyer|Submit")%></asp:LinkButton>
+                <asp:LinkButton runat="server" ID="btnEnvoi" CssClass="btn btn-primary tbFormulaire disabled-button" OnClick="btnEnvoi_Click"><%= outils.obtenirLangue("Envoyer|Submit")%></asp:LinkButton>
                                 <span style="color: red;margin-right:147px;float:right;"><%= outils.obtenirLangue("* Champs requis|* Required fields") %></span>
             </div>
             <div class="row">

@@ -1,4 +1,8 @@
-﻿.lnkBtn_menuConfig {
+﻿a:hover{
+    text-decoration: none !important;
+}
+
+.lnkBtn_menuConfig {
     color: #000;
     font-family: 'AgencyR';
     font-size: x-large;
@@ -46,7 +50,8 @@
 }
 
 .encadrerModification {
-    border: 1px dashed blue;
+    border: 1px solid #0A66A4;
+    box-shadow: 0px 2px 2px gray;
     padding: 25px;
     margin-bottom: 50px;
 }
@@ -84,6 +89,12 @@
     margin-bottom: 40px;
 }
 /*-------------------------------------Publication---------------------------------------*/
+
+.Avatar_Publication {
+    width: 120px;
+    height: 120px;
+    margin-left: 2px;
+}
 
 .lblSupprimerPublication {
     color: red;
@@ -156,13 +167,15 @@
 }
 
 .encadrerModification {
-    border: 1px dashed blue;
+    border: 1px solid #0A66A4;
+    box-shadow: 0px 2px 2px gray;
     padding: 25px;
     margin-bottom: 50px;
 }
 
 .encadrerModification_Publication {
-    border: 1px dashed blue;
+    border: 1px solid #0A66A4;
+    box-shadow: 0px 2px 2px gray;
     padding: 25px;
 }
 
@@ -306,10 +319,12 @@ h3 {
 
 /*---------------------------------VUE INFO UTILISATEUR---------------------------------*/
 .encadreInfoUtilisateur {
-    border: 1px dashed blue;
+    border: 1px solid #0A66A4;
+    box-shadow: 0px 2px 2px gray;
     margin: 20px 0px 20px 0px;
     overflow: auto;
     padding: 20px;
+    height:auto;
 }
 
 .tbInfoUtilisateur {
@@ -368,4 +383,52 @@ h3 {
 
 .itemHighlighted {
     background-color: lightblue;
+}
+
+.rotateImgLeft {
+    background-position: center center;
+    background-image: url('../images/iconRotateLeft.png');
+    background-repeat: no-repeat;
+    height: 35px;
+    box-shadow: none;
+      display: inline-block;
+  *border-left: 0 none #e6e6e6;
+    border-right: 0 none #e6e6e6;
+    border-top: 0 none #e6e6e6;
+    border-bottom: 0 none #b3b3b3;
+    display: inline;
+    padding: 4px 12px;
+    margin-bottom: 0;
+  *margin-left: .3em;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+    text-align: center;
+    vertical-align: middle;
+  background-color: #f5f5f5;
+  *background-color: #e6e6e6;
+}
+
+.rotateImgRight {
+    background-position: center center;
+    background-image: url('../images/iconRotateRight.png');
+    background-repeat: no-repeat;
+    height: 35px;
+    box-shadow: none;
+      display: inline-block;
+  *border-left: 0 none #e6e6e6;
+    border-right: 0 none #e6e6e6;
+    border-top: 0 none #e6e6e6;
+    border-bottom: 0 none #b3b3b3;
+    display: inline;
+    padding: 4px 12px;
+    margin-bottom: 0;
+  *margin-left: .3em;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+    text-align: center;
+    vertical-align: middle;
+  background-color: #f5f5f5;
+  *background-color: #e6e6e6;
 }

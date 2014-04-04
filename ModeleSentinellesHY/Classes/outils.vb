@@ -115,11 +115,19 @@ Public Class outils
     End Function
 
     'Fonction qui sert à générer notre SelDeMer pour l'ajouter au mot de passe avant de l'encrypter
-    Public Shared Function SecureRandom() As String
-        Dim secureRandom__1 As New RNGCryptoServiceProvider()
-        Dim randBytes As Byte() = New Byte(3) {}
-        secureRandom__1.GetNonZeroBytes(randBytes)
-        Return (BitConverter.ToInt32(randBytes, 0)).ToString()
+    Public Shared Function SecureRandom(quantity) As String
+
+        Dim validchars As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+
+        Dim sb As New StringBuilder()
+        Dim rand As New Random()
+        For i As Integer = 1 To quantity
+            Dim idx As Integer = rand.Next(0, validchars.Length)
+            Dim randomChar As Char = validchars(idx)
+            sb.Append(randomChar)
+        Next i
+
+        Return sb.ToString
     End Function
 
     'Fonction qui supprime un fichier

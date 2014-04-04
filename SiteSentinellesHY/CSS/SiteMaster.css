@@ -14,10 +14,6 @@
     font-family: 'Lucida';
         src: url(../Upload/Lucida_webfont.ttf);
 }
-@font-face {
-    font-family: 'Lucida';
-        src: url(../Upload/Lucida_webfont.woff);
-}
 
 *
 {
@@ -28,6 +24,10 @@
 hr
 {
     margin-bottom: 2px;
+}
+
+a:hover{
+    text-decoration: none !important;
 }
 
 .relative
@@ -75,6 +75,11 @@ body
     -moz-box-shadow: 0 0 5px 5px #888;
     -webkit-box-shadow: 0 0 5px 5px #888;
     box-shadow: 0 0 5px 5px #888;
+}
+
+.referencement
+{
+    display: none;
 }
 
 /*------------------------------------FORMULAIRE-------------------------------*/

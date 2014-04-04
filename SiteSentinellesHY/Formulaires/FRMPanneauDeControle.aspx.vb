@@ -150,61 +150,103 @@ Public Class FRMPanneauDeControle
 
 #Region "EnvoiMessage"
     Private Sub lnkbtnEnvoiMessage_Click(sender As Object, e As EventArgs) Handles lnkbtnEnvoiMessage.Click
+        If Not File.Exists(Server.MapPath("/BackControl/properties.txt")) Then
+            Using fs As FileStream = File.Create(Server.MapPath("/BackControl/properties.txt"))
+                Dim info As [Byte]() = New UTF8Encoding(True).GetBytes("EmailSend=true")
+                fs.Write(info, 0, info.Length)
+            End Using
+        Else
+            Try
+                File.Delete(Server.MapPath("/BackControl/properties.txt"))
+                Using fs As FileStream = File.Create(Server.MapPath("/BackControl/properties.txt"))
+                    Dim info As [Byte]() = New UTF8Encoding(True).GetBytes("EmailSend=true")
+                    fs.Write(info, 0, info.Length)
+                End Using
+            Catch ex As Exception
+                Dim err = ex.Message
+            End Try
+
+        End If
+
+        CreateEmailFile("Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text, txtboxMessage.Text)
+        Response.Redirect("FRMPanneauDeControle.aspx")
         'Méthode servant à envoyer à tous les usagers du site web un courriel pour tous ceux qui possèdent une
         'adresse courriel
-        Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
-        Dim listeErreur As Integer = 0
-        Dim listeDestinataire As New List(Of ModeleSentinellesHY.Utilisateur)
-        Dim destinataires As String = ""
-        
-        listeDestinataire = (From info In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu _
-                                      Where info.courriel <> Nothing).ToList
-        For Each uti As ModeleSentinellesHY.Utilisateur In listeDestinataire
-            destinataires &= uti.courriel & ","
-        Next
+        'Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
+        'Dim listeErreur As Integer = 0
+        'Dim listeDestinataire As New List(Of ModeleSentinellesHY.Utilisateur)
+        'Dim destinataires As String = ""
 
-        'Sert à enlever la dernière virgule
-        destinataires.Remove(destinataires.Length - 1)
-        destinataires = "sansarrets@hotmail.com,jeansebastien.ares@gmail.com"
-
-
-        ' For Each uti As ModeleSentinellesHY.Utilisateur In listeDestinataire
-        If txtboxTitreMessage.Text = Nothing Then
-            lblMessageErreurEnvoiMessage.Text &= ModeleSentinellesHY.outils.obtenirLangue("*Vous devez entrer un titre|*You must enter a title") & "<br/>"
-            listeErreur += 1
-        End If
-        If txtboxMessage.Text = Nothing Then
-            lblMessageErreurEnvoiMessage.Text &= ModeleSentinellesHY.outils.obtenirLangue("*Vous devez entrer un message|*You must enter a message")
-            listeErreur += 1
-        End If
-        If listeErreur = 0 Then
-            Dim expediteur As String = "info@sentinelleshy.ca"
-            Dim mail As System.Net.Mail.MailMessage = New System.Net.Mail.MailMessage()
-            mail.To.Add(expediteur)
-            mail.Bcc.Add(destinataires)
-            mail.From = New System.Net.Mail.MailAddress(expediteur)
-            mail.Subject = "Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text
-            mail.SubjectEncoding = System.Text.Encoding.UTF8
-            mail.Body = txtboxMessage.Text
-            If Not txtboxMessage.Text = Nothing Then
-                txtboxMessage.Text = txtboxMessage.Text.Replace("<div></div>", "<br/><br/>")
-            End If
-            mail.BodyEncoding = System.Text.Encoding.UTF8
-            mail.IsBodyHtml = True
-            Dim client As System.Net.Mail.SmtpClient = New System.Net.Mail.SmtpClient()
-            client.Credentials = New System.Net.NetworkCredential("info@sentinelleshy.ca", "Vs2H7!Etu")
-
-            client.Port = 25
-            client.Host = "mail.sentinelleshy.ca"
-            'client.Port = 587 ' Gmail port
-            'client.Host = "smtp.gmail.com"
-            'client.EnableSsl = True 'Gmail Secured Layer
-
-            client.Send(mail)
-            lblMessageErreurEnvoiMessage.Text = ModeleSentinellesHY.outils.obtenirLangue("Le message a bel et bien été envoyé|The message has been sent")
-            lblMessageErreurEnvoiMessage.CssClass = "AvecSucces"
-        End If
+        'listeDestinataire = (From info In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu _
+        '                              Where info.courriel <> Nothing).ToList
+        'For Each uti As ModeleSentinellesHY.Utilisateur In listeDestinataire
+        '    destinataires &= uti.courriel & ","
         'Next
+
+        ''Sert à enlever la dernière virgule
+        'destinataires.Remove(destinataires.Length - 1)
+        'destinataires = "sansarrets@hotmail.com,jeansebastien.ares@gmail.com"
+
+
+        '' For Each uti As ModeleSentinellesHY.Utilisateur In listeDestinataire
+        'If txtboxTitreMessage.Text = Nothing Then
+        '    lblMessageErreurEnvoiMessage.Text &= ModeleSentinellesHY.outils.obtenirLangue("*Vous devez entrer un titre|*You must enter a title") & "<br/>"
+        '    listeErreur += 1
+        'End If
+        'If txtboxMessage.Text = Nothing Then
+        '    lblMessageErreurEnvoiMessage.Text &= ModeleSentinellesHY.outils.obtenirLangue("*Vous devez entrer un message|*You must enter a message")
+        '    listeErreur += 1
+        'End If
+        'If listeErreur = 0 Then
+        '    Dim expediteur As String = "info@sentinelleshy.ca"
+        '    Dim mail As System.Net.Mail.MailMessage = New System.Net.Mail.MailMessage()
+        '    mail.To.Add(expediteur)
+        '    mail.Bcc.Add(destinataires)
+        '    mail.From = New System.Net.Mail.MailAddress(expediteur)
+        '    mail.Subject = "Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text
+        '    mail.SubjectEncoding = System.Text.Encoding.UTF8
+        '    mail.Body = txtboxMessage.Text
+        '    If Not txtboxMessage.Text = Nothing Then
+        '        txtboxMessage.Text = txtboxMessage.Text.Replace("<div></div>", "<br/><br/>")
+        '    End If
+        '    mail.BodyEncoding = System.Text.Encoding.UTF8
+        '    mail.IsBodyHtml = True
+        '    Dim client As System.Net.Mail.SmtpClient = New System.Net.Mail.SmtpClient()
+        '    client.Credentials = New System.Net.NetworkCredential("info@sentinelleshy.ca", "Vs2H7!Etu")
+
+        '    client.Port = 25
+        '    client.Host = "mail.sentinelleshy.ca"
+        '    'client.Port = 587 ' Gmail port
+        '    'client.Host = "smtp.gmail.com"
+        '    'client.EnableSsl = True 'Gmail Secured Layer
+
+        '    client.Send(mail)
+        '    lblMessageErreurEnvoiMessage.Text = ModeleSentinellesHY.outils.obtenirLangue("Le message a bel et bien été envoyé|The message has been sent")
+        '    lblMessageErreurEnvoiMessage.CssClass = "AvecSucces"
+        'End If
+        'Next
+    End Sub
+
+    'Cette methode inscrit les informations envoyées dans un fichier texte pour être repris par la routine de courriel.
+    Public Sub CreateEmailFile(subject As String, msg As String)
+        If Not File.Exists(Server.MapPath("/BackControl/mailmsg.txt")) Then
+
+            Using fs As FileStream = File.Create(Server.MapPath("/BackControl/mailmsg.txt"))
+                Dim sw As New StreamWriter(fs)
+                sw.WriteLine("SUBJECT=" & subject)
+                sw.WriteLine("MESSAGE=" & msg)
+                sw.Close()
+            End Using
+        Else
+            File.Delete(Server.MapPath("/BackControl/mailmsg.txt"))
+
+            Using fs As FileStream = File.Create(Server.MapPath("/BackControl/mailmsg.txt"))
+                Dim sw As New StreamWriter(fs)
+                sw.WriteLine("SUBJECT=" & subject)
+                sw.WriteLine("MESSAGE=" & msg)
+                sw.Close()
+            End Using
+        End If
     End Sub
 #End Region
 
@@ -344,6 +386,14 @@ Public Class FRMPanneauDeControle
         Dim y__2 As Integer = Convert.ToInt32(Convert.ToDouble(Y.Value) * (ratio))
         Dim w__3 As Integer = Convert.ToInt32(Convert.ToDouble(W.Value) * (ratio))
         Dim h__4 As Integer = Convert.ToInt32(Convert.ToDouble(H.Value) * (ratio))
+
+        If (w__3 = 0) Then
+            x__1 = 0
+            y__2 = 0
+            w__3 = image.Width
+            h__4 = image.Height
+
+        End If
         'Create a new image from the specified location to
         'specified height and width
         Dim bmp As New Bitmap(960, 400, image.PixelFormat)
@@ -462,7 +512,9 @@ Public Class FRMPanneauDeControle
         If lviewNouvelle.Items.Count > 0 And Not Page.IsPostBack Then
             CType(lviewNouvelle.FindControl("lbNouvelleTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
         End If
-        lviewInfoNouvelles.DataBind()
+        If ViewState("modeNouvelle") <> "AjoutNouvelle" Then
+            lviewInfoNouvelles.DataBind()
+        End If
     End Sub
     Private Sub lviewNouvelle_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewNouvelle.SelectedIndexChanged
         ViewState("modeNouvelle") = ""
@@ -495,7 +547,9 @@ Public Class FRMPanneauDeControle
         If lvEvenement.Items.Count > 0 And Not Page.IsPostBack Then
             CType(lvEvenement.FindControl("lbEvenementTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
         End If
-        lvInfoEvenement.DataBind()
+        If ViewState("modeEvenement") <> "AjoutEvenement" Then
+            lvInfoEvenement.DataBind()
+        End If
     End Sub
 
     Private Sub lvEvenement_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvEvenement.SelectedIndexChanged
@@ -630,10 +684,9 @@ Public Class FRMPanneauDeControle
 
 #Region "Revue de Presse"
     Private Sub lvRDP_PreRender(sender As Object, e As EventArgs) Handles lvRDP.PreRender
-        If lvRDP.Items.Count > 0 Then
+        If lvRDP.Items.Count > 0 And Not Page.IsPostBack Then
             CType(lvRDP.FindControl("lbRDPTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
         End If
-        lvInfoRDP.DataBind()
     End Sub
 
     Private Sub lvRDP_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvRDP.SelectedIndexChanged
@@ -809,7 +862,14 @@ Public Class FRMPanneauDeControle
 #End Region
 
     Private Sub lviewUtilisateurs_PreRender(sender As Object, e As EventArgs) Handles lviewUtilisateurs.PreRender
-        lviewInfoUtilisateur.DataBind()
+        If lviewUtilisateurs.Items.Count > 0 And Not Page.IsPostBack Then
+            CType(lviewUtilisateurs.FindControl("lblUtilisateurUsername"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
+        End If
+
+        If ViewState("modeUtilisateur") <> "AjoutUtilisateur" Then
+            lviewInfoUtilisateur.DataBind()
+        End If
+
     End Sub
 
     Private Sub lviewUtilisateurs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewUtilisateurs.SelectedIndexChanged
@@ -942,13 +1002,12 @@ Public Class FRMPanneauDeControle
 
             'Conditions pour Supprimer Avatar du fichier Upload
             If utilisateurAValider.UrlAvatar <> utilisateurAValider.urlAvatarTemp AndAlso utilisateurAValider.UrlAvatar <> "" _
-                AndAlso utilisateurAValider.UrlAvatar <> "default.png" Then
+                AndAlso utilisateurAValider.UrlAvatar = "default.png" Then
                 ModeleSentinellesHY.outils.SupprimerFichierUpload(utilisateurAValider.urlAvatarTemp)
             End If
             lviewUtilisateurs.DataBind()
             lviewInfoUtilisateur.DataBind()
         Else
-
             For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
                 If Not erreur.nomPropriete Is Nothing Then
                     CType(lviewInfoUtilisateur.Items(0).FindControl("txtbox" & erreur.nomPropriete), TextBox).BorderColor = Drawing.Color.Red
@@ -969,71 +1028,10 @@ Public Class FRMPanneauDeControle
         lviewInfoUtilisateur.DataBind()
     End Sub
 
-    Protected Sub lnkUpload_Click(sender As Object, e As EventArgs)
-
-        'Upload de l'avatar des membres du forum
-        Dim controlUpload = CType(lviewInfoUtilisateur.Items(0).FindControl("fuplPhoto"), FileUpload)
-        Dim extension As String = ""
-        Dim nomFichier As String = ""
-        If controlUpload.HasFile Then
-            If controlUpload.PostedFile.ContentType = "image/jpeg" Or controlUpload.PostedFile.ContentType = "image/png" Then
-                nomFichier = Left(controlUpload.FileName, Len(controlUpload.FileName) - 4)
-                extension = Right(controlUpload.FileName, 4)
-                If nomFichier.Length > 30 Then
-                    nomFichier = Left(nomFichier, 30)
-                End If
-
-                'On ajoute un nombre aléatoire à la fin afin d'éviter d'écraser des fichiers existants
-                Dim MyRandomNumber As New Random()
-                Dim x As Integer = MyRandomNumber.Next(10000, 100000)
-                nomFichier &= x
-                nomFichier &= extension
-
-                ResizeImageFile(controlUpload.PostedFile.InputStream, 120, Server.MapPath("../Upload/" & nomFichier), "typeAvatar")
-                CType(lviewInfoUtilisateur.Items(0).FindControl("txtboxNomPhoto"), TextBox).Text = nomFichier
-                CType(lviewInfoUtilisateur.Items(0).FindControl("imgUpload"), HtmlImage).Src = "../../Upload/" & nomFichier
-            End If
-        End If
+    Protected Sub lnkbtnImgDefaut_Click(sender As Object, e As EventArgs)
+        CType(lviewInfoUtilisateur.Items(0).FindControl("txtboxNomPhoto"), TextBox).Text = "default.png"
+        CType(lviewInfoUtilisateur.Items(0).FindControl("imgUpload"), HtmlImage).Src = "../../Upload/default.png"
     End Sub
-
-    Public Shared Function ResizeImageFile(imageFileMS As Stream, targetSize As Integer, lepathfichier As String, typeUpload As String) As String
-
-        Dim original As Image = Image.FromStream(imageFileMS)
-        Dim targetH As Integer, targetW As Integer
-
-        'Redimensionne la photo selon s'il s'agit d'un avatar ou d'une image du carousel
-        If typeUpload.Contains("typeAvatar") Then
-            If original.Height > original.Width Then
-                targetH = targetSize
-                targetW = CInt(original.Width * (CSng(targetSize) / CSng(original.Height)))
-            Else
-                targetW = targetSize
-                targetH = CInt(original.Height * (CSng(targetSize) / CSng(original.Width)))
-            End If
-        Else
-            targetH = 400
-            targetW = 960
-        End If
-
-        Dim imgPhoto As Image = Image.FromStream(imageFileMS)
-        ' Create a new blank canvas.  The resized image will be drawn on this canvas.
-        Dim bmPhoto As New Bitmap(targetW, targetH, PixelFormat.Format24bppRgb)
-        bmPhoto.SetResolution(72, 72)
-
-        Dim grPhoto As Graphics = Graphics.FromImage(bmPhoto)
-        grPhoto.SmoothingMode = SmoothingMode.AntiAlias
-        grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic
-        grPhoto.PixelOffsetMode = PixelOffsetMode.HighQuality
-        grPhoto.DrawImage(imgPhoto, New Rectangle(0, 0, targetW, targetH), 0, 0, original.Width, original.Height, _
-            GraphicsUnit.Pixel)
-        bmPhoto.Save(lepathfichier, System.Drawing.Imaging.ImageFormat.Jpeg)
-        original.Dispose()
-        imgPhoto.Dispose()
-        bmPhoto.Dispose()
-        grPhoto.Dispose()
-
-        Return ""
-    End Function
 
     Protected Sub rbtnSexe_Init(sender As Object, e As EventArgs)
         Dim Homme As New ListItem
@@ -1049,5 +1047,4 @@ Public Class FRMPanneauDeControle
 
     End Sub
 #End Region
-
 End Class

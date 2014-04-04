@@ -80,7 +80,7 @@ Partial Public Class Utilisateur
         ElseIf Me.motDePasseTemp.ToString.Count > 16 Or Me.motDePasseTemp.ToString.Count < 6 Then
             listeRetour.Add(New ValidationResult("Le mot de passe doit contenir entre 6 et 16 caractères|The password must contains between 6 and 16 characters"))
         Else
-            Me.SelDeMer = ModeleSentinellesHY.outils.SecureRandom
+            Me.SelDeMer = ModeleSentinellesHY.outils.SecureRandom(3)
             Me.motDePasse = ModeleSentinellesHY.outils.encryptage(_motDePasseTemp & Me.SelDeMer)
         End If
 
