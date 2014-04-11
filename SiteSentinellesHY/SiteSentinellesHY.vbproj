@@ -193,6 +193,10 @@
     <Content Include="Upload\default.png" />
     <Content Include="Log\ErrorLog.txt" />
     <Content Include="Upload\Sans titre70432.jpg" />
+    <Content Include="Upload\ErrorLog.txt" />
+    <Content Include="Upload\ImagesProfil\35945.jpg" />
+    <Content Include="Upload\ImagesProfil\default.png" />
+    <Content Include="Upload\ImagesProfil\Sans titre70432.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
