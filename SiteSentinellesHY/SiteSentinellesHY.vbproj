@@ -160,9 +160,6 @@
     <Content Include="Images\background.png" />
     <Content Include="Images\BanniereEN.png" />
     <Content Include="Images\BanniereFR.png" />
-    <Content Include="Images\Carrousel1.png" />
-    <Content Include="Images\Carrousel2.png" />
-    <Content Include="Images\Carrousel3.png" />
     <Content Include="Images\CGHY.jpg" />
     <Content Include="Images\CGHY.png" />
     <Content Include="Images\configuration.png" />
@@ -189,6 +186,13 @@
     <Content Include="Images\PastilleInfoSuicideFR.png" />
     <Content Include="Images\servicecanada.png" />
     <Content Include="Images\TriangleFooter.png" />
+    <Content Include="Upload\45950.jpg" />
+    <Content Include="Upload\AvantCrop-26073334351-svetik.png" />
+    <Content Include="Upload\AvantCrop-50670334351-svetik.png" />
+    <Content Include="Upload\AvantCrop-53521Carrousel1.jpg" />
+    <Content Include="Upload\default.png" />
+    <Content Include="Log\ErrorLog.txt" />
+    <Content Include="Upload\Sans titre70432.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -365,6 +369,9 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <Content Include="packages.config" />
+    <Content Include="Upload\PDF\3VE0401P0204b.pdf" />
+    <Content Include="Upload\PDF\Communiqué de presse -Site int.pdf" />
+    <Content Include="Upload\Doc Openerp7_PierreLeca.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -374,6 +381,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="backups\" />
+    <Folder Include="Polices\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModeleSentinellesHY\ModeleSentinellesHY.vbproj">

@@ -754,7 +754,7 @@
                                                     <placeholder id="itemPlaceHolder" runat="server"></placeholder>
                                                 </LayoutTemplate>
                                                 <EmptyDataTemplate>
-                                                    <asp:Label runat="server" CssClass="lblMessageErreur clear-both"><%= outils.obtenirLangue("Aucun résultat! Esseyez une recherche plus simple ou avec des critères différents.|No result! Try a simpler search or with other criterias.") %></asp:Label>
+                                                    <asp:Label runat="server" CssClass="lblMessageErreur clear-both"><%= outils.obtenirLangue("Aucun résultat! Essayez une recherche plus simple ou avec des critères différents.|No result! Try a simpler search or with other criterias.") %></asp:Label>
                                                 </EmptyDataTemplate>
                                                 <ItemTemplate>
                                                     <div id="divPublication" class="clear-both">

@@ -17,8 +17,8 @@ Public NotInheritable Class ExceptionUtility
     Public Shared Sub LogException(ByVal exc As Exception, ByVal source As String)
         ' Include enterprise logic for logging exceptions
         ' Get the absolute path to the log file
-        Dim logFile = "~/Upload/ErrorLog.txt"
-        Dim logTemp = "~/Upload/ErrorTemp.txt"
+        Dim logFile = "~/Log/ErrorLog.txt"
+        Dim logTemp = "~/Log/ErrorTemp.txt"
         logFile = HttpContext.Current.Server.MapPath(logFile)
         logTemp = HttpContext.Current.Server.MapPath(logTemp)
 
@@ -48,16 +48,16 @@ Public NotInheritable Class ExceptionUtility
         objTempEmptyWriter.WriteLine("")
         objTempEmptyWriter.Close()
 
-        Dim objWriter As New System.IO.StreamWriter(logFile)
-        objWriter.Close()
+        Dim creationLog As New System.IO.StreamWriter(logFile, True)
+        creationLog.Close()
 
-        Dim objTempWriter = New StreamWriter(logTemp, True) 'Appening to add the current entries to this tempory list
         Dim objReader = New StreamReader(logFile, True)
+        Dim objTempWriter = New StreamWriter(logTemp, True) 'Appening to add the current entries to this tempory list
         objTempWriter.Write(objReader.ReadToEnd) 'Write to stop excess empty lines at end of file
         objTempWriter.Close()
         objReader.Close()
         Dim objTempReader As New System.IO.StreamReader(logTemp, True)
-        Dim objWriter2 As New System.IO.StreamWriter(logFile)
+        Dim objWriter2 As New System.IO.StreamWriter(logFile, True)
         objWriter2.Write(objTempReader.ReadToEnd)
         objTempReader.Close()
         objWriter2.Close()

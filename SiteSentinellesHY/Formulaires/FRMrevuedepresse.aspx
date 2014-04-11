@@ -38,7 +38,7 @@
                         </div>
                         <div>
                             <h6><%= outils.obtenirLangue("Lien vers la revue de presse|Link to the press review") %></h6>
-                            <a target="_blank" href='<%# IIf(Eval("urlDocument").ToString.Contains("http://"), Eval("urlDocument"), "../Upload/" & Eval("urldocument"))%>'><%# Eval("urlDocument") %></a>
+                            <a target="_blank" href='<%# IIf(Eval("urlDocument").ToString.Contains("http://"), Eval("urlDocument"), "../Upload/PDF/" & Eval("urldocument"))%>'><%# Eval("urlDocument") %></a>
                         </div>
                     </div>
                 </div>
