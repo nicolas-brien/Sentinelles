@@ -96,8 +96,13 @@ Public Class FRMForum
                 End If
             Next
             'attribution de la photo pat default si trouve pas la photo du profil dans le dossier
+            For Each utilisateur As Utilisateur In outils.leContexte.UtilisateurJeu
+                If ((di.GetFiles.Where(Function(x) x.Name = utilisateur.UrlAvatar).FirstOrDefault) Is Nothing) Then
+                    utilisateur.UrlAvatar = "default.png"
+                End If
+            Next
 
-
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
 
         End If
 
