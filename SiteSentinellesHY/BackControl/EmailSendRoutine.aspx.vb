@@ -154,7 +154,11 @@ Public Class EmailSendRoutine
                                             client.Send(mail)
                                             Response.Write(item.courriel & "<br/>")
                                         Catch ex As Exception
-
+                                            Using fs As FileStream = File.Create(Server.MapPath(folder + "log.txt"))
+                                                Dim info As [Byte]()
+                                                info = New UTF8Encoding(True).GetBytes(ex.Message)
+                                                fs.Write(info, 0, info.Length)
+                                            End Using
                                         End Try
                                         count = count + 1
                                     End If
@@ -183,6 +187,11 @@ Public Class EmailSendRoutine
                         End If
                     End If
                 Catch ex As Exception
+                    Using fs As FileStream = File.Create(Server.MapPath(folder + "log.txt"))
+                        Dim info As [Byte]()
+                        info = New UTF8Encoding(True).GetBytes(ex.Message)
+                        fs.Write(info, 0, info.Length)
+                    End Using
                     Console.WriteLine(ex.Message)
                 End Try
             End If
