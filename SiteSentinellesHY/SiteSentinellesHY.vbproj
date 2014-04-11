@@ -193,9 +193,6 @@
     <Content Include="Upload\default.png" />
     <Content Include="Log\ErrorLog.txt" />
     <Content Include="Upload\Sans titre70432.jpg" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackControl\CleanBDControler.aspx.designer.vb">
@@ -372,12 +369,6 @@
     <Content Include="Upload\PDF\3VE0401P0204b.pdf" />
     <Content Include="Upload\PDF\Communiqué de presse -Site int.pdf" />
     <Content Include="Upload\Doc Openerp7_PierreLeca.pdf" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="backups\" />
