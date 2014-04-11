@@ -309,6 +309,23 @@
                                     <asp:ImageButton ID="imgbtnRetour" ImageUrl="~/Images/flecheRetour.png" runat="server" CssClass="imgbtnRetour" AlternateText="Page précédente" OnClick="retourCategorie_Click" />
                                     <asp:LinkButton ID="lnkBtnRetour" CssClass="lnkBtnRetour" runat="server" OnClick="retourCategorie_Click"><%= outils.obtenirlangue("Retour|Back") %></asp:LinkButton>
                                 </div>
+
+                                <div class="dataPager">
+                                    <asp:DataPager runat="server" ID="dataPagerHautPubs" PageSize="15" PagedControlID="lviewConsulterPublication">
+                                        <Fields>
+                                            <asp:NextPreviousPagerField ButtonCssClass="liensListe" FirstPageText="&lt;&lt;"
+                                                ShowFirstPageButton="true"
+                                                ShowNextPageButton="false"
+                                                ShowPreviousPageButton="false" />
+                                            <asp:NumericPagerField NumericButtonCssClass="liensListe" />
+                                            <asp:NextPreviousPagerField ButtonCssClass="liensListe" LastPageText="&gt;&gt;"
+                                                ShowLastPageButton="true"
+                                                ShowNextPageButton="false"
+                                                ShowPreviousPageButton="false" />
+                                        </Fields>
+                                    </asp:DataPager>
+                                </div>
+
                                 <asp:ListView runat="server" ID="lviewConsulterPublication"
                                     ItemType="ModeleSentinellesHY.Publication"
                                     DataKeyNames="idPublication"
@@ -361,14 +378,17 @@
                                                         <div class="modal-body">
                                                             <div style="height: 280px;">
                                                                 <div>
-                                                                    <h5 class="pull-left">
-                                                                        <asp:Label ID="txtboxtitre" CssClass="txtboxTitreModal" Enabled="false" Text='<%# BindItem.titre%>' runat="server" /></h5>
-                                                                    <div id="divPinned" runat="server" class="pull-left" style="position: relative; top: 7px;">
+                                                                    <div>
+                                                                        <asp:Label ID="lblTitre" runat="server" Font-Bold="true">Titre</asp:Label><br />
+                                                                        <asp:TextBox ID="txtboxTitre" Enabled="<%# If(Item.idParent is Nothing,true,false) %>" CssClass="txtboxTitreModal" Text='<%# BindItem.titre%>' runat="server" />
+                                                                    </div>
+                                                                    <div id="divPinned" runat="server" class="pull-right" style="position: relative; top: 7px;">
                                                                         <asp:CheckBox ID="cbPinned" runat="server" Style="margin: auto auto 5px 20px;" Checked='<%# BindItem.epinglee%>' />
                                                                         <asp:Label ID="lblPinned" runat="server" Style="position: relative; top: 3px;"><%= outils.obtenirLangue("Publication épinglée|Pinned post") %></asp:Label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="clear-both">
+                                                                    <asp:Label ID="lblContenu" runat="server" Font-Bold="true">Contenu de la publication</asp:Label>
                                                                     <asp:TextBox ID="txtboxcontenu" runat="server" CssClass="txtBoxHtmlEditor" Text='<%# BindItem.contenu %>' TextMode="MultiLine"></asp:TextBox>
                                                                     <asp:HtmlEditorExtender ID="htmleditorMessage" runat="server" TargetControlID="txtboxcontenu">
                                                                         <Toolbar>
@@ -445,6 +465,23 @@
                                         </div>
                                     </ItemTemplate>
                                 </asp:ListView>
+
+                                <div class="dataPager">
+                                    <asp:DataPager runat="server" ID="dataPagerBasPubs" PageSize="15" PagedControlID="lviewConsulterPublication">
+                                        <Fields>
+                                            <asp:NextPreviousPagerField ButtonCssClass="liensListe" FirstPageText="&lt;&lt;"
+                                                ShowFirstPageButton="true"
+                                                ShowNextPageButton="false"
+                                                ShowPreviousPageButton="false" />
+                                            <asp:NumericPagerField NumericButtonCssClass="liensListe" />
+                                            <asp:NextPreviousPagerField ButtonCssClass="liensListe" LastPageText="&gt;&gt;"
+                                                ShowLastPageButton="true"
+                                                ShowNextPageButton="false"
+                                                ShowPreviousPageButton="false" />
+                                        </Fields>
+                                    </asp:DataPager>
+                                </div>
+
                                 <asp:ListView runat="server" ID="lviewAjouterReponse"
                                     ItemType="ModeleSentinellesHY.Publication"
                                     DataKeyNames="idPublication"
