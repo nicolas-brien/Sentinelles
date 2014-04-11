@@ -819,7 +819,7 @@ Public Class FRMPanneauDeControle
                     nomFichier = Left(nomFichier, 30)
                 End If
                 nomFichier &= ".pdf"
-                controlUploadRDP.SaveAs(Server.MapPath("../Upload/") & nomFichier)
+                controlUploadRDP.SaveAs(Server.MapPath("../Upload/PDF/") & nomFichier)
                 CType(lvInfoRDP.Items(0).FindControl("txtboxUrlDocument"), TextBox).Text = nomFichier
             End If
         End If
