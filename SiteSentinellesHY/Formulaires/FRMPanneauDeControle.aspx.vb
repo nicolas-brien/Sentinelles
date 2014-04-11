@@ -54,6 +54,22 @@ Public Class FRMPanneauDeControle
 
             lblInfoUtilisateur.InnerText = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).nomUtilisateur
         End If
+
+        If Not Page.IsPostBack Then
+            Dim di As New DirectoryInfo(Server.MapPath("../Upload/ImagesCarrousel/"))
+            For Each fi As FileInfo In di.GetFiles()
+                If (fi.Name.IndexOf("AvantCrop") > -1) Then
+                    Try
+                        File.Delete(fi.FullName)
+                        'le lorsque le fichier est utilisé par un autre process nous ne pouvons le suprimier alors le catch le capt.
+                    Catch
+                    End Try
+                End If
+            Next
+
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+
+        End If
     End Sub
 
     Private Sub MultiView_ActiveViewChanged(sender As Object, e As EventArgs) Handles MultiView.ActiveViewChanged
@@ -346,10 +362,10 @@ Public Class FRMPanneauDeControle
             rndnbr = random.[Next](0, 99999)
             newFileName = "AvantCrop-" + rndnbr.ToString + nomFichier
 
-            controlUpload.SaveAs(Server.MapPath("../Upload/ImagesProfil/" & newFileName))
+            controlUpload.SaveAs(Server.MapPath("../Upload/ImagesCarrousel/" & newFileName))
 
             Dim cropbox = CType(lviewOptions.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
-            cropbox.ImageUrl = "~/Upload/ImagesProfil/" & newFileName
+            cropbox.ImageUrl = "~/Upload/ImagesCarrousel/" & newFileName
         End If
 
     End Sub
@@ -401,8 +417,7 @@ Public Class FRMPanneauDeControle
         g.DrawImage(image, New Rectangle(0, 0, 960, 400), New Rectangle(x__1, y__2, w__3, h__4), GraphicsUnit.Pixel)
         'Save the file and reload to the control
         Dim nomImage = CType(lviewOptions.Items(0).FindControl("nomImage"), System.Web.UI.WebControls.HiddenField)
-        bmp.Save(Server.MapPath("../Upload/ImagesProfil/") + nomImage.Value + ".jpg", image.RawFormat)
-        bmp.Save(Server.MapPath("../Upload/ImagesProfil/") + nomImage.Value + ".png", image.RawFormat)
+        bmp.Save(Server.MapPath("../Upload/ImagesCarrousel/") + nomImage.Value + ".jpg", image.RawFormat)
         lviewOptions.DataBind()
         CType(lviewOptions.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 0
 
