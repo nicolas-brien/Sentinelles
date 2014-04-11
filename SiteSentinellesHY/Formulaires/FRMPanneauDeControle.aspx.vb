@@ -346,10 +346,10 @@ Public Class FRMPanneauDeControle
             rndnbr = random.[Next](0, 99999)
             newFileName = "AvantCrop-" + rndnbr.ToString + nomFichier
 
-            controlUpload.SaveAs(Server.MapPath("../Upload/" & newFileName))
+            controlUpload.SaveAs(Server.MapPath("../Upload/ImagesProfil/" & newFileName))
 
             Dim cropbox = CType(lviewOptions.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
-            cropbox.ImageUrl = "~/Upload/" & newFileName
+            cropbox.ImageUrl = "~/Upload/ImagesProfil/" & newFileName
         End If
 
     End Sub
@@ -401,8 +401,8 @@ Public Class FRMPanneauDeControle
         g.DrawImage(image, New Rectangle(0, 0, 960, 400), New Rectangle(x__1, y__2, w__3, h__4), GraphicsUnit.Pixel)
         'Save the file and reload to the control
         Dim nomImage = CType(lviewOptions.Items(0).FindControl("nomImage"), System.Web.UI.WebControls.HiddenField)
-        bmp.Save(Server.MapPath("../Upload/") + nomImage.Value + ".jpg", image.RawFormat)
-        bmp.Save(Server.MapPath("../Upload/") + nomImage.Value + ".png", image.RawFormat)
+        bmp.Save(Server.MapPath("../Upload/ImagesProfil/") + nomImage.Value + ".jpg", image.RawFormat)
+        bmp.Save(Server.MapPath("../Upload/ImagesProfil/") + nomImage.Value + ".png", image.RawFormat)
         lviewOptions.DataBind()
         CType(lviewOptions.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 0
 
@@ -1027,7 +1027,7 @@ Public Class FRMPanneauDeControle
 
     Protected Sub btnImgDefaut_Click(sender As Object, e As EventArgs)
         CType(lviewInfoUtilisateur.Items(0).FindControl("lblNomPhoto"), Label).Text = "default.png"
-        CType(lviewInfoUtilisateur.Items(0).FindControl("imgUpload"), HtmlImage).Src = "../Upload/default.png"
+        CType(lviewInfoUtilisateur.Items(0).FindControl("imgUpload"), HtmlImage).Src = "../Upload/ImagesProfil/default.png"
 
         Dim newUtilisateurTemp As Utilisateur = outils.leContexte.UtilisateurJeu.Find(lviewUtilisateurs.SelectedDataKey(0))
         newUtilisateurTemp.UrlAvatar = "default.png"
