@@ -452,6 +452,7 @@
                                     ItemType="ModeleSentinellesHY.nouvelle"
                                     SelectMethod="GetNouvelle"
                                     DataKeyNames="idNouvelle"
+                                    EnablePersistedSelection="true"
                                     GroupItemCount="3">
                                     <LayoutTemplate>
                                         <div style="width: 85%; float: left;">
@@ -613,6 +614,7 @@
                                     ItemType="ModeleSentinellesHY.événement"
                                     SelectMethod="GetEvenement"
                                     DataKeyNames="idEvenement"
+                                    EnablePersistedSelection="true"
                                     GroupItemCount="3">
                                     <LayoutTemplate>
                                         <div style="width: 70%; float: left;">
@@ -790,6 +792,7 @@
                                     ItemType="ModeleSentinellesHY.revuedepresse"
                                     SelectMethod="GetRDP"
                                     DataKeyNames="idRDP"
+                                    EnablePersistedSelection="true"
                                     GroupItemCount="3">
                                     <LayoutTemplate>
                                         <div style="width: 85%; float: left;">
@@ -967,6 +970,7 @@
                                         ItemType="ModeleSentinellesHY.utilisateur"
                                         SelectMethod="GetUtilisateurs"
                                         DataKeyNames="idUtilisateur"
+                                        EnablePersistedSelection="true"
                                         GroupItemCount="3">
 
                                         <LayoutTemplate>
@@ -1158,12 +1162,10 @@
                                         <div id="divAvatar" class="row" style="clear: both">
                                             <div class="span3" style="margin-left: 35px;">
                                                 <asp:Label ID="lblAvatar" runat="server" Text="Photo:" />
-                                                <div id="divFileUpload">
-                                                    <asp:Button ID="lnkbtnImgDefaut" CssClass="btn btn-warning" Text='<%# outils.obtenirLangue(" Image par défaut| Reset default image")%>' OnClientClick="lnkbtnImgDefaut_Click(); return false;" runat="server"></asp:Button>
-                                                </div>
                                             </div>
                                             <div class="span6" style="float: right;">
-                                                <asp:TextBox ID="txtboxNomPhoto" CssClass="txtboxUtilisateur" ReadOnly="true" Text='<%# BindItem.UrlAvatar%>' runat="server" />
+                                                <asp:Label ID="lblNomPhoto" Text='<%# BindItem.UrlAvatar%>' runat="server" />
+                                                <asp:Button ID="btnImgDefaut" CssClass="btn btn-mini btn-warning" Text='<%# outils.obtenirLangue(" Image par défaut| Reset default image")%>' OnClick="btnImgDefaut_Click" runat="server"></asp:Button>
                                             </div>
                                             <div class="span6 Avatar_margin" style="float: right;">
                                                 <img id="imgUpload" src='<%# String.Format("../Upload/{0}", Eval("UrlAvatar"))%>' runat="server" />

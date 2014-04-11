@@ -4,6 +4,7 @@ Imports System.Drawing
 Imports System.Drawing.Imaging
 Imports System.Drawing.Drawing2D
 Imports System.Data.Entity.Validation
+Imports ModeleSentinellesHY
 
 Public Class FRMForum
     Inherits ModeleSentinellesHY.FRMdeBase
@@ -78,6 +79,30 @@ Public Class FRMForum
             'Affiche le nom de l'utilisateur
             lblInfoUtilisateur.InnerText = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).nomUtilisateur
         End If
+
+        If Not Page.IsPostBack Then
+            Dim di As New DirectoryInfo(Server.MapPath("../Upload/"))
+            For Each fi As FileInfo In di.GetFiles()
+                If (fi.Name.IndexOf("default") < 0) Then
+                    Dim utilisateur As Utilisateur
+                    utilisateur = outils.leContexte.UtilisateurJeu.Where(Function(x) x.UrlAvatar = fi.Name).FirstOrDefault
+
+                    If (utilisateur Is Nothing) Then
+                        Try
+                            File.Delete(fi.FullName)
+                            'le lorsque le fichier est utilisé par un autre process nous ne pouvons le suprimier alors le catch le capt.
+                        Catch
+                        End Try
+                    End If
+                End If
+
+
+
+            Next
+        End If
+
+
+
     End Sub
 
     'Effectue des databind lorsque les vues sont changées
@@ -741,9 +766,9 @@ Public Class FRMForum
         nomFichier = xr.ToString + ".jpg"
 
         bmp.Save(Server.MapPath("../Upload/") + nomFichier, image.RawFormat)
-
         utilisateurAValider.UrlAvatar = nomFichier
         ModeleSentinellesHY.outils.leContexte.SaveChanges()
+
         lvInfoUtilisateur.DataBind()
         CType(lvInfoUtilisateur.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 0
 
@@ -761,65 +786,65 @@ Public Class FRMForum
         Return unUtilisateur
     End Function
 
-    Public Sub updateInfoUtilisateur(ByVal idUtilisateur As Integer)
-        Dim lblMessageErreur = CType(lvInfoUtilisateur.FindControl("lblMessageErreur"), Label)
-        Dim divMessageErreur = CType(lvInfoUtilisateur.FindControl("divMessageErreur"), Panel)
-        Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Nothing
-        Dim tbMotDePasse As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbMotDePasse"), TextBox).Text
-        Dim tbConfirmation As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbConfirmer"), TextBox).Text
+    'Public Sub updateInfoUtilisateur(ByVal idUtilisateur As Integer)
+    '    Dim lblMessageErreur = CType(lvInfoUtilisateur.FindControl("lblMessageErreur"), Label)
+    '    Dim divMessageErreur = CType(lvInfoUtilisateur.FindControl("divMessageErreur"), Panel)
+    '    Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Nothing
+    '    Dim tbMotDePasse As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbMotDePasse"), TextBox).Text
+    '    Dim tbConfirmation As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbConfirmer"), TextBox).Text
 
-        lblMessageErreur.Text = ""
-        divMessageErreur.CssClass = "alert alert-error"
-        divMessageErreur.Visible = True
-        For Each tb As Object In lvInfoUtilisateur.Items(0).Controls 'Reset l'encadrer autour de tout txtBox
-            If TypeOf (tb) Is TextBox Then
-                CType(tb, TextBox).BorderColor = Nothing
-            End If
-        Next
+    '    lblMessageErreur.Text = ""
+    '    divMessageErreur.CssClass = "alert alert-error"
+    '    divMessageErreur.Visible = True
+    '    For Each tb As Object In lvInfoUtilisateur.Items(0).Controls 'Reset l'encadrer autour de tout txtBox
+    '        If TypeOf (tb) Is TextBox Then
+    '            CType(tb, TextBox).BorderColor = Nothing
+    '        End If
+    '    Next
 
-        utilisateurAValider = ModeleSentinellesHY.outils.leContexte.UtilisateurJeu.Find(idUtilisateur)
+    '    utilisateurAValider = ModeleSentinellesHY.outils.leContexte.UtilisateurJeu.Find(idUtilisateur)
 
-        'Prend les données qui sont dans le formulaire
-        TryUpdateModel(utilisateurAValider)
+    '    'Prend les données qui sont dans le formulaire
+    '    TryUpdateModel(utilisateurAValider)
 
-        'Url Avatar avant de l'avoir enregistré. Permet de remettre l'url si l'usager n'est pas enregistré
-        utilisateurAValider.urlAvatarTemp = utilisateurAValider.UrlAvatar
+    '    'Url Avatar avant de l'avoir enregistré. Permet de remettre l'url si l'usager n'est pas enregistré
+    '    utilisateurAValider.urlAvatarTemp = utilisateurAValider.UrlAvatar
 
-        ModeleSentinellesHY.outils.validationUtilisateur(utilisateurAValider, New ModeleSentinellesHY.UtilisateurValidation(), lvInfoUtilisateur, listeErreur)
+    '    ModeleSentinellesHY.outils.validationUtilisateur(utilisateurAValider, New ModeleSentinellesHY.UtilisateurValidation(), lvInfoUtilisateur, listeErreur)
 
-        If listeErreur.Count > 0 Then
-            For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
-                lblMessageErreur.Text += "*" & erreur.errorMessage & "<br/>"
-            Next
-        End If
+    '    If listeErreur.Count > 0 Then
+    '        For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
+    '            lblMessageErreur.Text += "*" & erreur.errorMessage & "<br/>"
+    '        Next
+    '    End If
 
-        If ModelState.IsValid Then
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
-            divMessageErreur.CssClass = "alert alert-success"
-            divMessageErreur.Visible = True
-            lblMessageErreur.Text = ModeleSentinellesHY.outils.obtenirLangue("L'utilisateur a été modifié avec succès!|The user has been successfully updated!")
+    '    If ModelState.IsValid Then
+    '        ModeleSentinellesHY.outils.leContexte.SaveChanges()
+    '        divMessageErreur.CssClass = "alert alert-success"
+    '        divMessageErreur.Visible = True
+    '        lblMessageErreur.Text = ModeleSentinellesHY.outils.obtenirLangue("L'utilisateur a été modifié avec succès!|The user has been successfully updated!")
 
 
-            'Conditions pour Supprimer Avatar du fichier Upload mais ne pas supprimer la photo par défaut
-            If utilisateurAValider.UrlAvatar <> utilisateurAValider.urlAvatarTemp AndAlso utilisateurAValider.UrlAvatar <> "" _
-                AndAlso utilisateurAValider.UrlAvatar <> "default.png" Then
-                ModeleSentinellesHY.outils.SupprimerFichierUpload(utilisateurAValider.urlAvatarTemp)
-            End If
-            lvInfoUtilisateur.DataBind()
-        Else
+    '        'Conditions pour Supprimer Avatar du fichier Upload mais ne pas supprimer la photo par défaut
+    '        If utilisateurAValider.UrlAvatar <> utilisateurAValider.urlAvatarTemp AndAlso utilisateurAValider.UrlAvatar <> "" _
+    '            AndAlso utilisateurAValider.UrlAvatar <> "default.png" Then
+    '            ModeleSentinellesHY.outils.SupprimerFichierUpload(utilisateurAValider.urlAvatarTemp)
+    '        End If
+    '        lvInfoUtilisateur.DataBind()
+    '    Else
 
-            For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
-                If Not erreur.nomPropriete Is Nothing Then
-                    CType(lvInfoUtilisateur.Items(0).FindControl("tb" & erreur.nomPropriete), TextBox).BorderColor = Drawing.Color.Red
-                ElseIf erreur.errorMessage.ToString.Contains("pass") Then
-                    CType(lvInfoUtilisateur.Items(0).FindControl("tbMotDePasse"), TextBox).BorderColor = Drawing.Color.Red
-                    CType(lvInfoUtilisateur.Items(0).FindControl("tbConfirmer"), TextBox).BorderColor = Drawing.Color.Red
-                End If
-            Next
-        End If
-        utilisateurAValider.motDePasseTemp = ""
-        utilisateurAValider.confirmationMotDePasse = ""
-    End Sub
+    '        For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
+    '            If Not erreur.nomPropriete Is Nothing Then
+    '                CType(lvInfoUtilisateur.Items(0).FindControl("tb" & erreur.nomPropriete), TextBox).BorderColor = Drawing.Color.Red
+    '            ElseIf erreur.errorMessage.ToString.Contains("pass") Then
+    '                CType(lvInfoUtilisateur.Items(0).FindControl("tbMotDePasse"), TextBox).BorderColor = Drawing.Color.Red
+    '                CType(lvInfoUtilisateur.Items(0).FindControl("tbConfirmer"), TextBox).BorderColor = Drawing.Color.Red
+    '            End If
+    '        Next
+    '    End If
+    '    utilisateurAValider.motDePasseTemp = ""
+    '    utilisateurAValider.confirmationMotDePasse = ""
+    'End Sub
 
     Protected Sub lnkUpload_Click(sender As Object, e As EventArgs)
         Dim lblMessageErreur = CType(lvInfoUtilisateur.FindControl("lblMessageErreur"), Label)
@@ -887,7 +912,7 @@ Public Class FRMForum
         listeStatutUtilisateur = (From ca In ModeleSentinellesHY.outils.leContexte.StatutJeu).ToList
 
         For Each statut As ModeleSentinellesHY.Statut In listeStatutUtilisateur
-                statut.nomStatut = ModeleSentinellesHY.outils.obtenirLangue(statut.nomStatutFR & "|" & statut.nomStatutEN)
+            statut.nomStatut = ModeleSentinellesHY.outils.obtenirLangue(statut.nomStatutFR & "|" & statut.nomStatutEN)
         Next
 
         Return listeStatutUtilisateur.AsQueryable
@@ -1117,5 +1142,6 @@ Public Class FRMForum
         End If
     End Sub
 #End Region
+
 
 End Class

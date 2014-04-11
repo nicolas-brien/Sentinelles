@@ -889,6 +889,18 @@
     };
     $('#fuplPhoto').bind('change propertychange', function () {
         $('#nomAvatar').html($('input[type=file]').val().split('\\').pop().trunc(25));
+    }
+
+    );
+
+    $('#lnkbtnGererCategorie').click(function () {
+        var icon = $(this).find('i');
+        if (icon.is('.icon-plus-sign')) {
+            icon.removeClass('icon-plus-sign').addClass('icon-minus-sign');
+        }
+        else
+            icon.removeClass('icon-minus-sign').addClass('icon-plus-sign');
     });
+    
 </script>
 </html>

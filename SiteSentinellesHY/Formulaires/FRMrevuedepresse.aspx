@@ -4,7 +4,7 @@
     <link href="../CSS/index.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <h2><%= outils.obtenirLangue("REVUE DE PRESSES|PRESS REVIEWS")%></h2>
+     <h2><%= outils.obtenirLangue("REVUES DE PRESSE|PRESS REVIEW")%></h2>
     <div class="dataPager">
         <asp:DataPager runat="server" ID="dataPagerHaut" PageSize="3" PagedControlID="lvRevueDePresse">
             <Fields>
