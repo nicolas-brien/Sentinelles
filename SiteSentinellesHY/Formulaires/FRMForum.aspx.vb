@@ -336,6 +336,11 @@ Public Class FRMForum
         Return listeRetour.AsQueryable()
     End Function
 
+    Private Sub lviewCategorie_DataBound(sender As Object, e As EventArgs) Handles lviewCategorie.DataBound
+        dataPagerHaut.Visible = (dataPagerHaut.PageSize < dataPagerHaut.TotalRowCount)
+        dataPagerBas.Visible = (dataPagerBas.PageSize < dataPagerBas.TotalRowCount)
+    End Sub
+
     Private Sub lviewCategorie_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewCategorie.ItemDataBound
         Dim DroitUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idStatut
         Dim unePublication As ModeleSentinellesHY.Publication = CType(e.Item.DataItem, ModeleSentinellesHY.Publication)

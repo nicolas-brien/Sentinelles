@@ -311,6 +311,15 @@ Partial Public Class FRMForum
     Protected WithEvents Label5 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''Contrôle dataPagerHaut.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents dataPagerHaut As Global.System.Web.UI.WebControls.DataPager
+
+    '''<summary>
     '''Contrôle lviewCategorie.
     '''</summary>
     '''<remarks>
@@ -318,6 +327,15 @@ Partial Public Class FRMForum
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents lviewCategorie As Global.System.Web.UI.WebControls.ListView
+
+    '''<summary>
+    '''Contrôle dataPagerBas.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents dataPagerBas As Global.System.Web.UI.WebControls.DataPager
 
     '''<summary>
     '''Contrôle viewConsulterPublicaton.

@@ -203,7 +203,7 @@
                                         </h3>
                                     </div>
                                     <div id="divCadrageItems" class="cadrageItems">
-                                        <div style="float: right;width:18%">
+                                        <div style="float: right; width: 18%">
                                             <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# "Créé le " + Eval("DatePublication","{0:d MMMM, yyyy}")%></asp:Label><br />
                                             <asp:Label ID="lblPubliePar" CssClass="lblInfoPublication" runat="server"></asp:Label>
                                         </div>
@@ -228,6 +228,23 @@
                             <div class="text-center">
                                 <asp:Label runat="server" ID="Label5" CssClass="lblTitreConfig"><%= outils.obtenirLangue("ZONE SENTINELLE|SENTINEL AREA")%></asp:Label>
                             </div>
+
+                            <div class="dataPager">
+                                <asp:DataPager runat="server" ID="dataPagerHaut" PageSize="10" PagedControlID="lviewCategorie">
+                                    <Fields>
+                                        <asp:NextPreviousPagerField ButtonCssClass="liensListe" FirstPageText="&lt;&lt;"
+                                            ShowFirstPageButton="true"
+                                            ShowNextPageButton="false"
+                                            ShowPreviousPageButton="false" />
+                                        <asp:NumericPagerField NumericButtonCssClass="liensListe" />
+                                        <asp:NextPreviousPagerField ButtonCssClass="liensListe" LastPageText="&gt;&gt;"
+                                            ShowLastPageButton="true"
+                                            ShowNextPageButton="false"
+                                            ShowPreviousPageButton="false" />
+                                    </Fields>
+                                </asp:DataPager>
+                            </div>
+
                             <asp:ListView ID="lviewCategorie" runat="server"
                                 ItemType="ModeleSentinellesHY.Publication"
                                 SelectMethod="getCategories"
@@ -264,6 +281,21 @@
                                     <h5><% =outils.obtenirLangue("Il n'y a aucune publication dans cette catégorie pour le moment.|There are currently no posts in this category for the moment.") %></h5>
                                 </EmptyDataTemplate>
                             </asp:ListView>
+                            <div class="dataPager">
+                                <asp:DataPager runat="server" ID="dataPagerBas" PageSize="10" PagedControlID="lviewCategorie">
+                                    <Fields>
+                                        <asp:NextPreviousPagerField ButtonCssClass="liensListe" FirstPageText="&lt;&lt;"
+                                            ShowFirstPageButton="true"
+                                            ShowNextPageButton="false"
+                                            ShowPreviousPageButton="false" />
+                                        <asp:NumericPagerField NumericButtonCssClass="liensListe" />
+                                        <asp:NextPreviousPagerField ButtonCssClass="liensListe" LastPageText="&gt;&gt;"
+                                            ShowLastPageButton="true"
+                                            ShowNextPageButton="false"
+                                            ShowPreviousPageButton="false" />
+                                    </Fields>
+                                </asp:DataPager>
+                            </div>
                         </div>
                     </asp:View>
 
@@ -566,18 +598,18 @@
 
                                             <div id="divAvatar" class="pull-left">
                                                 <div>
-                                                    <asp:ImageButton runat="server" id="imgUpload" class="pull-left" src='<%# String.Format("../Upload/ImagesProfil/{0}", Eval("UrlAvatar"))%>' OnClientClick="$('[id$=fuplPhoto]').click(); return false;" style="width:300px"/>
+                                                    <asp:ImageButton runat="server" ID="imgUpload" class="pull-left" src='<%# String.Format("../Upload/ImagesProfil/{0}", Eval("UrlAvatar"))%>' OnClientClick="$('[id$=fuplPhoto]').click(); return false;" Style="width: 300px" />
 
                                                     <div class="pull-right">
-                                                        <asp:TextBox ID="tbAvatar" CssClass="tbInfoUtilisateur" ReadOnly="true" Text='<%# BindItem.UrlAvatar%>' runat="server"  Style="display: none" />
+                                                        <asp:TextBox ID="tbAvatar" CssClass="tbInfoUtilisateur" ReadOnly="true" Text='<%# BindItem.UrlAvatar%>' runat="server" Style="display: none" />
                                                         <div class="clear-both tbInfoUtilisateur">
                                                             <asp:Button ID="uploadButton" runat="server" Text="Upload" ClientIDMode="Static" OnClick="lnkUpload_Click" Style="display: none" />
                                                         </div>
-                                                        <asp:FileUpload runat="server" ID="fuplPhoto" ClientIDMode="Static" Width="1px" color="white" BorderColor="white"  CssClass="opacity0" onpropertychange="$('[id$=uploadButton]').click(); return false;" onchange="$('[id$=uploadButton]').click(); return false;" />
+                                                        <asp:FileUpload runat="server" ID="fuplPhoto" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" onpropertychange="$('[id$=uploadButton]').click(); return false;" onchange="$('[id$=uploadButton]').click(); return false;" />
                                                     </div>
 
                                                 </div>
-                                                
+
                                                 <div class="clear-both" style="padding-top: 5px;">
                                                     <asp:RadioButtonList ID="rbtnSexe" runat="server" RepeatDirection="Horizontal" CssClass="radio rbtnSexe"
                                                         SelectedValue='<%# BindItem.sexe%>' OnInit="rbtnSexe_Init">
@@ -586,7 +618,7 @@
                                                 </div>
 
                                             </div>
-                                            
+
                                             <div class="pull-right">
                                                 <div class="clear-both">
                                                     <asp:TextBox ID="tbNomUtilisateur" CssClass="tbInfoUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# Eval("nomUtilisateur")%>' Enabled="false" />
@@ -610,23 +642,23 @@
                                                         Enabled="false" />
                                                     <asp:Label ID="lblType" CssClass="lblInfoUtilisateur" runat="server"><%= outils.obtenirLangue("Type d'utilisateur :|User type :")%></asp:Label>
                                                 </div>
-                                              
-                                         
-                                                
+
+
+
                                                 <div class="clear-both">
                                                     <asp:TextBox ID="tbNoTelephone" placeHolder="123-456-7890" onkeydown="return (event.keyCode!=13);" CssClass="tbInfoUtilisateur" runat="server" Text='<%# BindItem.noTelephone%>' />
                                                     <asp:Label ID="lblTelephone" CssClass="lblInfoUtilisateur" runat="server"><%= outils.obtenirLangue("No. téléphone :|Phone number :")%></asp:Label>
                                                 </div>
-                                              
+
                                                 <div class="clear-both">
                                                     <asp:TextBox ID="tbMilieu" CssClass="tbInfoUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.milieu%>' />
                                                     <asp:Label ID="lblMilieu" CssClass="lblInfoUtilisateur" runat="server"><%= outils.obtenirLangue("Milieu de travail:|Work place:")%></asp:Label>
                                                 </div>
-                                                  <div class="clear-both">
+                                                <div class="clear-both">
                                                     <asp:TextBox ID="tbCourriel" CssClass="tbInfoUtilisateur" onkeydown="return (event.keyCode!=13);" placeHolder="abc@microsoft.com" runat="server" Text='<%# BindItem.courriel%>' />
                                                     <asp:Label ID="lblCourriel" CssClass="lblInfoUtilisateur" runat="server"><%= outils.obtenirLangue("Courriel :|Email :")%></asp:Label>
                                                 </div>
-                                                  <div class="clear-both">
+                                                <div class="clear-both">
                                                     <asp:TextBox ID="tbMotDePasse" CssClass="tbInfoUtilisateur" onkeydown="return (event.keyCode!=13);" type="password" runat="server" Text='<%# BindItem.motDePasseTemp%>' />
                                                     <asp:Label ID="lblMotDePasse" CssClass="lblInfoUtilisateur" runat="server"><%= outils.obtenirLangue("Mot de passe:|Password:")%></asp:Label>
                                                 </div>
@@ -634,7 +666,7 @@
                                                     <asp:TextBox ID="tbConfirmer" CssClass="tbInfoUtilisateur" onkeydown="return (event.keyCode!=13);" type="password" runat="server" Text='<%# BindItem.confirmationMotDePasse%>' />
                                                     <asp:Label ID="lblConfirmer" CssClass="lblInfoUtilisateur" runat="server"><%= outils.obtenirLangue("Confirmer le mot de passe:|Confirm password:")%></asp:Label>
                                                 </div>
-                                                 <div class="clear-both">
+                                                <div class="clear-both">
                                                     <asp:LinkButton ID="btnModifier" runat="server"
                                                         CommandName="Update"
                                                         CssClass="btn btnAjouter disabled-button tbInfoUtilisateur"
@@ -812,18 +844,18 @@
             <%-----------------------------------Footer-----------------------------------%>
             <div id="footer">
                 <div class="span6">
-                    <div style="height:135px; width:500px;">
+                    <div style="height: 135px; width: 500px;">
                         <a href="http://www.santemonteregie.qc.ca/granby-region/index.fr.html" target="_blank">
                             <img id="imgCSSSHY" width="225" class="footerImages" src="../Images/CSSSHY.jpg" />
                         </a>
                         <a>
-                            <img id="imgPreventionSuicide" width="225" src="../Images/CPS.jpg"/>
+                            <img id="imgPreventionSuicide" width="225" src="../Images/CPS.jpg" />
                         </a>
-                        
+
                     </div>
-                    <div style="width:550px;">
-                        <a href="http://www.cegepgranby.qc.ca/" class="distanceEntreLogo" target="_blank" >
-                            <img id="imgCegep" width="150" class="footerImages" src="../Images/CGHY.png"/>
+                    <div style="width: 550px;">
+                        <a href="http://www.cegepgranby.qc.ca/" class="distanceEntreLogo" target="_blank">
+                            <img id="imgCegep" width="150" class="footerImages" src="../Images/CGHY.png" />
                         </a>
                         <a href="http://www.aqdr.org/" class="distanceEntreLogo" target="_blank">
                             <img id="imgAQDR" width="150" class="footerImages" src="../Images/AQDR.jpg" />
@@ -866,12 +898,12 @@
                             <asp:LinkButton ID="LnkBtnInfoMaltraitance_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalInfoMaltraitance" data-toggle="modal"><%= outils.obtenirLangue("Info Maltraitance|Elder Abuse Information")%></asp:LinkButton>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" data-toggle="modal"  href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
+                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" data-toggle="modal" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
                         <p>
                             <asp:LinkButton ID="lnkBtnPageCreateurs" CssClass="lnkBtn_Footer" runat="server" PostBackUrl="~/Formulaires/FRMCreateurs.aspx"><%= outils.obtenirLangue("Page des créateurs|Developer's page")%></asp:LinkButton>
                         </p>
-                     </div>
+                    </div>
                 </div>
                 <div style="clear: both;">
                 </div>
@@ -901,6 +933,6 @@
         else
             icon.removeClass('icon-minus-sign').addClass('icon-plus-sign');
     });
-    
+
 </script>
 </html>
