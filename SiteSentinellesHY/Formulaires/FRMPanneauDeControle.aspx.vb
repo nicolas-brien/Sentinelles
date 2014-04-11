@@ -699,7 +699,9 @@ Public Class FRMPanneauDeControle
         End If
 
         If ViewState("modeRDP") <> "AjoutRDP" Then
-            lvInfoRDP.DataBind()
+            If ViewState("modeRDPPDF") <> "AJOUT_PDF" Then
+                lvInfoRDP.DataBind()
+            End If
         End If
     End Sub
 
@@ -821,8 +823,9 @@ Public Class FRMPanneauDeControle
         lvInfoRDP.DataBind()
     End Sub
 
-    Protected Sub lnkUploadRDP_Click(sender As Object, e As EventArgs)
+    Protected Sub lnkUploadPDF_Click(sender As Object, e As EventArgs)
         'Upload pour les fichiers pdf pour les revues de presse
+        ViewState("modeRDPPDF") = "AJOUT_PDF"
         Dim controlUploadRDP = CType(lvInfoRDP.Items(0).FindControl("fuplRDP"), FileUpload)
         Dim extension As String = ""
         Dim nomFichier As String = ""
