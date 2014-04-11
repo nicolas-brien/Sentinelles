@@ -12,7 +12,7 @@
     <link href="../CSS/bootstrap.css" rel="stylesheet" />
     <link href="../CSS/PanneauDeControle.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="../Images/LogoOfficielHY.png" />
+    <link rel="icon" type="image/png" href="../Images/favicon.png" />
 
     <script src="../CSS/js/jquery.js"></script>
     <script src="../CSS/js/jquery.Jcrop.min.js"></script>
@@ -471,7 +471,7 @@
                                     <ItemTemplate>
                                         <div class="ItemTemplate">
                                             <div style="width: 85%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 75)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 80)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
                                                 <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
@@ -481,7 +481,7 @@
                                     <SelectedItemTemplate>
                                         <div class="SelectedItemTemplate">
                                             <div style="width: 85%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 80)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
                                                 <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
@@ -636,7 +636,7 @@
                                     <ItemTemplate>
                                         <div class="ItemTemplate">
                                             <div style="width: 70%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 50)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 70)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
                                                 <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
@@ -649,7 +649,7 @@
                                     <SelectedItemTemplate>
                                         <div class="SelectedItemTemplate">
                                             <div style="width: 70%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" ID="LinkButton1" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 50)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" ID="LinkButton1" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 70)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
                                                 <asp:LinkButton CssClass="listeLigneComplete" ID="LinkButton2" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
@@ -811,7 +811,7 @@
                                     <ItemTemplate>
                                         <div class="ItemTemplate">
                                             <div style="width: 85%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 75)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 80)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
                                                 <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
@@ -821,7 +821,7 @@
                                     <SelectedItemTemplate>
                                         <div class="SelectedItemTemplate">
                                             <div style="width: 85%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
+                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 80)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
                                                 <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
