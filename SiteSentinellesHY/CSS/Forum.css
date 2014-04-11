@@ -161,6 +161,19 @@
     color: grey;
 }
 
+.lblCouleurStatut_administrateur
+{
+    font-size:10px;
+    color:red;
+}
+.lblCouleurStatut_intervenant
+{
+    font-size:10px;
+    color:blue;
+}
+
+
+
 .margin_ReponsePublication {
     margin-top: 25px;
     margin-bottom: 25px;

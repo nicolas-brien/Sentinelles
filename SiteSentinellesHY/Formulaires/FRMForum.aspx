@@ -318,7 +318,7 @@
                                                     role="button"
                                                     data-toggle="modal"
                                                     CommandArgument="<%# Item.idParent %>">
-                                                <i aria-hidden="true" class="icon-pencil disabled-button"></i></asp:LinkButton>
+                                                <i aria-hidden="true" class="icon-pencil"></i></asp:LinkButton>
                                                 <%--fenetre modal--%>
                                                 <div id="divmodale" runat="server">
                                                     <div id='<%# "Modifier" & Eval("idPublication") %>' class="modal hide fade modalModifierPublication" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -399,7 +399,7 @@
                                                 <div>
                                                     <asp:Label ID="lblDatePublication" CssClass="lblInfoReponsePublication" runat="server"><%# Eval("DatePublication","{0:MMMM d, yyyy}")%></asp:Label><br />
                                                     <asp:Label ID="lblPubliePar" CssClass="lblInfoReponsePublication" runat="server"></asp:Label><br />
-                                                    <asp:Label ID="lblStatut" CssClass="lblInfoReponsePublication" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblStatut" runat="server" CssClass="lblInfoReponsePublication"></asp:Label>
                                                 </div>
                                             </div>
                                             <div class="pull-right divInfoPublication">
@@ -422,7 +422,7 @@
                                         <div class="clear-both">
                                             <div>
                                                 <asp:TextBox ID="txtboxcontenu" CssClass="txtBoxHtmlEditor" TextMode="MultiLine" Text="<%# BindItem.contenu%>" runat="server" />
-                                                <asp:HtmlEditorExtender ID="htmleditorContenu" runat="server" TargetControlID="txtboxcontenu">
+                                                <asp:HtmlEditorExtender ID="htmleditorContenu" runat="server" TargetControlID="txtboxcontenu" ValidateRequestMode="Disabled" EnableSanitization="false" Enabled="true">
                                                     <Toolbar>
                                                         <ajaxToolkit:Undo />
                                                         <ajaxToolkit:Redo />

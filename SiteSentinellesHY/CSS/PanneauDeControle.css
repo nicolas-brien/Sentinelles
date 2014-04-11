@@ -191,33 +191,44 @@
     margin-top: 25px;
 }
 
+.display_block
+{
+    display:block;
+}
+
 .txtboxtemoignageFR {
-    margin-left: 4px;
     margin-top: 10px;
-    width: 590px;
-    max-width: 590px;
+    width: 800px;
+    margin-left:15px;
+    min-width:800px;
+    max-width: 800px;
     height: 20px;
 }
 
 .txtboxtemoignageEN {
     margin-top: 10px;
-    width: 590px;
-    max-width: 590px;
+    width: 800px;
+    margin-left:15px;
+    min-width:800px;
+    max-width: 800px;
     height: 20px;
 }
 
 .txtboxPenseeFR {
-    margin-left: 4px;
     margin-top: 10px;
-    width: 600px;
-    min-width: 500px;
-    max-width: 600px;
+    width: 800px;
+    margin-left:15px;
+    min-width:800px;
+    max-width: 800px;
     height: 20px;
 }
 
 .txtboxPenseeEN {
-    width: 600px;
-    max-width: 600px;
+    margin-top: 10px;
+    width: 800px;
+    margin-left:15px;
+    min-width:800px;
+    max-width: 800px;
     height: 20px;
 }
 
