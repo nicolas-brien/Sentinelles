@@ -81,12 +81,11 @@ Public Class FRMForum
         End If
 
         If Not Page.IsPostBack Then
-            Dim di As New DirectoryInfo(Server.MapPath("../Upload/"))
+            Dim di As New DirectoryInfo(Server.MapPath("../Upload/ImagesProfil/"))
             For Each fi As FileInfo In di.GetFiles()
                 If (fi.Name.IndexOf("default") < 0) Then
                     Dim utilisateur As Utilisateur
                     utilisateur = outils.leContexte.UtilisateurJeu.Where(Function(x) x.UrlAvatar = fi.Name).FirstOrDefault
-
                     If (utilisateur Is Nothing) Then
                         Try
                             File.Delete(fi.FullName)
@@ -95,10 +94,11 @@ Public Class FRMForum
                         End Try
                     End If
                 End If
-
-
-
             Next
+            'attribution de la photo pat default si trouve pas la photo du profil dans le dossier
+
+
+
         End If
 
 
@@ -448,10 +448,10 @@ Public Class FRMForum
         'On vérifie si l'utilisateur existe encore dans la BD
         If Not unePublication.idUtilisateur Is Nothing Then
             lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
-            imgAvatar.ImageUrl = "../Upload/" & unePublication.Utilisateur.UrlAvatar
+            imgAvatar.ImageUrl = "../Upload/ImagesProfil/" & unePublication.Utilisateur.UrlAvatar
         Else
             lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
-            imgAvatar.ImageUrl = "../Upload/default.png"
+            imgAvatar.ImageUrl = "../Upload/ImagesProfil/default.png"
         End If
 
         'Condition qui affiche en orange le titre de la publication si elle ou un de ses enfants n'a pas été consulté 
@@ -701,10 +701,10 @@ Public Class FRMForum
             rndnbr = random.[Next](0, 99999)
             newFileName = "AvantCrop-" + rndnbr.ToString + nomFichier
 
-            controlUpload.SaveAs(Server.MapPath("../Upload/" & newFileName))
+            controlUpload.SaveAs(Server.MapPath("../Upload/ImagesProfil/" & newFileName))
 
             Dim cropbox = CType(lvInfoUtilisateur.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
-            cropbox.ImageUrl = "~/Upload/" & newFileName
+            cropbox.ImageUrl = "~/Upload/ImagesProfil/" & newFileName
         End If
 
     End Sub
@@ -765,7 +765,7 @@ Public Class FRMForum
         Dim xr As Integer = MyRandomNumber.Next(10000, 100000)
         nomFichier = xr.ToString + ".jpg"
 
-        bmp.Save(Server.MapPath("../Upload/") + nomFichier, image.RawFormat)
+        bmp.Save(Server.MapPath("../Upload/ImagesProfil/") + nomFichier, image.RawFormat)
         utilisateurAValider.UrlAvatar = nomFichier
         ModeleSentinellesHY.outils.leContexte.SaveChanges()
 
@@ -1075,10 +1075,10 @@ Public Class FRMForum
         'On vérifie si l'utilisateur ayant publié la publication existe encore dans la BD
         If Not unePublication.idUtilisateur Is Nothing Then
             lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
-            imgAvatar.ImageUrl = "../Upload/" & unePublication.Utilisateur.UrlAvatar
+            imgAvatar.ImageUrl = "../Upload/ImagesProfil/" & unePublication.Utilisateur.UrlAvatar
         Else
             lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
-            imgAvatar.ImageUrl = "../Upload/default.png"
+            imgAvatar.ImageUrl = "../Upload/ImagesProfil/default.png"
         End If
     End Sub
 #End Region
