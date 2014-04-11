@@ -394,7 +394,7 @@
                                                                     <asp:Label ID="Label10" runat="server"><%= outils.obtenirLangue("Image carrousel 1 : |Photo caroussel 1 : ")%></asp:Label>
                                                                     <asp:TextBox ID="txtboxImgCarrousel1" Enabled=" false" runat="server" />
                                                                     <a onclick="$('[id$=fuplPhotoCarrousel1]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a>
-                                                                    <img id="imgCarrousel1" width="360" src="../Upload/Carrousel1.jpg" />
+                                                                    <img id="imgCarrousel1" width="360" src="../Upload/ImagesCarrousel/Carrousel1.jpg" />
                                                                     <asp:FileUpload runat="server" ID="fuplPhotoCarrousel1" ClientIDMode="Static" onpropertychange="$('[id$=uploadButton1]').click(); return false;" onchange="$('[id$=uploadButton1]').click(); return false;" Style="display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
                                                                     <asp:Button ID="uploadButton1" runat="server" Text="Carrousel1" ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click" Style="display: none" />
                                                                 </div>
@@ -402,7 +402,7 @@
                                                                     <asp:Label ID="Label7" runat="server"> <%= outils.obtenirLangue("Image carrousel 2 : |Photo caroussel 2 : ")%></asp:Label>
                                                                     <asp:TextBox ID="txtboxImgCarrousel2" runat="server" Enabled=" false" />
                                                                     <a onclick="$('[id$=fuplPhotoCarrousel2]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a>
-                                                                    <img id="imgCarrousel2" width="360" src="../Upload/Carrousel2.jpg" />
+                                                                    <img id="imgCarrousel2" width="360" src="../Upload/ImagesCarrousel/Carrousel2.jpg" />
                                                                     <asp:FileUpload runat="server" ID="fuplPhotoCarrousel2" ClientIDMode="Static" onpropertychange="$('[id$=uploadButton2]').click(); return false;" onchange="$('[id$=uploadButton2]').click(); return false;" Style="display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
                                                                     <asp:Button ID="uploadButton2" runat="server" Text="Carrousel2" ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click" Style="display: none" />
 
@@ -411,7 +411,7 @@
                                                                     <asp:Label ID="Label8" runat="server"> <%= outils.obtenirLangue("Image carrousel 3 : |Photo caroussel 3 : ")%></asp:Label>
                                                                     <asp:TextBox ID="txtboxImgCarrousel3" runat="server" Enabled=" false" />
                                                                     <a onclick="$('[id$=fuplPhotoCarrousel3]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir|Select")%></a>
-                                                                    <img id="imgCarrousel3" width="360" src="../Upload/Carrousel3.jpg" />
+                                                                    <img id="imgCarrousel3" width="360" src="../Upload/ImagesCarrousel/Carrousel3.jpg" />
                                                                     <asp:FileUpload runat="server" ID="fuplPhotoCarrousel3" ClientIDMode="Static" onpropertychange="$('[id$=uploadButton3]').click(); return false;" onchange="$('[id$=uploadButton3]').click(); return false;" Style="display: none" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
                                                                     <asp:Button ID="uploadButton3" runat="server" Text="Carrousel3" ClientIDMode="Static" OnClick="lnkUploadPhotoCarrousel_Click" Style="display: none" />
                                                                 </div>
