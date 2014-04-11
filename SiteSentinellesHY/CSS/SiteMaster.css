@@ -1,18 +1,18 @@
 ﻿@font-face {
     font-family: 'AgencyR';
-        src: url(../Upload/AGENCYR.eot);
+        src: url(../Polices/AGENCYR.eot);
 }
 @font-face {
     font-family: 'AgencyR';
-        src: url(../Upload/AGENCYR.ttf);
+        src: url(../Polices/AGENCYR.ttf);
 }
 @font-face {
     font-family: 'Lucida';
-        src: url(../Upload/Lucida_webfont.eot);
+        src: url(../Polices/Lucida_webfont.eot);
 }
 @font-face {
     font-family: 'Lucida';
-        src: url(../Upload/Lucida_webfont.ttf);
+        src: url(../Polices/Lucida_webfont.ttf);
 }
 
 *
