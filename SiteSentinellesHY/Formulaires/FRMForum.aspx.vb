@@ -667,7 +667,7 @@ Public Class FRMForum
         Dim controlUpload = CType(lvInfoUtilisateur.Items(0).FindControl("fuplPhoto"), FileUpload)
 
 
-        If controlUpload.PostedFile.ContentType = "image/jpeg" Then
+        If controlUpload.PostedFile.ContentType = "image/jpeg" Or controlUpload.PostedFile.ContentType = "image/png" Then
             Dim newFileName As String = ""
             Dim nomFichier As String = Path.GetFileName(controlUpload.FileName)
             'Save it in the server images folder

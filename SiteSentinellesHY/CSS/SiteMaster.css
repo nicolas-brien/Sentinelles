@@ -82,6 +82,13 @@ body
     display: none;
 }
 
+.asterisque{
+    color: red; 
+    font-size: large;
+    float:left;
+    margin-right:5px;
+}
+
 /*------------------------------------FORMULAIRE-------------------------------*/
 
 .lblFormulaire
