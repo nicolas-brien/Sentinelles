@@ -1,9 +1,10 @@
 ﻿Public Class FRMevenements
     Inherits ModeleSentinellesHY.FRMdeBase
     Public Shared Function getEvenements() As IQueryable(Of ModeleSentinellesHY.Événement)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeEvenements As New List(Of ModeleSentinellesHY.Événement)
 
-        listeEvenements = (From nou In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By nou.idEvenement Descending).ToList
+        listeEvenements = (From nou In leContexte.ÉvénementJeu Order By nou.idEvenement Descending).ToList
 
         Return listeEvenements.AsQueryable
     End Function

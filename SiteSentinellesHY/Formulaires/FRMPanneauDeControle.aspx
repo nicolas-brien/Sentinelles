@@ -752,7 +752,7 @@
                                         <div>
                                             <asp:Label ID="lblDateEvenement" runat="server"><%= outils.obtenirLangue("Date de l'événement |Event date ")%></asp:Label>
                                             <asp:TextBox ID="tbDateEvenement" CssClass="tbEvenement" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.dateEvenement%>' runat="server" />
-                                            <asp:CalendarExtender ID="calextTbEvenement" runat="server" TargetControlID="tbDateEvenement" Format="yyyy-MM-dd"></asp:CalendarExtender>
+                                            <asp:CalendarExtender ID="calextTbEvenement" runat="server" TargetControlID="tbDateEvenement" Format="yyyy-MM-dd" OnClientShown="displayDate()" ></asp:CalendarExtender>
                                         </div>
                                         <div class="boutonsNouvelleMargin">
                                             <asp:LinkButton ID="btnModifierNouvelle" runat="server"
@@ -1360,5 +1360,6 @@
             document.getElementById(idImage).src = oFREvent.target.result;
         };
     };
+
 </script>
 </html>

@@ -31,7 +31,7 @@
                 <div class="clear-both">
                     <div class="cadrageItems">
                         <div>
-                            <asp:Label ID="Label1" runat="server"><b><%= outils.obtenirLangue("Date de l'événement : |Event Date : ") %></b><%# Left(Eval("dateEvenement"),10) %></asp:Label>
+                            <asp:Label ID="Label1" runat="server"><b><%= outils.obtenirLangue("Date de l'événement : |Event Date : ") %></b><%# Eval("dateEvenement")%></asp:Label>
                         </div>
                         <div class="clear-both">
                             <br />
