@@ -23,7 +23,9 @@ Public Class FRMPanneauDeControle
         End If
 
         imgbtnLogo.ImageUrl = ModeleSentinellesHY.outils.obtenirLangue("~/Images/LogoOfficielHYSmallFR.png|~/Images/LogoOfficielHYSmallEN.png")
-
+        If Request.QueryString("error") <> "" Then
+            lblMessageErreurEnvoiMessage.Text = Request.QueryString("error")
+        End If
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -184,63 +186,16 @@ Public Class FRMPanneauDeControle
 
         End If
 
-        CreateEmailFile("Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text, txtboxMessage.Text)
-        Response.Redirect("FRMPanneauDeControle.aspx")
-        'Méthode servant à envoyer à tous les usagers du site web un courriel pour tous ceux qui possèdent une
-        'adresse courriel
-        Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
-        Dim listeErreur As Integer = 0
-        Dim listeDestinataire As New List(Of ModeleSentinellesHY.Utilisateur)
-        Dim destinataires As String = ""
-
-        listeDestinataire = (From info In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu _
-                                      Where info.courriel <> Nothing).ToList
-        For Each uti As ModeleSentinellesHY.Utilisateur In listeDestinataire
-            destinataires &= uti.courriel & ","
-        Next
-
-        'Sert à enlever la dernière virgule
-        destinataires.Remove(destinataires.Length - 1)
-        destinataires = "sansarrets@hotmail.com,jeansebastien.ares@gmail.com"
-
-
-        ' For Each uti As ModeleSentinellesHY.Utilisateur In listeDestinataire
-        If txtboxTitreMessage.Text = Nothing Then
-            lblMessageErreurEnvoiMessage.Text &= ModeleSentinellesHY.outils.obtenirLangue("*Vous devez entrer un titre|*You must enter a title") & "<br/>"
-            listeErreur += 1
+        'Controle si le fichier d'envoie existe, sinon sa commence une nouvele routine
+        Dim msg = String.Empty
+        If Not File.Exists("/BackControl/emailsending.txt") Then
+            CreateEmailFile("Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text, txtboxMessage.Text)
+        Else
+            msg = ModeleSentinellesHY.outils.obtenirLangue("*Envoie de courriel en cours, impossible d'envoyer de nouveau avant la fin.|*Impossible to send email before the end of routine.")
         End If
-        If txtboxMessage.Text = Nothing Then
-            lblMessageErreurEnvoiMessage.Text &= ModeleSentinellesHY.outils.obtenirLangue("*Vous devez entrer un message|*You must enter a message")
-            listeErreur += 1
-        End If
-        If listeErreur = 0 Then
-            Dim expediteur As String = "info@sentinelleshy.ca"
-            Dim mail As System.Net.Mail.MailMessage = New System.Net.Mail.MailMessage()
-            mail.To.Add(expediteur)
-            mail.Bcc.Add(destinataires)
-            mail.From = New System.Net.Mail.MailAddress(expediteur)
-            mail.Subject = "Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text
-            mail.SubjectEncoding = System.Text.Encoding.UTF8
-            mail.Body = txtboxMessage.Text
-            If Not txtboxMessage.Text = Nothing Then
-                txtboxMessage.Text = txtboxMessage.Text.Replace("<div></div>", "<br/><br/>")
-            End If
-            mail.BodyEncoding = System.Text.Encoding.UTF8
-            mail.IsBodyHtml = True
-            Dim client As System.Net.Mail.SmtpClient = New System.Net.Mail.SmtpClient()
-            client.Credentials = New System.Net.NetworkCredential("info@sentinelleshy.ca", "Vs2H7!Etu")
 
-            client.Port = 25
-            client.Host = "mail.sentinelleshy.ca"
-            'client.Port = 587 ' Gmail port
-            'client.Host = "smtp.gmail.com"
-            'client.EnableSsl = True 'Gmail Secured Layer
+        Response.Redirect("FRMPanneauDeControle.aspx?error=" & msg)
 
-            client.Send(mail)
-            lblMessageErreurEnvoiMessage.Text = ModeleSentinellesHY.outils.obtenirLangue("Le message a bel et bien été envoyé|The message has been sent")
-            lblMessageErreurEnvoiMessage.CssClass = "AvecSucces"
-        End If
-        'Next
     End Sub
 
     'Cette methode inscrit les informations envoyées dans un fichier texte pour être repris par la routine de courriel.
