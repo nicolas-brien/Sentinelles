@@ -12,6 +12,9 @@
         <div class="temoignage">
             <h5><%= outils.obtenirLangue("TÉMOIGNAGE|TESTIMONIAL")%></h5>
              <asp:Label ID="temoignageHistorique" runat="server" CssClass="textePensee" OnInit="temoignageHistorique_Init"></asp:Label>
+             <div class="text-right">
+                 <em style="color: grey">-<%= outils.obtenirLangue("Anonyme|Anonymous")%></em>
+             </div>
         </div>
        <asp:Label ID="texteHistorique" runat="server" OnInit="texteHistorique_Init"></asp:Label>
     </div>
