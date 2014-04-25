@@ -751,8 +751,8 @@
                                         <hr />
                                         <div>
                                             <asp:Label ID="lblDateEvenement" runat="server"><%= outils.obtenirLangue("Date de l'événement |Event date ")%></asp:Label>
-                                            <asp:TextBox ID="tbDateEvenement" CssClass="tbEvenement" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.dateEvenement%>' runat="server" />
-                                            <asp:CalendarExtender ID="calextTbEvenement" runat="server" TargetControlID="tbDateEvenement" Format="yyyy-MM-dd" OnClientShown="displayDate()" ></asp:CalendarExtender>
+                                            <asp:TextBox ID="tbDateEvenement" CssClass="tbEvenement" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.DateEvenementDo%>' runat="server" />
+                                            <asp:CalendarExtender ID="calextTbEvenement" runat="server" TargetControlID="tbDateEvenement" Format="MMMM, yyyy"></asp:CalendarExtender>
                                         </div>
                                         <div class="boutonsNouvelleMargin">
                                             <asp:LinkButton ID="btnModifierNouvelle" runat="server"
@@ -960,7 +960,7 @@
                             <div class="row paddingRow">
                                 <div class="pull-right">
                                     <asp:TextBox ID="txtboxRechercheUtilisateur" runat="server" />
-                                    <asp:Button ID="btnRechercheUtilisateur" runat="server" Text="Rechercher" CssClass="btn btn-primary" Style="margin-bottom:10px" />
+                                    <asp:Button ID="btnRechercheUtilisateur" runat="server" Text="Rechercher" CssClass="btn btn-primary" />
                                 </div>
                                 <div class="clear-both"></div>
                                 <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 160px;">
@@ -1246,28 +1246,11 @@
 
                                 </div>
                                 <div id="lnkBtn_envoiMessage">
-                                    <% 
-                                        If Request.QueryString("error") <> " " Then
-                                    %>
-                                        <asp:LinkButton ID="lnkbtnEnvoiMessage" runat="server"
+                                    <asp:LinkButton ID="lnkbtnEnvoiMessage" runat="server"
                                         CssClass="btn btn-primary"
-                                        Enabled="false"
                                         CommandName="Update">
-                                            <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
-                                        </asp:LinkButton>
-                                    <%        
-                                        Else
-                                    %>
-                                        <asp:LinkButton ID="LinkButton6" runat="server"
-                                        CssClass="btn btn-primary"
-                                        Enabled="true"
-                                        CommandName="Update">
-                                            <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
-                                        </asp:LinkButton>
-                                    <%        
-                                        End If
-                                    %>
-                                    
+                                        <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
+                                    </asp:LinkButton>
                                 </div>
                             </div>
                         </asp:View>
@@ -1360,6 +1343,5 @@
             document.getElementById(idImage).src = oFREvent.target.result;
         };
     };
-
 </script>
 </html>

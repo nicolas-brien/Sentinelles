@@ -17,6 +17,18 @@ Partial Public Class Événement
         dateEvenement = Date.Now
     End Sub
 
+    Public Property DateEvenementDo() As String
+        Get
+            Return Me.dateEvenement.ToLongDateString()
+        End Get
+        Set(value As String)
+            Dim laDate As New DateTime()
+            If DateTime.TryParse(value, laDate) Then
+                Me.dateEvenement = laDate
+            End If
+        End Set
+    End Property
+
     Function Validate(ValidationContext As ValidationContext) As IEnumerable(Of ValidationResult) _
    Implements IValidatableObject.Validate
         'Liste d'erreurs(data annotations) outils validation

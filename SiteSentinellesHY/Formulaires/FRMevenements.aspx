@@ -31,16 +31,16 @@
                 <div class="clear-both">
                     <div class="cadrageItems">
                         <div>
-                            <asp:Label ID="Label1" runat="server"><b><%= outils.obtenirLangue("Date de l'événement : |Event Date : ") %></b><%# Eval("dateEvenement")%></asp:Label>
+                            <asp:Label ID="Label1" runat="server"><b><%= outils.obtenirLangue("Date de l'événement : |Event Date : ") %></b><%# Eval("DateEvenementDo")%></asp:Label>
                         </div>
                         <div class="clear-both">
                             <br />
                             <asp:Label ID="lblEvenement1" runat="server" Text='<%# Eval(outils.obtenirLangue("contenuFR|contenuEN"))%>'></asp:Label>
                         </div>
-                        <div class="clear-both">
+                       <%-- <div class="clear-both">
                             <br />
                             <asp:Label ID="lblDateEvenement" runat="server" Font-Size="smaller"><b><%= outils.obtenirLangue("Date de rédaction : |Redaction Date : ")%></b><%# Left(Eval("dateRedaction"),10) %></asp:Label>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
             </div>
