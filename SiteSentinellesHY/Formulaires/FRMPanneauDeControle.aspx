@@ -1246,11 +1246,28 @@
 
                                 </div>
                                 <div id="lnkBtn_envoiMessage">
-                                    <asp:LinkButton ID="lnkbtnEnvoiMessage" runat="server"
+                                    <% 
+                                        If Request.QueryString("error") <> " " Then
+                                    %>
+                                        <asp:LinkButton ID="lnkbtnEnvoiMessage" runat="server"
                                         CssClass="btn btn-primary"
+                                        Enabled="false"
                                         CommandName="Update">
-                                        <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
-                                    </asp:LinkButton>
+                                            <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
+                                        </asp:LinkButton>
+                                    <%        
+                                        Else
+                                    %>
+                                        <asp:LinkButton ID="LinkButton6" runat="server"
+                                        CssClass="btn btn-primary"
+                                        Enabled="true"
+                                        CommandName="Update">
+                                            <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
+                                        </asp:LinkButton>
+                                    <%        
+                                        End If
+                                    %>
+                                    
                                 </div>
                             </div>
                         </asp:View>
