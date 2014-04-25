@@ -54,6 +54,22 @@ Public Class FRMPanneauDeControle
 
             lblInfoUtilisateur.InnerText = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).nomUtilisateur
         End If
+
+        If Not Page.IsPostBack Then
+            Dim di As New DirectoryInfo(Server.MapPath("../Upload/ImagesCarrousel/"))
+            For Each fi As FileInfo In di.GetFiles()
+                If (fi.Name.IndexOf("AvantCrop") > -1) Then
+                    Try
+                        File.Delete(fi.FullName)
+                        'le lorsque le fichier est utilisé par un autre process nous ne pouvons le suprimier alors le catch le capt.
+                    Catch
+                    End Try
+                End If
+            Next
+
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+
+        End If
     End Sub
 
     Private Sub MultiView_ActiveViewChanged(sender As Object, e As EventArgs) Handles MultiView.ActiveViewChanged
@@ -170,7 +186,61 @@ Public Class FRMPanneauDeControle
 
         CreateEmailFile("Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text, txtboxMessage.Text)
         Response.Redirect("FRMPanneauDeControle.aspx")
+        'Méthode servant à envoyer à tous les usagers du site web un courriel pour tous ceux qui possèdent une
+        'adresse courriel
+        Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
+        Dim listeErreur As Integer = 0
+        Dim listeDestinataire As New List(Of ModeleSentinellesHY.Utilisateur)
+        Dim destinataires As String = ""
 
+        listeDestinataire = (From info In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu _
+                                      Where info.courriel <> Nothing).ToList
+        For Each uti As ModeleSentinellesHY.Utilisateur In listeDestinataire
+            destinataires &= uti.courriel & ","
+        Next
+
+        'Sert à enlever la dernière virgule
+        destinataires.Remove(destinataires.Length - 1)
+        destinataires = "sansarrets@hotmail.com,jeansebastien.ares@gmail.com"
+
+
+        ' For Each uti As ModeleSentinellesHY.Utilisateur In listeDestinataire
+        If txtboxTitreMessage.Text = Nothing Then
+            lblMessageErreurEnvoiMessage.Text &= ModeleSentinellesHY.outils.obtenirLangue("*Vous devez entrer un titre|*You must enter a title") & "<br/>"
+            listeErreur += 1
+        End If
+        If txtboxMessage.Text = Nothing Then
+            lblMessageErreurEnvoiMessage.Text &= ModeleSentinellesHY.outils.obtenirLangue("*Vous devez entrer un message|*You must enter a message")
+            listeErreur += 1
+        End If
+        If listeErreur = 0 Then
+            Dim expediteur As String = "info@sentinelleshy.ca"
+            Dim mail As System.Net.Mail.MailMessage = New System.Net.Mail.MailMessage()
+            mail.To.Add(expediteur)
+            mail.Bcc.Add(destinataires)
+            mail.From = New System.Net.Mail.MailAddress(expediteur)
+            mail.Subject = "Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text
+            mail.SubjectEncoding = System.Text.Encoding.UTF8
+            mail.Body = txtboxMessage.Text
+            If Not txtboxMessage.Text = Nothing Then
+                txtboxMessage.Text = txtboxMessage.Text.Replace("<div></div>", "<br/><br/>")
+            End If
+            mail.BodyEncoding = System.Text.Encoding.UTF8
+            mail.IsBodyHtml = True
+            Dim client As System.Net.Mail.SmtpClient = New System.Net.Mail.SmtpClient()
+            client.Credentials = New System.Net.NetworkCredential("info@sentinelleshy.ca", "Vs2H7!Etu")
+
+            client.Port = 25
+            client.Host = "mail.sentinelleshy.ca"
+            'client.Port = 587 ' Gmail port
+            'client.Host = "smtp.gmail.com"
+            'client.EnableSsl = True 'Gmail Secured Layer
+
+            client.Send(mail)
+            lblMessageErreurEnvoiMessage.Text = ModeleSentinellesHY.outils.obtenirLangue("Le message a bel et bien été envoyé|The message has been sent")
+            lblMessageErreurEnvoiMessage.CssClass = "AvecSucces"
+        End If
+        'Next
     End Sub
 
     'Cette methode inscrit les informations envoyées dans un fichier texte pour être repris par la routine de courriel.
@@ -292,10 +362,10 @@ Public Class FRMPanneauDeControle
             rndnbr = random.[Next](0, 99999)
             newFileName = "AvantCrop-" + rndnbr.ToString + nomFichier
 
-            controlUpload.SaveAs(Server.MapPath("../Upload/" & newFileName))
+            controlUpload.SaveAs(Server.MapPath("../Upload/ImagesCarrousel/" & newFileName))
 
             Dim cropbox = CType(lviewOptions.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
-            cropbox.ImageUrl = "~/Upload/" & newFileName
+            cropbox.ImageUrl = "~/Upload/ImagesCarrousel/" & newFileName
         End If
 
     End Sub
@@ -332,6 +402,14 @@ Public Class FRMPanneauDeControle
         Dim y__2 As Integer = Convert.ToInt32(Convert.ToDouble(Y.Value) * (ratio))
         Dim w__3 As Integer = Convert.ToInt32(Convert.ToDouble(W.Value) * (ratio))
         Dim h__4 As Integer = Convert.ToInt32(Convert.ToDouble(H.Value) * (ratio))
+
+        If (w__3 = 0) Then
+            x__1 = 0
+            y__2 = 0
+            w__3 = image.Width
+            h__4 = image.Height
+
+        End If
         'Create a new image from the specified location to
         'specified height and width
         Dim bmp As New Bitmap(960, 400, image.PixelFormat)
@@ -339,8 +417,7 @@ Public Class FRMPanneauDeControle
         g.DrawImage(image, New Rectangle(0, 0, 960, 400), New Rectangle(x__1, y__2, w__3, h__4), GraphicsUnit.Pixel)
         'Save the file and reload to the control
         Dim nomImage = CType(lviewOptions.Items(0).FindControl("nomImage"), System.Web.UI.WebControls.HiddenField)
-        bmp.Save(Server.MapPath("../Upload/") + nomImage.Value + ".jpg", image.RawFormat)
-        bmp.Save(Server.MapPath("../Upload/") + nomImage.Value + ".png", image.RawFormat)
+        bmp.Save(Server.MapPath("../Upload/ImagesCarrousel/") + nomImage.Value + ".jpg", image.RawFormat)
         lviewOptions.DataBind()
         CType(lviewOptions.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 0
 
@@ -435,23 +512,22 @@ Public Class FRMPanneauDeControle
         End If
 
         lviewNouvelle.DataBind()
-        lviewInfoNouvelles.DataBind()
 
         'On affiche l'index suivant ou précédent dépendamment de quelle nouvelle on supprime
-        If lviewNouvelle.SelectedIndex = 0 Then
+        If lviewNouvelle.SelectedIndex = -1 Then
+            lviewNouvelle.SelectedIndex = 0
+        ElseIf lviewNouvelle.SelectedIndex = 0 Then
             lviewNouvelle.SelectedIndex = 1
-        End If
-        If lviewNouvelle.SelectedIndex = 1 Then
+        ElseIf lviewNouvelle.SelectedIndex = 1 Then
             lviewNouvelle.SelectedIndex = 0
         End If
+
+        lviewInfoNouvelles.DataBind()
     End Sub
 
     Private Sub lviewNouvelle_PreRender(sender As Object, e As EventArgs) Handles lviewNouvelle.PreRender
         If lviewNouvelle.Items.Count > 0 And Not Page.IsPostBack Then
             CType(lviewNouvelle.FindControl("lbNouvelleTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
-        End If
-        If ViewState("modeNouvelle") <> "AjoutNouvelle" Then
-            lviewInfoNouvelles.DataBind()
         End If
     End Sub
     Private Sub lviewNouvelle_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewNouvelle.SelectedIndexChanged
@@ -485,9 +561,6 @@ Public Class FRMPanneauDeControle
         If lvEvenement.Items.Count > 0 And Not Page.IsPostBack Then
             CType(lvEvenement.FindControl("lbEvenementTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
         End If
-        If ViewState("modeEvenement") <> "AjoutEvenement" Then
-            lvInfoEvenement.DataBind()
-        End If
     End Sub
 
     Private Sub lvEvenement_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvEvenement.SelectedIndexChanged
@@ -517,9 +590,6 @@ Public Class FRMPanneauDeControle
             Dim idEvenement As Integer = lvEvenement.SelectedDataKey(0)
             unEvenement = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Where eve.idEvenement = idEvenement).FirstOrDefault
             ModeleSentinellesHY.outils.leContexte.Entry(unEvenement).Reload()
-
-        Else
-
         End If
 
         Return unEvenement
@@ -593,15 +663,17 @@ Public Class FRMPanneauDeControle
         End If
 
         lvEvenement.DataBind()
-        lvInfoEvenement.DataBind()
 
         'On affiche l'index suivant ou précédent dépendamment de quelle événement on supprime
-        If lvEvenement.SelectedIndex = 0 Then
+        If lvEvenement.SelectedIndex = -1 Then
+            lvEvenement.SelectedIndex = 0
+        ElseIf lvEvenement.SelectedIndex = 0 Then
             lvEvenement.SelectedIndex = 1
-        End If
-        If lvEvenement.SelectedIndex = 1 Then
+        ElseIf lvEvenement.SelectedIndex = 1 Then
             lvEvenement.SelectedIndex = 0
         End If
+
+        lvInfoEvenement.DataBind()
     End Sub
 
     Private Sub lvInfoEvenement_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lvInfoEvenement.ItemDataBound
@@ -626,9 +698,6 @@ Public Class FRMPanneauDeControle
             CType(lvRDP.FindControl("lbRDPTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
         End If
 
-        If ViewState("modeRDP") <> "AjoutRDP" Then
-            lvInfoRDP.DataBind()
-        End If
     End Sub
 
     Private Sub lvRDP_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvRDP.SelectedIndexChanged
@@ -736,18 +805,20 @@ Public Class FRMPanneauDeControle
         End If
 
         lvRDP.DataBind()
-        lvInfoRDP.DataBind()
 
         'On affiche l'index suivant ou précédent dépendamment de quelle revue de presse on supprime
-        If lvRDP.SelectedIndex = 0 Then
+        If lvRDP.SelectedIndex = -1 Then
+            lvRDP.SelectedIndex = 0
+        ElseIf lvRDP.SelectedIndex = 0 Then
             lvRDP.SelectedIndex = 1
-        End If
-        If lvRDP.SelectedIndex = 1 Then
+        ElseIf lvRDP.SelectedIndex = 1 Then
             lvRDP.SelectedIndex = 0
         End If
+
+        lvInfoRDP.DataBind()
     End Sub
 
-    Protected Sub lnkUploadRDP_Click(sender As Object, e As EventArgs)
+    Protected Sub lnkUploadPDF_Click(sender As Object, e As EventArgs)
         'Upload pour les fichiers pdf pour les revues de presse
         Dim controlUploadRDP = CType(lvInfoRDP.Items(0).FindControl("fuplRDP"), FileUpload)
         Dim extension As String = ""
@@ -760,7 +831,7 @@ Public Class FRMPanneauDeControle
                     nomFichier = Left(nomFichier, 30)
                 End If
                 nomFichier &= ".pdf"
-                controlUploadRDP.SaveAs(Server.MapPath("../Upload/") & nomFichier)
+                controlUploadRDP.SaveAs(Server.MapPath("../Upload/PDF/") & nomFichier)
                 CType(lvInfoRDP.Items(0).FindControl("txtboxUrlDocument"), TextBox).Text = nomFichier
             End If
         End If
@@ -807,11 +878,6 @@ Public Class FRMPanneauDeControle
         If lviewUtilisateurs.Items.Count > 0 And Not Page.IsPostBack Then
             CType(lviewUtilisateurs.FindControl("lblUtilisateurUsername"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
         End If
-
-        If ViewState("modeUtilisateur") <> "AjoutUtilisateur" Then
-            lviewInfoUtilisateur.DataBind()
-        End If
-
     End Sub
 
     Private Sub lviewUtilisateurs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewUtilisateurs.SelectedIndexChanged
@@ -860,9 +926,11 @@ Public Class FRMPanneauDeControle
         If ViewState("modeUtilisateur") = "AjoutUtilisateur" Or listeUtilisateurs.Count = 0 Then
             CType(e.Item.FindControl("btnSupprimerUti"), LinkButton).Visible = False
             CType(lviewInfoUtilisateur.FindControl("lnkbtnAjouter"), LinkButton).Visible = False
+            CType(e.Item.FindControl("btnImgDefaut"), Button).Visible = False
         Else
             CType(e.Item.FindControl("btnSupprimerUti"), LinkButton).Visible = True
             CType(lviewInfoUtilisateur.FindControl("lnkbtnAjouter"), LinkButton).Visible = True
+            CType(e.Item.FindControl("btnImgDefaut"), Button).Visible = True
         End If
 
         If CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idUtilisateur = CType(e.Item.DataItem, ModeleSentinellesHY.Utilisateur).idUtilisateur Then
@@ -880,14 +948,17 @@ Public Class FRMPanneauDeControle
         End If
 
         lviewUtilisateurs.DataBind()
-        lviewInfoUtilisateur.DataBind()
 
         'On affiche l'index suivant ou précédent dépendamment de quelle nouvelle on supprime
-        If lviewUtilisateurs.SelectedIndex = 0 Then
+        If lviewUtilisateurs.SelectedIndex = -1 Then
+            lviewUtilisateurs.SelectedIndex = 0
+        ElseIf lviewUtilisateurs.SelectedIndex = 0 Then
             lviewUtilisateurs.SelectedIndex = 1
-        Else
+        ElseIf lviewUtilisateurs.SelectedIndex = 1 Then
             lviewUtilisateurs.SelectedIndex = 0
         End If
+
+        lviewInfoUtilisateur.DataBind()
     End Sub
 
     Public Sub UpdateUtilisateur(ByVal idUtilisateur As Integer)
@@ -970,9 +1041,13 @@ Public Class FRMPanneauDeControle
         lviewInfoUtilisateur.DataBind()
     End Sub
 
-    Protected Sub lnkbtnImgDefaut_Click(sender As Object, e As EventArgs)
-        CType(lviewInfoUtilisateur.Items(0).FindControl("txtboxNomPhoto"), TextBox).Text = "default.png"
-        CType(lviewInfoUtilisateur.Items(0).FindControl("imgUpload"), HtmlImage).Src = "../../Upload/default.png"
+    Protected Sub btnImgDefaut_Click(sender As Object, e As EventArgs)
+        CType(lviewInfoUtilisateur.Items(0).FindControl("lblNomPhoto"), Label).Text = "default.png"
+        CType(lviewInfoUtilisateur.Items(0).FindControl("imgUpload"), HtmlImage).Src = "../Upload/ImagesProfil/default.png"
+
+        Dim newUtilisateurTemp As Utilisateur = outils.leContexte.UtilisateurJeu.Find(lviewUtilisateurs.SelectedDataKey(0))
+        newUtilisateurTemp.UrlAvatar = "default.png"
+        outils.leContexte.SaveChanges()
     End Sub
 
     Protected Sub rbtnSexe_Init(sender As Object, e As EventArgs)

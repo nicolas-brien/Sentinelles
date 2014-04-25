@@ -90,6 +90,12 @@
 }
 /*-------------------------------------Publication---------------------------------------*/
 
+.Avatar_Publication {
+    width: 120px;
+    height: 120px;
+    margin-left: 2px;
+}
+
 .lblSupprimerPublication {
     color: red;
     position: absolute;
@@ -154,6 +160,19 @@
     font-size: 10px;
     color: grey;
 }
+
+.lblCouleurStatut_administrateur
+{
+    font-size:10px;
+    color:red;
+}
+.lblCouleurStatut_intervenant
+{
+    font-size:10px;
+    color:blue;
+}
+
+
 
 .margin_ReponsePublication {
     margin-top: 25px;
@@ -242,7 +261,8 @@
 }
 .txtboxTitreModal
 {
-    width:400px;
+    width:700px;
+    font-weight:bolder;
 }
 
 /*-------------------------------------Catégories---------------------------------------*/

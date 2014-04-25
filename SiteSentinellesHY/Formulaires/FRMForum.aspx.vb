@@ -4,6 +4,7 @@ Imports System.Drawing
 Imports System.Drawing.Imaging
 Imports System.Drawing.Drawing2D
 Imports System.Data.Entity.Validation
+Imports ModeleSentinellesHY
 
 Public Class FRMForum
     Inherits ModeleSentinellesHY.FRMdeBase
@@ -78,6 +79,35 @@ Public Class FRMForum
             'Affiche le nom de l'utilisateur
             lblInfoUtilisateur.InnerText = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).nomUtilisateur
         End If
+
+        If Not Page.IsPostBack Then
+            Dim di As New DirectoryInfo(Server.MapPath("../Upload/ImagesProfil/"))
+            For Each fi As FileInfo In di.GetFiles()
+                If (fi.Name.IndexOf("default") < 0) Then
+                    Dim utilisateur As Utilisateur
+                    utilisateur = outils.leContexte.UtilisateurJeu.Where(Function(x) x.UrlAvatar = fi.Name).FirstOrDefault
+                    If (utilisateur Is Nothing) Then
+                        Try
+                            File.Delete(fi.FullName)
+                            'le lorsque le fichier est utilisé par un autre process nous ne pouvons le suprimier alors le catch le capt.
+                        Catch
+                        End Try
+                    End If
+                End If
+            Next
+            'attribution de la photo pat default si trouve pas la photo du profil dans le dossier
+            For Each utilisateur As Utilisateur In outils.leContexte.UtilisateurJeu
+                If ((di.GetFiles.Where(Function(x) x.Name = utilisateur.UrlAvatar).FirstOrDefault) Is Nothing) Then
+                    utilisateur.UrlAvatar = "default.png"
+                End If
+            Next
+
+            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+
+        End If
+
+
+
     End Sub
 
     'Effectue des databind lorsque les vues sont changées
@@ -306,6 +336,11 @@ Public Class FRMForum
         Return listeRetour.AsQueryable()
     End Function
 
+    Private Sub lviewCategorie_DataBound(sender As Object, e As EventArgs) Handles lviewCategorie.DataBound
+        dataPagerHaut.Visible = (dataPagerHaut.PageSize < dataPagerHaut.TotalRowCount)
+        dataPagerBas.Visible = (dataPagerBas.PageSize < dataPagerBas.TotalRowCount)
+    End Sub
+
     Private Sub lviewCategorie_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewCategorie.ItemDataBound
         Dim DroitUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idStatut
         Dim unePublication As ModeleSentinellesHY.Publication = CType(e.Item.DataItem, ModeleSentinellesHY.Publication)
@@ -391,6 +426,11 @@ Public Class FRMForum
         End If
     End Sub
 
+    Private Sub lviewConsulterPublication_DataBound(sender As Object, e As EventArgs) Handles lviewConsulterPublication.DataBound
+        dataPagerHautPubs.Visible = (dataPagerHautPubs.PageSize < dataPagerHautPubs.TotalRowCount)
+        dataPagerBasPubs.Visible = (dataPagerBasPubs.PageSize < dataPagerBasPubs.TotalRowCount)
+    End Sub
+
     Private Sub lviewConsulterPublication_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewConsulterPublication.ItemDataBound
         Dim unUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur)
         Dim lblPubliePar = CType(e.Item.FindControl("lblPubliePar"), Label)
@@ -411,6 +451,13 @@ Public Class FRMForum
                                                                                                           & "|" & CType(e.Item.DataItem, ModeleSentinellesHY.Publication).Utilisateur.Statut.nomStatutEN)
         End If
 
+        If unePublication.Utilisateur.idStatut = 1 Then
+            CType(e.Item.FindControl("lblStatut"), Label).CssClass = "lblCouleurStatut_administrateur"
+        ElseIf unePublication.Utilisateur.idStatut = 2 Then
+            CType(e.Item.FindControl("lblStatut"), Label).CssClass = "lblCouleurStatut_intervenant"
+        End If
+
+
         'On affiche l'image de la publication épinglée
         If unePublication.epinglee = True Then
             CType(e.Item.FindControl("pinnedIcon"), HtmlImage).Attributes("style") = "display:normal;position:relative;top:5px;"
@@ -423,10 +470,10 @@ Public Class FRMForum
         'On vérifie si l'utilisateur existe encore dans la BD
         If Not unePublication.idUtilisateur Is Nothing Then
             lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
-            imgAvatar.ImageUrl = "../Upload/" & unePublication.Utilisateur.UrlAvatar
+            imgAvatar.ImageUrl = "../Upload/ImagesProfil/" & unePublication.Utilisateur.UrlAvatar
         Else
             lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
-            imgAvatar.ImageUrl = "../Upload/default.png"
+            imgAvatar.ImageUrl = "../Upload/ImagesProfil/default.png"
         End If
 
         'Condition qui affiche en orange le titre de la publication si elle ou un de ses enfants n'a pas été consulté 
@@ -466,6 +513,10 @@ Public Class FRMForum
     Public Sub UpdatePublication(ByVal publicationAUpdater As ModeleSentinellesHY.Publication)
 
         Dim noItem = ViewState("noItem")
+        Dim listeEnfants = New List(Of Publication)
+
+        listeEnfants = (From pub As Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                        Where pub.idParent = publicationAUpdater.idPublication).ToList()
         Dim lblMessageErreurModifierPublication = CType(lviewConsulterPublication.Items(noItem).FindControl("lblMessageErreurModifierPublication"), Label)
         lblMessageErreurModifierPublication.Text = ""
         lblMessageErreurModifierPublication.ForeColor = Drawing.Color.Red
@@ -477,6 +528,10 @@ Public Class FRMForum
         publicationAUpdater = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
                                        Where pub.idPublication = publicationAUpdater.idPublication).FirstOrDefault
         TryUpdateModel(publicationAUpdater)
+
+        For Each enfant As Publication In listeEnfants
+            enfant.titre = publicationAUpdater.titre
+        Next
 
         'Remplace les div par des p pour un retour à la ligne
         If Not publicationAUpdater.contenu = Nothing Then
@@ -667,7 +722,7 @@ Public Class FRMForum
         Dim controlUpload = CType(lvInfoUtilisateur.Items(0).FindControl("fuplPhoto"), FileUpload)
 
 
-        If controlUpload.PostedFile.ContentType = "image/jpeg" Then
+        If controlUpload.PostedFile.ContentType = "image/jpeg" Or controlUpload.PostedFile.ContentType = "image/png" Then
             Dim newFileName As String = ""
             Dim nomFichier As String = Path.GetFileName(controlUpload.FileName)
             'Save it in the server images folder
@@ -676,10 +731,10 @@ Public Class FRMForum
             rndnbr = random.[Next](0, 99999)
             newFileName = "AvantCrop-" + rndnbr.ToString + nomFichier
 
-            controlUpload.SaveAs(Server.MapPath("../Upload/" & newFileName))
+            controlUpload.SaveAs(Server.MapPath("../Upload/ImagesProfil/" & newFileName))
 
             Dim cropbox = CType(lvInfoUtilisateur.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
-            cropbox.ImageUrl = "~/Upload/" & newFileName
+            cropbox.ImageUrl = "~/Upload/ImagesProfil/" & newFileName
         End If
 
     End Sub
@@ -719,6 +774,15 @@ Public Class FRMForum
         Dim y__2 As Integer = Convert.ToInt32(Convert.ToDouble(Y.Value) * (ratio))
         Dim w__3 As Integer = Convert.ToInt32(Convert.ToDouble(W.Value) * (ratio))
         Dim h__4 As Integer = Convert.ToInt32(Convert.ToDouble(H.Value) * (ratio))
+
+        If (w__3 = 0) Then
+            x__1 = 0
+            y__2 = 0
+            w__3 = image.Width
+            h__4 = image.Height
+
+        End If
+
         'Create a new image from the specified location to
         'specified height and width
         Dim bmp As New Bitmap(400, 400, image.PixelFormat)
@@ -731,10 +795,10 @@ Public Class FRMForum
         Dim xr As Integer = MyRandomNumber.Next(10000, 100000)
         nomFichier = xr.ToString + ".jpg"
 
-        bmp.Save(Server.MapPath("../Upload/") + nomFichier, image.RawFormat)
-
+        bmp.Save(Server.MapPath("../Upload/ImagesProfil/") + nomFichier, image.RawFormat)
         utilisateurAValider.UrlAvatar = nomFichier
         ModeleSentinellesHY.outils.leContexte.SaveChanges()
+
         lvInfoUtilisateur.DataBind()
         CType(lvInfoUtilisateur.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 0
 
@@ -751,66 +815,6 @@ Public Class FRMForum
         End If
         Return unUtilisateur
     End Function
-
-    Public Sub updateInfoUtilisateur(ByVal idUtilisateur As Integer)
-        Dim lblMessageErreur = CType(lvInfoUtilisateur.FindControl("lblMessageErreur"), Label)
-        Dim divMessageErreur = CType(lvInfoUtilisateur.FindControl("divMessageErreur"), Panel)
-        Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Nothing
-        Dim tbMotDePasse As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbMotDePasse"), TextBox).Text
-        Dim tbConfirmation As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbConfirmer"), TextBox).Text
-
-        lblMessageErreur.Text = ""
-        divMessageErreur.CssClass = "alert alert-error"
-        divMessageErreur.Visible = True
-        For Each tb As Object In lvInfoUtilisateur.Items(0).Controls 'Reset l'encadrer autour de tout txtBox
-            If TypeOf (tb) Is TextBox Then
-                CType(tb, TextBox).BorderColor = Nothing
-            End If
-        Next
-
-        utilisateurAValider = ModeleSentinellesHY.outils.leContexte.UtilisateurJeu.Find(idUtilisateur)
-
-        'Prend les données qui sont dans le formulaire
-        TryUpdateModel(utilisateurAValider)
-
-        'Url Avatar avant de l'avoir enregistré. Permet de remettre l'url si l'usager n'est pas enregistré
-        utilisateurAValider.urlAvatarTemp = utilisateurAValider.UrlAvatar
-
-        ModeleSentinellesHY.outils.validationUtilisateur(utilisateurAValider, New ModeleSentinellesHY.UtilisateurValidation(), lvInfoUtilisateur, listeErreur)
-
-        If listeErreur.Count > 0 Then
-            For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
-                lblMessageErreur.Text += "*" & erreur.errorMessage & "<br/>"
-            Next
-        End If
-
-        If ModelState.IsValid Then
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
-            divMessageErreur.CssClass = "alert alert-success"
-            divMessageErreur.Visible = True
-            lblMessageErreur.Text = ModeleSentinellesHY.outils.obtenirLangue("L'utilisateur a été modifié avec succès!|The user has been successfully updated!")
-
-
-            'Conditions pour Supprimer Avatar du fichier Upload mais ne pas supprimer la photo par défaut
-            If utilisateurAValider.UrlAvatar <> utilisateurAValider.urlAvatarTemp AndAlso utilisateurAValider.UrlAvatar <> "" _
-                AndAlso utilisateurAValider.UrlAvatar <> "default.png" Then
-                ModeleSentinellesHY.outils.SupprimerFichierUpload(utilisateurAValider.urlAvatarTemp)
-            End If
-            lvInfoUtilisateur.DataBind()
-        Else
-
-            For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
-                If Not erreur.nomPropriete Is Nothing Then
-                    CType(lvInfoUtilisateur.Items(0).FindControl("tb" & erreur.nomPropriete), TextBox).BorderColor = Drawing.Color.Red
-                ElseIf erreur.errorMessage.ToString.Contains("pass") Then
-                    CType(lvInfoUtilisateur.Items(0).FindControl("tbMotDePasse"), TextBox).BorderColor = Drawing.Color.Red
-                    CType(lvInfoUtilisateur.Items(0).FindControl("tbConfirmer"), TextBox).BorderColor = Drawing.Color.Red
-                End If
-            Next
-        End If
-        utilisateurAValider.motDePasseTemp = ""
-        utilisateurAValider.confirmationMotDePasse = ""
-    End Sub
 
     Protected Sub lnkUpload_Click(sender As Object, e As EventArgs)
         Dim lblMessageErreur = CType(lvInfoUtilisateur.FindControl("lblMessageErreur"), Label)
@@ -878,7 +882,7 @@ Public Class FRMForum
         listeStatutUtilisateur = (From ca In ModeleSentinellesHY.outils.leContexte.StatutJeu).ToList
 
         For Each statut As ModeleSentinellesHY.Statut In listeStatutUtilisateur
-                statut.nomStatut = ModeleSentinellesHY.outils.obtenirLangue(statut.nomStatutFR & "|" & statut.nomStatutEN)
+            statut.nomStatut = ModeleSentinellesHY.outils.obtenirLangue(statut.nomStatutFR & "|" & statut.nomStatutEN)
         Next
 
         Return listeStatutUtilisateur.AsQueryable
@@ -1101,12 +1105,13 @@ Public Class FRMForum
         'On vérifie si l'utilisateur ayant publié la publication existe encore dans la BD
         If Not unePublication.idUtilisateur Is Nothing Then
             lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
-            imgAvatar.ImageUrl = "../Upload/" & unePublication.Utilisateur.UrlAvatar
+            imgAvatar.ImageUrl = "../Upload/ImagesProfil/" & unePublication.Utilisateur.UrlAvatar
         Else
             lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
-            imgAvatar.ImageUrl = "../Upload/default.png"
+            imgAvatar.ImageUrl = "../Upload/ImagesProfil/default.png"
         End If
     End Sub
 #End Region
+
 
 End Class

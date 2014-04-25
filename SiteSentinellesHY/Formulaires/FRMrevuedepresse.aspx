@@ -4,7 +4,7 @@
     <link href="../CSS/index.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <h2><%= outils.obtenirLangue("REVUE DE PRESSES|PRESS REVIEWS")%></h2>
+     <h2><%= outils.obtenirLangue("REVUES DE PRESSE|PRESS REVIEW")%></h2>
     <div class="dataPager">
         <asp:DataPager runat="server" ID="dataPagerHaut" PageSize="3" PagedControlID="lvRevueDePresse">
             <Fields>
@@ -38,7 +38,7 @@
                         </div>
                         <div>
                             <h6><%= outils.obtenirLangue("Lien vers la revue de presse|Link to the press review") %></h6>
-                            <a target="_blank" href='<%# IIf(Eval("urlDocument").ToString.Contains("http://"), Eval("urlDocument"), "../Upload/" & Eval("urldocument"))%>'><%# Eval("urlDocument") %></a>
+                            <a target="_blank" href='<%# IIf(Eval("urlDocument").ToString.Contains("http://"), Eval("urlDocument"), "../Upload/PDF/" & Eval("urldocument"))%>'><%# Eval("urlDocument") %></a>
                         </div>
                     </div>
                 </div>

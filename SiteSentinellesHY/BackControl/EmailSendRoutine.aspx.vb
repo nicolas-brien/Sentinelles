@@ -18,7 +18,7 @@ Public Class EmailSendRoutine
 
         Dim filePropertiesName As String = "properties.txt"
         Dim fileMail As String = "mailmsg.txt"
-        Dim maxEmailSend As Integer = 5
+        Dim maxEmailSend As Integer = 50
 
         Dim mailList As List(Of Utilisateur) = New List(Of Utilisateur)
 
@@ -85,7 +85,7 @@ Public Class EmailSendRoutine
                                     If Integer.TryParse(s, id) Then
                                         mailList = (
                                         From m In leContexte.UtilisateurJeu
-                                        Where m.idUtilisateur > id
+                                        Where m.idUtilisateur > Integer.Parse(id)
                                         Select m
                                     ).ToList()
                                     End If
