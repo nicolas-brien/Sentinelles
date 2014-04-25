@@ -2,6 +2,7 @@
 
 Imports System
 Imports System.IO
+Imports System.IO.Compression
 Imports System.Web
 
 ' Create our own utility for exceptions
@@ -18,50 +19,57 @@ Public NotInheritable Class ExceptionUtility
         ' Include enterprise logic for logging exceptions
         ' Get the absolute path to the log file
         Dim logFile = "~/Log/ErrorLog.txt"
-        Dim logTemp = "~/Log/ErrorTemp.txt"
         logFile = HttpContext.Current.Server.MapPath(logFile)
-        logTemp = HttpContext.Current.Server.MapPath(logTemp)
 
-        Dim objTempEmptyWriter = New StreamWriter(logTemp) 'Not appending to clear last tempory list of entries 
-        objTempEmptyWriter.WriteLine("**** " & DateTime.Now & " ****")
+        'Construit le message d'erreur
+        Dim newError = String.Empty
+        newError += "**** " & DateTime.Now & " ****"
+
         If exc.InnerException IsNot Nothing Then
-            objTempEmptyWriter.Write("Inner Exception Type: ")
-            objTempEmptyWriter.WriteLine(exc.InnerException.GetType.ToString)
-            objTempEmptyWriter.Write("Inner Exception: ")
-            objTempEmptyWriter.WriteLine(exc.InnerException.Message)
-            objTempEmptyWriter.Write("Inner Source: ")
-            objTempEmptyWriter.WriteLine(exc.InnerException.Source)
+            newError += "Inner Exception Type: "
+            newError += exc.InnerException.GetType.ToString() & "\n"
+            newError += "Inner Exception: "
+            newError += exc.InnerException.Message & "\n"
+            newError += "Inner Source: "
+            newError += exc.InnerException.Source & "\n"
             If exc.InnerException.StackTrace IsNot Nothing Then
-                objTempEmptyWriter.WriteLine("Inner Stack Trace: ")
-                objTempEmptyWriter.WriteLine(exc.InnerException.StackTrace)
+                newError += "Inner Stack Trace: "
+                newError += exc.InnerException.StackTrace & "\n"
             End If
         End If
-        objTempEmptyWriter.Write("Exception Type: ")
-        objTempEmptyWriter.WriteLine(exc.GetType.ToString)
-        objTempEmptyWriter.WriteLine("Exception: " & exc.Message)
-        objTempEmptyWriter.WriteLine("Source: " & source)
+        newError += "Exception Type: "
+        newError += exc.GetType.ToString() + "\n"
+        newError += "Exception: " & exc.Message & "\n"
+        newError += "Source: " & source & "\n"
         If exc.StackTrace IsNot Nothing Then
-            objTempEmptyWriter.WriteLine("Stack Trace: ")
-            objTempEmptyWriter.WriteLine(exc.StackTrace)
+            newError += "Stack Trace: " & exc.StackTrace & "\n"
         End If
-        objTempEmptyWriter.WriteLine("")
-        objTempEmptyWriter.WriteLine("")
-        objTempEmptyWriter.Close()
+        newError += "*******************************************"
 
-        Dim creationLog As New System.IO.StreamWriter(logFile, True)
-        creationLog.Close()
+        'Vérifie si le fichier log existe, sinon le créer
+        If Not File.Exists(logFile) Then
+            File.Create(logFile).Dispose()
+        End If
 
-        Dim objReader = New StreamReader(logFile, True)
-        Dim objTempWriter = New StreamWriter(logTemp, True) 'Appening to add the current entries to this tempory list
-        objTempWriter.Write(objReader.ReadToEnd) 'Write to stop excess empty lines at end of file
-        objTempWriter.Close()
-        objReader.Close()
-        Dim objTempReader As New System.IO.StreamReader(logTemp, True)
-        Dim objWriter2 As New System.IO.StreamWriter(logFile, True)
-        objWriter2.Write(objTempReader.ReadToEnd)
-        objTempReader.Close()
-        objWriter2.Close()
-        System.IO.File.Delete(logTemp)
+        Dim logText = String.Empty
+        If File.Exists(logFile) Then
+            'Va chercher le stream du fichier
+            Dim stream = New FileStream(logFile, FileMode.Append, FileAccess.ReadWrite)
+            Dim gzip = New GZipStream(stream, CompressionMode.Compress)
+
+            'Ajoute le nouveau message au avant la lecture du fichier
+            Dim reader = New StreamReader(logFile, True)
+            logText += newError & "\n"
+            logText += reader.ReadToEnd()
+
+            'Efface le fichier
+            System.IO.File.WriteAllText(@logFile,string.Empty)
+
+            'Réempli le fichier log
+            Dim objTempWriter = New StreamWriter(gzip)
+            objTempWriter.Write(logText)
+            objTempWriter.Close()
+        End If
     End Sub
 
     ' Notify System Operators about an exception
