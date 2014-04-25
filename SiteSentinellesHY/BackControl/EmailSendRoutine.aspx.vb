@@ -75,10 +75,6 @@ Public Class EmailSendRoutine
                                     File.Delete(Server.MapPath(folder + filePropertiesName))
                                 End If
 
-                                Using fs As FileStream = File.Create(Server.MapPath(folder + filePropertiesName))
-                                    Dim info As [Byte]() = New UTF8Encoding(True).GetBytes("EmailSend=false")
-                                    fs.Write(info, 0, info.Length)
-                                End Using
                             Else
                                 If Not isFileEmpty And Not s.Equals(" ") Then
                                     mailList = New List(Of Utilisateur)
@@ -186,6 +182,11 @@ Public Class EmailSendRoutine
                         Else
                             If File.Exists(Server.MapPath(folder + filename)) Then
                                 File.Delete(Server.MapPath(folder + filename))
+
+                                Using fs As FileStream = File.Create(Server.MapPath(folder + filePropertiesName))
+                                    Dim info As [Byte]() = New UTF8Encoding(True).GetBytes("EmailSend=false")
+                                    fs.Write(info, 0, info.Length)
+                                End Using
                             End If
                         End If
                     End If
