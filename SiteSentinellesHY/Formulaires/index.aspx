@@ -74,7 +74,7 @@
                             <asp:Label ID="lblEvenement" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("contenuFR|contenuEN")),500) & IIf(outils.obtenirLangue("contenuFR|contenuEN").Count > 500, "...", "") %>'></asp:Label>
                         </div>
                         <div>
-                            <br /><asp:Label ID="lblDateEvenement" runat="server"><b><%= outils.obtenirLangue("Date de l'événement : |Event Date : ") %></b><%# Left(Eval("dateEvenement"),10) %></asp:Label>
+                            <br /><asp:Label ID="lblDateEvenement" runat="server"><b><%= outils.obtenirLangue("Date de l'événement : |Event Date : ") %></b><%# Eval("DateEvenementDo")%></asp:Label>
                         </div>
                         <div class="btnListe">
                             <asp:HyperLink ID="liensListeEvenement" runat="server" CssClass="btn btn-primary" NavigateUrl='<%# Eval("idEvenement", "~/Formulaires/FRMevenements.aspx#{0}")%>'><%= outils.obtenirLangue("Lire plus|Read more")%></asp:HyperLink>

@@ -73,7 +73,7 @@
     </script>
     <div id="wrapper">
         <form id="form1" runat="server">
-            <ajaxToolkit:ToolkitScriptManager ID="tsmTest" runat="server" />
+            <ajaxToolkit:ToolkitScriptManager ID="tsmTest" runat="server" EnablePageMethods="true" EnableScriptGlobalization="true" EnableScriptLocalization="true" />
             <%-------------------------------------Header---------------------------------%>
             <div id="header2">
                 <div id="header-contenant">
@@ -752,7 +752,7 @@
                                         <div>
                                             <asp:Label ID="lblDateEvenement" runat="server"><%= outils.obtenirLangue("Date de l'événement |Event date ")%></asp:Label>
                                             <asp:TextBox ID="tbDateEvenement" CssClass="tbEvenement" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.DateEvenementDo%>' runat="server" />
-                                            <asp:CalendarExtender ID="calextTbEvenement" runat="server" TargetControlID="tbDateEvenement" Format="MMMM, yyyy"></asp:CalendarExtender>
+                                            <asp:CalendarExtender ID="calextTbEvenement" runat="server" TargetControlID="tbDateEvenement" Format="D" OnInit="calextTbEvenement_Init" ></asp:CalendarExtender>
                                         </div>
                                         <div class="boutonsNouvelleMargin">
                                             <asp:LinkButton ID="btnModifierNouvelle" runat="server"
