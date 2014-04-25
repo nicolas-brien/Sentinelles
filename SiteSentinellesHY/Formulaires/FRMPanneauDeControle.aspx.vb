@@ -697,10 +697,6 @@ Public Class FRMPanneauDeControle
         If lvRDP.Items.Count > 0 And Not Page.IsPostBack Then
             CType(lvRDP.FindControl("lbRDPTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
         End If
-
-        If ViewState("modeRDP") <> "AjoutRDP" Then
-            lvInfoRDP.DataBind()
-        End If
     End Sub
 
     Private Sub lvRDP_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvRDP.SelectedIndexChanged

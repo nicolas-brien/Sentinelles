@@ -186,17 +186,10 @@
     <Content Include="Images\PastilleInfoSuicideFR.png" />
     <Content Include="Images\servicecanada.png" />
     <Content Include="Images\TriangleFooter.png" />
-    <Content Include="Upload\45950.jpg" />
-    <Content Include="Upload\AvantCrop-26073334351-svetik.png" />
-    <Content Include="Upload\AvantCrop-50670334351-svetik.png" />
-    <Content Include="Upload\AvantCrop-53521Carrousel1.jpg" />
-    <Content Include="Upload\default.png" />
     <Content Include="Log\ErrorLog.txt" />
     <Content Include="Upload\ImagesCarrousel\Carrousel1.jpg" />
     <Content Include="Upload\ImagesCarrousel\Carrousel2.jpg" />
     <Content Include="Upload\ImagesCarrousel\Carrousel3.jpg" />
-    <Content Include="Upload\Sans titre70432.jpg" />
-    <Content Include="Upload\ErrorLog.txt" />
     <Content Include="Upload\ImagesProfil\35945.jpg" />
     <Content Include="Upload\ImagesProfil\default.png" />
     <Content Include="Upload\ImagesProfil\Sans titre70432.jpg" />
@@ -378,11 +371,13 @@
     <Content Include="packages.config" />
     <Content Include="Upload\PDF\3VE0401P0204b.pdf" />
     <Content Include="Upload\PDF\Communiqué de presse -Site int.pdf" />
-    <Content Include="Upload\Doc Openerp7_PierreLeca.pdf" />
+    <Content Include="Polices\AGENCYR.eot" />
+    <Content Include="Polices\AGENCYR.TTF" />
+    <Content Include="Polices\Lucida_webfont.eot" />
+    <Content Include="Polices\Lucida_webfont.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="backups\" />
-    <Folder Include="Polices\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModeleSentinellesHY\ModeleSentinellesHY.vbproj">
