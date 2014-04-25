@@ -327,12 +327,12 @@
                                                 <div id="collapsePensee" class="accordion-body collapse">
                                                     <div class="accordion-inner">
                                                         <div>
-                                                            <asp:Label ID="Label4" runat="server"><%= outils.obtenirLangue("Contenu de la pensée (français) : |Content of the thought (french) : ")%>
+                                                            <asp:Label ID="Label4" CssClass="display_block" runat="server"><%= outils.obtenirLangue("Contenu de la pensée (français) : |Content of the thought (french) : ")%>
                                                             </asp:Label>
                                                             <asp:TextBox ID="txtboxPenseeFR" CssClass="txtboxPenseeFR" TextMode="MultiLine" Height="40px" runat="server" Text='<%# BindItem.penseeFR%>' />
                                                         </div>
                                                         <div>
-                                                            <asp:Label ID="Label5" runat="server"><%= outils.obtenirLangue("Contenu de la pensée (english) : |Content of the thought (english) : ")%></asp:Label>
+                                                            <asp:Label ID="Label5" CssClass="display_block" runat="server"><%= outils.obtenirLangue("Contenu de la pensée (english) : |Content of the thought (english) : ")%></asp:Label>
                                                             <asp:TextBox ID="txtboxPenseeEN" CssClass="txtboxPenseeEN" TextMode="MultiLine" Height="40px" runat="server" Text='<%# BindItem.penseeEN%>' />
                                                         </div>
                                                         <asp:LinkButton ID="LinkButton4" runat="server"
@@ -352,13 +352,13 @@
                                                 <div id="collapseTemoignage" class="accordion-body collapse">
                                                     <div class="accordion-inner">
                                                         <div>
-                                                            <asp:Label ID="Label9" runat="server">
+                                                            <asp:Label ID="Label9" CssClass="display_block" runat="server">
                                                                 <%= outils.obtenirLangue("Contenu du témoignage (français) : |Content of the testimonial (french) : ")%>
                                                             </asp:Label>
                                                             <asp:TextBox ID="txtboxtemoignageFR" CssClass="txtboxtemoignageFR" TextMode="MultiLine" Height="40px" runat="server" Text='<%# BindItem.temoignageFR%>' />
                                                         </div>
                                                         <div>
-                                                            <asp:Label ID="Label6" runat="server">
+                                                            <asp:Label ID="Label6" CssClass="display_block" runat="server">
                                                                <%= outils.obtenirLangue("Contenu du témoignage (anglais) : |Content of the testimonial (english) : ")%>
                                                             </asp:Label>
                                                             <asp:TextBox ID="txtboxtemoignageEN" runat="server" CssClass="txtboxtemoignageEN" TextMode="MultiLine" Height="40px" Text='<%# BindItem.temoignageEN%>' />

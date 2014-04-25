@@ -441,6 +441,13 @@ Public Class FRMForum
                                                                                                           & "|" & CType(e.Item.DataItem, ModeleSentinellesHY.Publication).Utilisateur.Statut.nomStatutEN)
         End If
 
+        If unePublication.Utilisateur.idStatut = 1 Then
+            CType(e.Item.FindControl("lblStatut"), Label).CssClass = "lblCouleurStatut_administrateur"
+        ElseIf unePublication.Utilisateur.idStatut = 2 Then
+            CType(e.Item.FindControl("lblStatut"), Label).CssClass = "lblCouleurStatut_intervenant"
+        End If
+
+
         'On affiche l'image de la publication épinglée
         If unePublication.epinglee = True Then
             CType(e.Item.FindControl("pinnedIcon"), HtmlImage).Attributes("style") = "display:normal;position:relative;top:5px;"
