@@ -7,7 +7,7 @@
       <Diagram DiagramId="4053b434fe1b49e69ac854956bbdf901" Name="Diagramme1" ZoomLevel="93" DisplayType="true" >
         <EntityTypeShape EntityType="model_sentinelleshy.Événement" Width="1.5" PointX="5.5" PointY="19.625" />
         <EntityTypeShape EntityType="model_sentinelleshy.Nouvelle" Width="1.5" PointX="3.125" PointY="19.75" />
-        <EntityTypeShape EntityType="model_sentinelleshy.RevueDePresse" Width="1.5" PointX="7.875" PointY="19.625" />
+        <EntityTypeShape EntityType="model_sentinelleshy.RevueDePresse" Width="2.5" PointX="7.875" PointY="19.625" />
         <EntityTypeShape EntityType="model_sentinelleshy.Statut" Width="1.5" PointX="7.5" PointY="23.25" />
         <EntityTypeShape EntityType="model_sentinelleshy.sysdiagrams" Width="1.5" PointX="0.75" PointY="16.75" />
         <EntityTypeShape EntityType="model_sentinelleshy.Utilisateur" Width="1.5" PointX="3.75" PointY="23" />
