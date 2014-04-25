@@ -63,7 +63,7 @@ Public NotInheritable Class ExceptionUtility
             logText += reader.ReadToEnd()
 
             'Efface le fichier
-            System.IO.File.WriteAllText(@logFile,string.Empty)
+            System.IO.File.WriteAllText(logFile, String.Empty)
 
             'Réempli le fichier log
             Dim objTempWriter = New StreamWriter(gzip)
