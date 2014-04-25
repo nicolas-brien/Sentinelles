@@ -8,6 +8,7 @@ Imports System.Drawing.Drawing2D
 Imports System.Data.Entity.Validation
 Imports System.ComponentModel.DataAnnotations
 Imports ModeleSentinellesHY
+Imports AjaxControlToolkit
 
 Public Class FRMPanneauDeControle
     Inherits ModeleSentinellesHY.FRMdeBase
@@ -70,6 +71,7 @@ Public Class FRMPanneauDeControle
             ModeleSentinellesHY.outils.leContexte.SaveChanges()
 
         End If
+
     End Sub
 
     Private Sub MultiView_ActiveViewChanged(sender As Object, e As EventArgs) Handles MultiView.ActiveViewChanged
@@ -94,7 +96,7 @@ Public Class FRMPanneauDeControle
             lnkButton_nouvelle.CssClass = "lnkBtn_menuConfig_active lnkBtn_menuConfig"
             lblMessageErreurNouvelle.Text = ""
             ViewNouvelle.DataBind()
-        ElseIf MultiView.ActiveViewIndex = 2 Then
+        ElseIf MultiView.ActiveViewIndex = 2 Then 'view évènement
             lnkButton_evenement.CssClass = "lnkBtn_menuConfig_active lnkBtn_menuConfig"
             lblMessageErreurEvenement.Text = ""
             ViewEvenement.DataBind()
@@ -1063,4 +1065,5 @@ Public Class FRMPanneauDeControle
 
     End Sub
 #End Region
+
 End Class

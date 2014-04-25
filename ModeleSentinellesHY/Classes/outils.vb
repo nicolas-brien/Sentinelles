@@ -101,6 +101,7 @@ Public Class outils
         Else
             Return deuxLangues.First
         End If
+
     End Function
 
     'Fonction qui encrypte le mot de passe afin de le stocké dans la BD et qui le retourne

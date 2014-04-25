@@ -18,12 +18,13 @@ Public Class Global_asax
         Dim langue As String = "FR"
         If aCookie IsNot Nothing Then
             langue = aCookie.Values("langue")
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(langue & "-ca")
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(langue & "-ca")
-        Else
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(langue & "-ca")
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(langue & "-ca")
         End If
+        Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(langue & "-ca")
+        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(langue & "-ca")
+
+
+
+
     End Sub
 
     Sub Application_AuthenticateRequest(ByVal sender As Object, ByVal e As EventArgs)
