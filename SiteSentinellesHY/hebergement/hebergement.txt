@@ -9,7 +9,8 @@ pass: S7tX0j49rh
 BASE DE DONNÉES
 
 BD: Sentinelleshy
-UID: Sentinelle
+HOST: www9.likuid.com,1533
+UID: sentinelle
 PASS: 289052599
 
 ----------------------
