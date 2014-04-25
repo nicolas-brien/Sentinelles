@@ -82,7 +82,7 @@ Public Class EmailSendRoutine
                                 If Not isFileEmpty Then
                                     mailList = New List(Of Utilisateur)
                                     Dim id As Integer = 0
-                                    If Integer.TryParse(s, id) Then
+                                    If Integer.TryParse(s.Trim(), id) Then
                                         mailList = (
                                         From m In leContexte.UtilisateurJeu
                                         Where m.idUtilisateur > Integer.Parse(id)
@@ -188,8 +188,11 @@ Public Class EmailSendRoutine
                     End If
                 Catch ex As Exception
                     Using fs As FileStream = File.Create(Server.MapPath(folder + "log.txt"))
+                        Dim st As StackTrace = New StackTrace(New StackFrame(True))
+                        Dim sf As StackFrame = st.GetFrame(0)
+                        Dim errors = "************************\nNom du fichier: " & sf.GetFileName & Environment.NewLine & "\nMéthode: " & sf.GetMethod().Name & Environment.NewLine & "\nLigne d'erreur: " & sf.GetFileLineNumber() & Environment.NewLine & "\nColonne en erreur: " & sf.GetFileColumnNumber & Environment.NewLine & ex.Message & "\n******************"
                         Dim info As [Byte]()
-                        info = New UTF8Encoding(True).GetBytes(ex.Message)
+                        info = New UTF8Encoding(True).GetBytes(errors)
                         fs.Write(info, 0, info.Length)
                     End Using
                     Console.WriteLine(ex.Message)
