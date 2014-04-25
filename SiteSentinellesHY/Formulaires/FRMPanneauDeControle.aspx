@@ -387,8 +387,7 @@
                                                             <div class="accordion-inner">
                                                                 <div>
                                                                     <asp:Label ID="lblFormatImgMessage" runat="server">
-                                                                <%= outils.obtenirLangue("*Les images du carrousel doivent être approximativement de 960 x 400 et de types jpg|*The images of the caroussel must be approximately 960 x 200 and with the type jpg")%>
-                                                                    </asp:Label>
+                                                                      </asp:Label>
                                                                 </div>
                                                                 <div class="marginbottom_divImgCarrousel">
                                                                     <asp:Label ID="Label10" runat="server"><%= outils.obtenirLangue("Image carrousel 1 : |Photo caroussel 1 : ")%></asp:Label>
@@ -920,11 +919,11 @@
                                         <hr />
                                         <asp:Label runat="server"><%= outils.obtenirLangue("Fichier ou lien vers la revue de presse : |File or link to the press review : ")%></asp:Label>
                                         <asp:TextBox ID="txtboxUrlDocument" CssClass="txtBoxModifier" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.urlDocument%>' Width="300" runat="server" />
-                                        <div>
-                                            <a onclick="$('[id$=fuplRDP]').click(); return false;"
-                                                href="#"><%= outils.obtenirLangue("Choisir|Select") %></a> |
-                                                <asp:LinkButton ID="lnkUploadRDP" runat="server" Text="Upload" OnClick="lnkUploadRDP_Click" />
-                                            <asp:FileUpload ID="fuplRDP" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                        <div>                         
+                                            <a onclick="$('[id$=fuplRDP]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir un fichier PDF|Select a PDF file") %></a>
+                                                                           
+                                            <asp:FileUpload ID="fuplRDP" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" onpropertychange="$('[id$=uploadButton1]').click(); return false;" onchange="$('[id$=uploadButton1]').click(); return false;" Style="display: none"/>
+                                            <asp:Button ID="uploadButton1" runat="server" Text="Carrousel1" ClientIDMode="Static" OnClick="lnkUploadPDF_Click" Style="display: none" />
                                         </div>
                                         <div class="boutonsNouvelleMargin">
                                             <asp:LinkButton ID="btnModifierNouvelle" runat="server"
@@ -1089,7 +1088,7 @@
                                             </div>
                                             <div class="span6" style="float: right;display:inline;">
                                                 <span class="asterisque">*</span>
-                                                <asp:RadioButtonList ID="rbtnSexe" runat="server" RepeatDirection="Horizontal" CssClass="radio rbtnSexe"
+                                                <asp:RadioButtonList ID="rbtnSexe" runat="server" RepeatDirection="Horizontal" CssClass="radio rbtnSexe txtboxUtilisateur"
                                                     SelectedValue='<%# BindItem.sexe%>' OnInit="rbtnSexe_Init">
                                                 </asp:RadioButtonList>
                                             </div>

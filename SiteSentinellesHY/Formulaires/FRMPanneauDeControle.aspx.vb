@@ -698,9 +698,6 @@ Public Class FRMPanneauDeControle
             CType(lvRDP.FindControl("lbRDPTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
         End If
 
-        If ViewState("modeRDP") <> "AjoutRDP" Then
-            lvInfoRDP.DataBind()
-        End If
     End Sub
 
     Private Sub lvRDP_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvRDP.SelectedIndexChanged
@@ -821,7 +818,7 @@ Public Class FRMPanneauDeControle
         lvInfoRDP.DataBind()
     End Sub
 
-    Protected Sub lnkUploadRDP_Click(sender As Object, e As EventArgs)
+    Protected Sub lnkUploadPDF_Click(sender As Object, e As EventArgs)
         'Upload pour les fichiers pdf pour les revues de presse
         Dim controlUploadRDP = CType(lvInfoRDP.Items(0).FindControl("fuplRDP"), FileUpload)
         Dim extension As String = ""
