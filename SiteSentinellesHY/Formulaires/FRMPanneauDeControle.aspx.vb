@@ -781,8 +781,8 @@ Public Class FRMPanneauDeControle
             lblMessageErreurRDP.ForeColor = Color.Green
             ViewState("modeRDP") = ""
             'Conditions pour Supprimer Avatar du fichier Upload
-            If RDPAValider.urlDocument <> RDPAValider.urlDocument AndAlso RDPAValider.urlDocument <> "" _
-                AndAlso Not RDPAValider.urlDocument.Contains("http://") Then
+            If RDPAValider.urlDocumentTemp <> RDPAValider.urlDocument AndAlso RDPAValider.urlDocument <> "" _
+                AndAlso Not RDPAValider.urlDocumentTemp.Contains("http") Then
                 ModeleSentinellesHY.outils.SupprimerFichierUpload(RDPAValider.urlDocumentTemp)
             End If
             lvRDP.DataBind()
