@@ -261,7 +261,8 @@
 }
 .txtboxTitreModal
 {
-    width:400px;
+    width:700px;
+    font-weight:bolder;
 }
 
 /*-------------------------------------Catégories---------------------------------------*/
