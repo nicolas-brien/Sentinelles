@@ -7,8 +7,9 @@
 
     Protected Sub lbtnEnvoyer_Click(sender As Object, e As EventArgs)
         Try
+            Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
             Dim courriel = tbCourriel.Text
-            Dim usager = (From util In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu
+            Dim usager = (From util In leContexte.UtilisateurJeu
                           Where util.courriel = courriel
                           Select util).ToList.FirstOrDefault
             If usager Is Nothing Then
@@ -21,7 +22,7 @@
                 usager.SelDeMer = nouveauSel
                 usager.motDePasse = ModeleSentinellesHY.outils.encryptage(nouveauMotDePasse & nouveauSel)
 
-                ModeleSentinellesHY.outils.leContexte.SaveChanges()
+                leContexte.SaveChanges()
                 lblSucces.Text = "Un courriel vient de vous être envoyé avec un nouveau mot de passe!"
                 lblErreur.Visible = False
 

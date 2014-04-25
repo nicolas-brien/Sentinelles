@@ -11,7 +11,8 @@ Public Class index
 
 #Region "Pensée"
     Protected Sub lblPenseeAccueil_Init(sender As Object, e As EventArgs)
-        Dim lesInfos = (From inf In ModeleSentinellesHY.outils.leContexte.InfoGeneraleJeu).FirstOrDefault
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        Dim lesInfos = (From inf In leContexte.InfoGeneraleJeu).FirstOrDefault
         CType(sender, Label).Text = ModeleSentinellesHY.outils.obtenirLangue(lesInfos.penseeFR & "|" & lesInfos.penseeEN)
 
     End Sub
@@ -19,9 +20,10 @@ Public Class index
 
 #Region "Nouvelles"
     Public Function getPremiereNouvelle() As ModeleSentinellesHY.Nouvelle
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeNouvelles As New List(Of ModeleSentinellesHY.Nouvelle)
 
-        listeNouvelles = (From nou In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By nou.dateRedaction Descending).ToList
+        listeNouvelles = (From nou In leContexte.NouvelleJeu Order By nou.dateRedaction Descending).ToList
 
         If listeNouvelles.Count = 0 Then
             divContantNouvelles.Visible = False
@@ -31,9 +33,10 @@ Public Class index
     End Function
 
     Public Shared Function getNouvelles() As IQueryable(Of ModeleSentinellesHY.Nouvelle)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeNouvelles As New List(Of ModeleSentinellesHY.Nouvelle)
 
-        listeNouvelles = (From nou In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By nou.dateRedaction Descending).Take(3).ToList
+        listeNouvelles = (From nou In leContexte.NouvelleJeu Order By nou.dateRedaction Descending).Take(3).ToList
 
         If listeNouvelles.Count > 0 Then
             listeNouvelles.RemoveAt(0)
@@ -45,9 +48,10 @@ Public Class index
 
 #Region "Evenements"
     Public Function getPremierEvenement() As ModeleSentinellesHY.Événement
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeEvenements As New List(Of ModeleSentinellesHY.Événement)
 
-        listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateRedaction Descending).ToList
+        listeEvenements = (From eve In leContexte.ÉvénementJeu Order By eve.dateRedaction Descending).ToList
 
         If listeEvenements.Count = 0 Then
             divContenantEvenement.Visible = False
@@ -57,9 +61,10 @@ Public Class index
     End Function
 
     Public Shared Function getEvenements() As IQueryable(Of ModeleSentinellesHY.Événement)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeEvenements As New List(Of ModeleSentinellesHY.Événement)
 
-        listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.ÉvénementJeu Order By eve.dateRedaction Descending).Take(3).ToList
+        listeEvenements = (From eve In leContexte.ÉvénementJeu Order By eve.dateRedaction Descending).Take(3).ToList
 
         If listeEvenements.Count > 0 Then
             listeEvenements.RemoveAt(0)
@@ -71,9 +76,10 @@ Public Class index
 
 #Region "Revue de Presse"
     Public Function getPremiereRDP() As ModeleSentinellesHY.RevueDePresse
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeRevuesDePresse As New List(Of ModeleSentinellesHY.RevueDePresse)
 
-        listeRevuesDePresse = (From rdp In ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).ToList
+        listeRevuesDePresse = (From rdp In leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).ToList
 
         If listeRevuesDePresse.Count = 0 Then
             divContenantRDP.Visible = False
@@ -83,9 +89,10 @@ Public Class index
     End Function
 
     Public Shared Function getRDP() As IQueryable(Of ModeleSentinellesHY.RevueDePresse)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeRevuesDePresse As New List(Of ModeleSentinellesHY.RevueDePresse)
 
-        listeRevuesDePresse = (From rdp In ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).Take(3).ToList
+        listeRevuesDePresse = (From rdp In leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).Take(3).ToList
 
         If listeRevuesDePresse.Count > 0 Then
             listeRevuesDePresse.RemoveAt(0)

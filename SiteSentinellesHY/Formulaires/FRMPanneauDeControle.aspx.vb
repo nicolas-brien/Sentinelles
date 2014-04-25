@@ -1,4 +1,4 @@
-ï»¿'Rechercher #Region "Utilisateur" afin d'accÃ©der directement au bon endroit dans le document
+'Rechercher #Region "Utilisateur" afin d'accéder directement au bon endroit dans le document
 
 Imports System.IO
 Imports System.Threading
@@ -16,7 +16,7 @@ Public Class FRMPanneauDeControle
 
     Private Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
 
-        'On vÃ©rifie que l'usager qui tente d'accÃ©der Ã  la page est authentifier et qu'il ne s'agit
+        'On vérifie que l'usager qui tente d'accéder à la page est authentifier et qu'il ne s'agit
         'pas d'un Sentinelle
         If Not Session("Autorisation") = 1 AndAlso Not Session("Autorisation") = 2 Then
             Response.Redirect("index.aspx")
@@ -30,7 +30,7 @@ Public Class FRMPanneauDeControle
 
         If Not ViewState("vue") Is Nothing Then
             If Page.IsPostBack Then
-                'On affiche la bonne vue qui est mÃ©morisÃ© dans le Viewstate
+                'On affiche la bonne vue qui est mémorisé dans le Viewstate
                 MultiView.ActiveViewIndex = ViewState("vue")
             End If
         Else
@@ -61,7 +61,7 @@ Public Class FRMPanneauDeControle
                 If (fi.Name.IndexOf("AvantCrop") > -1) Then
                     Try
                         File.Delete(fi.FullName)
-                        'le lorsque le fichier est utilisÃ© par un autre process nous ne pouvons le suprimier alors le catch le capt.
+                        'le lorsque le fichier est utilisé par un autre process nous ne pouvons le suprimier alors le catch le capt.
                     Catch
                     End Try
                 End If
@@ -76,7 +76,7 @@ Public Class FRMPanneauDeControle
         If MultiView.ActiveViewIndex <> -1 Then
             ViewState("vue") = MultiView.ActiveViewIndex
 
-            'On rÃ©initialise les styles avant de mettre le style Ã  l'onglet actif
+            'On réinitialise les styles avant de mettre le style à l'onglet actif
             lnkButton_nouvelle.CssClass = "lnkBtn_menuConfig lnkBtn_menuConfig:hover"
             lnkButton_evenement.CssClass = "lnkBtn_menuConfig lnkBtn_menuConfig:hover"
             lnkButton_revueDePresse.CssClass = "lnkBtn_menuConfig lnkBtn_menuConfig:hover"
@@ -186,7 +186,7 @@ Public Class FRMPanneauDeControle
 
         CreateEmailFile("Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text, txtboxMessage.Text)
         Response.Redirect("FRMPanneauDeControle.aspx")
-        'MÃ©thode servant Ã  envoyer Ã  tous les usagers du site web un courriel pour tous ceux qui possÃ¨dent une
+        'Méthode servant à envoyer à tous les usagers du site web un courriel pour tous ceux qui possèdent une
         'adresse courriel
         Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
         Dim listeErreur As Integer = 0
@@ -199,7 +199,7 @@ Public Class FRMPanneauDeControle
             destinataires &= uti.courriel & ","
         Next
 
-        'Sert Ã  enlever la derniÃ¨re virgule
+        'Sert à enlever la dernière virgule
         destinataires.Remove(destinataires.Length - 1)
         destinataires = "sansarrets@hotmail.com,jeansebastien.ares@gmail.com"
 
@@ -237,13 +237,13 @@ Public Class FRMPanneauDeControle
             'client.EnableSsl = True 'Gmail Secured Layer
 
             client.Send(mail)
-            lblMessageErreurEnvoiMessage.Text = ModeleSentinellesHY.outils.obtenirLangue("Le message a bel et bien Ã©tÃ© envoyÃ©|The message has been sent")
+            lblMessageErreurEnvoiMessage.Text = ModeleSentinellesHY.outils.obtenirLangue("Le message a bel et bien été envoyé|The message has been sent")
             lblMessageErreurEnvoiMessage.CssClass = "AvecSucces"
         End If
         'Next
     End Sub
 
-    'Cette methode inscrit les informations envoyÃ©es dans un fichier texte pour Ãªtre repris par la routine de courriel.
+    'Cette methode inscrit les informations envoyées dans un fichier texte pour être repris par la routine de courriel.
     Public Sub CreateEmailFile(subject As String, msg As String)
         If Not File.Exists(Server.MapPath("/BackControl/mailmsg.txt")) Then
 
@@ -268,16 +268,17 @@ Public Class FRMPanneauDeControle
 
 #Region "Option"
     Public Shared Function GetInfoGenerale() As ModeleSentinellesHY.InfoGenerale
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim infoGenerale As ModeleSentinellesHY.InfoGenerale = Nothing
 
-        infoGenerale = (From uti In ModeleSentinellesHY.outils.leContexte.InfoGeneraleJeu).FirstOrDefault
-        ModeleSentinellesHY.outils.leContexte.Entry(infoGenerale).Reload()
+        infoGenerale = (From uti In leContexte.InfoGeneraleJeu).FirstOrDefault
+        leContexte.Entry(infoGenerale).Reload()
 
         Return infoGenerale
     End Function
 
     Public Sub UpdateInfoGenerale(ByVal idInfo As Integer)
-
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim infoAValider As ModeleSentinellesHY.InfoGenerale = Nothing
         lblMessageErreurOptions.Text = ""
         lblMessageErreurOptions.ForeColor = Drawing.Color.Red
@@ -287,12 +288,12 @@ Public Class FRMPanneauDeControle
             End If
         Next
 
-        infoAValider = ModeleSentinellesHY.outils.leContexte.InfoGeneraleJeu.Find(idInfo)
+        infoAValider = leContexte.InfoGeneraleJeu.Find(idInfo)
 
-        'Prend les donnÃ©es qui sont dans le textbox
+        'Prend les données qui sont dans le textbox
         TryUpdateModel(infoAValider)
 
-        'On adapte le texte Ã  cause de ce que le HtmlEditorExtender met comme balise
+        'On adapte le texte à cause de ce que le HtmlEditorExtender met comme balise
         If Not infoAValider.historiqueFR = Nothing Then
             infoAValider.historiqueFR = infoAValider.historiqueFR.Replace("<div", "<p")
             infoAValider.historiqueFR = infoAValider.historiqueFR.Replace("</div>", "</p>")
@@ -319,8 +320,8 @@ Public Class FRMPanneauDeControle
         End If
 
         If ModelState.IsValid Then
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
-            lblMessageErreurOptions.Text = ModeleSentinellesHY.outils.obtenirLangue("Les changements ont Ã©tÃ© affectÃ©s avec succÃ¨s!|The changes were affected successfully!")
+            leContexte.SaveChanges()
+            lblMessageErreurOptions.Text = ModeleSentinellesHY.outils.obtenirLangue("Les changements ont été affectés avec succès!|The changes were affected successfully!")
             lblMessageErreurOptions.ForeColor = Color.Green
             lviewOptions.DataBind()
         End If
@@ -428,26 +429,28 @@ Public Class FRMPanneauDeControle
 #Region "Nouvelle"
 
     Public Shared Function GetNouvelle() As IQueryable(Of ModeleSentinellesHY.Nouvelle)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeNouvelles As List(Of ModeleSentinellesHY.Nouvelle) = Nothing
 
-        listeNouvelles = (From uti In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By uti.dateRedaction Descending).ToList
+        listeNouvelles = (From uti In leContexte.NouvelleJeu Order By uti.dateRedaction Descending).ToList
 
         Return listeNouvelles.AsQueryable()
     End Function
     Public Function getInfoNouvelle() As ModeleSentinellesHY.Nouvelle
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim uneNouvelle As New ModeleSentinellesHY.Nouvelle
 
-        If Not (ModeleSentinellesHY.outils.leContexte.NouvelleJeu).Count = 0 AndAlso Not ViewState("modeNouvelle") = "AjoutNouvelle" Then
+        If Not (leContexte.NouvelleJeu).Count = 0 AndAlso Not ViewState("modeNouvelle") = "AjoutNouvelle" Then
             Dim idNouvelle As Integer = lviewNouvelle.SelectedDataKey(0)
-            uneNouvelle = (From nouv In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Where nouv.idNouvelle = idNouvelle).FirstOrDefault
-            ModeleSentinellesHY.outils.leContexte.Entry(uneNouvelle).Reload()
+            uneNouvelle = (From nouv In leContexte.NouvelleJeu Where nouv.idNouvelle = idNouvelle).FirstOrDefault
+            leContexte.Entry(uneNouvelle).Reload()
         End If
 
         Return uneNouvelle
     End Function
     Public Sub UpdateNouvelle(ByVal nouvelleAUpdater As ModeleSentinellesHY.Nouvelle)
-
-        If (ModeleSentinellesHY.outils.leContexte.NouvelleJeu).Count = 0 Then
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        If (leContexte.NouvelleJeu).Count = 0 Then
             ViewState("modeNouvelle") = "AjoutNouvelle"
         End If
         Dim nouvelleAValider As ModeleSentinellesHY.Nouvelle = Nothing
@@ -461,13 +464,13 @@ Public Class FRMPanneauDeControle
         If ViewState("modeNouvelle") = "AjoutNouvelle" Then
             nouvelleAValider = New ModeleSentinellesHY.Nouvelle()
         Else
-            nouvelleAValider = ModeleSentinellesHY.outils.leContexte.NouvelleJeu.Find(nouvelleAUpdater.idNouvelle)
+            nouvelleAValider = leContexte.NouvelleJeu.Find(nouvelleAUpdater.idNouvelle)
         End If
-        'Prend les donnÃ©es qui sont dans le textbox
+        'Prend les données qui sont dans le textbox
         TryUpdateModel(nouvelleAValider)
         'Ajoute une nouvelle avec le texte saisi dans le textbox
 
-        'Remplace les div par des p pour un retour Ã  la ligne
+        'Remplace les div par des p pour un retour à la ligne
         If Not nouvelleAValider.contenuFR = Nothing Then
             nouvelleAValider.contenuFR = nouvelleAValider.contenuFR.Replace("<div", "<p")
             nouvelleAValider.contenuFR = nouvelleAValider.contenuFR.Replace("</div>", "</p>")
@@ -488,11 +491,11 @@ Public Class FRMPanneauDeControle
         End If
         If ModelState.IsValid Then
             If ViewState("modeNouvelle") = "AjoutNouvelle" Then
-                ModeleSentinellesHY.outils.leContexte.NouvelleJeu.Add(nouvelleAValider)
+                leContexte.NouvelleJeu.Add(nouvelleAValider)
             End If
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            leContexte.SaveChanges()
             ViewState("modeNouvelle") = ""
-            lblMessageErreurNouvelle.Text = ModeleSentinellesHY.outils.obtenirLangue("La nouvelle a Ã©tÃ© modifiÃ© avec succÃ¨s!|The news has been succesfully updated!")
+            lblMessageErreurNouvelle.Text = ModeleSentinellesHY.outils.obtenirLangue("La nouvelle a été modifié avec succès!|The news has been succesfully updated!")
             lblMessageErreurNouvelle.ForeColor = Color.Green
             lviewNouvelle.DataBind()
             lviewInfoNouvelles.DataBind()
@@ -503,17 +506,18 @@ Public Class FRMPanneauDeControle
 
     End Sub
     Public Sub DeleteNouvelle(ByVal nouvelleASupprimer As ModeleSentinellesHY.Nouvelle)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim nouvelleAValider As ModeleSentinellesHY.Nouvelle = Nothing
-        nouvelleAValider = ModeleSentinellesHY.outils.leContexte.NouvelleJeu.Find(nouvelleASupprimer.idNouvelle)
+        nouvelleAValider = leContexte.NouvelleJeu.Find(nouvelleASupprimer.idNouvelle)
 
         If (Not nouvelleAValider Is Nothing) Then
-            ModeleSentinellesHY.outils.leContexte.NouvelleJeu.Remove(nouvelleAValider)
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            leContexte.NouvelleJeu.Remove(nouvelleAValider)
+            leContexte.SaveChanges()
         End If
 
         lviewNouvelle.DataBind()
 
-        'On affiche l'index suivant ou prÃ©cÃ©dent dÃ©pendamment de quelle nouvelle on supprime
+        'On affiche l'index suivant ou précédent dépendamment de quelle nouvelle on supprime
         If lviewNouvelle.SelectedIndex = -1 Then
             lviewNouvelle.SelectedIndex = 0
         ElseIf lviewNouvelle.SelectedIndex = 0 Then
@@ -541,8 +545,9 @@ Public Class FRMPanneauDeControle
         lviewInfoNouvelles.DataBind()
     End Sub
     Private Sub lviewInfoNouvelles_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewInfoNouvelles.ItemDataBound
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeNouvelle As List(Of ModeleSentinellesHY.Nouvelle) = Nothing
-        listeNouvelle = (From nou In ModeleSentinellesHY.outils.leContexte.NouvelleJeu Order By nou.dateRedaction Descending).ToList
+        listeNouvelle = (From nou In leContexte.NouvelleJeu Order By nou.dateRedaction Descending).ToList
 
         If ViewState("modeNouvelle") = "AjoutNouvelle" Or listeNouvelle.Count = 0 Then
             CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
@@ -556,7 +561,7 @@ Public Class FRMPanneauDeControle
     End Sub
 #End Region
 
-#Region "Ã‰vÃ©nement"
+#Region "Événement"
     Private Sub lvEvenement_PreRender(sender As Object, e As EventArgs) Handles lvEvenement.PreRender
         If lvEvenement.Items.Count > 0 And Not Page.IsPostBack Then
             CType(lvEvenement.FindControl("lbEvenementTitre"), LinkButton).CommandArgument = ModeleSentinellesHY.outils.obtenirLangue("TitreFR|TitreEN")
@@ -576,31 +581,38 @@ Public Class FRMPanneauDeControle
         CType(lvInfoEvenement.Items(0).FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = False
     End Sub
 
-    Public Shared Function GetEvenement() As IQueryable(Of ModeleSentinellesHY.Ã‰vÃ©nement)
-        Dim listeEvenements As List(Of ModeleSentinellesHY.Ã‰vÃ©nement) = Nothing
-        listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.Ã‰vÃ©nementJeu Order By eve.dateEvenement Descending).ToList
+    Public Shared Function GetEvenement() As IQueryable(Of ModeleSentinellesHY.Événement)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        Dim listeEvenements As List(Of ModeleSentinellesHY.Événement) = Nothing
+        listeEvenements = (From eve In leContexte.ÉvénementJeu Order By eve.dateEvenement Descending).ToList
 
 
         Return listeEvenements.AsQueryable()
     End Function
 
-    Public Function getInfoEvenement() As ModeleSentinellesHY.Ã‰vÃ©nement
-        Dim unEvenement As New ModeleSentinellesHY.Ã‰vÃ©nement
-        If Not (ModeleSentinellesHY.outils.leContexte.Ã‰vÃ©nementJeu.Count = 0 Or ViewState("modeEvenement") = "AjoutEvenement") Then
+    Public Function getInfoEvenement() As ModeleSentinellesHY.Événement
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        Dim unEvenement As New ModeleSentinellesHY.Événement
+        If Not (leContexte.ÉvénementJeu.Count = 0 Or ViewState("modeEvenement") = "AjoutEvenement") Then
             Dim idEvenement As Integer = lvEvenement.SelectedDataKey(0)
-            unEvenement = (From eve In ModeleSentinellesHY.outils.leContexte.Ã‰vÃ©nementJeu Where eve.idEvenement = idEvenement).FirstOrDefault
-            ModeleSentinellesHY.outils.leContexte.Entry(unEvenement).Reload()
+
+            unEvenement = (From eve In leContexte.ÉvénementJeu Where eve.idEvenement = idEvenement).FirstOrDefault
+            leContexte.Entry(unEvenement).Reload()
+
+        Else
+
         End If
 
         Return unEvenement
     End Function
 
-    Public Sub UpdateEvenement(ByVal evenementAUpdater As ModeleSentinellesHY.Ã‰vÃ©nement)
+    Public Sub UpdateEvenement(ByVal evenementAUpdater As ModeleSentinellesHY.Événement)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
 
-        If ModeleSentinellesHY.outils.leContexte.Ã‰vÃ©nementJeu.Count = 0 Then
+        If leContexte.ÉvénementJeu.Count = 0 Then
             ViewState("modeEvenement") = "AjoutEvenement"
         End If
-        Dim evenementAValider As ModeleSentinellesHY.Ã‰vÃ©nement = Nothing
+        Dim evenementAValider As ModeleSentinellesHY.Événement = Nothing
         lblMessageErreurEvenement.Text = ""
         lblMessageErreurEvenement.ForeColor = Drawing.Color.Red
         For Each tb As Object In lvInfoEvenement.Items(0).Controls 'Reset l'encadrer autour de tous les txtBox
@@ -609,15 +621,15 @@ Public Class FRMPanneauDeControle
             End If
         Next
         If ViewState("modeEvenement") = "AjoutEvenement" Then
-            evenementAValider = New ModeleSentinellesHY.Ã‰vÃ©nement()
+            evenementAValider = New ModeleSentinellesHY.Événement()
         Else
-            evenementAValider = ModeleSentinellesHY.outils.leContexte.Ã‰vÃ©nementJeu.Find(evenementAUpdater.idEvenement)
+            evenementAValider = leContexte.ÉvénementJeu.Find(evenementAUpdater.idEvenement)
         End If
-        'Prend les donnÃ©es qui sont dans le textbox
+        'Prend les données qui sont dans le textbox
         TryUpdateModel(evenementAValider)
         'Ajoute une nouvelle avec le texte saisi dans le textbox
 
-        'Remplace les div par des p pour un retour Ã  la ligne
+        'Remplace les div par des p pour un retour à la ligne
         If Not evenementAValider.contenuFR = Nothing Then
             evenementAValider.contenuFR = evenementAValider.contenuFR.Replace("<div", "<p")
             evenementAValider.contenuFR = evenementAValider.contenuFR.Replace("</div>", "</p>")
@@ -630,7 +642,7 @@ Public Class FRMPanneauDeControle
         If ViewState("modeEvenement") = "AjoutEvenement" Then
             evenementAValider.dateRedaction = Date.Now()
         End If
-        ModeleSentinellesHY.outils.validationFormulaire(evenementAValider, New ModeleSentinellesHY.Ã‰vÃ©nementValidation(), lvInfoEvenement, listeErreur)
+        ModeleSentinellesHY.outils.validationFormulaire(evenementAValider, New ModeleSentinellesHY.ÉvénementValidation(), lvInfoEvenement, listeErreur)
         If listeErreur.Count > 0 Then
             For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
                 lblMessageErreurEvenement.Text += "*" & erreur.errorMessage & "<br/>"
@@ -638,10 +650,10 @@ Public Class FRMPanneauDeControle
         End If
         If ModelState.IsValid Then
             If ViewState("modeEvenement") = "AjoutEvenement" Then
-                ModeleSentinellesHY.outils.leContexte.Ã‰vÃ©nementJeu.Add(evenementAValider)
+                leContexte.ÉvénementJeu.Add(evenementAValider)
             End If
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
-            lblMessageErreurEvenement.Text = ModeleSentinellesHY.outils.obtenirLangue("L'Ã©vÃ©nement a Ã©tÃ© modifiÃ© avec succÃ¨s!|The event has been succesfully updated!")
+            leContexte.SaveChanges()
+            lblMessageErreurEvenement.Text = ModeleSentinellesHY.outils.obtenirLangue("L'événement a été modifié avec succès!|The event has been succesfully updated!")
             lblMessageErreurEvenement.ForeColor = Color.Green
             ViewState("modeEvenement") = ""
             lvEvenement.DataBind()
@@ -653,18 +665,19 @@ Public Class FRMPanneauDeControle
 
     End Sub
 
-    Public Sub DeleteEvenement(ByVal evenementASupprimer As ModeleSentinellesHY.Ã‰vÃ©nement)
-        Dim unEvenement As ModeleSentinellesHY.Ã‰vÃ©nement = Nothing
-        unEvenement = ModeleSentinellesHY.outils.leContexte.Ã‰vÃ©nementJeu.Find(evenementASupprimer.idEvenement)
+    Public Sub DeleteEvenement(ByVal evenementASupprimer As ModeleSentinellesHY.Événement)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        Dim unEvenement As ModeleSentinellesHY.Événement = Nothing
+        unEvenement = leContexte.ÉvénementJeu.Find(evenementASupprimer.idEvenement)
 
         If (Not unEvenement Is Nothing) Then
-            ModeleSentinellesHY.outils.leContexte.Ã‰vÃ©nementJeu.Remove(unEvenement)
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            leContexte.ÉvénementJeu.Remove(unEvenement)
+            leContexte.SaveChanges()
         End If
 
         lvEvenement.DataBind()
 
-        'On affiche l'index suivant ou prÃ©cÃ©dent dÃ©pendamment de quelle Ã©vÃ©nement on supprime
+        'On affiche l'index suivant ou précédent dépendamment de quelle événement on supprime
         If lvEvenement.SelectedIndex = -1 Then
             lvEvenement.SelectedIndex = 0
         ElseIf lvEvenement.SelectedIndex = 0 Then
@@ -677,8 +690,9 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Private Sub lvInfoEvenement_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lvInfoEvenement.ItemDataBound
-        Dim listeEvenements As List(Of ModeleSentinellesHY.Ã‰vÃ©nement) = Nothing
-        listeEvenements = (From eve In ModeleSentinellesHY.outils.leContexte.Ã‰vÃ©nementJeu Order By eve.dateEvenement Descending).ToList
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        Dim listeEvenements As List(Of ModeleSentinellesHY.Événement) = Nothing
+        listeEvenements = (From eve In leContexte.ÉvénementJeu Order By eve.dateEvenement Descending).ToList
 
         If ViewState("modeEvenement") = "AjoutEvenement" Or listeEvenements.Count = 0 Then
             CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
@@ -713,27 +727,30 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Public Shared Function GetRDP() As IQueryable(Of ModeleSentinellesHY.RevueDePresse)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeRDP As List(Of ModeleSentinellesHY.RevueDePresse) = Nothing
 
-        listeRDP = (From rdp In ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).ToList
+        listeRDP = (From rdp In leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).ToList
 
         Return listeRDP.AsQueryable()
     End Function
 
     Public Function getInfoRDP() As ModeleSentinellesHY.RevueDePresse
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim uneRDP As New ModeleSentinellesHY.RevueDePresse
 
-        If Not ((ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu).Count = 0 Or ViewState("modeRDP") = "AjoutRDP") Then
+        If Not ((leContexte.RevueDePresseJeu).Count = 0 Or ViewState("modeRDP") = "AjoutRDP") Then
             Dim idRDP As Integer = lvRDP.SelectedDataKey(0)
-            uneRDP = (From rdp In ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu Where rdp.idRDP = idRDP).FirstOrDefault
-            ModeleSentinellesHY.outils.leContexte.Entry(uneRDP).Reload()
+            uneRDP = (From rdp In leContexte.RevueDePresseJeu Where rdp.idRDP = idRDP).FirstOrDefault
+            leContexte.Entry(uneRDP).Reload()
         End If
 
         Return uneRDP
     End Function
 
     Public Sub UpdateRDP(ByVal RDPAUpdater As ModeleSentinellesHY.RevueDePresse)
-        If ((ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu).Count = 0) Then
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        If ((leContexte.RevueDePresseJeu).Count = 0) Then
             ViewState("modeRDP") = "AjoutRDP"
         End If
         Dim RDPAValider As ModeleSentinellesHY.RevueDePresse = Nothing
@@ -747,13 +764,13 @@ Public Class FRMPanneauDeControle
         If ViewState("modeRDP") = "AjoutRDP" Then
             RDPAValider = New ModeleSentinellesHY.RevueDePresse()
         Else
-            RDPAValider = ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu.Find(RDPAUpdater.idRDP)
+            RDPAValider = leContexte.RevueDePresseJeu.Find(RDPAUpdater.idRDP)
         End If
-        'Prend les donnÃ©es qui sont dans le textbox
+        'Prend les données qui sont dans le textbox
         TryUpdateModel(RDPAValider)
         'Ajoute une nouvelle avec le texte saisi dans le textbox
         RDPAValider.urlDocumentTemp = RDPAValider.urlDocument
-        'Remplace les div par des p pour un retour Ã  la ligne
+        'Remplace les div par des p pour un retour à la ligne
         If Not RDPAValider.contenuFR = Nothing Then
             RDPAValider.contenuFR = RDPAValider.contenuFR.Replace("<div", "<p")
             RDPAValider.contenuFR = RDPAValider.contenuFR.Replace("</div>", "</p>")
@@ -774,10 +791,10 @@ Public Class FRMPanneauDeControle
         End If
         If ModelState.IsValid Then
             If ViewState("modeRDP") = "AjoutRDP" Then
-                ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu.Add(RDPAValider)
+                leContexte.RevueDePresseJeu.Add(RDPAValider)
             End If
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
-            lblMessageErreurRDP.Text = ModeleSentinellesHY.outils.obtenirLangue("La revue de presse a Ã©tÃ© modifiÃ© avec succÃ¨s!|The press review has been succesfully updated!")
+            leContexte.SaveChanges()
+            lblMessageErreurRDP.Text = ModeleSentinellesHY.outils.obtenirLangue("La revue de presse a été modifié avec succès!|The press review has been succesfully updated!")
             lblMessageErreurRDP.ForeColor = Color.Green
             ViewState("modeRDP") = ""
             'Conditions pour Supprimer Avatar du fichier Upload
@@ -795,17 +812,18 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Public Sub DeleteRDP(ByVal RDPASupprimer As ModeleSentinellesHY.RevueDePresse)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim uneRDP As ModeleSentinellesHY.RevueDePresse = Nothing
-        uneRDP = ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu.Find(RDPASupprimer.idRDP)
+        uneRDP = leContexte.RevueDePresseJeu.Find(RDPASupprimer.idRDP)
 
         If (Not uneRDP Is Nothing) Then
-            ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu.Remove(uneRDP)
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            leContexte.RevueDePresseJeu.Remove(uneRDP)
+            leContexte.SaveChanges()
         End If
 
         lvRDP.DataBind()
 
-        'On affiche l'index suivant ou prÃ©cÃ©dent dÃ©pendamment de quelle revue de presse on supprime
+        'On affiche l'index suivant ou précédent dépendamment de quelle revue de presse on supprime
         If lvRDP.SelectedIndex = -1 Then
             lvRDP.SelectedIndex = 0
         ElseIf lvRDP.SelectedIndex = 0 Then
@@ -837,8 +855,9 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Private Sub lvInfoRDP_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lvInfoRDP.ItemDataBound
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeRDP As List(Of ModeleSentinellesHY.RevueDePresse) = Nothing
-        listeRDP = (From rdp In ModeleSentinellesHY.outils.leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).ToList
+        listeRDP = (From rdp In leContexte.RevueDePresseJeu Order By rdp.dateRedaction Descending).ToList
 
         If ViewState("modeRDP") = "AjoutRDP" Or listeRDP.Count = 0 Then
             CType(e.Item.FindControl("divDateRedaction"), HtmlControl).Visible = False
@@ -855,10 +874,10 @@ Public Class FRMPanneauDeControle
 #Region "Utilisateur"
 #Region "Statut"
     Public Function getStatutUtilisateur() As IQueryable(Of ModeleSentinellesHY.Statut)
-
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeStatutUtilisateur As New List(Of ModeleSentinellesHY.Statut)
 
-        listeStatutUtilisateur = (From ca In ModeleSentinellesHY.outils.leContexte.StatutJeu).ToList
+        listeStatutUtilisateur = (From ca In leContexte.StatutJeu).ToList
 
 
         For Each statut As ModeleSentinellesHY.Statut In listeStatutUtilisateur
@@ -890,37 +909,41 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Public Function GetUtilisateurs() As IQueryable(Of ModeleSentinellesHY.Utilisateur)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeUtilisateurs As New List(Of ModeleSentinellesHY.Utilisateur)
 
         If txtboxRechercheUtilisateur.Text <> "" Then
             Dim txtRecherche As String = txtboxRechercheUtilisateur.Text
-            listeUtilisateurs = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu
+            listeUtilisateurs = (From uti In leContexte.UtilisateurJeu
                                  Where uti.nom.Contains(txtRecherche) Or uti.prenom.Contains(txtRecherche) Or
                                  uti.courriel.Contains(txtRecherche) Or uti.milieu.Contains(txtRecherche) Or
                                  uti.nomUtilisateur.Contains(txtRecherche)
                                  Order By uti.prenom).ToList
         Else
-            listeUtilisateurs = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu Order By uti.prenom).ToList
+            listeUtilisateurs = (From uti In leContexte.UtilisateurJeu Order By uti.prenom).ToList
         End If
         Return listeUtilisateurs.AsQueryable()
     End Function
 
     Public Function getInfoUtilisateur() As ModeleSentinellesHY.Utilisateur
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
 
-        If Not ((From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu).Count = 0 Or _
+        If Not ((From uti In leContexte.UtilisateurJeu).Count = 0 Or _
             ViewState("modeUtilisateur") = "AjoutUtilisateur") Then
             Dim idUtilisateur As Integer = lviewUtilisateurs.SelectedDataKey(0)
-            unUtilisateur = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu Where uti.idUtilisateur = idUtilisateur).FirstOrDefault
-            ModeleSentinellesHY.outils.leContexte.Entry(unUtilisateur).Reload()
+            unUtilisateur = (From uti In leContexte.UtilisateurJeu Where uti.idUtilisateur = idUtilisateur).FirstOrDefault
+            leContexte.Entry(unUtilisateur).Reload()
         End If
 
         Return unUtilisateur
     End Function
 
     Private Sub lviewInfoUtilisateur_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewInfoUtilisateur.ItemDataBound
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeUtilisateurs As New List(Of ModeleSentinellesHY.Utilisateur)
-        listeUtilisateurs = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu Order By uti.prenom).ToList
+
+        listeUtilisateurs = (From uti In leContexte.UtilisateurJeu Order By uti.prenom).ToList
 
         If ViewState("modeUtilisateur") = "AjoutUtilisateur" Or listeUtilisateurs.Count = 0 Then
             CType(e.Item.FindControl("btnSupprimerUti"), LinkButton).Visible = False
@@ -938,17 +961,19 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Public Sub DeleteUtilisateur(ByVal utilisateurASupprimer As ModeleSentinellesHY.Utilisateur)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Nothing
-        utilisateurAValider = ModeleSentinellesHY.outils.leContexte.UtilisateurJeu.Find(utilisateurASupprimer.idUtilisateur)
+
+        utilisateurAValider = leContexte.UtilisateurJeu.Find(utilisateurASupprimer.idUtilisateur)
 
         If (Not utilisateurAValider Is Nothing) Then
-            ModeleSentinellesHY.outils.leContexte.UtilisateurJeu.Remove(utilisateurAValider)
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            leContexte.UtilisateurJeu.Remove(utilisateurAValider)
+            leContexte.SaveChanges()
         End If
 
         lviewUtilisateurs.DataBind()
 
-        'On affiche l'index suivant ou prÃ©cÃ©dent dÃ©pendamment de quelle nouvelle on supprime
+        'On affiche l'index suivant ou précédent dépendamment de quelle nouvelle on supprime
         If lviewUtilisateurs.SelectedIndex = -1 Then
             lviewUtilisateurs.SelectedIndex = 0
         ElseIf lviewUtilisateurs.SelectedIndex = 0 Then
@@ -961,7 +986,7 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Public Sub UpdateUtilisateur(ByVal idUtilisateur As Integer)
-
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Nothing
         Dim tbMotDePasse As String = CType(lviewInfoUtilisateur.Items(0).FindControl("txtboxmotDePasse"), TextBox).Text
         Dim tbConfirmation As String = CType(lviewInfoUtilisateur.Items(0).FindControl("txtboxConfirmer"), TextBox).Text
@@ -977,19 +1002,19 @@ Public Class FRMPanneauDeControle
         If ViewState("modeUtilisateur") = "AjoutUtilisateur" Then
             utilisateurAValider = New ModeleSentinellesHY.Utilisateur()
         Else
-            utilisateurAValider = ModeleSentinellesHY.outils.leContexte.UtilisateurJeu.Find(idUtilisateur)
+            utilisateurAValider = leContexte.UtilisateurJeu.Find(idUtilisateur)
         End If
 
-        'Prend les donnÃ©es qui sont dans le formulaire
+        'Prend les données qui sont dans le formulaire
         TryUpdateModel(utilisateurAValider)
 
-        'On vÃ©rifie que l'utilisateur Ã  ajouter ne possÃ¨de pas un username identique Ã  un autre usager
+        'On vérifie que l'utilisateur à ajouter ne possède pas un username identique à un autre usager
         'de la BD
         If ViewState("modeUtilisateur") = "AjoutUtilisateur" Then
-            Dim doublon = (From uti As ModeleSentinellesHY.Utilisateur In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu Where uti.nomUtilisateur.Equals(utilisateurAValider.nomUtilisateur)).FirstOrDefault
+            Dim doublon = (From uti As ModeleSentinellesHY.Utilisateur In leContexte.UtilisateurJeu Where uti.nomUtilisateur.Equals(utilisateurAValider.nomUtilisateur)).FirstOrDefault
             If Not doublon Is Nothing Then
-                listeErreur.Add(New ModeleSentinellesHY.clsErreur With {.contenant = lviewInfoUtilisateur, .nomPropriete = "nomUtilisateur", .errorMessage = ModeleSentinellesHY.outils.obtenirLangue("Le nom d'utilisateur existe dÃ©jÃ .|This username already exists.")})
-                ModelState.AddModelError("nomUtilisateur", ModeleSentinellesHY.outils.obtenirLangue("Le nom d'utilisateur existe dÃ©jÃ .|This username already exists."))
+                listeErreur.Add(New ModeleSentinellesHY.clsErreur With {.contenant = lviewInfoUtilisateur, .nomPropriete = "nomUtilisateur", .errorMessage = ModeleSentinellesHY.outils.obtenirLangue("Le nom d'utilisateur existe déjà.|This username already exists.")})
+                ModelState.AddModelError("nomUtilisateur", ModeleSentinellesHY.outils.obtenirLangue("Le nom d'utilisateur existe déjà.|This username already exists."))
             End If
         End If
         'Url Avatar
@@ -1005,11 +1030,11 @@ Public Class FRMPanneauDeControle
         If ModelState.IsValid Then
             ViewState("idUtilisateur") = utilisateurAValider.idUtilisateur
             If ViewState("modeUtilisateur") = "AjoutUtilisateur" Then
-                ModeleSentinellesHY.outils.leContexte.UtilisateurJeu.Add(utilisateurAValider)
+                leContexte.UtilisateurJeu.Add(utilisateurAValider)
             End If
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            leContexte.SaveChanges()
             ViewState("modeUtilisateur") = ""
-            lblMessageErreurInfoUtilisateur.Text = "L'utilisateur a Ã©tÃ© modifiÃ© avec succÃ¨s!"
+            lblMessageErreurInfoUtilisateur.Text = "L'utilisateur a été modifié avec succès!"
             lblMessageErreurInfoUtilisateur.ForeColor = Color.Green
 
             'Conditions pour Supprimer Avatar du fichier Upload

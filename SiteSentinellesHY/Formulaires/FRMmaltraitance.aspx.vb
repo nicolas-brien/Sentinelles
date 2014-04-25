@@ -8,7 +8,8 @@ Public Class FRMmaltraitance
 
     Protected Sub textMaltraitance_Init(sender As Object, e As EventArgs)
         'On va chercher les infos dans la BD et on les affiche
-        Dim lesInfos = (From inf In ModeleSentinellesHY.outils.leContexte.InfoGeneraleJeu).FirstOrDefault
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        Dim lesInfos = (From inf In leContexte.InfoGeneraleJeu).FirstOrDefault
         CType(sender, Label).Text = ModeleSentinellesHY.outils.obtenirLangue(lesInfos.maltraitanceFR & "|" & lesInfos.maltraitanceEN)
     End Sub
 End Class

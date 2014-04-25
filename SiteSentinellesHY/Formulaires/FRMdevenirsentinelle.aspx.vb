@@ -14,6 +14,7 @@
 
     'Bouton d'envoi du formulaire Devenir Sentinelle
     Protected Sub btnEnvoi_Click(sender As Object, e As EventArgs)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim unFormulaire As New ModeleSentinellesHY.FormulaireSentinelle
         Dim listeErreur As New List(Of ModeleSentinellesHY.clsErreur)
         Dim contenant As Control = divFormulaire
@@ -41,7 +42,7 @@
             Next
             'Puisque le formulaire est valide, on procède à l'envoi du courriel
         Else
-            Dim destinataire As String = (From info In ModeleSentinellesHY.outils.leContexte.InfoGeneraleJeu).FirstOrDefault.courrielFormulaire
+            Dim destinataire As String = (From info In leContexte.InfoGeneraleJeu).FirstOrDefault.courrielFormulaire
             Dim expediteur As String = "info@sentinelleshy.ca"
             Dim mail As System.Net.Mail.MailMessage = New System.Net.Mail.MailMessage()
             mail.To.Add(destinataire)

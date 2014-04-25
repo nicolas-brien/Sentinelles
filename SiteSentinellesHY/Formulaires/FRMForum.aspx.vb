@@ -1,4 +1,4 @@
-ï»¿Imports System.IO
+Imports System.IO
 Imports System.Threading
 Imports System.Drawing
 Imports System.Drawing.Imaging
@@ -9,11 +9,11 @@ Imports ModeleSentinellesHY
 Public Class FRMForum
     Inherits ModeleSentinellesHY.FRMdeBase
 
-    'Liste erreur est dÃ©clarÃ© ici afin d'Ãªtre accessible dans toute les mÃ©thodes de cette page
+    'Liste erreur est déclaré ici afin d'être accessible dans toute les méthodes de cette page
     Dim listeErreur As New List(Of ModeleSentinellesHY.clsErreur)
 
     Private Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
-        'VÃ©rifie si l'utilisateur est authentifiÃ©
+        'Vérifie si l'utilisateur est authentifié
         If Session("Autorisation") Is Nothing Then
             Response.Redirect("index.aspx")
         End If
@@ -23,6 +23,7 @@ Public Class FRMForum
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
 
         If Not Page.IsPostBack Then
             'Change la vue selon le Query String
@@ -49,7 +50,7 @@ Public Class FRMForum
 
             If (cat <> "" And id <> "") Then
                 Dim idPublication = id
-                Dim unePublication = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                Dim unePublication = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu _
                                       Where pub.idPublication = id).FirstOrDefault
                 If unePublication.idParent Is Nothing Then
                     ViewState("idPublication") = unePublication.idPublication
@@ -69,7 +70,7 @@ Public Class FRMForum
         If Not Session("Utilisateur") Is Nothing Then
             divLogin.Visible = True
 
-            'Affiche l'accÃ¨s au panneau de controle si l'usager est Intervenant ou Admin
+            'Affiche l'accès au panneau de controle si l'usager est Intervenant ou Admin
             If CType(Session("Autorisation"), Integer) < 3 Then
                 iconSetting.Visible = True
                 gererLesCategories.Visible = True
@@ -89,7 +90,7 @@ Public Class FRMForum
                     If (utilisateur Is Nothing) Then
                         Try
                             File.Delete(fi.FullName)
-                            'le lorsque le fichier est utilisÃ© par un autre process nous ne pouvons le suprimier alors le catch le capt.
+                            'le lorsque le fichier est utilisé par un autre process nous ne pouvons le suprimier alors le catch le capt.
                         Catch
                         End Try
                     End If
@@ -110,7 +111,7 @@ Public Class FRMForum
 
     End Sub
 
-    'Effectue des databind lorsque les vues sont changÃ©es
+    'Effectue des databind lorsque les vues sont changées
     Private Sub MultiViewForum_ActiveViewChanged(sender As Object, e As EventArgs) Handles MultiViewForum.ActiveViewChanged
         If MultiViewForum.ActiveViewIndex = 0 Then
             lblErreurCategorie.Text = ""
@@ -129,7 +130,7 @@ Public Class FRMForum
 
         culture = ModeleSentinellesHY.outils.obtenirLangue("EN|FR")
 
-        'MÃ©morise dans un cookie la langue choisie par l'utilisateur
+        'Mémorise dans un cookie la langue choisie par l'utilisateur
         Dim aCookie As New HttpCookie("SentinellesHY")
         aCookie.Values("langue") = culture
         aCookie.Expires = System.DateTime.Now.AddDays(3650)
@@ -138,7 +139,7 @@ Public Class FRMForum
         Response.Redirect(Request.Url.AbsoluteUri, False)
     End Sub
 
-    'MÃ©thode qui, lorsque l'on clique sur le nom d'une catÃ©gorie, nous amÃ¨ne Ã  la vue de cette catÃ©gorie
+    'Méthode qui, lorsque l'on clique sur le nom d'une catégorie, nous amène à la vue de cette catégorie
     'avec toutes les publications qui s'y trouve
     Protected Sub lnkBtn_categorie_Click(sender As Object, e As EventArgs)
         ViewState("idCategorie") = CType(sender, LinkButton).CommandArgument
@@ -146,11 +147,12 @@ Public Class FRMForum
         MultiViewForum.ActiveViewIndex = 1
     End Sub
 
-    'MÃ©thode qui, lorsque l'on clique sur le titre d'une publication parent, nous amÃ¨ne Ã  la vue de cette publication
+    'Méthode qui, lorsque l'on clique sur le titre d'une publication parent, nous amène à la vue de cette publication
     'avec toutes les publications enfants qui s'y trouvent
     Protected Sub lnkBtn_TitrePublication_Click(sender As Object, e As EventArgs)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim idPublication = CType(sender, LinkButton).CommandArgument
-        Dim unePublication = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+        Dim unePublication = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu _
                               Where pub.idPublication = CType(sender, LinkButton).CommandArgument).FirstOrDefault
         If unePublication.idParent Is Nothing Then
             ViewState("idPublication") = unePublication.idPublication
@@ -164,7 +166,7 @@ Public Class FRMForum
         MultiViewForum.ActiveViewIndex = 2
     End Sub
 
-    'MÃ©thode qui nous amÃ¨ne Ã  la vue d'ajout de publication parent
+    'Méthode qui nous amène à la vue d'ajout de publication parent
     Protected Sub lnkbtnAjouterPublication_Click(sender As Object, e As EventArgs)
         MultiViewForum.ActiveViewIndex = 3
         ViewState("modePublication") = "AjoutPublication"
@@ -179,27 +181,29 @@ Public Class FRMForum
 
 #Region "Accueil Forum Vue0"
 #Region "Categorie"
-    'Ici sont les mÃ©thodes afin de gÃ©rer les catÃ©gories. Cette partie se retrouve sur l'accueil du forum.
+    'Ici sont les méthodes afin de gérer les catégories. Cette partie se retrouve sur l'accueil du forum.
     'Elle n'est accessible que pour les administrateurs ainsi que les intervenants
     Public Function getCategorieAccueil() As IQueryable(Of ModeleSentinellesHY.Categorie)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeCategoriePublication As New List(Of ModeleSentinellesHY.Categorie)
 
-        listeCategoriePublication = (From ca In ModeleSentinellesHY.outils.leContexte.CategorieJeu Order By ca.nomCategorieFR).ToList
+        listeCategoriePublication = (From ca In leContexte.CategorieJeu Order By ca.nomCategorieFR).ToList
         Return listeCategoriePublication.AsQueryable
     End Function
 
     Protected Sub lnkbtnSupprimerCategorie_Click(sender As Object, e As EventArgs)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim unID = CType(sender, LinkButton).CommandArgument
-        Dim listePublication = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+        Dim listePublication = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu _
                         Where pub.idCategorie = unID).ToList
         If listePublication.Count <> 0 Then
-            lblErreurCategorie.Text = ModeleSentinellesHY.outils.obtenirLangue("La catÃ©gorie ne peut pas Ãªtre supprimÃ© car elle contient des publications.|" _
+            lblErreurCategorie.Text = ModeleSentinellesHY.outils.obtenirLangue("La catégorie ne peut pas être supprimé car elle contient des publications.|" _
                                                                                & "The category can not be deleted because it contains publications.")
         Else
-            Dim uneCategorie = (From cat As ModeleSentinellesHY.Categorie In ModeleSentinellesHY.outils.leContexte.CategorieJeu _
+            Dim uneCategorie = (From cat As ModeleSentinellesHY.Categorie In leContexte.CategorieJeu _
                                 Where cat.idCategorie = unID).FirstOrDefault
-            ModeleSentinellesHY.outils.leContexte.CategorieJeu.Remove(uneCategorie)
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            leContexte.CategorieJeu.Remove(uneCategorie)
+            leContexte.SaveChanges()
             lblErreurCategorie.Text = ""
             tbNomCategorieEN.Text = ""
             tbNomCategorieFR.Text = ""
@@ -208,18 +212,19 @@ Public Class FRMForum
     End Sub
 
     Protected Sub lnkbtnAjoutCategorie_Click(sender As Object, e As EventArgs)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim uneCategorie As New ModeleSentinellesHY.Categorie
         uneCategorie.nomCategorieEN = tbNomCategorieEN.Text
         uneCategorie.nomCategorieFR = tbNomCategorieFR.Text
 
-        'Condition pour vÃ©rifier si la catÃ©gorie Ã  enregistrer est valide
+        'Condition pour vérifier si la catégorie à enregistrer est valide
         If (uneCategorie.nomCategorieEN = "" Or uneCategorie.nomCategorieFR = "") Or _
            (uneCategorie.nomCategorieEN.Count > 50 Or uneCategorie.nomCategorieFR.Count > 50) Then
-            lblErreurCategorie.Text = ModeleSentinellesHY.outils.obtenirLangue("Tous les champs doivent contenir un nom valide de moins de 50 caractÃ¨res." _
+            lblErreurCategorie.Text = ModeleSentinellesHY.outils.obtenirLangue("Tous les champs doivent contenir un nom valide de moins de 50 caractères." _
                                                                                & "|All fields must contain a valid name of less than 50 characters.")
         Else
-            ModeleSentinellesHY.outils.leContexte.CategorieJeu.Add(uneCategorie)
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            leContexte.CategorieJeu.Add(uneCategorie)
+            leContexte.SaveChanges()
             lblErreurCategorie.Text = ""
             tbNomCategorieEN.Text = ""
             tbNomCategorieFR.Text = ""
@@ -228,19 +233,20 @@ Public Class FRMForum
     End Sub
 #End Region
     Public Function getPublications_accueilForum() As IQueryable(Of ModeleSentinellesHY.Publication)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listePublication As New List(Of ModeleSentinellesHY.Publication)
         Dim listeRetour As New List(Of ModeleSentinellesHY.Publication)
 
-        'Pour chaque catÃ©gorie, on choisi les trois parents ayant eu la rÃ©ponse la plus rÃ©cente
-        For Each cat As ModeleSentinellesHY.Categorie In ModeleSentinellesHY.outils.leContexte.CategorieJeu
+        'Pour chaque catégorie, on choisi les trois parents ayant eu la réponse la plus récente
+        For Each cat As ModeleSentinellesHY.Categorie In leContexte.CategorieJeu
             Dim listePublicationTemp As New List(Of ModeleSentinellesHY.Publication)
-            listePublication = (From uti In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where cat.idCategorie = uti.idCategorie _
+            listePublication = (From uti In leContexte.PublicationJeu Where cat.idCategorie = uti.idCategorie _
              Order By uti.datePublication Descending).ToList()
             For Each pub As ModeleSentinellesHY.Publication In listePublication
                 If pub.idParent Is Nothing Then
                     listePublicationTemp.Add(pub)
                 Else
-                    Dim parent = (From unParent As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                    Dim parent = (From unParent As ModeleSentinellesHY.Publication In leContexte.PublicationJeu _
                                   Where pub.idParent = unParent.idPublication).FirstOrDefault
                     listePublicationTemp.Add(parent)
                 End If
@@ -251,25 +257,26 @@ Public Class FRMForum
     End Function
 
     Private Sub lviewPublication_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewForum_accueil.ItemDataBound
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim DroitUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idStatut
         Dim unePublication As ModeleSentinellesHY.Publication = CType(e.Item.DataItem, ModeleSentinellesHY.Publication)
         Dim lblPubliePar = CType(e.Item.FindControl("lblPubliePar"), Label)
 
-        'Condition qui vÃ©rifie si l'auteur de la publication est encore prÃ©sent dans la BD
+        'Condition qui vérifie si l'auteur de la publication est encore présent dans la BD
         If Not unePublication.idUtilisateur Is Nothing Then
-            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("PubliÃ© par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
         Else
-            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimÃ©|User deleted")
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
         End If
 
-        'Condition qui affiche en orange le titre de la publication si elle ou un de ses enfants n'a pas Ã©tÃ© consultÃ© 
+        'Condition qui affiche en orange le titre de la publication si elle ou un de ses enfants n'a pas été consulté 
         'par un intervenant ou un admin
         If DroitUtilisateur < 3 Then
             If unePublication.consulteParIntervenant = False Then
                 CType(e.Item.FindControl("lnkBtn_TitrePublication"), LinkButton).Attributes("style") = "color:orange;"
             Else
                 Dim listeEnfants As List(Of ModeleSentinellesHY.Publication) = Nothing
-                listeEnfants = (From enf As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                listeEnfants = (From enf As ModeleSentinellesHY.Publication In leContexte.PublicationJeu _
                                    Where enf.idParent = unePublication.idPublication).ToList
                 For Each enf As ModeleSentinellesHY.Publication In listeEnfants
                     If enf.consulteParIntervenant = False Then
@@ -279,7 +286,7 @@ Public Class FRMForum
             End If
         End If
 
-        'Affiche la catÃ©gorie si c'est la premiÃ¨re publication de cette catÃ©gorie
+        'Affiche la catégorie si c'est la première publication de cette catégorie
         If e.Item.ItemType = ListViewItemType.DataItem AndAlso e.Item.DisplayIndex > 0 Then
             Dim categorieActuelle As String = CType(e.Item.DataItem, ModeleSentinellesHY.Publication).Categorie.idCategorie
             Dim categoriePrecedente As String = lviewForum_accueil.DataKeys(e.Item.DisplayIndex - 1)(1)
@@ -295,41 +302,42 @@ Public Class FRMForum
 
 #Region "Categorie Vue1"
     Public Function getCategories() As IQueryable(Of ModeleSentinellesHY.Publication)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listePublication As New List(Of ModeleSentinellesHY.Publication)
         Dim listePublication2 As New List(Of ModeleSentinellesHY.Publication)
         Dim listeRetour As New List(Of ModeleSentinellesHY.Publication)
         Dim uneCategorie As Integer = ViewState("idCategorie")
         Dim listePublicationTemp As New List(Of ModeleSentinellesHY.Publication)
 
-        'On crÃ©e une liste avec que les publications parents Ã©pinglÃ©es en ordre de date dÃ©croissant
-        listePublication = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where uneCategorie = pub.idCategorie AndAlso pub.epinglee = True _
+        'On crée une liste avec que les publications parents épinglées en ordre de date décroissant
+        listePublication = (From pub In leContexte.PublicationJeu Where uneCategorie = pub.idCategorie AndAlso pub.epinglee = True _
              Order By pub.datePublication Descending).ToList()
         For Each pub As ModeleSentinellesHY.Publication In listePublication
             If pub.idParent Is Nothing Then
                 listePublicationTemp.Add(pub)
             Else
-                Dim parent = (From unParent As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                Dim parent = (From unParent As ModeleSentinellesHY.Publication In leContexte.PublicationJeu _
                               Where pub.idParent = unParent.idPublication).FirstOrDefault
                 listePublicationTemp.Add(parent)
             End If
         Next
         listeRetour.AddRange(listePublicationTemp.ToList())
 
-        'On crÃ©e une liste avec que les publications parents non Ã©pinglÃ©es en ordre de date dÃ©croissant
+        'On crée une liste avec que les publications parents non épinglées en ordre de date décroissant
         Dim listePublicationTemp2 As New List(Of ModeleSentinellesHY.Publication)
-        listePublication2 = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where uneCategorie = pub.idCategorie AndAlso pub.epinglee = False _
+        listePublication2 = (From pub In leContexte.PublicationJeu Where uneCategorie = pub.idCategorie AndAlso pub.epinglee = False _
              Order By pub.datePublication Descending).ToList()
         For Each pub As ModeleSentinellesHY.Publication In listePublication2
             If pub.idParent Is Nothing Then
                 listePublicationTemp2.Add(pub)
             Else
-                Dim parent = (From unParent As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                Dim parent = (From unParent As ModeleSentinellesHY.Publication In leContexte.PublicationJeu _
                               Where pub.idParent = unParent.idPublication).FirstOrDefault
                 listePublicationTemp2.Add(parent)
             End If
         Next
 
-        'On concatÃ¨ne les deux listes dans la mÃªme et on enlÃ¨ve ensuite les doublons
+        'On concatène les deux listes dans la même et on enlève ensuite les doublons
         listeRetour.AddRange(listePublicationTemp2.ToList())
         listeRetour = listeRetour.Distinct.ToList
 
@@ -342,25 +350,26 @@ Public Class FRMForum
     End Sub
 
     Private Sub lviewCategorie_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewCategorie.ItemDataBound
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim DroitUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idStatut
         Dim unePublication As ModeleSentinellesHY.Publication = CType(e.Item.DataItem, ModeleSentinellesHY.Publication)
         Dim lblPubliePar = CType(e.Item.FindControl("lblPubliePar"), Label)
 
-        'On vÃ©rifie que l'utilisateur existe encore dans la BD
+        'On vérifie que l'utilisateur existe encore dans la BD
         If Not unePublication.idUtilisateur Is Nothing Then
-            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("PubliÃ© par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
         Else
-            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimÃ©|User deleted")
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
         End If
 
-        'Condition qui affiche en orange le titre de la publication si elle ou un de ses enfants n'a pas Ã©tÃ© consultÃ© 
+        'Condition qui affiche en orange le titre de la publication si elle ou un de ses enfants n'a pas été consulté 
         'par un intervenant ou un admin
         If DroitUtilisateur < 3 Then
             If unePublication.consulteParIntervenant = False Then
                 CType(e.Item.FindControl("lnkBtn_TitrePublication"), LinkButton).Attributes("style") = "color:orange;"
             Else
                 Dim listeEnfants As List(Of ModeleSentinellesHY.Publication) = Nothing
-                listeEnfants = (From enf As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                listeEnfants = (From enf As ModeleSentinellesHY.Publication In leContexte.PublicationJeu _
                                    Where enf.idParent = unePublication.idPublication).ToList
                 For Each enf As ModeleSentinellesHY.Publication In listeEnfants
                     If enf.consulteParIntervenant = False Then
@@ -370,18 +379,18 @@ Public Class FRMForum
             End If
         End If
 
-        'Ã‰pingle les "pinned posts"
+        'Épingle les "pinned posts"
         If unePublication.epinglee = True Then
             CType(e.Item.FindControl("pinnedIcon"), HtmlImage).Attributes("style") = "display:normal;position:relative;top:5px;"
         End If
 
-        'Affiche le titre de la catÃ©gorie lorsqu'on affiche la premiÃ¨re publication
+        'Affiche le titre de la catégorie lorsqu'on affiche la première publication
         If e.Item.ItemType = ListViewItemType.DataItem AndAlso e.Item.DisplayIndex > 0 Then
             CType(e.Item.FindControl("divCategorie1"), HtmlControl).Attributes("style") = "display: none;"
         End If
     End Sub
 
-    'Liens pour retourner Ã  l'accueil du forum
+    'Liens pour retourner à l'accueil du forum
     Protected Sub retourAccueil_Click(sender As Object, e As EventArgs)
         lviewForum_accueil.DataBind()
         MultiViewForum.ActiveViewIndex = 0
@@ -391,23 +400,24 @@ Public Class FRMForum
 
 #Region "Publication+Enfants Vue2"
     Public Sub DeletePublication(ByVal PubADelete As ModeleSentinellesHY.Publication)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listePublication As New List(Of ModeleSentinellesHY.Publication)
         Dim idParent As Integer = ViewState("idPublication")
-        listePublication = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+        listePublication = (From pub In leContexte.PublicationJeu _
                             Where pub.idParent = idParent Or pub.idPublication = idParent).ToList
         Dim pubAValider As ModeleSentinellesHY.Publication = Nothing
-        pubAValider = ModeleSentinellesHY.outils.leContexte.PublicationJeu.Find(PubADelete.idPublication)
+        pubAValider = leContexte.PublicationJeu.Find(PubADelete.idPublication)
 
         If (Not pubAValider Is Nothing) Then
             If pubAValider.idParent Is Nothing Then
                 For Each pub As ModeleSentinellesHY.Publication In listePublication
-                    ModeleSentinellesHY.outils.leContexte.PublicationJeu.Remove(pub)
+                    leContexte.PublicationJeu.Remove(pub)
                 Next
                 MultiViewForum.ActiveViewIndex = 1
             Else
-                ModeleSentinellesHY.outils.leContexte.PublicationJeu.Remove(pubAValider)
+                leContexte.PublicationJeu.Remove(pubAValider)
             End If
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            leContexte.SaveChanges()
         End If
 
         lviewForum_accueil.DataBind()
@@ -416,8 +426,8 @@ Public Class FRMForum
         Response.Redirect("FRMForum.aspx")
     End Sub
     Protected Sub retourCategorie_Click(sender As Object, e As EventArgs)
-        'On vÃ©rifie si le Viewstate Recherche contient un rÃ©sultat de recherche. Si c'est le cas,
-        'on retourne Ã  la vue de la recherche. Sinon, on retourne Ã  la vue de la catÃ©gorie
+        'On vérifie si le Viewstate Recherche contient un résultat de recherche. Si c'est le cas,
+        'on retourne à la vue de la recherche. Sinon, on retourne à la vue de la catégorie
         If ViewState("Recherche") <> "" Then
             MultiViewForum.ActiveViewIndex = 5
         Else
@@ -432,12 +442,13 @@ Public Class FRMForum
     End Sub
 
     Private Sub lviewConsulterPublication_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewConsulterPublication.ItemDataBound
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim unUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur)
         Dim lblPubliePar = CType(e.Item.FindControl("lblPubliePar"), Label)
         Dim imgAvatar = CType(e.Item.FindControl("imgAvatar"), System.Web.UI.WebControls.Image)
         Dim unePublication As ModeleSentinellesHY.Publication = CType(e.Item.DataItem, ModeleSentinellesHY.Publication)
 
-        'Ici, on permet Ã  l'utilisateur ayant publiÃ© une REPONSE Ã  une publication de modifier sa propre publication.
+        'Ici, on permet à l'utilisateur ayant publié une REPONSE à une publication de modifier sa propre publication.
         'Il ne peut pas modifier une publication parent
         If unUtilisateur.idStatut = 3 Then
             If CType(e.Item.DataItem, ModeleSentinellesHY.Publication).idParent Is Nothing Or unUtilisateur.nomUtilisateur <> CType(e.Item.DataItem, ModeleSentinellesHY.Publication).Utilisateur.nomUtilisateur Then
@@ -458,7 +469,7 @@ Public Class FRMForum
         End If
 
 
-        'On affiche l'image de la publication Ã©pinglÃ©e
+        'On affiche l'image de la publication épinglée
         If unePublication.epinglee = True Then
             CType(e.Item.FindControl("pinnedIcon"), HtmlImage).Attributes("style") = "display:normal;position:relative;top:5px;"
         End If
@@ -467,51 +478,52 @@ Public Class FRMForum
             CType(e.Item.FindControl("divPinned"), HtmlControl).Attributes("style") = "display:none;"
         End If
 
-        'On vÃ©rifie si l'utilisateur existe encore dans la BD
+        'On vérifie si l'utilisateur existe encore dans la BD
         If Not unePublication.idUtilisateur Is Nothing Then
-            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("PubliÃ© par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
             imgAvatar.ImageUrl = "../Upload/ImagesProfil/" & unePublication.Utilisateur.UrlAvatar
         Else
-            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimÃ©|User deleted")
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
             imgAvatar.ImageUrl = "../Upload/ImagesProfil/default.png"
         End If
 
-        'Condition qui affiche en orange le titre de la publication si elle ou un de ses enfants n'a pas Ã©tÃ© consultÃ© 
-        'par un intervenant ou un admin aprÃ¨s quoi le titre redevient normal au prochain affichage
+        'Condition qui affiche en orange le titre de la publication si elle ou un de ses enfants n'a pas été consulté 
+        'par un intervenant ou un admin après quoi le titre redevient normal au prochain affichage
         If unePublication.consulteParIntervenant = False AndAlso unUtilisateur.idStatut < 3 Then
             CType(e.Item.FindControl("lblTitrePublication"), Label).Attributes("style") = "color:orange;"
             unePublication.consulteParIntervenant = True
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            leContexte.SaveChanges()
         End If
 
-        'Si ce n'est pas une publication parent, on n'affiche pas le div de la catÃ©gorie et on met un Re: devant le titre
+        'Si ce n'est pas une publication parent, on n'affiche pas le div de la catégorie et on met un Re: devant le titre
         If e.Item.ItemType = ListViewItemType.DataItem AndAlso e.Item.DisplayIndex > 0 Then
             CType(e.Item.FindControl("divNomCategorie"), HtmlControl).Attributes("style") = "display: none;"
             CType(e.Item.FindControl("lblTitrePublication"), Label).Text = ("Re : " & unePublication.titre)
         End If
     End Sub
     Public Function getConsulterPublication() As IQueryable(Of ModeleSentinellesHY.Publication)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listePublication As New List(Of ModeleSentinellesHY.Publication)
         Dim idPublication As Integer = ViewState("idPublication")
 
-        listePublication = (From uti In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where uti.idPublication = idPublication).ToList.Union _
-        (From uti In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where uti.idParent = idPublication Order By uti.datePublication).ToList
+        listePublication = (From uti In leContexte.PublicationJeu Where uti.idPublication = idPublication).ToList.Union _
+        (From uti In leContexte.PublicationJeu Where uti.idParent = idPublication Order By uti.datePublication).ToList
 
         ViewState("idCategorie") = listePublication.Item(0).idCategorie
 
         Return listePublication.AsQueryable()
     End Function
 
-    'MÃ©thode utiliser dans la fenÃªtre modal pour modifier une publication existante
+    'Méthode utiliser dans la fenêtre modal pour modifier une publication existante
     Protected Sub lnkbtnModifierPublication_Click(sender As Object, e As EventArgs)
         Dim noItem = CType(sender, LinkButton).CommandArgument
         ViewState("noItem") = noItem
-        'On force ici l'appel de la mÃ©thode Update du ListView
+        'On force ici l'appel de la méthode Update du ListView
         lviewConsulterPublication.UpdateItem(noItem, False)
     End Sub
 
     Public Sub UpdatePublication(ByVal publicationAUpdater As ModeleSentinellesHY.Publication)
-
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim noItem = ViewState("noItem")
         Dim listeEnfants = New List(Of Publication)
 
@@ -525,7 +537,7 @@ Public Class FRMForum
                 CType(tb, TextBox).BorderColor = Nothing
             End If
         Next
-        publicationAUpdater = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+        publicationAUpdater = (From pub In leContexte.PublicationJeu _
                                        Where pub.idPublication = publicationAUpdater.idPublication).FirstOrDefault
         TryUpdateModel(publicationAUpdater)
 
@@ -533,16 +545,16 @@ Public Class FRMForum
             enfant.titre = publicationAUpdater.titre
         Next
 
-        'Remplace les div par des p pour un retour Ã  la ligne
+        'Remplace les div par des p pour un retour à la ligne
         If Not publicationAUpdater.contenu = Nothing Then
             publicationAUpdater.contenu = publicationAUpdater.contenu.Replace("<div", "<p")
             publicationAUpdater.contenu = publicationAUpdater.contenu.Replace("</div>", "</p>")
         End If
 
-        'On attribue Ã  la publication son utilisateur et sa catÃ©gorie
-        publicationAUpdater.Utilisateur = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+        'On attribue à la publication son utilisateur et sa catégorie
+        publicationAUpdater.Utilisateur = (From pub In leContexte.PublicationJeu _
                                        Where pub.idPublication = publicationAUpdater.idPublication).FirstOrDefault.Utilisateur
-        publicationAUpdater.Categorie = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+        publicationAUpdater.Categorie = (From pub In leContexte.PublicationJeu _
                                        Where pub.idPublication = publicationAUpdater.idPublication).FirstOrDefault.Categorie
         ModeleSentinellesHY.outils.validationFormulaire(publicationAUpdater, New ModeleSentinellesHY.PublicationValidation(), lviewConsulterPublication, listeErreur)
         If listeErreur.Count > 0 Then
@@ -552,7 +564,7 @@ Public Class FRMForum
         End If
         If ModelState.IsValid Then
             If listeErreur.Count = 0 Then
-                ModeleSentinellesHY.outils.leContexte.SaveChanges()
+                leContexte.SaveChanges()
                 lviewConsulterPublication.DataBind()
             End If
         End If
@@ -562,7 +574,8 @@ Public Class FRMForum
 
     End Sub
     Public Sub UpdateAjouterReponse()
-        'MÃ©thode qui sert Ã  ajouter une rÃ©ponse Ã  une publication
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        'Méthode qui sert à ajouter une réponse à une publication
         Dim lblMessageErreurReponse = CType(lviewConsulterPublication.FindControl("lblMessageErreurReponse"), Label)
         Dim reponseAValider As New ModeleSentinellesHY.Publication
         lblMessageErreurReponse.Text = ""
@@ -575,7 +588,7 @@ Public Class FRMForum
         reponseAValider = New ModeleSentinellesHY.Publication
         TryUpdateModel(reponseAValider)
 
-        'Remplace les div par des p pour un retour Ã  la ligne
+        'Remplace les div par des p pour un retour à la ligne
         If Not reponseAValider.contenu = Nothing Then
             reponseAValider.contenu = reponseAValider.contenu.Replace("<div", "<p")
             reponseAValider.contenu = reponseAValider.contenu.Replace("</div>", "</p>")
@@ -584,9 +597,9 @@ Public Class FRMForum
         reponseAValider.datePublication = Date.Now()
         reponseAValider.idParent = CType(ViewState("idPublication"), Integer)
         reponseAValider.Utilisateur = Session("Utilisateur")
-        reponseAValider.idCategorie = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+        reponseAValider.idCategorie = (From pub In leContexte.PublicationJeu _
                                        Where pub.idPublication = reponseAValider.idParent).FirstOrDefault.idCategorie
-        reponseAValider.titre = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+        reponseAValider.titre = (From pub In leContexte.PublicationJeu _
                                  Where pub.idPublication = reponseAValider.idParent).FirstOrDefault().titre
         ModeleSentinellesHY.outils.validationFormulaire(reponseAValider, New ModeleSentinellesHY.PublicationValidation(), lviewAjouterReponse, listeErreur)
         If listeErreur.Count > 0 Then
@@ -595,8 +608,8 @@ Public Class FRMForum
             Next
         End If
         If listeErreur.Count = 0 Then
-            ModeleSentinellesHY.outils.leContexte.PublicationJeu.Add(reponseAValider)
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            leContexte.PublicationJeu.Add(reponseAValider)
+            leContexte.SaveChanges()
             CType(lviewAjouterReponse.Items(0).FindControl("txtboxcontenu"), TextBox).Text = ""
             lviewConsulterPublication.DataBind()
 
@@ -621,14 +634,15 @@ Public Class FRMForum
 
 #Region "Ajout Publication Vue3"
     Public Function getCategories_AjouterPublication() As IQueryable(Of ModeleSentinellesHY.Categorie)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeCategoriePublication As New List(Of ModeleSentinellesHY.Categorie)
 
-        listeCategoriePublication = (From ca In ModeleSentinellesHY.outils.leContexte.CategorieJeu).ToList
+        listeCategoriePublication = (From ca In leContexte.CategorieJeu).ToList
 
-        'On ajoute la catÃ©gorie suivante afin d'obliger l'usager Ã  en choisir une
+        'On ajoute la catégorie suivante afin d'obliger l'usager à en choisir une
         Dim CategorieDefault As New ModeleSentinellesHY.Categorie
         CategorieDefault.idCategorie = 0
-        CategorieDefault.nomCategorieFR = "SÃ©lectionner une catÃ©gorie"
+        CategorieDefault.nomCategorieFR = "Sélectionner une catégorie"
         CategorieDefault.nomCategorieEN = "Select a category"
         listeCategoriePublication.Insert(0, CategorieDefault)
 
@@ -639,6 +653,7 @@ Public Class FRMForum
     End Function
 
     Public Sub UpdateAjouterPublication(ByVal publicationAUpdater As ModeleSentinellesHY.Publication)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim lblMessageErreurPublication = CType(lviewAjouterPublication.FindControl("lblMessageErreurPublication"), Label)
         Dim publicationAValider As ModeleSentinellesHY.Publication = Nothing
         lblMessageErreurPublication.Text = ""
@@ -652,7 +667,7 @@ Public Class FRMForum
         publicationAValider = New ModeleSentinellesHY.Publication
         TryUpdateModel(publicationAValider)
 
-        'Remplace les div par des p pour un retour Ã  la ligne
+        'Remplace les div par des p pour un retour à la ligne
         If Not publicationAValider.contenu = Nothing Then
             publicationAValider.contenu = publicationAValider.contenu.Replace("<div", "<p")
             publicationAValider.contenu = publicationAValider.contenu.Replace("</div>", "</p>")
@@ -660,12 +675,12 @@ Public Class FRMForum
         publicationAValider.datePublication = Date.Now()
         publicationAValider.Utilisateur = Session("Utilisateur")
 
-        'On vÃ©rifie si la catÃ©gorie a Ã©tÃ© changÃ©e
+        'On vérifie si la catégorie a été changée
         If publicationAValider.idCategorie = 0 Then
-            ModelState.AddModelError("idCategorie", "Vous devez choisir une catÃ©gorie|You must choose a category")
+            ModelState.AddModelError("idCategorie", "Vous devez choisir une catégorie|You must choose a category")
             publicationAValider.idCategorie = Nothing
         Else
-            publicationAValider.Categorie = (From cat In ModeleSentinellesHY.outils.leContexte.CategorieJeu _
+            publicationAValider.Categorie = (From cat In leContexte.CategorieJeu _
                                              Where cat.idCategorie = publicationAValider.idCategorie).FirstOrDefault()
         End If
 
@@ -677,8 +692,8 @@ Public Class FRMForum
         End If
 
         If ModelState.IsValid Then
-            ModeleSentinellesHY.outils.leContexte.PublicationJeu.Add(publicationAValider)
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            leContexte.PublicationJeu.Add(publicationAValider)
+            leContexte.SaveChanges()
             ViewState("idCategorie") = publicationAValider.idCategorie
             MultiViewForum.ActiveViewIndex = 1
             ViewState("modePublication") = ""
@@ -710,7 +725,7 @@ Public Class FRMForum
         Dim unUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur)
 
         'On cache ce div afin que les usagers qui ne sont pas Admin ou Intervenant ne puissent pas 
-        'Ã©pingler une publication
+        'épingler une publication
         If unUtilisateur.idStatut = 3 Then
             CType(e.Item.FindControl("divPinned"), HtmlControl).Attributes("style") = "display:none;"
         End If
@@ -756,6 +771,7 @@ Public Class FRMForum
     End Sub
     Protected Sub btCropGo_Click(sender As Object, e As EventArgs)
         'Load the Image from the location
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim cropbox = CType(lvInfoUtilisateur.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
         Dim image As System.Drawing.Image = Bitmap.FromFile(Server.MapPath(cropbox.ImageUrl))
         Dim unFichier As String = Server.MapPath(cropbox.ImageUrl)
@@ -790,31 +806,93 @@ Public Class FRMForum
         g.DrawImage(image, New Rectangle(0, 0, 400, 400), New Rectangle(x__1, y__2, w__3, h__4), GraphicsUnit.Pixel)
         'Save the file and reload to the control
 
-        'On ajoute un nombre alÃ©atoire Ã  la fin du fichier afin d'Ã©viter d'Ã©craser les photos existantes
+        'On ajoute un nombre aléatoire à la fin du fichier afin d'éviter d'écraser les photos existantes
         Dim MyRandomNumber As New Random()
         Dim xr As Integer = MyRandomNumber.Next(10000, 100000)
         nomFichier = xr.ToString + ".jpg"
 
         bmp.Save(Server.MapPath("../Upload/ImagesProfil/") + nomFichier, image.RawFormat)
         utilisateurAValider.UrlAvatar = nomFichier
-        ModeleSentinellesHY.outils.leContexte.SaveChanges()
 
+        leContexte.SaveChanges()
         lvInfoUtilisateur.DataBind()
         CType(lvInfoUtilisateur.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 0
 
     End Sub
     Public Function getInfoUtilisateur() As ModeleSentinellesHY.Utilisateur
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
         If Not Session("Utilisateur") Is Nothing Then
             Dim idUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idUtilisateur
-            unUtilisateur = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu Where uti.idUtilisateur = idUtilisateur).FirstOrDefault
-            ModeleSentinellesHY.outils.leContexte.Entry(unUtilisateur).Reload()
+            unUtilisateur = (From uti In leContexte.UtilisateurJeu Where uti.idUtilisateur = idUtilisateur).FirstOrDefault
+            leContexte.Entry(unUtilisateur).Reload()
         Else
             'S'il n'y a aucun utilisateur, on redirige vers l'index puisqu'on ne pourra pas afficher les infos
             Response.Redirect("index.aspx")
         End If
         Return unUtilisateur
     End Function
+
+    Public Sub updateInfoUtilisateur(ByVal idUtilisateur As Integer)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        Dim lblMessageErreur = CType(lvInfoUtilisateur.FindControl("lblMessageErreur"), Label)
+        Dim divMessageErreur = CType(lvInfoUtilisateur.FindControl("divMessageErreur"), Panel)
+        Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Nothing
+        Dim tbMotDePasse As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbMotDePasse"), TextBox).Text
+        Dim tbConfirmation As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbConfirmer"), TextBox).Text
+
+        lblMessageErreur.Text = ""
+        divMessageErreur.CssClass = "alert alert-error"
+        divMessageErreur.Visible = True
+        For Each tb As Object In lvInfoUtilisateur.Items(0).Controls 'Reset l'encadrer autour de tout txtBox
+            If TypeOf (tb) Is TextBox Then
+                CType(tb, TextBox).BorderColor = Nothing
+            End If
+        Next
+
+        utilisateurAValider = leContexte.UtilisateurJeu.Find(idUtilisateur)
+
+        'Prend les données qui sont dans le formulaire
+        TryUpdateModel(utilisateurAValider)
+
+        'Url Avatar avant de l'avoir enregistré. Permet de remettre l'url si l'usager n'est pas enregistré
+        utilisateurAValider.urlAvatarTemp = utilisateurAValider.UrlAvatar
+
+        ModeleSentinellesHY.outils.validationUtilisateur(utilisateurAValider, New ModeleSentinellesHY.UtilisateurValidation(), lvInfoUtilisateur, listeErreur)
+
+        If listeErreur.Count > 0 Then
+            For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
+                lblMessageErreur.Text += "*" & erreur.errorMessage & "<br/>"
+            Next
+        End If
+
+        If ModelState.IsValid Then
+            leContexte.SaveChanges()
+            divMessageErreur.CssClass = "alert alert-success"
+            divMessageErreur.Visible = True
+            lblMessageErreur.Text = ModeleSentinellesHY.outils.obtenirLangue("L'utilisateur a été modifié avec succès!|The user has been successfully updated!")
+
+
+            'Conditions pour Supprimer Avatar du fichier Upload mais ne pas supprimer la photo par défaut
+            If utilisateurAValider.UrlAvatar <> utilisateurAValider.urlAvatarTemp AndAlso utilisateurAValider.UrlAvatar <> "" _
+                AndAlso utilisateurAValider.UrlAvatar <> "default.png" Then
+                ModeleSentinellesHY.outils.SupprimerFichierUpload(utilisateurAValider.urlAvatarTemp)
+            End If
+            lvInfoUtilisateur.DataBind()
+        Else
+
+            For Each erreur As ModeleSentinellesHY.clsErreur In listeErreur
+                If Not erreur.nomPropriete Is Nothing Then
+                    CType(lvInfoUtilisateur.Items(0).FindControl("tb" & erreur.nomPropriete), TextBox).BorderColor = Drawing.Color.Red
+                ElseIf erreur.errorMessage.ToString.Contains("pass") Then
+                    CType(lvInfoUtilisateur.Items(0).FindControl("tbMotDePasse"), TextBox).BorderColor = Drawing.Color.Red
+                    CType(lvInfoUtilisateur.Items(0).FindControl("tbConfirmer"), TextBox).BorderColor = Drawing.Color.Red
+                End If
+            Next
+        End If
+        utilisateurAValider.motDePasseTemp = ""
+        utilisateurAValider.confirmationMotDePasse = ""
+    End Sub
 
     Protected Sub lnkUpload_Click(sender As Object, e As EventArgs)
         Dim lblMessageErreur = CType(lvInfoUtilisateur.FindControl("lblMessageErreur"), Label)
@@ -877,9 +955,10 @@ Public Class FRMForum
         CType(sender, RadioButtonList).Items.Add(Homme)
     End Sub
     Public Function getStatutUtilisateur() As IQueryable(Of ModeleSentinellesHY.Statut)
-
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeStatutUtilisateur As New List(Of ModeleSentinellesHY.Statut)
-        listeStatutUtilisateur = (From ca In ModeleSentinellesHY.outils.leContexte.StatutJeu).ToList
+
+        listeStatutUtilisateur = (From ca In leContexte.StatutJeu).ToList
 
         For Each statut As ModeleSentinellesHY.Statut In listeStatutUtilisateur
             statut.nomStatut = ModeleSentinellesHY.outils.obtenirLangue(statut.nomStatutFR & "|" & statut.nomStatutEN)
@@ -891,9 +970,9 @@ Public Class FRMForum
 
 #Region "Recherche Vue5"
     Protected Sub btnRecherche_Click(sender As Object, e As EventArgs)
-        'Lorsqu'on clique, on change de vue, on vide la barre de recherche du haut et on met le texte recherchÃ©
-        'dans la barre de recherche de la vue. Le ViewState mÃ©morise le texte recherchÃ© afin que le bouton prÃ©cÃ©dent
-        'de la vue Publication+Enfant sache s'il doit redirigÃ© vers la vue CatÃ©gorie ou la vue RÃ©sultat de recherche
+        'Lorsqu'on clique, on change de vue, on vide la barre de recherche du haut et on met le texte recherché
+        'dans la barre de recherche de la vue. Le ViewState mémorise le texte recherché afin que le bouton précédent
+        'de la vue Publication+Enfant sache s'il doit redirigé vers la vue Catégorie ou la vue Résultat de recherche
         'et aussi pour permettre de faire la recherche dans la BD
         MultiViewForum.ActiveViewIndex = 5
         ViewState("Recherche") = tbRecherche.Text
@@ -902,13 +981,14 @@ Public Class FRMForum
         lvResultatRecherche.DataBind()
     End Sub
 
-    'Petite fonction afin de permettre l'autocomplÃ©tion sur la barre de recherche.
+    'Petite fonction afin de permettre l'autocomplétion sur la barre de recherche.
     <System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()>
     Public Shared Function GetCompletionList(ByVal prefixText As String, ByVal count As Integer, ByVal contextKey As String) As String()
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
 
-        Dim autoCompleteList() As String = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Select pub.Categorie.nomCategorieEN).Union _
-                                (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Select pub.Categorie.nomCategorieFR).ToArray.Union _
-                                (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Select pub.titre).ToArray
+        Dim autoCompleteList() As String = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu Select pub.Categorie.nomCategorieEN).Union _
+                                (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu Select pub.Categorie.nomCategorieFR).ToArray.Union _
+                                (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu Select pub.titre).ToArray
 
         Return (
             From obj In autoCompleteList
@@ -916,53 +996,54 @@ Public Class FRMForum
             Select obj).Take(count).ToArray()
     End Function
 
-    'On peut effectuer les recherches selon plusieurs critÃ¨res
+    'On peut effectuer les recherches selon plusieurs critères
     Public Function getResultatRecherche() As IQueryable(Of ModeleSentinellesHY.Publication)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeResultat As New List(Of ModeleSentinellesHY.Publication)
         Dim texteRecherche = ViewState("Recherche")
 
-        'On peut chercher par catÃ©gorie ou pour toutes les catÃ©gories
+        'On peut chercher par catégorie ou pour toutes les catégories
         Dim noCategorie = DDLRechercheAvancee.SelectedValue
 
         'On peut choisir une intervalle pour effectuer la recherche
         Dim dateDepart = tbDateDebut.Text
         Dim dateFin = tbDateFin.Text
 
-        'On vÃ©rifie quels sont les endroits oÃ¹ l'usager souhaite effectuer sa recherche
+        'On vérifie quels sont les endroits où l'usager souhaite effectuer sa recherche
         Dim rechercherTitre = CBLRechercheAvancee.Items(0).Selected
         Dim rechercherContenu = CBLRechercheAvancee.Items(1).Selected
         Dim rechercherUsager = CBLRechercheAvancee.Items(2).Selected
 
         lblQuantiteReponse.Text = 0
-        lblReponse.Text = ModeleSentinellesHY.outils.obtenirLangue("RÃ‰SULTAT|RESULT")
+        lblReponse.Text = ModeleSentinellesHY.outils.obtenirLangue("RÉSULTAT|RESULT")
 
         If texteRecherche.ToString & "" <> "" Then
             Dim listeResultatTemp As New List(Of ModeleSentinellesHY.Publication)
             If rechercherTitre Then
-                Dim listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.titre.Contains(texteRecherche)).ToList()
+                Dim listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu Where pub.titre.Contains(texteRecherche)).ToList()
                 listeResultatTemp.AddRange(listeResultatPartiel)
             End If
             If rechercherContenu Then
-                Dim listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.contenu.Contains(texteRecherche)).ToList()
+                Dim listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu Where pub.contenu.Contains(texteRecherche)).ToList()
                 listeResultatTemp.AddRange(listeResultatPartiel)
             End If
             If rechercherUsager Then
-                Dim listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.Utilisateur.nomUtilisateur.Contains(texteRecherche)).ToList()
+                Dim listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu Where pub.Utilisateur.nomUtilisateur.Contains(texteRecherche)).ToList()
                 listeResultatTemp.AddRange(listeResultatPartiel)
             End If
 
-            'Comme on n'affiche que la publication parent dans les rÃ©sultats de la recherche, on fait cette boucle
+            'Comme on n'affiche que la publication parent dans les résultats de la recherche, on fait cette boucle
             For Each pub As ModeleSentinellesHY.Publication In listeResultatTemp
                 If pub.idParent Is Nothing Then
                     listeResultat.Add(pub)
                 Else
-                    Dim parent = (From unePub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                    Dim parent = (From unePub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu _
                                   Where unePub.idPublication = pub.idParent).FirstOrDefault
                     listeResultat.Add(parent)
                 End If
             Next
 
-            'On Ã©limine les doublons
+            'On élimine les doublons
             listeResultat = listeResultat.Distinct().ToList()
 
             Dim unedate As Date
@@ -971,7 +1052,7 @@ Public Class FRMForum
                 listeResultat = listeResultatPartiel
             End If
             If Date.TryParse(dateFin, unedate) Then
-                'On ajoute une journÃ©e dans la requÃªte afin d'inclure la journÃ©e sÃ©lectionnÃ©e avec le calendrier jusqu'Ã  minuit de cette journÃ©e
+                'On ajoute une journée dans la requête afin d'inclure la journée sélectionnée avec le calendrier jusqu'à minuit de cette journée
                 Dim listeResultatPartiel = listeResultat.Where(Function(x) x.datePublication <= CType(dateFin, Date).AddDays(1)).ToList
                 listeResultat = listeResultatPartiel
             End If
@@ -983,11 +1064,11 @@ Public Class FRMForum
 
             lblQuantiteReponse.Text = listeResultat.Count
             If listeResultat.Count > 1 Then
-                lblReponse.Text = ModeleSentinellesHY.outils.obtenirLangue("RÃ‰SULTATS|RESULTS")
+                lblReponse.Text = ModeleSentinellesHY.outils.obtenirLangue("RÉSULTATS|RESULTS")
             End If
         Else
-            'Cette section a Ã©tÃ© ajouter au cas ou la personne veut faire une recherche sur les critÃ¨res au lieu du text
-            'Effectue une recherche de catÃ©gorie et par date
+            'Cette section a été ajouter au cas ou la personne veut faire une recherche sur les critères au lieu du text
+            'Effectue une recherche de catégorie et par date
             Dim listeResultatTemp As New List(Of ModeleSentinellesHY.Publication)
             Dim listeResultatPartiel As New List(Of ModeleSentinellesHY.Publication)
             If DDLRechercheAvancee.SelectedValue = 0 Then
@@ -997,15 +1078,15 @@ Public Class FRMForum
                 If tbDateDebut.Text & "" <> "" Then
                     If tbDateFin.Text & "" <> "" Then
                         If Date.TryParse(tbDateDebut.Text, dateDeDebut) Or Date.TryParse(tbDateFin.Text, dateDeFin) Then
-                            listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.datePublication >= dateDeDebut And pub.datePublication <= dateDeFin).ToList()
+                            listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu Where pub.datePublication >= dateDeDebut And pub.datePublication <= dateDeFin).ToList()
                         End If
                     Else
                         If Date.TryParse(tbDateDebut.Text, dateDeDebut) Then
-                            listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.datePublication >= dateDeDebut).ToList()
+                            listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu Where pub.datePublication >= dateDeDebut).ToList()
                         End If
                     End If
                 Else
-                    listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu).ToList()
+                    listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu).ToList()
                 End If
             Else
                 Dim dateDeDebut As Date
@@ -1014,15 +1095,15 @@ Public Class FRMForum
                 If tbDateDebut.Text & "" <> "" Then
                     If tbDateFin.Text & "" <> "" Then
                         If Date.TryParse(tbDateDebut.Text, dateDeDebut) Or Date.TryParse(tbDateFin.Text, dateDeFin) Then
-                            listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.Categorie.idCategorie = DDLRechercheAvancee.SelectedValue And pub.datePublication >= dateDeDebut And pub.datePublication <= dateDeFin).ToList()
+                            listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu Where pub.Categorie.idCategorie = DDLRechercheAvancee.SelectedValue And pub.datePublication >= dateDeDebut And pub.datePublication <= dateDeFin).ToList()
                         End If
                     Else
                         If Date.TryParse(tbDateDebut.Text, dateDeDebut) Then
-                            listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.Categorie.idCategorie = DDLRechercheAvancee.SelectedValue And pub.datePublication >= dateDeDebut).ToList()
+                            listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu Where pub.Categorie.idCategorie = DDLRechercheAvancee.SelectedValue And pub.datePublication >= dateDeDebut).ToList()
                         End If
                     End If
                 Else
-                    listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu Where pub.Categorie.idCategorie = DDLRechercheAvancee.SelectedValue).ToList()
+                    listeResultatPartiel = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu Where pub.Categorie.idCategorie = DDLRechercheAvancee.SelectedValue).ToList()
                 End If
 
             End If
@@ -1033,7 +1114,7 @@ Public Class FRMForum
                 If pub.idParent Is Nothing Then
                     listeResultat.Add(pub)
                 Else
-                    Dim parent = (From unePub As ModeleSentinellesHY.Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                    Dim parent = (From unePub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu _
                                   Where unePub.idPublication = pub.idParent).FirstOrDefault
                     listeResultat.Add(parent)
                 End If
@@ -1072,14 +1153,15 @@ Public Class FRMForum
     End Sub
 
     Protected Sub DDLRechercheAvancee_Init(sender As Object, e As EventArgs)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim toutesCategories As New ListItem
 
-        toutesCategories.Text = ModeleSentinellesHY.outils.obtenirLangue("Toutes les catÃ©gories|All categories")
+        toutesCategories.Text = ModeleSentinellesHY.outils.obtenirLangue("Toutes les catégories|All categories")
 
         toutesCategories.Value = 0
         CType(sender, DropDownList).Items.Add(toutesCategories)
 
-        For Each cat As ModeleSentinellesHY.Categorie In ModeleSentinellesHY.outils.leContexte.CategorieJeu
+        For Each cat As ModeleSentinellesHY.Categorie In leContexte.CategorieJeu
             Dim uneCategorie As New ListItem
             uneCategorie.Text = ModeleSentinellesHY.outils.obtenirLangue(cat.nomCategorieFR & "|" & cat.nomCategorieEN)
 
@@ -1102,12 +1184,12 @@ Public Class FRMForum
         Dim imgAvatar = CType(e.Item.FindControl("imgAvatar"), System.Web.UI.WebControls.Image)
         Dim unePublication As ModeleSentinellesHY.Publication = CType(e.Item.DataItem, ModeleSentinellesHY.Publication)
 
-        'On vÃ©rifie si l'utilisateur ayant publiÃ© la publication existe encore dans la BD
+        'On vérifie si l'utilisateur ayant publié la publication existe encore dans la BD
         If Not unePublication.idUtilisateur Is Nothing Then
-            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("PubliÃ© par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
             imgAvatar.ImageUrl = "../Upload/ImagesProfil/" & unePublication.Utilisateur.UrlAvatar
         Else
-            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimÃ©|User deleted")
+            lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
             imgAvatar.ImageUrl = "../Upload/ImagesProfil/default.png"
         End If
     End Sub

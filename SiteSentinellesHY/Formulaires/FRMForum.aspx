@@ -127,7 +127,7 @@
                             <div class="alert fade in">
                                 <a class="close" data-dismiss="alert" href="#">&times;</a>
                                 <strong><% =outils.obtenirLangue("ATTENTION!<br />|WARNING!")%></strong>
-                                <% =outils.obtenirLangue("Ce forum sert exclusivement au partage d'information. Pour toute urgence, appeler au numéro suivant : 1-866-277-3553|This forum is used exclusively to share information. For emergencies, call the following number : 1-866-277-3553")%>
+                                <% =outils.obtenirLangue("Ce forum sert exclusivement au partage d'information. Pour toute urgence, appeler au numéro suivant : 1-866-277-3553 (Centre de Prévention Suicide)|This forum is used exclusively to share information. For emergencies, call the following number : 1-866-277-3553 (Centre de Prévention Suicide)")%>
                             </div>
                             <asp:LinkButton ID="lnkbtnAjouterPublication" runat="server" OnClick="lnkbtnAjouterPublication_Click">
                                 <i aria-hidden="true" class="icon-plus-sign"></i><% =outils.obtenirLangue(" Poser une question| Ask a question")%>

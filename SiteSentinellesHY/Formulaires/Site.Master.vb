@@ -69,11 +69,12 @@ Partial Class Site
     End Function
 
     Protected Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         lblLoginErrorMessage.Text = ""
 
         If Not (tbLoginPassword.Text = "" Or tbLoginUsername.Text = "") Then
             Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
-            unUtilisateur = (From uti In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu Where uti.nomUtilisateur = tbLoginUsername.Text).FirstOrDefault
+            unUtilisateur = (From uti In leContexte.UtilisateurJeu Where uti.nomUtilisateur = tbLoginUsername.Text).FirstOrDefault
             If unUtilisateur Is Nothing Then
                 lblLoginErrorMessage.Text = ModeleSentinellesHY.outils.obtenirLangue("Le nom d'utilisateur ou le mot de passe est incorrect. |The username or the password is incorrect.")
             Else
