@@ -336,6 +336,11 @@ Public Class FRMForum
         Return listeRetour.AsQueryable()
     End Function
 
+    Private Sub lviewCategorie_DataBound(sender As Object, e As EventArgs) Handles lviewCategorie.DataBound
+        dataPagerHaut.Visible = (dataPagerHaut.PageSize < dataPagerHaut.TotalRowCount)
+        dataPagerBas.Visible = (dataPagerBas.PageSize < dataPagerBas.TotalRowCount)
+    End Sub
+
     Private Sub lviewCategorie_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewCategorie.ItemDataBound
         Dim DroitUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idStatut
         Dim unePublication As ModeleSentinellesHY.Publication = CType(e.Item.DataItem, ModeleSentinellesHY.Publication)
@@ -421,6 +426,11 @@ Public Class FRMForum
         End If
     End Sub
 
+    Private Sub lviewConsulterPublication_DataBound(sender As Object, e As EventArgs) Handles lviewConsulterPublication.DataBound
+        dataPagerHautPubs.Visible = (dataPagerHautPubs.PageSize < dataPagerHautPubs.TotalRowCount)
+        dataPagerBasPubs.Visible = (dataPagerBasPubs.PageSize < dataPagerBasPubs.TotalRowCount)
+    End Sub
+
     Private Sub lviewConsulterPublication_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewConsulterPublication.ItemDataBound
         Dim unUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur)
         Dim lblPubliePar = CType(e.Item.FindControl("lblPubliePar"), Label)
@@ -440,6 +450,13 @@ Public Class FRMForum
             CType(e.Item.FindControl("lblStatut"), Label).Text = ModeleSentinellesHY.outils.obtenirLangue(CType(e.Item.DataItem, ModeleSentinellesHY.Publication).Utilisateur.Statut.nomStatutFR _
                                                                                                           & "|" & CType(e.Item.DataItem, ModeleSentinellesHY.Publication).Utilisateur.Statut.nomStatutEN)
         End If
+
+        If unePublication.Utilisateur.idStatut = 1 Then
+            CType(e.Item.FindControl("lblStatut"), Label).CssClass = "lblCouleurStatut_administrateur"
+        ElseIf unePublication.Utilisateur.idStatut = 2 Then
+            CType(e.Item.FindControl("lblStatut"), Label).CssClass = "lblCouleurStatut_intervenant"
+        End If
+
 
         'On affiche l'image de la publication épinglée
         If unePublication.epinglee = True Then
@@ -496,6 +513,10 @@ Public Class FRMForum
     Public Sub UpdatePublication(ByVal publicationAUpdater As ModeleSentinellesHY.Publication)
 
         Dim noItem = ViewState("noItem")
+        Dim listeEnfants = New List(Of Publication)
+
+        listeEnfants = (From pub As Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+                        Where pub.idParent = publicationAUpdater.idPublication).ToList()
         Dim lblMessageErreurModifierPublication = CType(lviewConsulterPublication.Items(noItem).FindControl("lblMessageErreurModifierPublication"), Label)
         lblMessageErreurModifierPublication.Text = ""
         lblMessageErreurModifierPublication.ForeColor = Drawing.Color.Red
@@ -507,6 +528,10 @@ Public Class FRMForum
         publicationAUpdater = (From pub In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
                                        Where pub.idPublication = publicationAUpdater.idPublication).FirstOrDefault
         TryUpdateModel(publicationAUpdater)
+
+        For Each enfant As Publication In listeEnfants
+            enfant.titre = publicationAUpdater.titre
+        Next
 
         'Remplace les div par des p pour un retour à la ligne
         If Not publicationAUpdater.contenu = Nothing Then

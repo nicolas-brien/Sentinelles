@@ -327,12 +327,12 @@
                                                 <div id="collapsePensee" class="accordion-body collapse">
                                                     <div class="accordion-inner">
                                                         <div>
-                                                            <asp:Label ID="Label4" runat="server"><%= outils.obtenirLangue("Contenu de la pensée (français) : |Content of the thought (french) : ")%>
+                                                            <asp:Label ID="Label4" CssClass="display_block" runat="server"><%= outils.obtenirLangue("Contenu de la pensée (français) : |Content of the thought (french) : ")%>
                                                             </asp:Label>
                                                             <asp:TextBox ID="txtboxPenseeFR" CssClass="txtboxPenseeFR" TextMode="MultiLine" Height="40px" runat="server" Text='<%# BindItem.penseeFR%>' />
                                                         </div>
                                                         <div>
-                                                            <asp:Label ID="Label5" runat="server"><%= outils.obtenirLangue("Contenu de la pensée (english) : |Content of the thought (english) : ")%></asp:Label>
+                                                            <asp:Label ID="Label5" CssClass="display_block" runat="server"><%= outils.obtenirLangue("Contenu de la pensée (english) : |Content of the thought (english) : ")%></asp:Label>
                                                             <asp:TextBox ID="txtboxPenseeEN" CssClass="txtboxPenseeEN" TextMode="MultiLine" Height="40px" runat="server" Text='<%# BindItem.penseeEN%>' />
                                                         </div>
                                                         <asp:LinkButton ID="LinkButton4" runat="server"
@@ -352,13 +352,13 @@
                                                 <div id="collapseTemoignage" class="accordion-body collapse">
                                                     <div class="accordion-inner">
                                                         <div>
-                                                            <asp:Label ID="Label9" runat="server">
+                                                            <asp:Label ID="Label9" CssClass="display_block" runat="server">
                                                                 <%= outils.obtenirLangue("Contenu du témoignage (français) : |Content of the testimonial (french) : ")%>
                                                             </asp:Label>
                                                             <asp:TextBox ID="txtboxtemoignageFR" CssClass="txtboxtemoignageFR" TextMode="MultiLine" Height="40px" runat="server" Text='<%# BindItem.temoignageFR%>' />
                                                         </div>
                                                         <div>
-                                                            <asp:Label ID="Label6" runat="server">
+                                                            <asp:Label ID="Label6" CssClass="display_block" runat="server">
                                                                <%= outils.obtenirLangue("Contenu du témoignage (anglais) : |Content of the testimonial (english) : ")%>
                                                             </asp:Label>
                                                             <asp:TextBox ID="txtboxtemoignageEN" runat="server" CssClass="txtboxtemoignageEN" TextMode="MultiLine" Height="40px" Text='<%# BindItem.temoignageEN%>' />
@@ -387,8 +387,7 @@
                                                             <div class="accordion-inner">
                                                                 <div>
                                                                     <asp:Label ID="lblFormatImgMessage" runat="server">
-                                                                <%= outils.obtenirLangue("*Les images du carrousel doivent être approximativement de 960 x 400 et de types jpg|*The images of the caroussel must be approximately 960 x 200 and with the type jpg")%>
-                                                                    </asp:Label>
+                                                                      </asp:Label>
                                                                 </div>
                                                                 <div class="marginbottom_divImgCarrousel">
                                                                     <asp:Label ID="Label10" runat="server"><%= outils.obtenirLangue("Image carrousel 1 : |Photo caroussel 1 : ")%></asp:Label>
@@ -920,11 +919,11 @@
                                         <hr />
                                         <asp:Label runat="server"><%= outils.obtenirLangue("Fichier ou lien vers la revue de presse : |File or link to the press review : ")%></asp:Label>
                                         <asp:TextBox ID="txtboxUrlDocument" CssClass="txtBoxModifier" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.urlDocument%>' Width="300" runat="server" />
-                                        <div>
-                                            <a onclick="$('[id$=fuplRDP]').click(); return false;"
-                                                href="#"><%= outils.obtenirLangue("Choisir|Select") %></a> |
-                                                <asp:LinkButton ID="lnkUploadRDP" runat="server" Text="Upload" OnClick="lnkUploadRDP_Click" />
-                                            <asp:FileUpload ID="fuplRDP" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" />
+                                        <div>                         
+                                            <a onclick="$('[id$=fuplRDP]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir un fichier PDF|Select a PDF file") %></a>
+                                                                           
+                                            <asp:FileUpload ID="fuplRDP" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" onpropertychange="$('[id$=uploadButton1]').click(); return false;" onchange="$('[id$=uploadButton1]').click(); return false;" Style="display: none"/>
+                                            <asp:Button ID="uploadButton1" runat="server" Text="Carrousel1" ClientIDMode="Static" OnClick="lnkUploadPDF_Click" Style="display: none" />
                                         </div>
                                         <div class="boutonsNouvelleMargin">
                                             <asp:LinkButton ID="btnModifierNouvelle" runat="server"
@@ -1089,7 +1088,7 @@
                                             </div>
                                             <div class="span6" style="float: right;display:inline;">
                                                 <span class="asterisque">*</span>
-                                                <asp:RadioButtonList ID="rbtnSexe" runat="server" RepeatDirection="Horizontal" CssClass="radio rbtnSexe"
+                                                <asp:RadioButtonList ID="rbtnSexe" runat="server" RepeatDirection="Horizontal" CssClass="radio rbtnSexe txtboxUtilisateur"
                                                     SelectedValue='<%# BindItem.sexe%>' OnInit="rbtnSexe_Init">
                                                 </asp:RadioButtonList>
                                             </div>

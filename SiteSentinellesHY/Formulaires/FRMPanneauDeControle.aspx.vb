@@ -817,7 +817,7 @@ Public Class FRMPanneauDeControle
         lvInfoRDP.DataBind()
     End Sub
 
-    Protected Sub lnkUploadRDP_Click(sender As Object, e As EventArgs)
+    Protected Sub lnkUploadPDF_Click(sender As Object, e As EventArgs)
         'Upload pour les fichiers pdf pour les revues de presse
         Dim controlUploadRDP = CType(lvInfoRDP.Items(0).FindControl("fuplRDP"), FileUpload)
         Dim extension As String = ""
