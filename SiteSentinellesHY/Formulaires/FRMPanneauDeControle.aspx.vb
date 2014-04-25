@@ -27,7 +27,7 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         If Not ViewState("vue") Is Nothing Then
             If Page.IsPostBack Then
                 'On affiche la bonne vue qui est mémorisé dans le Viewstate
@@ -67,7 +67,7 @@ Public Class FRMPanneauDeControle
                 End If
             Next
 
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            leContexte.SaveChanges()
 
         End If
     End Sub
@@ -166,6 +166,7 @@ Public Class FRMPanneauDeControle
 
 #Region "EnvoiMessage"
     Private Sub lnkbtnEnvoiMessage_Click(sender As Object, e As EventArgs) Handles lnkbtnEnvoiMessage.Click
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         If Not File.Exists(Server.MapPath("/BackControl/properties.txt")) Then
             Using fs As FileStream = File.Create(Server.MapPath("/BackControl/properties.txt"))
                 Dim info As [Byte]() = New UTF8Encoding(True).GetBytes("EmailSend=true")
@@ -193,7 +194,7 @@ Public Class FRMPanneauDeControle
         Dim listeDestinataire As New List(Of ModeleSentinellesHY.Utilisateur)
         Dim destinataires As String = ""
 
-        listeDestinataire = (From info In ModeleSentinellesHY.outils.leContexte.UtilisateurJeu _
+        listeDestinataire = (From info In leContexte.UtilisateurJeu _
                                       Where info.courriel <> Nothing).ToList
         For Each uti As ModeleSentinellesHY.Utilisateur In listeDestinataire
             destinataires &= uti.courriel & ","
@@ -1066,12 +1067,13 @@ Public Class FRMPanneauDeControle
     End Sub
 
     Protected Sub btnImgDefaut_Click(sender As Object, e As EventArgs)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         CType(lviewInfoUtilisateur.Items(0).FindControl("lblNomPhoto"), Label).Text = "default.png"
         CType(lviewInfoUtilisateur.Items(0).FindControl("imgUpload"), HtmlImage).Src = "../Upload/ImagesProfil/default.png"
 
-        Dim newUtilisateurTemp As Utilisateur = outils.leContexte.UtilisateurJeu.Find(lviewUtilisateurs.SelectedDataKey(0))
+        Dim newUtilisateurTemp As Utilisateur = leContexte.UtilisateurJeu.Find(lviewUtilisateurs.SelectedDataKey(0))
         newUtilisateurTemp.UrlAvatar = "default.png"
-        outils.leContexte.SaveChanges()
+        leContexte.SaveChanges()
     End Sub
 
     Protected Sub rbtnSexe_Init(sender As Object, e As EventArgs)

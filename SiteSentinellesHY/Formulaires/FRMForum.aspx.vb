@@ -86,7 +86,7 @@ Public Class FRMForum
             For Each fi As FileInfo In di.GetFiles()
                 If (fi.Name.IndexOf("default") < 0) Then
                     Dim utilisateur As Utilisateur
-                    utilisateur = outils.leContexte.UtilisateurJeu.Where(Function(x) x.UrlAvatar = fi.Name).FirstOrDefault
+                    utilisateur = leContexte.UtilisateurJeu.Where(Function(x) x.UrlAvatar = fi.Name).FirstOrDefault
                     If (utilisateur Is Nothing) Then
                         Try
                             File.Delete(fi.FullName)
@@ -97,13 +97,13 @@ Public Class FRMForum
                 End If
             Next
             'attribution de la photo pat default si trouve pas la photo du profil dans le dossier
-            For Each utilisateur As Utilisateur In outils.leContexte.UtilisateurJeu
+            For Each utilisateur As Utilisateur In leContexte.UtilisateurJeu
                 If ((di.GetFiles.Where(Function(x) x.Name = utilisateur.UrlAvatar).FirstOrDefault) Is Nothing) Then
                     utilisateur.UrlAvatar = "default.png"
                 End If
             Next
 
-            ModeleSentinellesHY.outils.leContexte.SaveChanges()
+            leContexte.SaveChanges()
 
         End If
 
@@ -527,7 +527,7 @@ Public Class FRMForum
         Dim noItem = ViewState("noItem")
         Dim listeEnfants = New List(Of Publication)
 
-        listeEnfants = (From pub As Publication In ModeleSentinellesHY.outils.leContexte.PublicationJeu _
+        listeEnfants = (From pub As Publication In leContexte.PublicationJeu _
                         Where pub.idParent = publicationAUpdater.idPublication).ToList()
         Dim lblMessageErreurModifierPublication = CType(lviewConsulterPublication.Items(noItem).FindControl("lblMessageErreurModifierPublication"), Label)
         lblMessageErreurModifierPublication.Text = ""
