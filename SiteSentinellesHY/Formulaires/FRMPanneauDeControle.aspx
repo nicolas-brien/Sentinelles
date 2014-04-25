@@ -960,7 +960,7 @@
                             <div class="row paddingRow">
                                 <div class="pull-right">
                                     <asp:TextBox ID="txtboxRechercheUtilisateur" runat="server" />
-                                    <asp:Button ID="btnRechercheUtilisateur" runat="server" Text="Rechercher" CssClass="btn btn-primary" />
+                                    <asp:Button ID="btnRechercheUtilisateur" runat="server" Text="Rechercher" CssClass="btn btn-primary" Style="margin-bottom:10px" />
                                 </div>
                                 <div class="clear-both"></div>
                                 <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 160px;">
