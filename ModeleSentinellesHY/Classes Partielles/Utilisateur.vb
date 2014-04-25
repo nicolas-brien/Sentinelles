@@ -111,7 +111,8 @@ Partial Public Class UtilisateurValidation
     Public Property milieu As String
 
     <DisplayName("Adresse courriel"), _
-    RegularExpression("^(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})$", ErrorMessage:="L'adresse courriel doit être valide|The email must be valid")> _
+    RegularExpression("^(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})$", ErrorMessage:="L'adresse courriel doit être valide|The email must be valid"), _
+    StringLength(100, ErrorMessage:="L'adresse courriel doit contenir moins de 100 caractères|The email must contains less than 100 characters")> _
     Public Property courriel As String
 
     <DisplayName("Téléphone"), _

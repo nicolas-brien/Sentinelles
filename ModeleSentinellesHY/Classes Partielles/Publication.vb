@@ -29,9 +29,11 @@ Partial Public Class PublicationValidation
     Required(ErrorMessage:="Le titre est requis|The title is required"), _
     StringLength(75, ErrorMessage:="Le titre doit contenir moins de 75 caractères|The title must contain less than 75 characters")> _
     Public Property titre As String
+
     <DisplayName("contenu"), _
     Required(ErrorMessage:="Vous devez poser une question|You must ask a question")> _
     Public Property contenu As String
+
     <DisplayName("categorie"), _
     Required(ErrorMessage:="Vous devez choisir une catégorie|You must choose a category")> _
     Public Property idCategorie As String
