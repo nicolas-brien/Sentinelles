@@ -61,6 +61,7 @@ Public Class EmailSendRoutine
                             mailList = New List(Of Utilisateur)
                             mailList = (
                                 From m In leContexte.UtilisateurJeu
+                                Where m.courriel <> ""
                                 Select m
                             ).ToList()
                         End If
@@ -79,17 +80,19 @@ Public Class EmailSendRoutine
                                     fs.Write(info, 0, info.Length)
                                 End Using
                             Else
-                                If Not isFileEmpty Then
+                                If Not isFileEmpty And Not s.Equals(" ") Then
                                     mailList = New List(Of Utilisateur)
                                     Dim id As Integer = 0
-                                    If Integer.TryParse(s.Trim(), id) Then
-                                        mailList = (
-                                        From m In leContexte.UtilisateurJeu
-                                        Where m.idUtilisateur > Integer.Parse(id)
-                                        Select m
-                                    ).ToList()
-                                    End If
-                                    
+                                    Try
+                                        If Integer.TryParse(s.Trim(), id) Then
+                                            mailList = (
+                                            From m In leContexte.UtilisateurJeu
+                                            Where m.idUtilisateur > Integer.Parse(id)
+                                            Select m).ToList()
+                                        End If
+                                    Catch ex As Exception
+                                        mailList = New List(Of Utilisateur)
+                                    End Try                               
                                 End If
 
                                 Dim count As Integer = 0
