@@ -9,10 +9,10 @@
     <div class="dataPager">
         <asp:DataPager runat="server" ID="dataPagerHaut" PageSize="3" PagedControlID="lvEvenements" class="btn-group">
             <Fields>
-                <asp:NextPreviousPagerField FirstPageText="&lt;&lt;" ShowFirstPageButton="True"
+                <asp:NextPreviousPagerField FirstPageText="<i class='icon-chevron-left'></i>" ShowFirstPageButton="True"
                     ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
                 <asp:NumericPagerField CurrentPageLabelCssClass="btn btn-info btn-sm btn-datapager" NumericButtonCssClass="btn btn-default btn-sm btn-datapager" />
-                <asp:NextPreviousPagerField LastPageText="&gt;&gt;" ShowLastPageButton="True"
+                <asp:NextPreviousPagerField LastPageText="<i class='icon-chevron-right'></i>" ShowLastPageButton="True"
                     ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
             </Fields>
         </asp:DataPager>
@@ -58,10 +58,10 @@
     <div class="dataPager">
         <asp:DataPager runat="server" ID="dataPagerBas" PageSize="3" PagedControlID="lvEvenements" class="btn-group">
             <Fields>
-                <asp:NextPreviousPagerField FirstPageText="&lt;&lt;" ShowFirstPageButton="True"
+                <asp:NextPreviousPagerField FirstPageText="<i class='icon-chevron-left'></i>" ShowFirstPageButton="True"
                     ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
                 <asp:NumericPagerField CurrentPageLabelCssClass="btn btn-info btn-sm btn-datapager" NumericButtonCssClass="btn btn-default btn-sm btn-datapager" />
-                <asp:NextPreviousPagerField LastPageText="&gt;&gt;" ShowLastPageButton="True"
+                <asp:NextPreviousPagerField LastPageText="<i class='icon-chevron-right'></i>" ShowLastPageButton="True"
                     ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
             </Fields>
         </asp:DataPager>
