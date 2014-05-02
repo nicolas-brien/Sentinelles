@@ -855,8 +855,8 @@ Public Class FRMPanneauDeControle
     'il faudrait mettre un EditTemplate dans le listview, ce serait plus propre
     Protected Sub asterisque_PreRender(sender As Object, e As EventArgs)
         If Not ViewState("modeUtilisateur") = "AjoutUtilisateur" Then
-            Dim asterisque As System.Web.UI.WebControls.WebControl = CType(sender, System.Web.UI.WebControls.WebControl)
-            asterisque.Visible = Not asterisque.CssClass.Contains("asterisque")
+            Dim asterisque As System.Web.UI.WebControls.Label = CType(sender, System.Web.UI.WebControls.Label)
+            asterisque.Visible = False
         End If
     End Sub
     Private Sub lviewUtilisateurs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewUtilisateurs.SelectedIndexChanged

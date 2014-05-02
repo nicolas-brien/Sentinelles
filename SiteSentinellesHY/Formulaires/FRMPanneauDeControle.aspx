@@ -1060,7 +1060,7 @@
                                                 </div>
                                                 <div class="span6" style="float: right;">
                                                     <asp:TextBox ID="txtboxnomUtilisateur" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nomUtilisateur%>' />
-                                                    <span class="asterisque">*</span>
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
                                             <div id="divPrenom" class="row" style="clear: both">
@@ -1069,17 +1069,16 @@
                                                 </div>
                                                 <div class="span6" style="float: right;">
                                                     <asp:TextBox ID="txtboxprenom" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.prenom%>' />
-                                                    <span class="asterisque">*</span>
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
                                             <div id="divNom" class="row" style="clear: both">
                                                 <div class="span3" style="margin-left: 35px;">
                                                     <asp:Label ID="lblNom" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Nom:|Last name :")%></asp:Label>
-
                                                 </div>
                                                 <div class="span6" style="float: right;">
                                                     <asp:TextBox ID="txtboxnom" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nom%>' />
-                                                    <span class="asterisque">*</span>
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
                                             <div id="divSexe" class="row" style="clear: both; height: 40px;">
@@ -1090,7 +1089,7 @@
                                                     <asp:RadioButtonList ID="rbtnSexe" runat="server" RepeatDirection="Horizontal" CssClass="radio rbtnSexe txtboxUtilisateur"
                                                         SelectedValue='<%# BindItem.sexe%>' OnInit="rbtnSexe_Init">
                                                     </asp:RadioButtonList>
-                                                    <span class="asterisque">*</span>
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
                                             <div id="divTelephone" class="row" style="clear: both">
@@ -1099,10 +1098,9 @@
                                                 </div>
                                                 <div class="span6" style="float: right;">
                                                     <asp:TextBox ID="txtboxnoTelephone" placeHolder="123-456-7890" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.noTelephone%>' />
-                                                    <span class="asterisque">*</span>
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
-
                                             <div id="divCourriel" class="row" style="clear: both">
                                                 <div class="span3" style="margin-left: 35px;">
                                                     <asp:Label ID="lblCourriel" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Courriel:|Email:")%></asp:Label>
@@ -1111,7 +1109,6 @@
                                                     <asp:TextBox ID="txtboxcourriel" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" placeHolder="abc@microsoft.com" runat="server" Text='<%# BindItem.courriel%>' />
                                                 </div>
                                             </div>
-
                                             <div id="divType" class="row" style="clear: both">
                                                 <div class="span3" style="margin-left: 35px;">
                                                     <asp:Label ID="lblType" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Type d'utilisateur:|User type:")%></asp:Label>
@@ -1123,7 +1120,7 @@
                                                         ItemType="ModeleSentinellesHY.Statut"
                                                         SelectedValue="<%# BindItem.idStatut%>"
                                                         SelectMethod="getStatutUtilisateur" CssClass="txtboxUtilisateur" runat="server" />
-                                                    <span class="asterisque" style="margin-left: 19px;">*</span>
+                                                    <asp:Label class="asterisque" runat="server" style="margin-left:19px;" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
 
@@ -1134,7 +1131,7 @@
                                                 </div>
                                                 <div class="span6" style="float: right;">
                                                     <asp:TextBox ID="txtboxmilieu" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.milieu%>' />
-                                                    <span class="asterisque">*</span>
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
 
@@ -1144,7 +1141,7 @@
                                                 </div>
                                                 <div class="span6" style="float: right;">
                                                     <asp:TextBox ID="txtboxmotDePasse" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.motDePasseTemp%>' />
-                                                    <span class="asterisque">*</span>
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
 
@@ -1155,7 +1152,7 @@
                                                 </div>
                                                 <div class="span6" style="float: right;">
                                                     <asp:TextBox ID="txtboxConfirmer" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.confirmationMotDePasse%>' />
-                                                    <span class="asterisque">*</span>
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
                                             <div id="divAvatar" class="row" style="clear: both">
