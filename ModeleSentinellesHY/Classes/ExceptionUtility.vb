@@ -58,7 +58,7 @@ Public NotInheritable Class ExceptionUtility
             Dim reader = New StreamReader(logFile, True)
             logText += newError & "\n"
             logText += reader.ReadToEnd()
-
+            reader.Close()
             'Efface le fichier
             System.IO.File.WriteAllText(logFile, String.Empty)
 
