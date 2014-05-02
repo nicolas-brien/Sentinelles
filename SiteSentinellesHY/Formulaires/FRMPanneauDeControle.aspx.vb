@@ -1,5 +1,3 @@
-'Rechercher #Region "Utilisateur" afin d'accéder directement au bon endroit dans le document
-
 Imports System.IO
 Imports System.Threading
 Imports System.Drawing
@@ -853,6 +851,14 @@ Public Class FRMPanneauDeControle
         End If
     End Sub
 
+    'PreRender des astérisques dans le listview pour ne les afficher que lorsqu'on est en mode Ajout... Idéalement,
+    'il faudrait mettre un EditTemplate dans le listview, ce serait plus propre
+    Protected Sub asterisque_PreRender(sender As Object, e As EventArgs)
+        If Not ViewState("modeUtilisateur") = "AjoutUtilisateur" Then
+            Dim asterisque As System.Web.UI.WebControls.WebControl = CType(sender, System.Web.UI.WebControls.WebControl)
+            asterisque.Visible = Not asterisque.CssClass.Contains("asterisque")
+        End If
+    End Sub
     Private Sub lviewUtilisateurs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewUtilisateurs.SelectedIndexChanged
         ViewState("modeUtilisateur") = ""
         lblMessageErreurInfoUtilisateur.Text = ""
@@ -1044,5 +1050,4 @@ Public Class FRMPanneauDeControle
 
     End Sub
 #End Region
-
 End Class

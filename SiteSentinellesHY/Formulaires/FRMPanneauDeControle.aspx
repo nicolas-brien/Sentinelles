@@ -959,7 +959,7 @@
                         <asp:View ID="ViewUtilisateur" runat="server">
                             <div class="row paddingRow">
                                 <div class="pull-right">
-                                    <asp:TextBox ID="txtboxRechercheUtilisateur" runat="server" />
+                                    <asp:TextBox ID="txtboxRechercheUtilisateur" runat="server" onkeydown="return (event.keyCode!=13);" />
                                     <asp:Button ID="btnRechercheUtilisateur" runat="server" Text="Rechercher" CssClass="btn btn-primary" />
                                 </div>
                                 <div class="clear-both"></div>
@@ -1059,8 +1059,8 @@
                                                 <asp:Label ID="lblNomUtilisateur" CssClass="lblUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server"><%= outils.obtenirLangue("Nom d'utilisateur:|Username :")%></asp:Label>
                                             </div>
                                             <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
                                                 <asp:TextBox ID="txtboxnomUtilisateur" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nomUtilisateur%>' />
+                                                <span class="asterisque">*</span>
                                             </div>
                                         </div>
                                         <div id="divPrenom" class="row" style="clear: both">
@@ -1068,8 +1068,8 @@
                                                 <asp:Label ID="lblPrenom" CssClass="lblUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server"><%= outils.obtenirLangue("Prénom:|First name :")%></asp:Label>
                                             </div>
                                             <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
                                                 <asp:TextBox ID="txtboxprenom" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.prenom%>' />
+                                                <span class="asterisque">*</span>
                                             </div>
                                         </div>
                                         <div id="divNom" class="row" style="clear: both">
@@ -1078,19 +1078,19 @@
 
                                             </div>
                                             <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
                                                 <asp:TextBox ID="txtboxnom" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nom%>' />
+                                                <span class="asterisque">*</span>
                                             </div>
                                         </div>
-                                        <div id="divSexe" class="row" style="clear: both">
+                                        <div id="divSexe" class="row" style="clear: both;height:40px;">
                                             <div class="span3" style="margin-left: 35px;">
                                                 <asp:Label ID="lblSexe" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Sexe:|Gender:")%> </asp:Label>
                                             </div>
                                             <div class="span6" style="float: right;display:inline;">
-                                                <span class="asterisque">*</span>
                                                 <asp:RadioButtonList ID="rbtnSexe" runat="server" RepeatDirection="Horizontal" CssClass="radio rbtnSexe txtboxUtilisateur"
                                                     SelectedValue='<%# BindItem.sexe%>' OnInit="rbtnSexe_Init">
                                                 </asp:RadioButtonList>
+                                                <span class="asterisque">*</span>
                                             </div>
                                         </div>
                                         <div id="divTelephone" class="row" style="clear: both">
@@ -1098,8 +1098,8 @@
                                                 <asp:Label ID="lblTelephone" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("No. téléphone:|Phone number:")%></asp:Label>
                                             </div>
                                             <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
                                                 <asp:TextBox ID="txtboxnoTelephone" placeHolder="123-456-7890" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.noTelephone%>' />
+                                                <span class="asterisque">*</span>
                                             </div>
                                         </div>
 
@@ -1117,13 +1117,13 @@
                                                 <asp:Label ID="lblType" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Type d'utilisateur:|User type:")%></asp:Label>
                                             </div>
                                             <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
                                                 <asp:DropDownList ID="ddlstType"
                                                     DataValueField="idStatut"
                                                     DataTextField="nomStatut"
                                                     ItemType="ModeleSentinellesHY.Statut"
                                                     SelectedValue="<%# BindItem.idStatut%>"
                                                     SelectMethod="getStatutUtilisateur" CssClass="txtboxUtilisateur" runat="server" />
+                                                <span class="asterisque" style="margin-left:19px;">*</span>
                                             </div>
                                         </div>
 
@@ -1133,8 +1133,8 @@
 
                                             </div>
                                             <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
                                                 <asp:TextBox ID="txtboxmilieu" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.milieu%>' />
+                                                <span class="asterisque">*</span>
                                             </div>
                                         </div>
 
@@ -1143,8 +1143,8 @@
                                                 <asp:Label ID="lblPassword" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Mot de passe:|Password:")%></asp:Label>
                                             </div>
                                             <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
                                                 <asp:TextBox ID="txtboxmotDePasse" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.motDePasseTemp%>' />
+                                                <span class="asterisque">*</span>
                                             </div>
                                         </div>
 
@@ -1154,8 +1154,8 @@
 
                                             </div>
                                             <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
                                                 <asp:TextBox ID="txtboxConfirmer" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.confirmationMotDePasse%>' />
+                                                <span class="asterisque">*</span>
                                             </div>
                                         </div>
                                         <div id="divAvatar" class="row" style="clear: both">
