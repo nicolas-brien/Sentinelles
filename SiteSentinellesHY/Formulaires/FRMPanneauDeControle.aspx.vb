@@ -1,5 +1,3 @@
-'Rechercher #Region "Utilisateur" afin d'accéder directement au bon endroit dans le document
-
 Imports System.IO
 Imports System.Threading
 Imports System.Drawing
@@ -86,7 +84,7 @@ Public Class FRMPanneauDeControle
             lnkButton_revueDePresse.CssClass = "lnkBtn_menuConfig lnkBtn_menuConfig:hover"
             lnkButton_utilisateur.CssClass = "lnkBtn_menuConfig lnkBtn_menuConfig:hover"
             lnkButton_accueil.CssClass = "lnkBtn_menuConfig lnkBtn_menuConfig:hover"
-            imgBtn_EnvoiMessage.ImageUrl = "~/Images/enveloppe.png"
+            lnkBtn_EnvoiMessage.CssClass = "lnkBtn_EnvoiMessage lnkBtn_EnvoiMessage:hover"
         End If
 
         'Paquet de condition pour mettre un effet sur l'onglet actif
@@ -111,7 +109,7 @@ Public Class FRMPanneauDeControle
             lblMessageErreurInfoUtilisateur.Text = ""
             ViewUtilisateur.DataBind()
         ElseIf MultiView.ActiveViewIndex = 5 Then
-            imgBtn_EnvoiMessage.ImageUrl = "~/Images/enveloppeSelected.png"
+            lnkBtn_EnvoiMessage.CssClass = "lnkBtn_EnvoiMessage_active lnkBtn_EnvoiMessage"
             lblMessageErreurEnvoiMessage.Text = ""
         End If
     End Sub
@@ -157,7 +155,7 @@ Public Class FRMPanneauDeControle
         MultiView.ActiveViewIndex = 4
     End Sub
 
-    Private Sub imgBtn_EnvoiMessage_Click(sender As Object, e As ImageClickEventArgs) Handles imgBtn_EnvoiMessage.Click
+    Private Sub imgBtn_EnvoiMessage_Click(sender As Object, e As EventArgs) Handles lnkBtn_EnvoiMessage.Click
         MultiView.ActiveViewIndex = 5
     End Sub
 
@@ -853,6 +851,14 @@ Public Class FRMPanneauDeControle
         End If
     End Sub
 
+    'PreRender des astérisques dans le listview pour ne les afficher que lorsqu'on est en mode Ajout... Idéalement,
+    'il faudrait mettre un EditTemplate dans le listview, ce serait plus propre
+    Protected Sub asterisque_PreRender(sender As Object, e As EventArgs)
+        If Not ViewState("modeUtilisateur") = "AjoutUtilisateur" Then
+            Dim asterisque As System.Web.UI.WebControls.WebControl = CType(sender, System.Web.UI.WebControls.WebControl)
+            asterisque.Visible = Not asterisque.CssClass.Contains("asterisque")
+        End If
+    End Sub
     Private Sub lviewUtilisateurs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewUtilisateurs.SelectedIndexChanged
         ViewState("modeUtilisateur") = ""
         lblMessageErreurInfoUtilisateur.Text = ""
@@ -1044,5 +1050,4 @@ Public Class FRMPanneauDeControle
 
     End Sub
 #End Region
-
 End Class

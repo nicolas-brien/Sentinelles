@@ -149,13 +149,13 @@ Partial Public Class FRMPanneauDeControle
     Protected WithEvents lblTitreConfig As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Contrôle imgBtn_EnvoiMessage.
+    '''Contrôle lnkBtn_EnvoiMessage.
     '''</summary>
     '''<remarks>
     '''Champ généré automatiquement.
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
-    Protected WithEvents imgBtn_EnvoiMessage As Global.System.Web.UI.WebControls.ImageButton
+    Protected WithEvents lnkBtn_EnvoiMessage As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Contrôle lnkButton_accueil.
