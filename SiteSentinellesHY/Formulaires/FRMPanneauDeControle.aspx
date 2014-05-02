@@ -101,9 +101,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <ul class="text-center">
-                    <asp:ImageButton ID="imgBtn_EnvoiMessage" ImageUrl="~/Images/enveloppe.png" runat="server" />
+            <div class="row text-center">
+                <ul>
+                    <asp:linkbutton ID="lnkBtn_EnvoiMessage" CssClass="lnkBtn_EnvoiMessage" runat="server"><!-- No text --></asp:linkbutton>
                     <asp:LinkButton ID="lnkButton_accueil" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("GÉNÉRAL|GENERAL")%></asp:LinkButton>
                     <asp:LinkButton ID="lnkButton_nouvelle" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("NOUVELLES|NEWS")%></asp:LinkButton>
                     <asp:LinkButton ID="lnkButton_evenement" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("ÉVÉNEMENTS|EVENTS")%></asp:LinkButton>

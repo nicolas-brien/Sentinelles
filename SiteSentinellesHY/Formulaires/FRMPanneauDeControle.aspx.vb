@@ -86,7 +86,7 @@ Public Class FRMPanneauDeControle
             lnkButton_revueDePresse.CssClass = "lnkBtn_menuConfig lnkBtn_menuConfig:hover"
             lnkButton_utilisateur.CssClass = "lnkBtn_menuConfig lnkBtn_menuConfig:hover"
             lnkButton_accueil.CssClass = "lnkBtn_menuConfig lnkBtn_menuConfig:hover"
-            imgBtn_EnvoiMessage.ImageUrl = "~/Images/enveloppe.png"
+            lnkBtn_EnvoiMessage.CssClass = "lnkBtn_EnvoiMessage lnkBtn_EnvoiMessage:hover"
         End If
 
         'Paquet de condition pour mettre un effet sur l'onglet actif
@@ -111,7 +111,7 @@ Public Class FRMPanneauDeControle
             lblMessageErreurInfoUtilisateur.Text = ""
             ViewUtilisateur.DataBind()
         ElseIf MultiView.ActiveViewIndex = 5 Then
-            imgBtn_EnvoiMessage.ImageUrl = "~/Images/enveloppeSelected.png"
+            lnkBtn_EnvoiMessage.CssClass = "lnkBtn_EnvoiMessage_active lnkBtn_EnvoiMessage"
             lblMessageErreurEnvoiMessage.Text = ""
         End If
     End Sub
@@ -157,7 +157,7 @@ Public Class FRMPanneauDeControle
         MultiView.ActiveViewIndex = 4
     End Sub
 
-    Private Sub imgBtn_EnvoiMessage_Click(sender As Object, e As ImageClickEventArgs) Handles imgBtn_EnvoiMessage.Click
+    Private Sub imgBtn_EnvoiMessage_Click(sender As Object, e As EventArgs) Handles lnkBtn_EnvoiMessage.Click
         MultiView.ActiveViewIndex = 5
     End Sub
 
