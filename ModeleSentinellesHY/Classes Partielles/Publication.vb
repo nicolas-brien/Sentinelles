@@ -17,6 +17,17 @@ Partial Public Class Publication
         datePublication = Date.Now()
         idCategorie = 0
     End Sub
+    Public Property DatePublicationDo() As String
+        Get
+            Return Me.datePublication.ToLongDateString()
+        End Get
+        Set(value As String)
+            Dim laDate As New DateTime()
+            If DateTime.TryParse(value, laDate) Then
+                Me.datePublication = laDate
+            End If
+        End Set
+    End Property
     Function Validate(ValidationContext As ValidationContext) As IEnumerable(Of ValidationResult) _
           Implements IValidatableObject.Validate
         'Liste d'erreurs(data annotations) outils validation
