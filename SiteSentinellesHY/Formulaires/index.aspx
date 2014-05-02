@@ -12,7 +12,7 @@
             <asp:Label ID="lblPenseeAccueil" OnInit="lblPenseeAccueil_Init" runat="server" CssClass="pensee"></asp:Label>
         </blockquote>
     </div>
-    
+
     <%--------------------------------------NOUVELLES----------------------------------------------%>
     <div id="divContantNouvelles" class="listeAccueil" runat="server">
         <h3><%= outils.obtenirLangue("NOUVELLES|NEWS")%></h3>
@@ -74,7 +74,8 @@
                             <asp:Label ID="lblEvenement" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("contenuFR|contenuEN")),500) & IIf(outils.obtenirLangue("contenuFR|contenuEN").Count > 500, "...", "") %>'></asp:Label>
                         </div>
                         <div>
-                            <br /><asp:Label ID="lblDateEvenement" runat="server"><b><%= outils.obtenirLangue("Date de l'événement : |Event Date : ") %></b><%# Eval("DateEvenementDo")%></asp:Label>
+                            <br />
+                            <asp:Label ID="lblDateEvenement" runat="server"><b><%= outils.obtenirLangue("Date de l'événement : |Event Date : ") %></b><%# Eval("DateEvenementDo")%></asp:Label>
                         </div>
                         <div class="btnListe">
                             <asp:HyperLink ID="liensListeEvenement" runat="server" CssClass="btn btn-primary" NavigateUrl='<%# Eval("idEvenement", "~/Formulaires/FRMevenements.aspx#{0}")%>'><%= outils.obtenirLangue("Lire plus|Read more")%></asp:HyperLink>
@@ -94,7 +95,7 @@
                     <div class="clear-both">
                         <li style="margin-left: 10px">
                             <h5>
-                            <asp:HyperLink ID="hlEvenements" runat="server" CssClass="liensListe" Text='<%#Left(Eval(outils.obtenirLangue("titreFR|titreEN")), 50)%>' NavigateUrl='<%# Eval("idEvenement", "~/Formulaires/FRMevenements.aspx#{0}" & "   ")%>'>Plus...</asp:HyperLink></h5>
+                                <asp:HyperLink ID="hlEvenements" runat="server" CssClass="liensListe" Text='<%#Left(Eval(outils.obtenirLangue("titreFR|titreEN")), 50)%>' NavigateUrl='<%# Eval("idEvenement", "~/Formulaires/FRMevenements.aspx#{0}" & "   ")%>'>Plus...</asp:HyperLink></h5>
                         </li>
                     </div>
                 </ItemTemplate>
@@ -118,9 +119,10 @@
                         </div>
                         <div class="clear-both">
                             <asp:Label ID="lblRDP" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("contenuFR|contenuEN")),500) & IIf(outils.obtenirLangue("contenuFR|contenuEN").Count > 500, "...", "") %>'></asp:Label>
-                        <div>
-                            <asp:Label runat="server"><b><%= outils.obtenirLangue("Lien vers la revue de presse : |Link to the press review : ") %></b></asp:Label>
-                         <a target="_blank" href='<%# IIf(Eval("urlDocument").ToString.StartsWith("http"), Eval("urlDocument"), "../Upload/PDF/" & Eval("urldocument"))%>'><%# IIf(Eval("urlDocument").ToString.Count > 75,Left(Eval("urlDocument"),75) & "..." , Eval("urlDocument")) %></a></div>
+                            <div>
+                                <asp:Label runat="server"><b><%= outils.obtenirLangue("Lien vers la revue de presse : |Link to the press review : ") %></b></asp:Label>
+                                <a target="_blank" href='<%# IIf(Eval("urlDocument").ToString.StartsWith("http"), Eval("urlDocument"), "../Upload/PDF/" & Eval("urldocument"))%>'><%# IIf(Eval("urlDocument").ToString.Count > 75,Left(Eval("urlDocument"),75) & "..." , Eval("urlDocument")) %></a>
+                            </div>
                         </div>
                         <div class="btnListe">
                             <asp:HyperLink ID="liensListeRevueDePresse" runat="server" CssClass="btn btn-primary" NavigateUrl='<%# Eval("idRDP", "~/Formulaires/FRMrevuedepresse.aspx#{0}")%>'><%= outils.obtenirLangue("Lire plus|Read more")%></asp:HyperLink>

@@ -387,7 +387,7 @@
                                                             <div class="accordion-inner">
                                                                 <div>
                                                                     <asp:Label ID="lblFormatImgMessage" runat="server">
-                                                                      </asp:Label>
+                                                                    </asp:Label>
                                                                 </div>
                                                                 <div class="marginbottom_divImgCarrousel">
                                                                     <asp:Label ID="Label10" runat="server"><%= outils.obtenirLangue("Image carrousel 1 : |Photo caroussel 1 : ")%></asp:Label>
@@ -752,7 +752,7 @@
                                         <div>
                                             <asp:Label ID="lblDateEvenement" runat="server"><%= outils.obtenirLangue("Date de l'événement |Event date ")%></asp:Label>
                                             <asp:TextBox ID="tbDateEvenement" CssClass="tbEvenement" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.DateEvenementDo%>' runat="server" />
-                                            <asp:CalendarExtender ID="calextTbEvenement" runat="server" TargetControlID="tbDateEvenement" Format="D" ></asp:CalendarExtender>
+                                            <asp:CalendarExtender ID="calextTbEvenement" runat="server" TargetControlID="tbDateEvenement" Format="D"></asp:CalendarExtender>
                                         </div>
                                         <div class="boutonsNouvelleMargin">
                                             <asp:LinkButton ID="btnModifierNouvelle" runat="server"
@@ -919,10 +919,10 @@
                                         <hr />
                                         <asp:Label runat="server"><%= outils.obtenirLangue("Fichier ou lien vers la revue de presse : |File or link to the press review : ")%></asp:Label>
                                         <asp:TextBox ID="txtboxUrlDocument" CssClass="txtBoxModifier" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.urlDocument%>' Width="300" runat="server" />
-                                        <div>                         
+                                        <div>
                                             <a onclick="$('[id$=fuplRDP]').click(); return false;" href="#"><%= outils.obtenirLangue("Choisir un fichier PDF|Select a PDF file") %></a>
-                                                                           
-                                            <asp:FileUpload ID="fuplRDP" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" onpropertychange="$('[id$=uploadButton1]').click(); return false;" onchange="$('[id$=uploadButton1]').click(); return false;" Style="display: none"/>
+
+                                            <asp:FileUpload ID="fuplRDP" runat="server" ClientIDMode="Static" Width="1px" color="white" BorderColor="white" CssClass="opacity0" onpropertychange="$('[id$=uploadButton1]').click(); return false;" onchange="$('[id$=uploadButton1]').click(); return false;" Style="display: none" />
                                             <asp:Button ID="uploadButton1" runat="server" Text="Carrousel1" ClientIDMode="Static" OnClick="lnkUploadPDF_Click" Style="display: none" />
                                         </div>
                                         <div class="boutonsNouvelleMargin">
@@ -988,218 +988,218 @@
                                             <asp:PlaceHolder ID="groupPlaceHolder" runat="server" />
                                         </LayoutTemplate>
 
-                                    <GroupTemplate>
-                                        <div class="clear-both">
-                                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-                                        </div>
-                                    </GroupTemplate>
-                                    <ItemTemplate>
-                                        <div class="ItemTemplate">
-                                            <div style="width: 20%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
+                                        <GroupTemplate>
+                                            <div class="clear-both">
+                                                <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                             </div>
-                                            <div style="width: 26.6%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("prenom")%>' />
+                                        </GroupTemplate>
+                                        <ItemTemplate>
+                                            <div class="ItemTemplate">
+                                                <div style="width: 20%; float: left;">
+                                                    <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
+                                                </div>
+                                                <div style="width: 26.6%; float: left;">
+                                                    <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("prenom")%>' />
+                                                </div>
+                                                <div style="width: 26.6%; float: left;">
+                                                    <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nom")%>' />
+                                                </div>
+                                                <div style="width: 26.7%; float: left;">
+                                                    <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("milieu")%>' />
+                                                </div>
                                             </div>
-                                            <div style="width: 26.6%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nom")%>' />
+                                        </ItemTemplate>
+                                        <SelectedItemTemplate>
+                                            <div class="SelectedItemTemplate">
+                                                <div style="width: 20%; float: left;">
+                                                    <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
+                                                </div>
+                                                <div style="width: 26.6%; float: left;">
+                                                    <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("prenom")%>' />
+                                                </div>
+                                                <div style="width: 26.6%; float: left;">
+                                                    <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nom")%>' />
+                                                </div>
+                                                <div style="width: 26.7%; float: left;">
+                                                    <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("milieu")%>' />
+                                                </div>
                                             </div>
-                                            <div style="width: 26.7%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("milieu")%>' />
-                                            </div>
-                                        </div>
-                                    </ItemTemplate>
-                                    <SelectedItemTemplate>
-                                        <div class="SelectedItemTemplate">
-                                            <div style="width: 20%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nomUtilisateur")%>' />
-                                            </div>
-                                            <div style="width: 26.6%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("prenom")%>' />
-                                            </div>
-                                            <div style="width: 26.6%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("nom")%>' />
-                                            </div>
-                                            <div style="width: 26.7%; float: left;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Eval("milieu")%>' />
-                                            </div>
-                                        </div>
-                                    </SelectedItemTemplate>
-                                    <EmptyDataTemplate>
-                                        <%= outils.obtenirLangue("Il n'y présentement aucun utilisateur d'enregistrer.|There's actually no registered user.")%>
-                                    </EmptyDataTemplate>
-                                </asp:ListView>
-                            </div>
-                            <div class="petitsPoints">
-                                <asp:Label ID="lblMessageErreurInfoUtilisateur" CssClass="lblMessageErreur" runat="server" Text="" />
-                                <%-- lview info d'un utilisateur--%>
-                                <asp:ListView ID="lviewInfoUtilisateur" runat="server"
-                                    ItemType="ModeleSentinellesHY.utilisateur"
-                                    SelectMethod="getInfoUtilisateur"
-                                    UpdateMethod="UpdateUtilisateur"
-                                    DeleteMethod="DeleteUtilisateur"
-                                    DataKeyNames="idUtilisateur">
-                                    <LayoutTemplate>
-                                        <div>
-                                            <asp:LinkButton ID="lnkbtnAjouter" CssClass="btn btn-primary" runat="server" OnClick="lnkbtnAjouter_Click"><%= outils.obtenirLangue("+ Ajouter un utilisateur|+ Add user")%></asp:LinkButton>
-                                        </div>
-                                        <div class="lviewInfoUtilisateur_centrer">
-                                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-                                        </div>
-                                    </LayoutTemplate>
-                                    <EmptyDataTemplate>
-                                        <asp:LinkButton ID="lnkbtnAjouter" CssClass="lnkbtnAjouter_margin btn btn-primary" runat="server" OnClick="lnkbtnAjouter_Click"><%= outils.obtenirLangue("+ Ajouter un utilisateur|+ Add user")%></asp:LinkButton>
-                                    </EmptyDataTemplate>
-                                    <ItemTemplate>
-                                        <div id="divIdUtilisateur" class="row centrerVerticalement" style="clear: both">
-                                            <asp:TextBox runat="server" ID="lblIdUtilisateur" Visible="false" Text='<%# BindItem.idUtilisateur%>' />
-                                        </div>
-                                        <div id="divNomUtilisateur" class="row centrerVerticalement" style="clear: both">
-                                            <div class="span3" style="margin-left: 35px;">
-                                                <asp:Label ID="lblNomUtilisateur" CssClass="lblUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server"><%= outils.obtenirLangue("Nom d'utilisateur:|Username :")%></asp:Label>
-                                            </div>
-                                            <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
-                                                <asp:TextBox ID="txtboxnomUtilisateur" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nomUtilisateur%>' />
-                                            </div>
-                                        </div>
-                                        <div id="divPrenom" class="row" style="clear: both">
-                                            <div class="span3" style="margin-left: 35px;">
-                                                <asp:Label ID="lblPrenom" CssClass="lblUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server"><%= outils.obtenirLangue("Prénom:|First name :")%></asp:Label>
-                                            </div>
-                                            <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
-                                                <asp:TextBox ID="txtboxprenom" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.prenom%>' />
-                                            </div>
-                                        </div>
-                                        <div id="divNom" class="row" style="clear: both">
-                                            <div class="span3" style="margin-left: 35px;">
-                                                <asp:Label ID="lblNom" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Nom:|Last name :")%></asp:Label>
-
-                                            </div>
-                                            <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
-                                                <asp:TextBox ID="txtboxnom" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nom%>' />
-                                            </div>
-                                        </div>
-                                        <div id="divSexe" class="row" style="clear: both">
-                                            <div class="span3" style="margin-left: 35px;">
-                                                <asp:Label ID="lblSexe" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Sexe:|Gender:")%> </asp:Label>
-                                            </div>
-                                            <div class="span6" style="float: right;display:inline;">
-                                                <span class="asterisque">*</span>
-                                                <asp:RadioButtonList ID="rbtnSexe" runat="server" RepeatDirection="Horizontal" CssClass="radio rbtnSexe txtboxUtilisateur"
-                                                    SelectedValue='<%# BindItem.sexe%>' OnInit="rbtnSexe_Init">
-                                                </asp:RadioButtonList>
-                                            </div>
-                                        </div>
-                                        <div id="divTelephone" class="row" style="clear: both">
-                                            <div class="span3" style="margin-left: 35px;">
-                                                <asp:Label ID="lblTelephone" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("No. téléphone:|Phone number:")%></asp:Label>
-                                            </div>
-                                            <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
-                                                <asp:TextBox ID="txtboxnoTelephone" placeHolder="123-456-7890" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.noTelephone%>' />
-                                            </div>
-                                        </div>
-
-                                        <div id="divCourriel" class="row" style="clear: both">
-                                            <div class="span3" style="margin-left: 35px;">
-                                                <asp:Label ID="lblCourriel" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Courriel:|Email:")%></asp:Label>
-                                            </div>
-                                            <div class="span6" style="float: right;">
-                                                <asp:TextBox ID="txtboxcourriel" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" placeHolder="abc@microsoft.com" runat="server" Text='<%# BindItem.courriel%>' />
-                                            </div>
-                                        </div>
-
-                                        <div id="divType" class="row" style="clear: both">
-                                            <div class="span3" style="margin-left: 35px;">
-                                                <asp:Label ID="lblType" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Type d'utilisateur:|User type:")%></asp:Label>
-                                            </div>
-                                            <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
-                                                <asp:DropDownList ID="ddlstType"
-                                                    DataValueField="idStatut"
-                                                    DataTextField="nomStatut"
-                                                    ItemType="ModeleSentinellesHY.Statut"
-                                                    SelectedValue="<%# BindItem.idStatut%>"
-                                                    SelectMethod="getStatutUtilisateur" CssClass="txtboxUtilisateur" runat="server" />
-                                            </div>
-                                        </div>
-
-                                        <div id="divMilieu" class="row" style="clear: both">
-                                            <div class="span3" style="margin-left: 35px;">
-                                                <asp:Label ID="lblMilieu" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Milieu de travail:|Work place:")%></asp:Label>
-
-                                            </div>
-                                            <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
-                                                <asp:TextBox ID="txtboxmilieu" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.milieu%>' />
-                                            </div>
-                                        </div>
-
-                                        <div id="divPassword" class="row" style="clear: both">
-                                            <div class="span3" style="margin-left: 35px;">
-                                                <asp:Label ID="lblPassword" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Mot de passe:|Password:")%></asp:Label>
-                                            </div>
-                                            <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
-                                                <asp:TextBox ID="txtboxmotDePasse" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.motDePasseTemp%>' />
-                                            </div>
-                                        </div>
-
-                                        <div id="divConfirmer" class="row" style="clear: both">
-                                            <div class="span3" style="margin-left: 35px;">
-                                                <asp:Label ID="lblConfirmer" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Confirmer le mot de passe:|Confirm password:")%></asp:Label>
-
-                                            </div>
-                                            <div class="span6" style="float: right;">
-                                                <span class="asterisque">*</span>
-                                                <asp:TextBox ID="txtboxConfirmer" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.confirmationMotDePasse%>' />
-                                            </div>
-                                        </div>
-                                        <div id="divAvatar" class="row" style="clear: both">
-                                            <div class="span3" style="margin-left: 35px;">
-                                                <asp:Label ID="lblAvatar" runat="server" Text="Photo:" />
-                                            </div>
-                                            <div class="span6" style="float: right;">
-                                                <asp:Label ID="lblNomPhoto" Text='<%# BindItem.UrlAvatar%>' runat="server" />
-                                                <asp:Button ID="btnImgDefaut" CssClass="btn btn-mini btn-warning" Text='<%# outils.obtenirLangue(" Image par défaut| Reset default image")%>' OnClick="btnImgDefaut_Click" runat="server"></asp:Button>
-                                            </div>
-                                            <div class="span6 Avatar_margin" style="float: right;">
-                                                <img id="imgUpload" src='<%# String.Format("../Upload/ImagesProfil/{0}", Eval("UrlAvatar"))%>' runat="server" />
-                                            </div>
-                                        </div>
-                                        <div id="rowBouton" class="row">
+                                        </SelectedItemTemplate>
+                                        <EmptyDataTemplate>
+                                            <%= outils.obtenirLangue("Il n'y présentement aucun utilisateur d'enregistrer.|There's actually no registered user.")%>
+                                        </EmptyDataTemplate>
+                                    </asp:ListView>
+                                </div>
+                                <div class="petitsPoints">
+                                    <asp:Label ID="lblMessageErreurInfoUtilisateur" CssClass="lblMessageErreur" runat="server" Text="" />
+                                    <%-- lview info d'un utilisateur--%>
+                                    <asp:ListView ID="lviewInfoUtilisateur" runat="server"
+                                        ItemType="ModeleSentinellesHY.utilisateur"
+                                        SelectMethod="getInfoUtilisateur"
+                                        UpdateMethod="UpdateUtilisateur"
+                                        DeleteMethod="DeleteUtilisateur"
+                                        DataKeyNames="idUtilisateur">
+                                        <LayoutTemplate>
                                             <div>
-                                                <asp:LinkButton ID="btnModifier" runat="server"
-                                                    CommandName="Update"
-                                                    CssClass="btn btn-primary"
-                                                    CausesValidation="true"
-                                                    ValidationGroup="sommaire">
-                                                <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Mettre à jour| Update")%></asp:LinkButton>
-                                                <asp:LinkButton ID="btnSupprimerUti" runat="server" href="#myModal" role="button" class="btn btn-danger" data-toggle="modal" CommandName="Update">
-                                                <i aria-hidden="true" class="icon-remove"></i><%= outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
-                                                <!-- Modal -->
-                                                <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                    <div class="modal-header">
+                                                <asp:LinkButton ID="lnkbtnAjouter" CssClass="btn btn-primary" runat="server" OnClick="lnkbtnAjouter_Click"><%= outils.obtenirLangue("+ Ajouter un utilisateur|+ Add user")%></asp:LinkButton>
+                                            </div>
+                                            <div class="lviewInfoUtilisateur_centrer">
+                                                <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                                            </div>
+                                        </LayoutTemplate>
+                                        <EmptyDataTemplate>
+                                            <asp:LinkButton ID="lnkbtnAjouter" CssClass="lnkbtnAjouter_margin btn btn-primary" runat="server" OnClick="lnkbtnAjouter_Click"><%= outils.obtenirLangue("+ Ajouter un utilisateur|+ Add user")%></asp:LinkButton>
+                                        </EmptyDataTemplate>
+                                        <ItemTemplate>
+                                            <div id="divIdUtilisateur" class="row centrerVerticalement" style="clear: both">
+                                                <asp:TextBox runat="server" ID="lblIdUtilisateur" Visible="false" Text='<%# BindItem.idUtilisateur%>' />
+                                            </div>
+                                            <div id="divNomUtilisateur" class="row centrerVerticalement" style="clear: both">
+                                                <div class="span3" style="margin-left: 35px;">
+                                                    <asp:Label ID="lblNomUtilisateur" CssClass="lblUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server"><%= outils.obtenirLangue("Nom d'utilisateur:|Username :")%></asp:Label>
+                                                </div>
+                                                <div class="span6" style="float: right;">
+                                                    <span class="asterisque">*</span>
+                                                    <asp:TextBox ID="txtboxnomUtilisateur" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nomUtilisateur%>' />
+                                                </div>
+                                            </div>
+                                            <div id="divPrenom" class="row" style="clear: both">
+                                                <div class="span3" style="margin-left: 35px;">
+                                                    <asp:Label ID="lblPrenom" CssClass="lblUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server"><%= outils.obtenirLangue("Prénom:|First name :")%></asp:Label>
+                                                </div>
+                                                <div class="span6" style="float: right;">
+                                                    <span class="asterisque">*</span>
+                                                    <asp:TextBox ID="txtboxprenom" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.prenom%>' />
+                                                </div>
+                                            </div>
+                                            <div id="divNom" class="row" style="clear: both">
+                                                <div class="span3" style="margin-left: 35px;">
+                                                    <asp:Label ID="lblNom" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Nom:|Last name :")%></asp:Label>
 
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                        <asp:Label ID="myModalLabel" CssClass="modalTitle" runat="server"><%= outils.obtenirLangue("Attention!|Warning!")%></asp:Label>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p><%= outils.obtenirLangue("Vous êtes sur le point de supprimer cet utilisateur. Voulez-vous continuez?|You are about to delete this user. Do you want to proceed?")%></p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button class="btn" data-dismiss="modal" aria-hidden="true"><%= outils.obtenirLangue("Annuler|Cancel")%></button>
-                                                        <asp:Button ID="btnSupprimerUtilisateur" runat="server" Text="Supprimer" CommandName="Delete" class="btn btn-danger" />
+                                                </div>
+                                                <div class="span6" style="float: right;">
+                                                    <span class="asterisque">*</span>
+                                                    <asp:TextBox ID="txtboxnom" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nom%>' />
+                                                </div>
+                                            </div>
+                                            <div id="divSexe" class="row" style="clear: both">
+                                                <div class="span3" style="margin-left: 35px;">
+                                                    <asp:Label ID="lblSexe" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Sexe:|Gender:")%> </asp:Label>
+                                                </div>
+                                                <div class="span6" style="float: right; display: inline;">
+                                                    <span class="asterisque">*</span>
+                                                    <asp:RadioButtonList ID="rbtnSexe" runat="server" RepeatDirection="Horizontal" CssClass="radio rbtnSexe txtboxUtilisateur"
+                                                        SelectedValue='<%# BindItem.sexe%>' OnInit="rbtnSexe_Init">
+                                                    </asp:RadioButtonList>
+                                                </div>
+                                            </div>
+                                            <div id="divTelephone" class="row" style="clear: both">
+                                                <div class="span3" style="margin-left: 35px;">
+                                                    <asp:Label ID="lblTelephone" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("No. téléphone:|Phone number:")%></asp:Label>
+                                                </div>
+                                                <div class="span6" style="float: right;">
+                                                    <span class="asterisque">*</span>
+                                                    <asp:TextBox ID="txtboxnoTelephone" placeHolder="123-456-7890" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.noTelephone%>' />
+                                                </div>
+                                            </div>
+
+                                            <div id="divCourriel" class="row" style="clear: both">
+                                                <div class="span3" style="margin-left: 35px;">
+                                                    <asp:Label ID="lblCourriel" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Courriel:|Email:")%></asp:Label>
+                                                </div>
+                                                <div class="span6" style="float: right;">
+                                                    <asp:TextBox ID="txtboxcourriel" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" placeHolder="abc@microsoft.com" runat="server" Text='<%# BindItem.courriel%>' />
+                                                </div>
+                                            </div>
+
+                                            <div id="divType" class="row" style="clear: both">
+                                                <div class="span3" style="margin-left: 35px;">
+                                                    <asp:Label ID="lblType" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Type d'utilisateur:|User type:")%></asp:Label>
+                                                </div>
+                                                <div class="span6" style="float: right;">
+                                                    <span class="asterisque">*</span>
+                                                    <asp:DropDownList ID="ddlstType"
+                                                        DataValueField="idStatut"
+                                                        DataTextField="nomStatut"
+                                                        ItemType="ModeleSentinellesHY.Statut"
+                                                        SelectedValue="<%# BindItem.idStatut%>"
+                                                        SelectMethod="getStatutUtilisateur" CssClass="txtboxUtilisateur" runat="server" />
+                                                </div>
+                                            </div>
+
+                                            <div id="divMilieu" class="row" style="clear: both">
+                                                <div class="span3" style="margin-left: 35px;">
+                                                    <asp:Label ID="lblMilieu" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Milieu de travail:|Work place:")%></asp:Label>
+
+                                                </div>
+                                                <div class="span6" style="float: right;">
+                                                    <span class="asterisque">*</span>
+                                                    <asp:TextBox ID="txtboxmilieu" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.milieu%>' />
+                                                </div>
+                                            </div>
+
+                                            <div id="divPassword" class="row" style="clear: both">
+                                                <div class="span3" style="margin-left: 35px;">
+                                                    <asp:Label ID="lblPassword" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Mot de passe:|Password:")%></asp:Label>
+                                                </div>
+                                                <div class="span6" style="float: right;">
+                                                    <span class="asterisque">*</span>
+                                                    <asp:TextBox ID="txtboxmotDePasse" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.motDePasseTemp%>' />
+                                                </div>
+                                            </div>
+
+                                            <div id="divConfirmer" class="row" style="clear: both">
+                                                <div class="span3" style="margin-left: 35px;">
+                                                    <asp:Label ID="lblConfirmer" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Confirmer le mot de passe:|Confirm password:")%></asp:Label>
+
+                                                </div>
+                                                <div class="span6" style="float: right;">
+                                                    <span class="asterisque">*</span>
+                                                    <asp:TextBox ID="txtboxConfirmer" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.confirmationMotDePasse%>' />
+                                                </div>
+                                            </div>
+                                            <div id="divAvatar" class="row" style="clear: both">
+                                                <div class="span3" style="margin-left: 35px;">
+                                                    <asp:Label ID="lblAvatar" runat="server" Text="Photo:" />
+                                                </div>
+                                                <div class="span6" style="float: right;">
+                                                    <asp:Label ID="lblNomPhoto" Text='<%# BindItem.UrlAvatar%>' runat="server" />
+                                                    <asp:Button ID="btnImgDefaut" CssClass="btn btn-mini btn-warning" Text='<%# outils.obtenirLangue(" Image par défaut| Reset default image")%>' OnClick="btnImgDefaut_Click" runat="server"></asp:Button>
+                                                </div>
+                                                <div class="span6 Avatar_margin" style="float: right;">
+                                                    <img id="imgUpload" src='<%# String.Format("../Upload/ImagesProfil/{0}", Eval("UrlAvatar"))%>' runat="server" />
+                                                </div>
+                                            </div>
+                                            <div id="rowBouton" class="row">
+                                                <div>
+                                                    <asp:LinkButton ID="btnModifier" runat="server"
+                                                        CommandName="Update"
+                                                        CssClass="btn btn-primary"
+                                                        CausesValidation="true"
+                                                        ValidationGroup="sommaire">
+                                                <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Mettre à jour| Update")%></asp:LinkButton>
+                                                    <asp:LinkButton ID="btnSupprimerUti" runat="server" href="#myModal" role="button" class="btn btn-danger" data-toggle="modal" CommandName="Update">
+                                                <i aria-hidden="true" class="icon-remove"></i><%= outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
+                                                    <!-- Modal -->
+                                                    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-header">
+
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                            <asp:Label ID="myModalLabel" CssClass="modalTitle" runat="server"><%= outils.obtenirLangue("Attention!|Warning!")%></asp:Label>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p><%= outils.obtenirLangue("Vous êtes sur le point de supprimer cet utilisateur. Voulez-vous continuez?|You are about to delete this user. Do you want to proceed?")%></p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn" data-dismiss="modal" aria-hidden="true"><%= outils.obtenirLangue("Annuler|Cancel")%></button>
+                                                            <asp:Button ID="btnSupprimerUtilisateur" runat="server" Text="Supprimer" CommandName="Delete" class="btn btn-danger" />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </ItemTemplate>
-                                </asp:ListView>
-                            </div>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+                                </div>
                         </asp:View>
 
                         <asp:View ID="viewMessage" runat="server">

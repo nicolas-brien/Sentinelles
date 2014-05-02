@@ -1,38 +1,27 @@
-﻿.cadrageItems
-{
+﻿.cadrageItems {
     border: solid 2px #005ab5;
     padding: 10px;
 }
 
-    .cadrageItems li
-    {
+    .cadrageItems li {
         list-style: square;
         color: #333333;
     }
 
-.liensListe
-{
-    color: #005ab5;
+.btn-datapager {
+    border: 1px solid #cccccc;
 }
 
-    .liensListe:hover
-    {
-        color: #002c58;
-    }
-
-.btnListe
-{
+.btnListe {
     margin: 20px 0px;
 }
 
-.listeAccueil
-{
+.listeAccueil {
     margin-bottom: 20px;
     text-align: justify;
 }
 
-.backgroundTitre
-{
+.backgroundTitre {
     background: #005ab5; /* Old browsers */
     background: -moz-linear-gradient(top, #7db9e8 0%, #207cca 49%, #2989d8 50%, #005ab5 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7db9e8), color-stop(49%,#207cca), color-stop(50%,#2989d8), color-stop(100%,#005ab5)); /* Chrome,Safari4+ */
@@ -42,14 +31,12 @@
     background: linear-gradient(to bottom, #7db9e8 0%,#207cca 49%,#2989d8 50%,#005ab5 100%); /* W3C */
 }
 
-.dataPager
-{
+.dataPager {
     text-align: center;
     font-size: large;
 }
 
-h2
-{
+h2 {
     margin-bottom: 30px;
     padding-left: 10px;
     font-family: 'AgencyR';
@@ -60,8 +47,7 @@ h2
     color: #005ab5; /* Old browsers */
 }
 
-h3
-{
+h3 {
     margin: 0px;
     padding-left: 10px;
     color: white;
@@ -79,24 +65,27 @@ h3
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#005ab5',GradientType=0 ); /* IE6-9 */
 }
 
-h4, h5
-{
+h4, h5 {
     color: #333333;
 }
 
-.pensee
-{
+.pensee {
     color: #005ab5;
     font-size: large;
-    font-family:'Lucida';
-
+    font-family: 'Lucida';
 }
 
-.textePensee
-{
-    margin-left:40px;
-    text-align:justify;
+.textePensee {
+    margin-left: 40px;
+    text-align: justify;
 }
 
-  /* blockquote hanging opening quote */
-blockquote:before {display: block; height: 0; content: "“"; margin-left: -.75em; font: italic 600%/1 Cochin,Georgia,"Times New Roman",serif; color: #005ab5;}
+/* blockquote hanging opening quote */
+blockquote:before {
+    display: block;
+    height: 0;
+    content: "“";
+    margin-left: -.75em;
+    font: italic 600%/1 Cochin,Georgia,"Times New Roman",serif;
+    color: #005ab5;
+}
