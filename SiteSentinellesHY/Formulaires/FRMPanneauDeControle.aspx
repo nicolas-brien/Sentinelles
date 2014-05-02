@@ -475,7 +475,7 @@
                                                 <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 75)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Eval("DateRedactionDo")%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </ItemTemplate>
@@ -485,7 +485,7 @@
                                                 <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Eval("DateRedactionDo")%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </SelectedItemTemplate>
@@ -514,7 +514,7 @@
                                             <asp:TextBox ID="txtboxtitreFR" CssClass="txtBoxModifier_Titre" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.titreFR%>' runat="server" />
                                             <div id="divDateRedaction" class="divDateRedaction" runat="server">
                                                 <asp:Label ID="lblRedigele" runat="server"><%= outils.obtenirLangue("Rédigé le |Posted the ")%></asp:Label>
-                                                <asp:Label ID="lblDateRedaction" runat="server" Text='<%# Eval("dateRedaction")%>' />
+                                                <asp:Label ID="lblDateRedaction" runat="server" Text='<%# Eval("DateRedactionDo")%>' />
                                             </div>
                                         </div>
                                         <div>
@@ -640,10 +640,10 @@
                                                 <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 50)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Eval("DateRedactionDo")%></asp:LinkButton>
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateEvenement"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Eval("DateEvenementDo")%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </ItemTemplate>
@@ -653,10 +653,10 @@
                                                 <asp:LinkButton CssClass="listeLigneComplete" ID="LinkButton1" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 50)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" ID="LinkButton2" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" ID="LinkButton2" runat="server" CommandName="Select"><%# Eval("DateRedactionDo")%></asp:LinkButton>
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" ID="LinkButton3" runat="server" CommandName="Select"><%# Left(Eval("dateEvenement"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" ID="LinkButton3" runat="server" CommandName="Select"><%# Eval("DateEvenementDo")%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </SelectedItemTemplate>
@@ -686,7 +686,7 @@
                                             <asp:TextBox ID="txtboxtitreFR" CssClass="txtBoxModifier_Titre" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.titreFR%>' runat="server" />
                                             <div id="divDateRedaction" class="divDateRedaction" runat="server">
                                                 <asp:Label ID="lblRedigele" runat="server"><%= outils.obtenirLangue("Rédigé le |Posted on ")%></asp:Label>
-                                                <asp:Label ID="lblDateRedaction" runat="server" Text='<%# Eval("dateRedaction")%>' />
+                                                <asp:Label ID="lblDateRedaction" runat="server" Text='<%# Eval("DateRedactionDo")%>' />
                                             </div>
                                         </div>
                                         <div>
@@ -815,7 +815,7 @@
                                                 <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 75)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Eval("DateRedactionDo")%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </ItemTemplate>
@@ -825,7 +825,7 @@
                                                 <asp:LinkButton CssClass="listeLigneComplete" CommandName="Select" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("TitreFR|TitreEN")), 35)%>' />
                                             </div>
                                             <div style="width: 15%; float: right;">
-                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Left(Eval("dateRedaction"),10)%></asp:LinkButton>
+                                                <asp:LinkButton CssClass="listeLigneComplete" runat="server" CommandName="Select"><%# Eval("DateRedactionDo")%></asp:LinkButton>
                                             </div>
                                         </div>
                                     </SelectedItemTemplate>
@@ -854,7 +854,7 @@
                                             <asp:TextBox ID="txtboxtitreFR" CssClass="txtBoxModifier_Titre" onkeydown="return (event.keyCode!=13);" Text='<%# BindItem.titreFR%>' runat="server" />
                                             <div id="divDateRedaction" class="divDateRedaction" runat="server">
                                                 <asp:Label ID="lblRedigele" runat="server"><%= outils.obtenirLangue("Rédigé le |Posted on ")%></asp:Label>
-                                                <asp:Label ID="lblDateRedaction" runat="server" Text='<%# Eval("dateRedaction")%>' />
+                                                <asp:Label ID="lblDateRedaction" runat="server" Text='<%# Eval("DateRedactionDo")%>' />
                                             </div>
                                         </div>
                                         <div>

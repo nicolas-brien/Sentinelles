@@ -34,7 +34,7 @@
                 <div class="clear-both">
                     <div class="cadrageItems">
                         <div>
-                            <p><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ")%></b><%# Left(Eval("dateRedaction"),10)%></p>
+                            <p><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ")%></b><%# Eval("DateRedactionDo")%></p>
                         </div>
                         <div class="clear-both">
                             <br />

@@ -28,6 +28,17 @@ Partial Public Class Événement
             End If
         End Set
     End Property
+    Public Property DateRedactionDo() As String
+        Get
+            Return Me.dateRedaction.ToLongDateString()
+        End Get
+        Set(value As String)
+            Dim laDate As New DateTime()
+            If DateTime.TryParse(value, laDate) Then
+                Me.dateRedaction = laDate
+            End If
+        End Set
+    End Property
 
     Function Validate(ValidationContext As ValidationContext) As IEnumerable(Of ValidationResult) _
    Implements IValidatableObject.Validate
