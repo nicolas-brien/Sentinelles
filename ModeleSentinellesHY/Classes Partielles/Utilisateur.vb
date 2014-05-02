@@ -61,7 +61,7 @@ Partial Public Class Utilisateur
     'La fonction validate contient plusieurs validations pour les mots de passes.
     Public Function Validate(ValidationContext As ValidationContext) As IEnumerable(Of ValidationResult) _
     Implements IValidatableObject.Validate
-
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim listeRetour = New List(Of ValidationResult)
 
         'Si le mot de passe du formulaire est nul et que mon mot de passe de la bd contient quelque chose, je suis en train de garder
@@ -71,8 +71,8 @@ Partial Public Class Utilisateur
         'Sinon, le mot de passe du formulaire doit contenir entre 6 et 16 caractères
         'À la suite de toutes ces vérifications, les mots de passe sont corrects.
         If Me.motDePasseTemp = "" AndAlso Me.motDePasse <> "" Then
-            Me.motDePasse = ModeleSentinellesHY.outils.leContexte.UtilisateurJeu.Find(Me.idUtilisateur).motDePasse
-            Me.SelDeMer = ModeleSentinellesHY.outils.leContexte.UtilisateurJeu.Find(Me.idUtilisateur).SelDeMer
+            Me.motDePasse = leContexte.UtilisateurJeu.Find(Me.idUtilisateur).motDePasse
+            Me.SelDeMer = leContexte.UtilisateurJeu.Find(Me.idUtilisateur).SelDeMer
         ElseIf Me.motDePasseTemp = "" Then
             listeRetour.Add(New ValidationResult("Le mot de passe ne doit pas être vide|The password can't be empty"))
         ElseIf Me.motDePasseTemp <> Me.confirmationMotDePasse Then
@@ -111,7 +111,8 @@ Partial Public Class UtilisateurValidation
     Public Property milieu As String
 
     <DisplayName("Adresse courriel"), _
-    RegularExpression("^(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})$", ErrorMessage:="L'adresse courriel doit être valide|The email must be valid")> _
+    RegularExpression("^(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})$", ErrorMessage:="L'adresse courriel doit être valide|The email must be valid"), _
+    StringLength(100, ErrorMessage:="L'adresse courriel doit contenir moins de 100 caractères|The email must contains less than 100 characters")> _
     Public Property courriel As String
 
     <DisplayName("Téléphone"), _

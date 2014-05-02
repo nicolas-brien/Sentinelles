@@ -15,20 +15,27 @@
     text-decoration: none;
     clear: both;
     border-radius: 2px;
+    border: solid 1px transparent;
 }
 
     .lnkBtn_menuConfig:hover {
         -moz-transition-duration: 100ms;
         -webkit-transition-duration: 100ms;
         text-decoration: none;
-        color: #FFF;
-        background-color: #e71f1f;
+        color: #000;
+        border-color:#0066d5;
     }
 
 .lnkBtn_menuConfig_active {
     text-decoration: none;
     color: #FFF;
-    background-color: #e71f1f;
+    background-color: #0066d5;
+}
+
+    .lnkBtn_menuConfig_active:hover {
+    text-decoration: none;
+    color: #FFF;
+    background-color: #0066d5;
 }
 
 #imgBtn_EnvoiMessage {

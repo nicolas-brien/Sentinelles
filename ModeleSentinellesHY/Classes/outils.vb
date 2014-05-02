@@ -15,14 +15,14 @@ Imports System.IO
 
 Public Class outils
     'Fonction partagée qui crée et utilise le contexte de la base de donnée
-    Public Shared Function leContexte() As ModeleSentinellesHY.model_sentinelleshyContainer
-        Static ctxtLeContexte As ModeleSentinellesHY.model_sentinelleshyContainer = Nothing
-        If ctxtLeContexte Is Nothing Then
-            ctxtLeContexte = New ModeleSentinellesHY.model_sentinelleshyContainer
-        End If
+    'Public Shared Function leContexte() As ModeleSentinellesHY.model_sentinelleshyContainer
+    '    Static ctxtLeContexte As ModeleSentinellesHY.model_sentinelleshyContainer = Nothing
+    '    If ctxtLeContexte Is Nothing Then
+    '        ctxtLeContexte = New ModeleSentinellesHY.model_sentinelleshyContainer
+    '    End If
 
-        Return ctxtLeContexte
-    End Function
+    '    Return ctxtLeContexte
+    'End Function
 
     'Fonction qui sert à valider un formulaire avec son type de validation, son contenant
     'ainsi que la liste d'erreur
@@ -101,6 +101,7 @@ Public Class outils
         Else
             Return deuxLangues.First
         End If
+
     End Function
 
     'Fonction qui encrypte le mot de passe afin de le stocké dans la BD et qui le retourne

@@ -17,6 +17,18 @@ Partial Public Class Événement
         dateEvenement = Date.Now
     End Sub
 
+    Public Property DateEvenementDo() As String
+        Get
+            Return Me.dateEvenement.ToLongDateString()
+        End Get
+        Set(value As String)
+            Dim laDate As New DateTime()
+            If DateTime.TryParse(value, laDate) Then
+                Me.dateEvenement = laDate
+            End If
+        End Set
+    End Property
+
     Function Validate(ValidationContext As ValidationContext) As IEnumerable(Of ValidationResult) _
    Implements IValidatableObject.Validate
         'Liste d'erreurs(data annotations) outils validation
@@ -29,11 +41,13 @@ End Class
 
 Partial Public Class ÉvénementValidation
     <DisplayName("TitreFR"), _
-    Required(ErrorMessage:="Le titre en français est requis|The french title is required")>
+    Required(ErrorMessage:="Le titre en français est requis|The french title is required"), _
+    StringLength(75, ErrorMessage:="Le titre en français doit contenir moins de 75 caractères|The french title must contain less than 75 characters")>
     Public Property titreFR As String
 
     <DisplayName("TitreEN"), _
-    Required(ErrorMessage:="Le titre en anglais est requis|The english title is required")>
+    Required(ErrorMessage:="Le titre en anglais est requis|The english title is required"), _
+    StringLength(75, ErrorMessage:="Le titre en français doit contenir moins de 75 caractères|The french title must contain less than 75 characters")>
     Public Property titreEN As String
 
     <DisplayName("ContenuFR"), _
