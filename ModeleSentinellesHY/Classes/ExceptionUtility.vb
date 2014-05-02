@@ -55,7 +55,6 @@ Public NotInheritable Class ExceptionUtility
         If File.Exists(logFile) Then
             'Va chercher le stream du fichier
             Dim stream = New FileStream(logFile, FileMode.Append, FileAccess.ReadWrite)
-            Dim gzip = New GZipStream(stream, CompressionMode.Compress)
 
             'Ajoute le nouveau message au avant la lecture du fichier
             Dim reader = New StreamReader(logFile, True)
@@ -66,7 +65,7 @@ Public NotInheritable Class ExceptionUtility
             System.IO.File.WriteAllText(logFile, String.Empty)
 
             'Réempli le fichier log
-            Dim objTempWriter = New StreamWriter(gzip)
+            Dim objTempWriter = New StreamWriter(logFile)
             objTempWriter.Write(logText)
             objTempWriter.Close()
         End If
