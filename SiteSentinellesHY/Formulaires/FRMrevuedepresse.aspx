@@ -31,7 +31,7 @@
                 <div class="clear-both">
                     <div class="cadrageItems">
                         <div>
-                            <h6><%# Left(Eval("dateRedaction"),10)%></h6>
+                              <p><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ")%></b><%# Eval("DateRedactionDo")%></p>
                         </div>
                         <div class="clear-both">
                             <asp:Label ID="lblRDP1" runat="server" Text='<%# Eval(outils.obtenirLangue("contenuFR|contenuEN"))%>'></asp:Label>

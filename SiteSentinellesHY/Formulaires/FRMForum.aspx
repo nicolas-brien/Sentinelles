@@ -204,7 +204,8 @@
                                     </div>
                                     <div id="divCadrageItems" class="cadrageItems">
                                         <div style="float: right; width: 18%">
-                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# "Créé le " + Eval("DatePublication","{0:d MMMM, yyyy}")%></asp:Label><br />
+                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# "Créé le " + Eval("DatePublicationDo")%></asp:Label><br />
+                                             
                                             <asp:Label ID="lblPubliePar" CssClass="lblInfoPublication" runat="server"></asp:Label>
                                         </div>
                                         <img id="pinnedIcon" runat="server" src="../Images/icon-pin.png" class="pull-left" style="display: none;" />
@@ -265,7 +266,7 @@
                                     </div>
                                     <div id="divCadrageItems" class="cadrageItems">
                                         <div style="float: right;">
-                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# Eval("DatePublication","{0:MMMM d, yyyy}")%></asp:Label><br />
+                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# Eval("DatePublicationDo")%></asp:Label><br />
                                             <asp:Label ID="lblPubliePar" CssClass="lblInfoPublication" runat="server"></asp:Label>
                                         </div>
                                         <img id="pinnedIcon" runat="server" src="../Images/icon-pin.png" class="pull-left" style="display: none;" />
@@ -449,7 +450,7 @@
                                                     <asp:Image ID="imgAvatar" CssClass="Avatar_Publication thumbnail" runat="server" />
                                                 </div>
                                                 <div>
-                                                    <asp:Label ID="lblDatePublication" CssClass="lblInfoReponsePublication" runat="server"><%# Eval("DatePublication","{0:MMMM d, yyyy}")%></asp:Label><br />
+                                                    <asp:Label ID="lblDatePublication" CssClass="lblInfoReponsePublication" runat="server"><%# Eval("DatePublicationDo")%></asp:Label><br />
                                                     <asp:Label ID="lblPubliePar" CssClass="lblInfoReponsePublication" runat="server"></asp:Label><br />
                                                     <asp:Label ID="lblStatut" runat="server" CssClass="lblInfoReponsePublication"></asp:Label>
                                                 </div>
@@ -837,7 +838,7 @@
                                                         </div>
                                                         <div class="pull-right divInfoPublication">
                                                             <div class="pull-left">
-                                                                <asp:Label ID="lblDatePublication" CssClass="lblInfoReponsePublication" runat="server"><%# Eval("DatePublication","{0:MMMM d, yyyy}")%></asp:Label><br />
+                                                                <asp:Label ID="lblDatePublication" CssClass="lblInfoReponsePublication" runat="server"><%# Eval("DatePublicationDo")%></asp:Label><br />
                                                                 <asp:Label ID="lblPubliePar" CssClass="lblInfoReponsePublication" runat="server"></asp:Label>
                                                             </div>
                                                             <div class="pull-right div_marginAvatar">
