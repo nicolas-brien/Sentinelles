@@ -1,3 +1,5 @@
+﻿'Rechercher #Region "Utilisateur" afin d'accéder directement au bon endroit dans le document
+
 Imports System.IO
 Imports System.Threading
 Imports System.Drawing
@@ -169,10 +171,12 @@ Public Class FRMPanneauDeControle
 #Region "EnvoiMessage"
     Private Sub lnkbtnEnvoiMessage_Click(sender As Object, e As EventArgs) Handles lnkbtnEnvoiMessage.Click
         Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        Dim isMailSending = False
         If Not File.Exists(Server.MapPath("/BackControl/properties.txt")) Then
             Using fs As FileStream = File.Create(Server.MapPath("/BackControl/properties.txt"))
                 Dim info As [Byte]() = New UTF8Encoding(True).GetBytes("EmailSend=true")
                 fs.Write(info, 0, info.Length)
+                isMailSending = True
             End Using
         Else
             Try
@@ -180,6 +184,7 @@ Public Class FRMPanneauDeControle
                 Using fs As FileStream = File.Create(Server.MapPath("/BackControl/properties.txt"))
                     Dim info As [Byte]() = New UTF8Encoding(True).GetBytes("EmailSend=true")
                     fs.Write(info, 0, info.Length)
+                    isMailSending = True
                 End Using
             Catch ex As Exception
                 Dim err = ex.Message
@@ -188,14 +193,9 @@ Public Class FRMPanneauDeControle
         End If
 
         'Controle si le fichier d'envoie existe, sinon sa commence une nouvele routine
-        Dim msg = String.Empty
-        If Not File.Exists("/BackControl/emailsending.txt") Then
-            CreateEmailFile("Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text, txtboxMessage.Text)
-        Else
-            msg = ModeleSentinellesHY.outils.obtenirLangue("*Envoie de courriel en cours, impossible d'envoyer de nouveau avant la fin.|*Impossible to send email before the end of routine.")
-        End If
+        CreateEmailFile("Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text, txtboxMessage.Text)
 
-        Response.Redirect("FRMPanneauDeControle.aspx?error=" & msg)
+        Response.Redirect("FRMPanneauDeControle.aspx")
 
     End Sub
 

@@ -473,6 +473,15 @@ Partial Public Class FRMPanneauDeControle
     Protected WithEvents lnkbtnEnvoiMessage As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''Contrôle imgLoader.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents imgLoader As Global.System.Web.UI.WebControls.Image
+
+    '''<summary>
     '''Contrôle LnkBtnDevenirSentinelle_footer.
     '''</summary>
     '''<remarks>
