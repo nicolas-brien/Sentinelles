@@ -146,7 +146,8 @@
                                         <asp:ListView runat="server"
                                             ID="lvCategorie"
                                             ItemType="ModeleSentinellesHY.Categorie"
-                                            SelectMethod="getCategorieAccueil">
+                                            SelectMethod="getCategorieAccueil"
+                                            DeleteMethod="DeleteCategorie">
                                             <LayoutTemplate>
                                                 <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                             </LayoutTemplate>
@@ -162,10 +163,33 @@
                                                     <div class="span2 offset2" style="padding-top: 3px">
                                                         <asp:LinkButton ID="lnkbtnSauvegarderCategorie" runat="server" Width="82px" CssClass="btn disabled-button"><%= outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
                                                         <asp:LinkButton ID="lnkbtnSupprimerCategorie" runat="server"
-                                                            CommandArgument='<%# BindItem.idCategorie %>'
-                                                            CssClass="pull-right"
-                                                            OnClick="lnkbtnSupprimerCategorie_Click">
+                                                            CssClass="pull-right"  
+                                                            role="button"
+                                                            href='<%# String.format("#Supprimer{0}",Eval("idCategorie")) %>'
+                                                            data-toggle="modal">
                                                             <i aria-hidden="true" class="icon-remove"></i></asp:LinkButton>
+                                                        <%--fenetre modal--%>
+                                                        <div id='<%# "Supprimer" & Eval("idCategorie") %>' class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                <asp:Label ID="myModalLabel" CssClass="modalTitle" runat="server"><%= outils.obtenirLangue("Attention!|Warning!")%></asp:Label>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p><%= outils.obtenirLangue("Vous êtes sur le point de supprimer cette catégorie. Voulez-vous continuez?|You are about to delete this category. Do you want to proceed?")%></p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn" data-dismiss="modal" aria-hidden="true"><%= outils.obtenirLangue("Annuler|Cancel")%></button>
+                                                                <asp:Button ID="btnSupprimerCategorie" runat="server" CommandArgument='<%# BindItem.idCategorie %>' Text="Supprimer" CommandName="Delete" class="btn btn-danger" />
+                                                                <script>
+                                                                    $(document).ready(function () { 
+                                                                        $('#btnSupprimerCategorie').click(function () {
+                                                                            $('<%# "Supprimer" & Eval("idCategorie") %>').modal('hide');
+                                                                        });
+                                                                    });
+                                                                </script>
+                                                                
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </ItemTemplate>

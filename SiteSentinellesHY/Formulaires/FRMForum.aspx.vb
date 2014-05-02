@@ -191,17 +191,32 @@ Public Class FRMForum
         Return listeCategoriePublication.AsQueryable
     End Function
 
-    Protected Sub lnkbtnSupprimerCategorie_Click(sender As Object, e As EventArgs)
+    Protected Sub lnkbtnSupprimerCategorie_Click2(sender As Object, e As EventArgs)
         Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim unID = CType(sender, LinkButton).CommandArgument
+        Dim uneCategorie = (From pub As ModeleSentinellesHY.Categorie In leContexte.CategorieJeu _
+                        Where pub.idCategorie = unID).FirstOrDefault
+
+        ViewState("uneCategorie") = uneCategorie
+
+
+    End Sub
+
+    Public Sub DeleteCategorie(ByVal categorieASupprimer As ModeleSentinellesHY.Categorie, sender As Object)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        Dim categorieAValider As ModeleSentinellesHY.Categorie = Nothing
+
+        categorieAValider = leContexte.CategorieJeu.Find(categorieASupprimer.idCategorie)
+
         Dim listePublication = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu _
-                        Where pub.idCategorie = unID).ToList
+                        Where pub.idCategorie = categorieAValider.idCategorie).ToList
+
         If listePublication.Count <> 0 Then
-            lblErreurCategorie.Text = ModeleSentinellesHY.outils.obtenirLangue("La catégorie ne peut pas être supprimé car elle contient des publications.|" _
+            lblErreurCategorie.Text = ModeleSentinellesHY.outils.obtenirLangue("La catégorie ne peut pas être supprimée car elle contient des publications.|" _
                                                                                & "The category can not be deleted because it contains publications.")
         Else
             Dim uneCategorie = (From cat As ModeleSentinellesHY.Categorie In leContexte.CategorieJeu _
-                                Where cat.idCategorie = unID).FirstOrDefault
+                                Where cat.idCategorie = categorieAValider.idCategorie).FirstOrDefault
             leContexte.CategorieJeu.Remove(uneCategorie)
             leContexte.SaveChanges()
             lblErreurCategorie.Text = ""
@@ -1196,4 +1211,5 @@ Public Class FRMForum
 #End Region
 
 
+   
 End Class
