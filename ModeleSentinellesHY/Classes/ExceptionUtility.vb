@@ -53,9 +53,6 @@ Public NotInheritable Class ExceptionUtility
 
         Dim logText = String.Empty
         If File.Exists(logFile) Then
-            'Va chercher le stream du fichier
-            Dim stream = New FileStream(logFile, FileMode.Append, FileAccess.ReadWrite)
-
             'Ajoute le nouveau message au avant la lecture du fichier
             Dim reader = New StreamReader(logFile, True)
             logText += newError & "\n"

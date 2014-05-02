@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="FRMPanneauDeControle.aspx.vb" Inherits="SiteSentinellesHY.FRMPanneauDeControle" %>
 
+<%@ Import Namespace="System.IO" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <%@ Import Namespace="ModeleSentinellesHY" %>
@@ -1247,23 +1249,33 @@
                                 </div>
                                 <div id="lnkBtn_envoiMessage">
                                     <% 
-                                        If Request.QueryString("error") <> " " Then
-                                    %>
-                                        <asp:LinkButton ID="lnkbtnEnvoiMessage" runat="server"
-                                        CssClass="btn btn-primary"
-                                        Enabled="false"
-                                        CommandName="Update">
-                                            <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
-                                        </asp:LinkButton>
-                                    <%        
+                                        Dim isMailSending = False
+                                        
+                                        If Not File.Exists(Server.MapPath("/BackControl/properties.txt")) Then
+                                            isMailSending = False
+                                        Else
+                                            Using sr As New StreamReader(Server.MapPath("/BackControl/properties.txt"))
+                                                Dim line As String
+                                                line = sr.ReadToEnd()
+                                                Dim tok = line.Split("=")
+                                                If tok(0).Equals("EmailSend") Then
+                                                    isMailSending = Convert.ToBoolean(tok(1))
+                                                End If
+                                            End Using
+                                        End If
+                                        If Not isMailSending Then
+                                             %>
+                                                <asp:LinkButton ID="lnkbtnEnvoiMessage" runat="server"
+                                                        CssClass = "btn btn-primary"
+                                                        Enabled = "true"
+                                                CommandName="Update">
+                                                    <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
+                                                </asp:LinkButton>
+                                            <%                                             
                                         Else
                                     %>
-                                        <asp:LinkButton ID="LinkButton6" runat="server"
-                                        CssClass="btn btn-primary"
-                                        Enabled="true"
-                                        CommandName="Update">
-                                            <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
-                                        </asp:LinkButton>
+                                    <asp:Image ID="imgLoader" runat="server" ImageUrl="~/Images/ajax-loader.gif" />
+                                        <%= outils.obtenirLangue(" Envoi de courriel en cours| Email sending under processing")%>
                                     <%        
                                         End If
                                     %>

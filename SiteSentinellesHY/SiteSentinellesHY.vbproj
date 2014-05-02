@@ -95,6 +95,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\ajax-loader.gif" />
     <Content Include="BackControl\CleanBDControler.aspx" />
     <Content Include="BackControl\EmailSendRoutine.aspx" />
     <Content Include="bin\ar\AjaxControlToolkit.resources.dll" />
