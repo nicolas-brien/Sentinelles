@@ -324,7 +324,7 @@
                                                 ShowPreviousPageButton="false" />
                                         </Fields>
                                     </asp:DataPager>
-                                </div>
+                                </div><br />
 
                                 <asp:ListView runat="server" ID="lviewConsulterPublication"
                                     ItemType="ModeleSentinellesHY.Publication"
