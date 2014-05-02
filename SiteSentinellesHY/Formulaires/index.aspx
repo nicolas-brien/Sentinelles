@@ -26,7 +26,7 @@
                     <ItemTemplate>
                         <div>
                             <h5 class="pull-left"><%# Left(Eval(outils.obtenirLangue("titreFR|titreEN")), 50)%></h5>
-                            <h6 class="pull-right"><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ") %></b><%# Eval("dateRedaction") %></h6>
+                            <h6 class="pull-right"><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ") %></b><%# Eval("DateRedactionDo") %></h6>
                         </div>
                         <div class="clear-both">
                             <asp:Label ID="lblNouvelle" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("contenuFR|contenuEN")),500) & IIf(outils.obtenirLangue("contenuFR|contenuEN").Count > 500, "...", "") %>'></asp:Label>
@@ -112,7 +112,7 @@
                     <ItemTemplate>
                         <div>
                             <h5 class="pull-left"><%# Left(Eval(outils.obtenirLangue("titreFR|titreEN")), 50)%></h5>
-                            <h6 class="pull-right"><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ") %></b><%#  Eval("dateRedaction")%></h6>
+                            <h6 class="pull-right"><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ") %></b><%#  Eval("DateRedactionDo")%></h6>
                         </div>
                         <div class="clear-both">
                             <asp:Label ID="lblRDP" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("contenuFR|contenuEN")),500) & IIf(outils.obtenirLangue("contenuFR|contenuEN").Count > 500, "...", "") %>'></asp:Label>
