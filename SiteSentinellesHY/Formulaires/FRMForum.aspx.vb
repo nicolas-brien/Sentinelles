@@ -107,8 +107,6 @@ Public Class FRMForum
 
         End If
 
-
-
     End Sub
 
     'Effectue des databind lorsque les vues sont changées
@@ -209,10 +207,16 @@ Public Class FRMForum
             leContexte.CategorieJeu.Remove(uneCategorie)
             leContexte.SaveChanges()
             lblErreurCategorie.Text = ""
+            etatCategorie.Value = "elementSupprime"
             tbNomCategorieEN.Text = ""
             tbNomCategorieFR.Text = ""
         End If
         lvCategorie.DataBind()
+
+        If etatCategorie.Value = "elementSupprime" Then
+            gererLesCategories.Attributes("class") = "collapse in"
+            etatCategorie.Value = ""
+        End If
     End Sub
 
     Protected Sub lnkbtnAjoutCategorie_Click(sender As Object, e As EventArgs)

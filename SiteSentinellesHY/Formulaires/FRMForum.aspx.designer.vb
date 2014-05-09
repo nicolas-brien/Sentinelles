@@ -158,6 +158,15 @@ Partial Public Class FRMForum
     Protected WithEvents btnRecherche As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''Contrôle etatCategorie.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents etatCategorie As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''Contrôle MultiViewForum.
     '''</summary>
     '''<remarks>
@@ -174,6 +183,15 @@ Partial Public Class FRMForum
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents viewForum_Accueil As Global.System.Web.UI.WebControls.View
+
+    '''<summary>
+    '''Contrôle divDeForum.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents divDeForum As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''Contrôle Label4.
