@@ -962,6 +962,7 @@ Public Class FRMPanneauDeControle
 
         If ViewState("modeUtilisateur") = "AjoutUtilisateur" Then
             utilisateurAValider = New ModeleSentinellesHY.Utilisateur()
+            utilisateurAValider.UrlAvatar = "default.png"
         Else
             utilisateurAValider = leContexte.UtilisateurJeu.Find(idUtilisateur)
         End If

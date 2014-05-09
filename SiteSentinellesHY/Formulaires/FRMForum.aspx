@@ -653,8 +653,7 @@
                                             <div id="divAvatar" class="pull-left">
                                                 <div>
                                                     <asp:ImageButton runat="server" ID="imgUpload" class="pull-left" src='<%# String.Format("../Upload/ImagesProfil/{0}", Eval("UrlAvatar"))%>' OnClientClick="$('[id$=fuplPhoto]').click(); return false;" Style="width: 300px" />
-
-                                                    <div class="pull-right">
+                                                                                                      <div class="pull-right">
                                                         <asp:TextBox ID="tbAvatar" CssClass="tbInfoUtilisateur" ReadOnly="true" Text='<%# BindItem.UrlAvatar%>' runat="server" Style="display: none" />
                                                         <div class="clear-both tbInfoUtilisateur">
                                                             <asp:Button ID="uploadButton" runat="server" Text="Upload" ClientIDMode="Static" OnClick="lnkUpload_Click" Style="display: none" />

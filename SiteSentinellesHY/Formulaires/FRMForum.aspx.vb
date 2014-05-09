@@ -96,14 +96,14 @@ Public Class FRMForum
                     End If
                 End If
             Next
-            'attribution de la photo pat default si trouve pas la photo du profil dans le dossier
-            For Each utilisateur As Utilisateur In leContexte.UtilisateurJeu
-                If ((di.GetFiles.Where(Function(x) x.Name = utilisateur.UrlAvatar).FirstOrDefault) Is Nothing) Then
-                    utilisateur.UrlAvatar = "default.png"
-                End If
-            Next
+            ''attribution de la photo pat default si trouve pas la photo du profil dans le dossier
+            'For Each utilisateur As Utilisateur In leContexte.UtilisateurJeu
+            '    If ((di.GetFiles.Where(Function(x) x.Name = utilisateur.UrlAvatar).FirstOrDefault) Is Nothing) Then
+            '        utilisateur.UrlAvatar = "default.png"
+            '    End If
+            'Next
 
-            leContexte.SaveChanges()
+            'leContexte.SaveChanges()
 
         End If
 
@@ -786,7 +786,7 @@ Public Class FRMForum
         Dim ratio As Double = image.Height / 250.0
         Dim nomFichier As String = ""
 
-        Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Session("Utilisateur")
+        Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = outils.getCleanUser(leContexte, Session)
 
         'Get the Cordinates
         Dim X = CType(lvInfoUtilisateur.Items(0).FindControl("X"), System.Web.UI.WebControls.HiddenField)
@@ -830,8 +830,9 @@ Public Class FRMForum
     Public Function getInfoUtilisateur() As ModeleSentinellesHY.Utilisateur
         Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
-        If Not Session("Utilisateur") Is Nothing Then
-            Dim idUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idUtilisateur
+        Dim utilisateursEdit As ModeleSentinellesHY.Utilisateur = outils.getCleanUser(leContexte, Session)
+        If Not utilisateursEdit Is Nothing Then
+            Dim idUtilisateur = CType(utilisateursEdit, ModeleSentinellesHY.Utilisateur).idUtilisateur
             unUtilisateur = (From uti In leContexte.UtilisateurJeu Where uti.idUtilisateur = idUtilisateur).FirstOrDefault
             leContexte.Entry(unUtilisateur).Reload()
         Else

@@ -45,7 +45,7 @@ Partial Public Class Utilisateur
     End Property
     Public Sub New()
         SelDeMer = ""
-        UrlAvatar = "default.png"
+        UrlAvatar = ""
         motDePasse = ""
         nom = ""
         prenom = ""
