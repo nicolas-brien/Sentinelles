@@ -191,7 +191,6 @@
     <Content Include="Upload\ImagesCarrousel\Carrousel1.jpg" />
     <Content Include="Upload\ImagesCarrousel\Carrousel2.jpg" />
     <Content Include="Upload\ImagesCarrousel\Carrousel3.jpg" />
-    <Content Include="Upload\ImagesProfil\35945.jpg" />
     <Content Include="Upload\ImagesProfil\default.png" />
     <Content Include="Upload\ImagesProfil\Sans titre70432.jpg" />
     <Content Include="Web.config">
