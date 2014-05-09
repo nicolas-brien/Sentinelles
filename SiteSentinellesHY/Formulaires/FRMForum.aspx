@@ -718,8 +718,8 @@
                                                     <asp:Label ID="lblConfirmer" CssClass="lblInfoUtilisateur" runat="server"><%= outils.obtenirLangue("Confirmer le mot de passe:|Confirm password:")%></asp:Label>
                                                 </div>
                                                 <div class="clear-both text-right">
-                                                    <%--<asp:LinkButton ID="btnAnnuler" runat="server" OnClick="btnAnnulerInfos_Click" CssClass="btn btnAjouter">
-                                                        <i class="icon-remove"></i><%= outils.obtenirLangue(" Annuler| Cancel")%></asp:LinkButton>--%>
+                                                    <asp:LinkButton ID="btnAnnuler" runat="server" OnClick="btnAnnulerInfos_Click" CssClass="btn btnAjouter">
+                                                        <i class="icon-remove"></i><%= outils.obtenirLangue(" Annuler| Cancel")%></asp:LinkButton>
                                                     <asp:LinkButton ID="btnModifier" runat="server"
                                                         CommandName="Update"
                                                         CssClass="btn btnAjouter disabled-button"
