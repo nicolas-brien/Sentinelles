@@ -14,7 +14,7 @@
     <link href="../CSS/bootstrap.css" rel="stylesheet" />
     <link href="../CSS/PanneauDeControle.css" rel="stylesheet" />
     <link href="../CSS/SiteMaster.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="../Images/LogoOfficielHY.png" />
+    <link rel="icon" type="image/png" href="../Images/favicon.png" />
 
     <script src="../CSS/js/jquery.js"></script>
     <script src="../CSS/js/jquery.Jcrop.min.js"></script>
@@ -962,7 +962,7 @@
                             <div class="row paddingRow">
                                 <div class="pull-right">
                                     <asp:TextBox ID="txtboxRechercheUtilisateur" runat="server" onkeydown="return (event.keyCode!=13);" />
-                                    <asp:Button ID="btnRechercheUtilisateur" runat="server" Text="Rechercher" CssClass="btn btn-primary" />
+                                    <asp:Button ID="btnRechercheUtilisateur" runat="server" Text="Rechercher" CssClass="btn btn-primary" style="margin-bottom:10px;" />
                                 </div>
                                 <div class="clear-both"></div>
                                 <div class="petitsPointsListeUtilisateurs overflow-y" style="max-height: 160px;">
