@@ -1,4 +1,4 @@
-'Rechercher #Region "Utilisateur" afin d'accéder directement au bon endroit dans le document
+﻿'Rechercher #Region "Utilisateur" afin d'accéder directement au bon endroit dans le document
 
 Imports System.IO
 Imports System.Threading
@@ -171,10 +171,12 @@ Public Class FRMPanneauDeControle
 #Region "EnvoiMessage"
     Private Sub lnkbtnEnvoiMessage_Click(sender As Object, e As EventArgs) Handles lnkbtnEnvoiMessage.Click
         Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        Dim isMailSending = False
         If Not File.Exists(Server.MapPath("/BackControl/properties.txt")) Then
             Using fs As FileStream = File.Create(Server.MapPath("/BackControl/properties.txt"))
                 Dim info As [Byte]() = New UTF8Encoding(True).GetBytes("EmailSend=true")
                 fs.Write(info, 0, info.Length)
+                isMailSending = True
             End Using
         Else
             Try
@@ -182,6 +184,7 @@ Public Class FRMPanneauDeControle
                 Using fs As FileStream = File.Create(Server.MapPath("/BackControl/properties.txt"))
                     Dim info As [Byte]() = New UTF8Encoding(True).GetBytes("EmailSend=true")
                     fs.Write(info, 0, info.Length)
+                    isMailSending = True
                 End Using
             Catch ex As Exception
                 Dim err = ex.Message
@@ -190,14 +193,9 @@ Public Class FRMPanneauDeControle
         End If
 
         'Controle si le fichier d'envoie existe, sinon sa commence une nouvele routine
-        Dim msg = String.Empty
-        If Not File.Exists("/BackControl/emailsending.txt") Then
-            CreateEmailFile("Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text, txtboxMessage.Text)
-        Else
-            msg = ModeleSentinellesHY.outils.obtenirLangue("*Envoie de courriel en cours, impossible d'envoyer de nouveau avant la fin.|*Impossible to send email before the end of routine.")
-        End If
+        CreateEmailFile("Sentinelles Haute-Yamaska - " & txtboxTitreMessage.Text, txtboxMessage.Text)
 
-        Response.Redirect("FRMPanneauDeControle.aspx?error=" & msg)
+        Response.Redirect("FRMPanneauDeControle.aspx")
 
     End Sub
 
@@ -853,6 +851,14 @@ Public Class FRMPanneauDeControle
         End If
     End Sub
 
+    'PreRender des astérisques dans le listview pour ne les afficher que lorsqu'on est en mode Ajout... Idéalement,
+    'il faudrait mettre un EditTemplate dans le listview, ce serait plus propre
+    Protected Sub asterisque_PreRender(sender As Object, e As EventArgs)
+        If Not ViewState("modeUtilisateur") = "AjoutUtilisateur" Then
+            Dim asterisque As System.Web.UI.WebControls.Label = CType(sender, System.Web.UI.WebControls.Label)
+            asterisque.Visible = False
+        End If
+    End Sub
     Private Sub lviewUtilisateurs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lviewUtilisateurs.SelectedIndexChanged
         ViewState("modeUtilisateur") = ""
         lblMessageErreurInfoUtilisateur.Text = ""
@@ -1044,5 +1050,4 @@ Public Class FRMPanneauDeControle
 
     End Sub
 #End Region
-
 End Class

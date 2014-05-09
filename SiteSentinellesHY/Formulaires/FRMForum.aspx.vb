@@ -835,7 +835,7 @@ Public Class FRMForum
 
     Public Sub updateInfoUtilisateur(ByVal idUtilisateur As Integer)
         Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
-        Dim lblMessageErreur = CType(lvInfoUtilisateur.FindControl("lblMessagErreur"), Label)
+        Dim lblMessageErreur = CType(lvInfoUtilisateur.FindControl("lblMessageErreur"), Label)
         Dim divMessageErreur = CType(lvInfoUtilisateur.FindControl("divMessageErreur"), Panel)
         Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Nothing
         Dim tbMotDePasse As String = CType(lvInfoUtilisateur.Items(0).FindControl("tbMotDePasse"), TextBox).Text

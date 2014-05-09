@@ -959,7 +959,7 @@
                         <asp:View ID="ViewUtilisateur" runat="server">
                             <div class="row paddingRow">
                                 <div class="pull-right">
-                                    <asp:TextBox ID="txtboxRechercheUtilisateur" runat="server" />
+                                    <asp:TextBox ID="txtboxRechercheUtilisateur" runat="server" onkeydown="return (event.keyCode!=13);" />
                                     <asp:Button ID="btnRechercheUtilisateur" runat="server" Text="Rechercher" CssClass="btn btn-primary" />
                                 </div>
                                 <div class="clear-both"></div>
@@ -1059,8 +1059,8 @@
                                                     <asp:Label ID="lblNomUtilisateur" CssClass="lblUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server"><%= outils.obtenirLangue("Nom d'utilisateur:|Username :")%></asp:Label>
                                                 </div>
                                                 <div class="span6" style="float: right;">
-                                                    <span class="asterisque">*</span>
                                                     <asp:TextBox ID="txtboxnomUtilisateur" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nomUtilisateur%>' />
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
                                             <div id="divPrenom" class="row" style="clear: both">
@@ -1068,29 +1068,28 @@
                                                     <asp:Label ID="lblPrenom" CssClass="lblUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server"><%= outils.obtenirLangue("Prénom:|First name :")%></asp:Label>
                                                 </div>
                                                 <div class="span6" style="float: right;">
-                                                    <span class="asterisque">*</span>
                                                     <asp:TextBox ID="txtboxprenom" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.prenom%>' />
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
                                             <div id="divNom" class="row" style="clear: both">
                                                 <div class="span3" style="margin-left: 35px;">
                                                     <asp:Label ID="lblNom" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Nom:|Last name :")%></asp:Label>
-
                                                 </div>
                                                 <div class="span6" style="float: right;">
-                                                    <span class="asterisque">*</span>
                                                     <asp:TextBox ID="txtboxnom" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.nom%>' />
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
-                                            <div id="divSexe" class="row" style="clear: both">
+                                            <div id="divSexe" class="row" style="clear: both; height: 40px;">
                                                 <div class="span3" style="margin-left: 35px;">
                                                     <asp:Label ID="lblSexe" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Sexe:|Gender:")%> </asp:Label>
                                                 </div>
                                                 <div class="span6" style="float: right; display: inline;">
-                                                    <span class="asterisque">*</span>
                                                     <asp:RadioButtonList ID="rbtnSexe" runat="server" RepeatDirection="Horizontal" CssClass="radio rbtnSexe txtboxUtilisateur"
                                                         SelectedValue='<%# BindItem.sexe%>' OnInit="rbtnSexe_Init">
                                                     </asp:RadioButtonList>
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
                                             <div id="divTelephone" class="row" style="clear: both">
@@ -1098,11 +1097,10 @@
                                                     <asp:Label ID="lblTelephone" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("No. téléphone:|Phone number:")%></asp:Label>
                                                 </div>
                                                 <div class="span6" style="float: right;">
-                                                    <span class="asterisque">*</span>
                                                     <asp:TextBox ID="txtboxnoTelephone" placeHolder="123-456-7890" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.noTelephone%>' />
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
-
                                             <div id="divCourriel" class="row" style="clear: both">
                                                 <div class="span3" style="margin-left: 35px;">
                                                     <asp:Label ID="lblCourriel" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Courriel:|Email:")%></asp:Label>
@@ -1111,19 +1109,18 @@
                                                     <asp:TextBox ID="txtboxcourriel" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" placeHolder="abc@microsoft.com" runat="server" Text='<%# BindItem.courriel%>' />
                                                 </div>
                                             </div>
-
                                             <div id="divType" class="row" style="clear: both">
                                                 <div class="span3" style="margin-left: 35px;">
                                                     <asp:Label ID="lblType" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Type d'utilisateur:|User type:")%></asp:Label>
                                                 </div>
                                                 <div class="span6" style="float: right;">
-                                                    <span class="asterisque">*</span>
                                                     <asp:DropDownList ID="ddlstType"
                                                         DataValueField="idStatut"
                                                         DataTextField="nomStatut"
                                                         ItemType="ModeleSentinellesHY.Statut"
                                                         SelectedValue="<%# BindItem.idStatut%>"
                                                         SelectMethod="getStatutUtilisateur" CssClass="txtboxUtilisateur" runat="server" />
+                                                    <asp:Label class="asterisque" runat="server" style="margin-left:19px;" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
 
@@ -1133,8 +1130,8 @@
 
                                                 </div>
                                                 <div class="span6" style="float: right;">
-                                                    <span class="asterisque">*</span>
                                                     <asp:TextBox ID="txtboxmilieu" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.milieu%>' />
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
 
@@ -1143,8 +1140,8 @@
                                                     <asp:Label ID="lblPassword" CssClass="lblUtilisateur" runat="server"><%= outils.obtenirLangue("Mot de passe:|Password:")%></asp:Label>
                                                 </div>
                                                 <div class="span6" style="float: right;">
-                                                    <span class="asterisque">*</span>
                                                     <asp:TextBox ID="txtboxmotDePasse" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.motDePasseTemp%>' />
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
 
@@ -1154,8 +1151,8 @@
 
                                                 </div>
                                                 <div class="span6" style="float: right;">
-                                                    <span class="asterisque">*</span>
                                                     <asp:TextBox ID="txtboxConfirmer" CssClass="txtboxUtilisateur" onkeydown="return (event.keyCode!=13);" runat="server" Text='<%# BindItem.confirmationMotDePasse%>' />
+                                                    <asp:Label class="asterisque" runat="server" onprerender="asterisque_PreRender">*</asp:Label>
                                                 </div>
                                             </div>
                                             <div id="divAvatar" class="row" style="clear: both">
@@ -1200,6 +1197,7 @@
                                         </ItemTemplate>
                                     </asp:ListView>
                                 </div>
+                            </div>
                         </asp:View>
 
                         <asp:View ID="viewMessage" runat="server">
@@ -1246,15 +1244,46 @@
 
                                 </div>
                                 <div id="lnkBtn_envoiMessage">
-                                    <asp:LinkButton ID="lnkbtnEnvoiMessage" runat="server"
-                                        CssClass="btn btn-primary"
-                                        CommandName="Update">
-                                        <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
-                                    </asp:LinkButton>
+                                    <% 
+                                        Dim isMailSending = False
+                                        
+                                        If Not File.Exists(Server.MapPath("/BackControl/properties.txt")) Then
+                                            isMailSending = False
+                                        Else
+                                            Using sr As New StreamReader(Server.MapPath("/BackControl/properties.txt"))
+                                                Dim line As String
+                                                line = sr.ReadToEnd()
+                                                Dim tok = line.Split("=")
+                                                If tok(0).Equals("EmailSend") Then
+                                                    isMailSending = Convert.ToBoolean(tok(1))
+                                                End If
+                                            End Using
+                                        End If
+                                        If Not isMailSending Then
+                                             %>
+                                                <asp:LinkButton ID="lnkbtnEnvoiMessage" runat="server"
+                                                        CssClass = "btn btn-primary"
+                                                        Enabled = "true"
+                                                CommandName="Update">
+                                                    <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
+                                                </asp:LinkButton>
+                                            <%                                             
+                                        Else
+                                    %>
+                                    <asp:Image ID="imgLoader" runat="server" ImageUrl="~/Images/ajax-loader.gif" />
+                                        <%= outils.obtenirLangue(" Envoi de courriel en cours| Email sending under processing")%>
+                                    <%        
+                                        End If
+                                    %>
+                                    
                                 </div>
                             </div>
                         </asp:View>
                     </asp:MultiView>
+                    <div class="alert alert-info">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <%= outils.obtenirLangue(" Besoin d'un aide-mémoire? Un | In need of assistance? A ")%><a href="../Documents/panneau_controle.pdf"><%= outils.obtenirLangue(" document d'aide| user guide")%></a> <%= outils.obtenirLangue(" est disponible pour vous rafraîchir la mémoire| is available in order to help you")%>.
+                    </div>
                 </div>
             </div>
             <%-------------------------------End Content----------------------------------%>

@@ -104,6 +104,7 @@
     max-width: 800px;
     height: 200px;
 }
+
 /*--------------------------------------------------------------------------------*/
 /*---------------------------------Style des listes-------------------------------*/
 /*--------------------------------------------------------------------------------*/
@@ -364,6 +365,7 @@
 
 .txtboxUtilisateur {
     Width: 300px;
+    float:left;
 }
 
 .btnAjouter {
@@ -395,7 +397,7 @@
 }
 
 .rbtnSexe {
-    width: 200px;
+    width: 289px;
     margin-left: 25px;
 }
 
@@ -479,4 +481,12 @@
     vertical-align: middle;
   background-color: #f5f5f5;
   *background-color: #e6e6e6;
+}
+
+.alert.alert-info {
+    margin-left: 10px;
+}
+
+.alert.alert-info a {
+    text-decoration: underline;
 }
