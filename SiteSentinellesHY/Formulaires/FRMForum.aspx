@@ -118,9 +118,11 @@
             <%-----------------------------------Content----------------------------------%>
 
             <div id="content">
+                <asp:HiddenField ID="etatCategorie" runat="server" Value=""></asp:HiddenField>
+                                                       
                 <asp:MultiView ID="MultiViewForum" runat="server">
                     <asp:View ID="viewForum_Accueil" runat="server">
-                        <div class="row paddingRow">
+                        <div id="divDeForum" runat="server" class="row paddingRow">
                             <div class="text-center">
                                 <asp:Label runat="server" ID="Label4" CssClass="lblTitreConfig"><%= outils.obtenirLangue("ZONE SENTINELLE|SENTINEL AREA")%></asp:Label>
                             </div>
@@ -161,6 +163,7 @@
                                                         <asp:TextBox ID="tbNomCategorieEN" runat="server" MaxLength="50" Text='<%# BindItem.nomCategorieEN %>' onkeydown="return (event.keyCode!=13);"></asp:TextBox>
                                                     </div>
                                                     <div class="span2 offset2" style="padding-top: 3px">
+                                                        
                                                         <asp:LinkButton ID="lnkbtnSauvegarderCategorie" runat="server" Width="82px" CssClass="btn disabled-button"><%= outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
                                                         <asp:LinkButton ID="lnkbtnSupprimerCategorie" runat="server"
                                                             CssClass="pull-right"  
