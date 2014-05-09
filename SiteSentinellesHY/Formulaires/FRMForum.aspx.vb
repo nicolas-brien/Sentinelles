@@ -154,16 +154,21 @@ Public Class FRMForum
         Dim idPublication = CType(sender, LinkButton).CommandArgument
         Dim unePublication = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu _
                               Where pub.idPublication = CType(sender, LinkButton).CommandArgument).FirstOrDefault
-        If unePublication.idParent Is Nothing Then
-            ViewState("idPublication") = unePublication.idPublication
+
+        If unePublication Is Nothing Then
+            Response.Redirect("FRMForum.aspx")
         Else
-            ViewState("idPublication") = unePublication.idParent
+            If unePublication.idParent Is Nothing Then
+                ViewState("idPublication") = unePublication.idPublication
+            Else
+                ViewState("idPublication") = unePublication.idParent
+            End If
+
+            ViewState("idCategorie") = unePublication.idCategorie
+
+            lviewCategorie.DataBind()
+            MultiViewForum.ActiveViewIndex = 2
         End If
-
-        ViewState("idCategorie") = unePublication.idCategorie
-
-        lviewCategorie.DataBind()
-        MultiViewForum.ActiveViewIndex = 2
     End Sub
 
     'Méthode qui nous amène à la vue d'ajout de publication parent

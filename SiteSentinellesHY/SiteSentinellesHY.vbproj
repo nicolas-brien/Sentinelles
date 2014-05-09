@@ -357,6 +357,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Formulaires\Site.Master" />
+    <Content Include="Documents\panneau_controle.pdf" />
+    <Content Include="Documents\zone_sentinelle.pdf" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
