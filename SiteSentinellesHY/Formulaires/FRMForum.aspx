@@ -440,7 +440,7 @@
                                                             <ContentTemplate>
                                                                 <div class="modal-footer">
                                                                     <button class="btn" data-dismiss="modal" aria-hidden="true"><% =outils.obtenirLangue("Annuler|Cancel")%></button>
-                                                                    <asp:LinkButton ID="lnkbtnModifierPublication" runat="server" CommandArgument='<%# DataBinder.Eval(Container, "DataItemIndex") %>' OnClick="lnkbtnModifierPublication_Click" class="btn btn-primary disabled-button"><% =outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
+                                                                    <asp:LinkButton ID="lnkbtnModifierPublication" runat="server" CommandArgument='<%# DataBinder.Eval(Container, "DataItemIndex") %>' CommandName="Update" OnClick="lnkbtnModifierPublication_Click" class="btn btn-primary disabled-button"><% =outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <div>

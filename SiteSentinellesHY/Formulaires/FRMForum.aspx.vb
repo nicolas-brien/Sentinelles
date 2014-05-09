@@ -527,8 +527,6 @@ Public Class FRMForum
     Protected Sub lnkbtnModifierPublication_Click(sender As Object, e As EventArgs)
         Dim noItem = CType(sender, LinkButton).CommandArgument
         ViewState("noItem") = noItem
-        'On force ici l'appel de la méthode Update du ListView
-        lviewConsulterPublication.UpdateItem(noItem, False)
     End Sub
 
     Public Sub UpdatePublication(ByVal publicationAUpdater As ModeleSentinellesHY.Publication)
@@ -537,7 +535,7 @@ Public Class FRMForum
         Dim listeEnfants = New List(Of Publication)
 
         listeEnfants = (From pub As Publication In leContexte.PublicationJeu _
-                        Where pub.idParent = publicationAUpdater.idPublication).ToList()
+                        Where pub.idParent = publicationAUpdater.idParent).ToList()
         Dim lblMessageErreurModifierPublication = CType(lviewConsulterPublication.Items(noItem).FindControl("lblMessageErreurModifierPublication"), Label)
         lblMessageErreurModifierPublication.Text = ""
         lblMessageErreurModifierPublication.ForeColor = Drawing.Color.Red
