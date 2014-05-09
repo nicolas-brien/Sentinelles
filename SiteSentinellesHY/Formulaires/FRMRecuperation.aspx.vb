@@ -16,13 +16,14 @@
                 lblErreur.Text = "Il n'y a aucun usager associé à cet adresse courriel!"
                 lblSucces.Visible = False
             Else
-                Dim nouveauSel = ModeleSentinellesHY.outils.SecureRandom(3)
                 Dim nouveauMotDePasse = ModeleSentinellesHY.outils.SecureRandom(8)
-
-                usager.SelDeMer = nouveauSel
-                usager.motDePasse = ModeleSentinellesHY.outils.encryptage(nouveauMotDePasse & nouveauSel)
+                usager.motDePasse = nouveauMotDePasse
+                usager.motDePasseTemp = nouveauMotDePasse
+                usager.SelDeMer = nouveauMotDePasse
+                usager.confirmationMotDePasse = nouveauMotDePasse
 
                 leContexte.SaveChanges()
+
                 lblSucces.Text = "Un courriel vient de vous être envoyé avec un nouveau mot de passe!"
                 lblErreur.Visible = False
 
