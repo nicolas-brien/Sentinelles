@@ -44,11 +44,13 @@ Partial Public Class InfoGeneraleValidation
     Public Property courrielFormulaire As String
 
     <DisplayName("penseeFR"), _
-    Required(ErrorMessage:="La pensée en français ne doit pas être vide|The french thought can't be empty")>
+    Required(ErrorMessage:="La pensée en français ne doit pas être vide|The french thought can't be empty"), _
+    StringLength(200, ErrorMessage:="La pensée en français doit contenir moins de 200 caractères|The french thought must contain less than 200 characters")>
     Public Property penseeFR As String
 
     <DisplayName("penseeEN"), _
-    Required(ErrorMessage:="La pensée en anglais ne doit pas être vide|The english thought can't be empty")>
+    Required(ErrorMessage:="La pensée en anglais ne doit pas être vide|The english thought can't be empty"), _
+    StringLength(200, ErrorMessage:="La pensée en anglais doit contenir moins de 200 caractères|The english thought must contain less than 200 characters")>
     Public Property penseeEN As String
 
     <DisplayName("historiqueFR"), _

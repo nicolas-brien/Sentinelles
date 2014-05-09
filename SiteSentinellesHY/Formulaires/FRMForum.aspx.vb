@@ -152,16 +152,21 @@ Public Class FRMForum
         Dim idPublication = CType(sender, LinkButton).CommandArgument
         Dim unePublication = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu _
                               Where pub.idPublication = CType(sender, LinkButton).CommandArgument).FirstOrDefault
-        If unePublication.idParent Is Nothing Then
-            ViewState("idPublication") = unePublication.idPublication
+
+        If unePublication Is Nothing Then
+            Response.Redirect("FRMForum.aspx")
         Else
-            ViewState("idPublication") = unePublication.idParent
+            If unePublication.idParent Is Nothing Then
+                ViewState("idPublication") = unePublication.idPublication
+            Else
+                ViewState("idPublication") = unePublication.idParent
+            End If
+
+            ViewState("idCategorie") = unePublication.idCategorie
+
+            lviewCategorie.DataBind()
+            MultiViewForum.ActiveViewIndex = 2
         End If
-
-        ViewState("idCategorie") = unePublication.idCategorie
-
-        lviewCategorie.DataBind()
-        MultiViewForum.ActiveViewIndex = 2
     End Sub
 
     'Méthode qui nous amène à la vue d'ajout de publication parent
@@ -526,8 +531,6 @@ Public Class FRMForum
     Protected Sub lnkbtnModifierPublication_Click(sender As Object, e As EventArgs)
         Dim noItem = CType(sender, LinkButton).CommandArgument
         ViewState("noItem") = noItem
-        'On force ici l'appel de la méthode Update du ListView
-        lviewConsulterPublication.UpdateItem(noItem, False)
     End Sub
 
     Public Sub UpdatePublication(ByVal publicationAUpdater As ModeleSentinellesHY.Publication)
@@ -536,7 +539,7 @@ Public Class FRMForum
         Dim listeEnfants = New List(Of Publication)
 
         listeEnfants = (From pub As Publication In leContexte.PublicationJeu _
-                        Where pub.idParent = publicationAUpdater.idPublication).ToList()
+                        Where pub.idParent = publicationAUpdater.idParent).ToList()
         Dim lblMessageErreurModifierPublication = CType(lviewConsulterPublication.Items(noItem).FindControl("lblMessageErreurModifierPublication"), Label)
         lblMessageErreurModifierPublication.Text = ""
         lblMessageErreurModifierPublication.ForeColor = Drawing.Color.Red
@@ -979,7 +982,6 @@ Public Class FRMForum
     Protected Sub btnAnnulerInfos_Click(sender As Object, e As EventArgs)
         Response.Redirect("~/Formulaires/FRMForum.aspx?view=4", False)
     End Sub
-
 #End Region
 
 #Region "Recherche Vue5"
