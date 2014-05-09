@@ -17,6 +17,17 @@ Partial Public Class Publication
         datePublication = Date.Now()
         idCategorie = 0
     End Sub
+    Public Property DatePublicationDo() As String
+        Get
+            Return Me.datePublication.ToLongDateString()
+        End Get
+        Set(value As String)
+            Dim laDate As New DateTime()
+            If DateTime.TryParse(value, laDate) Then
+                Me.datePublication = laDate
+            End If
+        End Set
+    End Property
     Function Validate(ValidationContext As ValidationContext) As IEnumerable(Of ValidationResult) _
           Implements IValidatableObject.Validate
         'Liste d'erreurs(data annotations) outils validation
@@ -29,9 +40,11 @@ Partial Public Class PublicationValidation
     Required(ErrorMessage:="Le titre est requis|The title is required"), _
     StringLength(75, ErrorMessage:="Le titre doit contenir moins de 75 caractères|The title must contain less than 75 characters")> _
     Public Property titre As String
+
     <DisplayName("contenu"), _
     Required(ErrorMessage:="Vous devez poser une question|You must ask a question")> _
     Public Property contenu As String
+
     <DisplayName("categorie"), _
     Required(ErrorMessage:="Vous devez choisir une catégorie|You must choose a category")> _
     Public Property idCategorie As String

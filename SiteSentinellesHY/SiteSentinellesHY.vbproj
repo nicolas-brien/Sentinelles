@@ -95,6 +95,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\ajax-loader.gif" />
     <Content Include="BackControl\CleanBDControler.aspx" />
     <Content Include="BackControl\EmailSendRoutine.aspx" />
     <Content Include="bin\ar\AjaxControlToolkit.resources.dll" />
@@ -375,6 +376,12 @@
     <Content Include="Polices\AGENCYR.TTF" />
     <Content Include="Polices\Lucida_webfont.eot" />
     <Content Include="Polices\Lucida_webfont.ttf" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="backups\" />

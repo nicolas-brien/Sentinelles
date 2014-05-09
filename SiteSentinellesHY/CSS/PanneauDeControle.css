@@ -15,26 +15,47 @@
     text-decoration: none;
     clear: both;
     border-radius: 2px;
+    border: solid 1px transparent;
 }
 
     .lnkBtn_menuConfig:hover {
         -moz-transition-duration: 100ms;
         -webkit-transition-duration: 100ms;
         text-decoration: none;
-        color: #FFF;
-        background-color: #e71f1f;
+        color: #0066d5;
+        border-color:#0066d5;
     }
 
 .lnkBtn_menuConfig_active {
     text-decoration: none;
     color: #FFF;
-    background-color: #e71f1f;
+    background-color: #0066d5;
 }
 
-#imgBtn_EnvoiMessage {
-    width: 55px;
-    height: 30px;
+    .lnkBtn_menuConfig_active:hover {
+    text-decoration: none;
+    color: #FFF;
+    background-color: #0066d5;
 }
+
+.lnkBtn_EnvoiMessage {
+    vertical-align: bottom;
+    margin-bottom: 1px;
+    margin-right: 3px;
+    display: inline-block;
+    background-size: contain;
+    width: 46px;
+    height: 30px;
+    background-image: url('../Images/enveloppe.png');
+}
+
+    .lnkBtn_EnvoiMessage:hover {
+        background-image: url('../Images/enveloppeSelect.png');
+    }
+
+    .lnkBtn_EnvoiMessage_active {
+        background-image: url('../Images/enveloppeSelect.png');
+    }
 
 #divAvatar {
     position: relative;
@@ -83,6 +104,7 @@
     max-width: 800px;
     height: 200px;
 }
+
 /*--------------------------------------------------------------------------------*/
 /*---------------------------------Style des listes-------------------------------*/
 /*--------------------------------------------------------------------------------*/
@@ -343,6 +365,7 @@
 
 .txtboxUtilisateur {
     Width: 300px;
+    float:left;
 }
 
 .btnAjouter {
@@ -374,7 +397,7 @@
 }
 
 .rbtnSexe {
-    width: 200px;
+    width: 289px;
     margin-left: 25px;
 }
 
@@ -458,4 +481,12 @@
     vertical-align: middle;
   background-color: #f5f5f5;
   *background-color: #e6e6e6;
+}
+
+.alert.alert-info {
+    margin-left: 10px;
+}
+
+.alert.alert-info a {
+    text-decoration: underline;
 }

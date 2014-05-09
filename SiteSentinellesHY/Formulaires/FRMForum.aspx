@@ -228,7 +228,8 @@
                                     </div>
                                     <div id="divCadrageItems" class="cadrageItems">
                                         <div style="float: right; width: 18%">
-                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# "Créé le " + Eval("DatePublication","{0:d MMMM, yyyy}")%></asp:Label><br />
+                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# "Créé le " + Eval("DatePublicationDo")%></asp:Label><br />
+                                             
                                             <asp:Label ID="lblPubliePar" CssClass="lblInfoPublication" runat="server"></asp:Label>
                                         </div>
                                         <img id="pinnedIcon" runat="server" src="../Images/icon-pin.png" class="pull-left" style="display: none;" />
@@ -254,17 +255,13 @@
                             </div>
 
                             <div class="dataPager">
-                                <asp:DataPager runat="server" ID="dataPagerHaut" PageSize="10" PagedControlID="lviewCategorie">
+                                <asp:DataPager runat="server" ID="dataPagerHaut" PageSize="10" PagedControlID="lviewCategorie" class="btn-group">
                                     <Fields>
-                                        <asp:NextPreviousPagerField ButtonCssClass="liensListe" FirstPageText="&lt;&lt;"
-                                            ShowFirstPageButton="true"
-                                            ShowNextPageButton="false"
-                                            ShowPreviousPageButton="false" />
-                                        <asp:NumericPagerField NumericButtonCssClass="liensListe" />
-                                        <asp:NextPreviousPagerField ButtonCssClass="liensListe" LastPageText="&gt;&gt;"
-                                            ShowLastPageButton="true"
-                                            ShowNextPageButton="false"
-                                            ShowPreviousPageButton="false" />
+                                        <asp:NextPreviousPagerField FirstPageText="<i class='icon-chevron-left'></i>" ShowFirstPageButton="True"
+                                            ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
+                                        <asp:NumericPagerField CurrentPageLabelCssClass="btn btn-info btn-sm btn-datapager" NumericButtonCssClass="btn btn-default btn-sm btn-datapager" />
+                                        <asp:NextPreviousPagerField LastPageText="<i class='icon-chevron-right'></i>" ShowLastPageButton="True"
+                                            ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
                                     </Fields>
                                 </asp:DataPager>
                             </div>
@@ -289,7 +286,7 @@
                                     </div>
                                     <div id="divCadrageItems" class="cadrageItems">
                                         <div style="float: right;">
-                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# Eval("DatePublication","{0:MMMM d, yyyy}")%></asp:Label><br />
+                                            <asp:Label ID="lblDatePublication" CssClass="lblInfoPublication" runat="server"><%# Eval("DatePublicationDo")%></asp:Label><br />
                                             <asp:Label ID="lblPubliePar" CssClass="lblInfoPublication" runat="server"></asp:Label>
                                         </div>
                                         <img id="pinnedIcon" runat="server" src="../Images/icon-pin.png" class="pull-left" style="display: none;" />
@@ -306,17 +303,13 @@
                                 </EmptyDataTemplate>
                             </asp:ListView>
                             <div class="dataPager">
-                                <asp:DataPager runat="server" ID="dataPagerBas" PageSize="10" PagedControlID="lviewCategorie">
+                                <asp:DataPager runat="server" ID="dataPagerBas" PageSize="10" PagedControlID="lviewCategorie" class="btn-group">
                                     <Fields>
-                                        <asp:NextPreviousPagerField ButtonCssClass="liensListe" FirstPageText="&lt;&lt;"
-                                            ShowFirstPageButton="true"
-                                            ShowNextPageButton="false"
-                                            ShowPreviousPageButton="false" />
-                                        <asp:NumericPagerField NumericButtonCssClass="liensListe" />
-                                        <asp:NextPreviousPagerField ButtonCssClass="liensListe" LastPageText="&gt;&gt;"
-                                            ShowLastPageButton="true"
-                                            ShowNextPageButton="false"
-                                            ShowPreviousPageButton="false" />
+                                        <asp:NextPreviousPagerField FirstPageText="<i class='icon-chevron-left'></i>" ShowFirstPageButton="True"
+                                            ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
+                                        <asp:NumericPagerField CurrentPageLabelCssClass="btn btn-info btn-sm btn-datapager" NumericButtonCssClass="btn btn-default btn-sm btn-datapager" />
+                                        <asp:NextPreviousPagerField LastPageText="<i class='icon-chevron-right'></i>" ShowLastPageButton="True"
+                                            ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
                                     </Fields>
                                 </asp:DataPager>
                             </div>
@@ -349,6 +342,7 @@
                                         </Fields>
                                     </asp:DataPager>
                                 </div>
+                                <br />
 
                                 <asp:ListView runat="server" ID="lviewConsulterPublication"
                                     ItemType="ModeleSentinellesHY.Publication"
@@ -473,7 +467,7 @@
                                                     <asp:Image ID="imgAvatar" CssClass="Avatar_Publication thumbnail" runat="server" />
                                                 </div>
                                                 <div>
-                                                    <asp:Label ID="lblDatePublication" CssClass="lblInfoReponsePublication" runat="server"><%# Eval("DatePublication","{0:MMMM d, yyyy}")%></asp:Label><br />
+                                                    <asp:Label ID="lblDatePublication" CssClass="lblInfoReponsePublication" runat="server"><%# Eval("DatePublicationDo")%></asp:Label><br />
                                                     <asp:Label ID="lblPubliePar" CssClass="lblInfoReponsePublication" runat="server"></asp:Label><br />
                                                     <asp:Label ID="lblStatut" runat="server" CssClass="lblInfoReponsePublication"></asp:Label>
                                                 </div>
@@ -491,17 +485,13 @@
                                 </asp:ListView>
 
                                 <div class="dataPager">
-                                    <asp:DataPager runat="server" ID="dataPagerBasPubs" PageSize="15" PagedControlID="lviewConsulterPublication">
+                                    <asp:DataPager runat="server" ID="dataPagerBasPubs" PageSize="15" PagedControlID="lviewConsulterPublication" class="btn-group">
                                         <Fields>
-                                            <asp:NextPreviousPagerField ButtonCssClass="liensListe" FirstPageText="&lt;&lt;"
-                                                ShowFirstPageButton="true"
-                                                ShowNextPageButton="false"
-                                                ShowPreviousPageButton="false" />
-                                            <asp:NumericPagerField NumericButtonCssClass="liensListe" />
-                                            <asp:NextPreviousPagerField ButtonCssClass="liensListe" LastPageText="&gt;&gt;"
-                                                ShowLastPageButton="true"
-                                                ShowNextPageButton="false"
-                                                ShowPreviousPageButton="false" />
+                                            <asp:NextPreviousPagerField FirstPageText="<i class='icon-chevron-left'></i>" ShowFirstPageButton="True"
+                                                ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
+                                            <asp:NumericPagerField CurrentPageLabelCssClass="btn btn-info btn-sm btn-datapager" NumericButtonCssClass="btn btn-default btn-sm btn-datapager" />
+                                            <asp:NextPreviousPagerField LastPageText="<i class='icon-chevron-right'></i>" ShowLastPageButton="True"
+                                                ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
                                         </Fields>
                                     </asp:DataPager>
                                 </div>
@@ -823,17 +813,13 @@
                                                 </div>
                                             </div>
                                             <div class="dataPager text-center">
-                                                <asp:DataPager runat="server" ID="DPResultatRechercheHaut" PageSize="10" PagedControlID="lvResultatRecherche">
+                                                <asp:DataPager runat="server" ID="DPResultatRechercheHaut" PageSize="10" PagedControlID="lvResultatRecherche" class="btn-group">
                                                     <Fields>
-                                                        <asp:NextPreviousPagerField ButtonCssClass="liensListe" FirstPageText="&lt;&lt;"
-                                                            ShowFirstPageButton="true"
-                                                            ShowNextPageButton="false"
-                                                            ShowPreviousPageButton="false" />
-                                                        <asp:NumericPagerField NumericButtonCssClass="liensListe" />
-                                                        <asp:NextPreviousPagerField ButtonCssClass="liensListe" LastPageText="&gt;&gt;"
-                                                            ShowLastPageButton="true"
-                                                            ShowNextPageButton="false"
-                                                            ShowPreviousPageButton="false" />
+                                                        <asp:NextPreviousPagerField FirstPageText="<i class='icon-chevron-left'></i>" ShowFirstPageButton="True"
+                                                            ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
+                                                        <asp:NumericPagerField CurrentPageLabelCssClass="btn btn-info btn-sm btn-datapager" NumericButtonCssClass="btn btn-default btn-sm btn-datapager" />
+                                                        <asp:NextPreviousPagerField LastPageText="<i class='icon-chevron-right'></i>" ShowLastPageButton="True"
+                                                            ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
                                                     </Fields>
                                                 </asp:DataPager>
                                             </div>
@@ -861,7 +847,7 @@
                                                         </div>
                                                         <div class="pull-right divInfoPublication">
                                                             <div class="pull-left">
-                                                                <asp:Label ID="lblDatePublication" CssClass="lblInfoReponsePublication" runat="server"><%# Eval("DatePublication","{0:MMMM d, yyyy}")%></asp:Label><br />
+                                                                <asp:Label ID="lblDatePublication" CssClass="lblInfoReponsePublication" runat="server"><%# Eval("DatePublicationDo")%></asp:Label><br />
                                                                 <asp:Label ID="lblPubliePar" CssClass="lblInfoReponsePublication" runat="server"></asp:Label>
                                                             </div>
                                                             <div class="pull-right div_marginAvatar">
@@ -878,17 +864,13 @@
                                                 </ItemTemplate>
                                             </asp:ListView>
                                             <div class="dataPager text-center">
-                                                <asp:DataPager runat="server" ID="DPResultatRechercheBas" PageSize="10" PagedControlID="lvResultatRecherche">
+                                                <asp:DataPager runat="server" ID="DPResultatRechercheBas" PageSize="10" PagedControlID="lvResultatRecherche" class="btn-group">
                                                     <Fields>
-                                                        <asp:NextPreviousPagerField ButtonCssClass="liensListe" FirstPageText="&lt;&lt;"
-                                                            ShowFirstPageButton="true"
-                                                            ShowNextPageButton="false"
-                                                            ShowPreviousPageButton="false" />
-                                                        <asp:NumericPagerField NumericButtonCssClass="liensListe" />
-                                                        <asp:NextPreviousPagerField ButtonCssClass="liensListe" LastPageText="&gt;&gt;"
-                                                            ShowLastPageButton="true"
-                                                            ShowNextPageButton="false"
-                                                            ShowPreviousPageButton="false" />
+                                                        <asp:NextPreviousPagerField FirstPageText="<i class='icon-chevron-left'></i>" ShowFirstPageButton="True"
+                                                            ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
+                                                        <asp:NumericPagerField CurrentPageLabelCssClass="btn btn-info btn-sm btn-datapager" NumericButtonCssClass="btn btn-default btn-sm btn-datapager" />
+                                                        <asp:NextPreviousPagerField LastPageText="<i class='icon-chevron-right'></i>" ShowLastPageButton="True"
+                                                            ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
                                                     </Fields>
                                                 </asp:DataPager>
                                             </div>

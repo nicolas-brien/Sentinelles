@@ -26,7 +26,7 @@
                     <ItemTemplate>
                         <div>
                             <h5 class="pull-left"><%# Left(Eval(outils.obtenirLangue("titreFR|titreEN")), 50)%></h5>
-                            <h6 class="pull-right"><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ") %></b><%# Left(Eval("dateRedaction"),10)%></h6>
+                            <h6 class="pull-right"><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ") %></b><%# Eval("DateRedactionDo") %></h6>
                         </div>
                         <div class="clear-both">
                             <asp:Label ID="lblNouvelle" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("contenuFR|contenuEN")),500) & IIf(outils.obtenirLangue("contenuFR|contenuEN").Count > 500, "...", "") %>'></asp:Label>
@@ -69,12 +69,10 @@
                     <ItemTemplate>
                         <div>
                             <h5 class="pull-left"><%# Left(Eval(outils.obtenirLangue("titreFR|titreEN")), 50)%></h5>
+                            <h6 class="pull-right"><b><%# outils.obtenirLangue("Date de l'événement : |Event Date : ") %></b><%# Eval("DateEvenementDo") %></h6>
                         </div>
                         <div class="clear-both">
                             <asp:Label ID="lblEvenement" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("contenuFR|contenuEN")),500) & IIf(outils.obtenirLangue("contenuFR|contenuEN").Count > 500, "...", "") %>'></asp:Label>
-                        </div>
-                        <div>
-                            <br /><asp:Label ID="lblDateEvenement" runat="server"><b><%= outils.obtenirLangue("Date de l'événement : |Event Date : ") %></b><%# Left(Eval("dateEvenement"),10) %></asp:Label>
                         </div>
                         <div class="btnListe">
                             <asp:HyperLink ID="liensListeEvenement" runat="server" CssClass="btn btn-primary" NavigateUrl='<%# Eval("idEvenement", "~/Formulaires/FRMevenements.aspx#{0}")%>'><%= outils.obtenirLangue("Lire plus|Read more")%></asp:HyperLink>
@@ -114,14 +112,14 @@
                     <ItemTemplate>
                         <div>
                             <h5 class="pull-left"><%# Left(Eval(outils.obtenirLangue("titreFR|titreEN")), 50)%></h5>
-                            <h6 class="pull-right"><%# Left(Eval("dateRedaction"),10)%></h6>
+                            <h6 class="pull-right"><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ") %></b><%#  Eval("DateRedactionDo")%></h6>
                         </div>
                         <div class="clear-both">
                             <asp:Label ID="lblRDP" runat="server" Text='<%# Left(Eval(outils.obtenirLangue("contenuFR|contenuEN")),500) & IIf(outils.obtenirLangue("contenuFR|contenuEN").Count > 500, "...", "") %>'></asp:Label>
-                        <div>
-                            <asp:Label runat="server"><b><%= outils.obtenirLangue("Lien vers la revue de presse : |Link to the press review : ") %></b></asp:Label>
-                            <a target="_blank" href='<%# IIf(Eval("urlDocument").ToString.StartsWith("http://") or Eval("urlDocument").ToString.StartsWith("https://"), Eval("urlDocument"), "../Upload/PDF/" & Eval("urldocument"))%>'><%# IIf(Eval("urlDocument").ToString.Count > 50,Left(Eval("urlDocument"),47) & "..." , Eval("urlDocument")) %></a>
-                        </div>
+                            <div>
+                                <asp:Label runat="server"><b><%= outils.obtenirLangue("Lien vers la revue de presse : |Link to the press review : ") %></b></asp:Label>
+                                <a target="_blank" href='<%# IIf(Eval("urlDocument").ToString.StartsWith("http"), Eval("urlDocument"), "../Upload/PDF/" & Eval("urldocument"))%>'><%# IIf(Eval("urlDocument").ToString.Count > 75,Left(Eval("urlDocument"),75) & "..." , Eval("urlDocument")) %></a>
+                            </div>
                         </div>
                         <div class="btnListe">
                             <asp:HyperLink ID="liensListeRevueDePresse" runat="server" CssClass="btn btn-primary" NavigateUrl='<%# Eval("idRDP", "~/Formulaires/FRMrevuedepresse.aspx#{0}")%>'><%= outils.obtenirLangue("Lire plus|Read more")%></asp:HyperLink>

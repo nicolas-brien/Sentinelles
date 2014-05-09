@@ -15,6 +15,17 @@ Partial Public Class Nouvelle
         contenuEN = ""
         contenuFR = ""
     End Sub
+    Public Property DateRedactionDo() As String
+        Get
+            Return Me.dateRedaction.ToLongDateString()
+        End Get
+        Set(value As String)
+            Dim laDate As New DateTime()
+            If DateTime.TryParse(value, laDate) Then
+                Me.dateRedaction = laDate
+            End If
+        End Set
+    End Property
 
     Function Validate(ValidationContext As ValidationContext) As IEnumerable(Of ValidationResult) _
        Implements IValidatableObject.Validate
@@ -29,11 +40,13 @@ End Class
 Partial Public Class NouvelleValidation
 
     <DisplayName("TitreFR"), _
-    Required(ErrorMessage:="Le titre en français est requis|The french title is required")>
+    Required(ErrorMessage:="Le titre en français est requis|The french title is required"), _
+    StringLength(75, ErrorMessage:="Le titre en français doit contenir moins de 75 caractères|The french title must contain less than 75 characters")>
     Public Property titreFR As String
 
     <DisplayName("TitreEN"), _
-    Required(ErrorMessage:="Le titre en anglais est requis|The english title is required")>
+    Required(ErrorMessage:="Le titre en anglais est requis|The english title is required"), _
+    StringLength(75, ErrorMessage:="Le titre en anglais doit contenir moins de 75 caractères|The english title must contain less than 75 characters")>
     Public Property titreEN As String
 
     <DisplayName("ContenuFR"), _

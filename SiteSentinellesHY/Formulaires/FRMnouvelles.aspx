@@ -8,17 +8,13 @@
     <h2><%= outils.obtenirLangue("NOUVELLES|NEWS")%></h2>
 
     <div class="dataPager">
-        <asp:DataPager runat="server" ID="dataPagerHaut" PageSize="3" PagedControlID="lvNouvelles">
+        <asp:DataPager runat="server" ID="dataPagerHaut" PageSize="3" PagedControlID="lvNouvelles" class="btn-group">
             <Fields>
-                <asp:NextPreviousPagerField ButtonCssClass="liensListe" FirstPageText="&lt;&lt;"
-                    ShowFirstPageButton="true"
-                    ShowNextPageButton="false"
-                    ShowPreviousPageButton="false" />
-                <asp:NumericPagerField NumericButtonCssClass="liensListe" />
-                <asp:NextPreviousPagerField ButtonCssClass="liensListe" LastPageText="&gt;&gt;"
-                    ShowLastPageButton="true"
-                    ShowNextPageButton="false"
-                    ShowPreviousPageButton="false" />
+                <asp:NextPreviousPagerField FirstPageText="<i class='icon-chevron-left'></i>" ShowFirstPageButton="True"
+                    ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
+                <asp:NumericPagerField CurrentPageLabelCssClass="btn btn-info btn-sm btn-datapager" NumericButtonCssClass="btn btn-default btn-sm btn-datapager" />
+                <asp:NextPreviousPagerField LastPageText="<i class='icon-chevron-right'></i>" ShowLastPageButton="True"
+                    ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
             </Fields>
         </asp:DataPager>
     </div>
@@ -26,7 +22,7 @@
     <asp:ListView runat="server"
         ID="lvNouvelles"
         DataKeyNames="idNouvelle"
-        ItemType="ModeleSentinellesHY.Nouvelle" 
+        ItemType="ModeleSentinellesHY.Nouvelle"
         SelectMethod="getFRMNouvelles">
         <ItemTemplate>
             <div id="<%# Eval("idNouvelle")%>" class="listeAccueil">
@@ -34,13 +30,13 @@
                 <div class="clear-both">
                     <div class="cadrageItems">
                         <div>
-                            <p><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ")%></b><%# Left(Eval("dateRedaction"),10)%></p>
+                            <p><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ")%></b><%# Eval("DateRedactionDo")%></p>
                         </div>
                         <div class="clear-both">
                             <br />
-                            
-                            <asp:Label ID="lblNouvelle" runat="server" Text='<%# Eval(outils.obtenirLangue("contenuFR|contenuEN"))%>' ></asp:Label>
-                            
+
+                            <asp:Label ID="lblNouvelle" runat="server" Text='<%# Eval(outils.obtenirLangue("contenuFR|contenuEN"))%>'></asp:Label>
+
                         </div>
                     </div>
                 </div>
@@ -61,17 +57,13 @@
     </asp:ListView>
 
     <div class="dataPager">
-        <asp:DataPager runat="server" ID="dataPagerBas" PageSize="3" PagedControlID="lvNouvelles">
+        <asp:DataPager runat="server" ID="dataPagerBas" PageSize="3" PagedControlID="lvNouvelles" class="btn-group">
             <Fields>
-                <asp:NextPreviousPagerField ButtonCssClass="liensListe" FirstPageText="&lt;&lt;"
-                    ShowFirstPageButton="true"
-                    ShowNextPageButton="false"
-                    ShowPreviousPageButton="false" />
-                <asp:NumericPagerField NumericButtonCssClass="liensListe" />
-                <asp:NextPreviousPagerField ButtonCssClass="liensListe" LastPageText="&gt;&gt;"
-                    ShowLastPageButton="true"
-                    ShowNextPageButton="false"
-                    ShowPreviousPageButton="false" />
+                <asp:NextPreviousPagerField FirstPageText="<i class='icon-chevron-left'></i>" ShowFirstPageButton="True"
+                    ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
+                <asp:NumericPagerField CurrentPageLabelCssClass="btn btn-info btn-sm btn-datapager" NumericButtonCssClass="btn btn-default btn-sm btn-datapager" />
+                <asp:NextPreviousPagerField LastPageText="<i class='icon-chevron-right'></i>" ShowLastPageButton="True"
+                    ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
             </Fields>
         </asp:DataPager>
     </div>
