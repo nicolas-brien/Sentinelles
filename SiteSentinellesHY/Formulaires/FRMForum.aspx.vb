@@ -594,11 +594,14 @@ Public Class FRMForum
             reponseAValider.contenu = reponseAValider.contenu.Replace("</div>", "</p>")
         End If
 
+        Dim userDirty As Utilisateur = Session("Utilisateur")
+        Dim userClean = (From u In leContexte.UtilisateurJeu Where u.idUtilisateur = userDirty.idUtilisateur).FirstOrDefault()
+
         reponseAValider.datePublication = Date.Now()
         reponseAValider.idParent = CType(ViewState("idPublication"), Integer)
-        reponseAValider.Utilisateur = Session("Utilisateur")
+        reponseAValider.Utilisateur = userClean
         reponseAValider.idCategorie = (From pub In leContexte.PublicationJeu _
-                                       Where pub.idPublication = reponseAValider.idParent).FirstOrDefault.idCategorie
+        Where pub.idPublication = reponseAValider.idParent).FirstOrDefault.idCategorie
         reponseAValider.titre = (From pub In leContexte.PublicationJeu _
                                  Where pub.idPublication = reponseAValider.idParent).FirstOrDefault().titre
         ModeleSentinellesHY.outils.validationFormulaire(reponseAValider, New ModeleSentinellesHY.PublicationValidation(), lviewAjouterReponse, listeErreur)
