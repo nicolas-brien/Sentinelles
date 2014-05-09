@@ -374,15 +374,6 @@ Partial Public Class FRMForum
     Protected WithEvents lnkBtnRetour As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Contrôle dataPagerHautPubs.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents dataPagerHautPubs As Global.System.Web.UI.WebControls.DataPager
-
-    '''<summary>
     '''Contrôle lviewConsulterPublication.
     '''</summary>
     '''<remarks>
@@ -390,15 +381,6 @@ Partial Public Class FRMForum
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents lviewConsulterPublication As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''Contrôle dataPagerBasPubs.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents dataPagerBasPubs As Global.System.Web.UI.WebControls.DataPager
 
     '''<summary>
     '''Contrôle lviewAjouterReponse.

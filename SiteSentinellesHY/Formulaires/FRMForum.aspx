@@ -327,23 +327,6 @@
                                     <asp:LinkButton ID="lnkBtnRetour" CssClass="lnkBtnRetour" runat="server" OnClick="retourCategorie_Click"><%= outils.obtenirlangue("Retour|Back") %></asp:LinkButton>
                                 </div>
 
-                                <div class="dataPager">
-                                    <asp:DataPager runat="server" ID="dataPagerHautPubs" PageSize="15" PagedControlID="lviewConsulterPublication">
-                                        <Fields>
-                                            <asp:NextPreviousPagerField ButtonCssClass="liensListe" FirstPageText="&lt;&lt;"
-                                                ShowFirstPageButton="true"
-                                                ShowNextPageButton="false"
-                                                ShowPreviousPageButton="false" />
-                                            <asp:NumericPagerField NumericButtonCssClass="liensListe" />
-                                            <asp:NextPreviousPagerField ButtonCssClass="liensListe" LastPageText="&gt;&gt;"
-                                                ShowLastPageButton="true"
-                                                ShowNextPageButton="false"
-                                                ShowPreviousPageButton="false" />
-                                        </Fields>
-                                    </asp:DataPager>
-                                </div>
-                                <br />
-
                                 <asp:ListView runat="server" ID="lviewConsulterPublication"
                                     ItemType="ModeleSentinellesHY.Publication"
                                     DataKeyNames="idPublication"
@@ -483,18 +466,6 @@
                                         </div>
                                     </ItemTemplate>
                                 </asp:ListView>
-
-                                <div class="dataPager">
-                                    <asp:DataPager runat="server" ID="dataPagerBasPubs" PageSize="15" PagedControlID="lviewConsulterPublication" class="btn-group">
-                                        <Fields>
-                                            <asp:NextPreviousPagerField FirstPageText="<i class='icon-chevron-left'></i>" ShowFirstPageButton="True"
-                                                ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
-                                            <asp:NumericPagerField CurrentPageLabelCssClass="btn btn-info btn-sm btn-datapager" NumericButtonCssClass="btn btn-default btn-sm btn-datapager" />
-                                            <asp:NextPreviousPagerField LastPageText="<i class='icon-chevron-right'></i>" ShowLastPageButton="True"
-                                                ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
-                                        </Fields>
-                                    </asp:DataPager>
-                                </div>
 
                                 <asp:ListView runat="server" ID="lviewAjouterReponse"
                                     ItemType="ModeleSentinellesHY.Publication"

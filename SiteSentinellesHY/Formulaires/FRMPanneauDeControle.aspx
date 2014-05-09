@@ -587,6 +587,7 @@
                                                 class="btn btn-danger disabled-button"
                                                 data-toggle="modal">
                                                 <i aria-hidden="true" class="icon-remove"></i><% =outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkbtnAnnulerNouvelle" runat="server" OnClick="lnkbtnAnnulerNouvelle_Click" CssClass="btn"><% =outils.obtenirLangue("Annuler|Cancel")%></asp:LinkButton>
                                             <!-- Modal -->
                                             <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                 <div class="modal-header">
@@ -765,6 +766,7 @@
                                                 class="btn btn-danger disabled-button"
                                                 data-toggle="modal">
                                                 <i aria-hidden="true" class="icon-remove"></i><% =outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkbtnAnnulerEvenement" runat="server" OnClick="lnkbtnAnnulerEvenement_Click" CssClass="btn"><% =outils.obtenirLangue("Annuler|Cancel")%></asp:LinkButton>
                                             <!-- Modal -->
                                             <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                 <div class="modal-header">
@@ -936,6 +938,7 @@
                                                 class="btn btn-danger"
                                                 data-toggle="modal">
                                                 <i aria-hidden="true" class="icon-remove"></i><% =outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkbtnAnnulerRDP" runat="server" OnClick="lnkbtnAnnulerRDP_Click" CssClass="btn"><% =outils.obtenirLangue("Annuler|Cancel")%></asp:LinkButton>
                                             <!-- Modal -->
                                             <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                 <div class="modal-header">
@@ -1177,6 +1180,7 @@
                                                 <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Mettre à jour| Update")%></asp:LinkButton>
                                                     <asp:LinkButton ID="btnSupprimerUti" runat="server" href="#myModal" role="button" class="btn btn-danger" data-toggle="modal" CommandName="Update">
                                                 <i aria-hidden="true" class="icon-remove"></i><%= outils.obtenirLangue(" Supprimer| Delete")%></asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkbtnAnnulerUtilisateur" runat="server" OnClick="lnkbtnAnnulerUtilisateur_Click" CssClass="btn"><% =outils.obtenirLangue("Annuler|Cancel")%></asp:LinkButton>
                                                     <!-- Modal -->
                                                     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                         <div class="modal-header">

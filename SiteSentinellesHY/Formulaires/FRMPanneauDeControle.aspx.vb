@@ -169,7 +169,7 @@ Public Class FRMPanneauDeControle
 #End Region
 
 #Region "EnvoiMessage"
-    Private Sub lnkbtnEnvoiMessage_Click(sender As Object, e As EventArgs) Handles lnkbtnEnvoiMessage.Click
+    Private Sub lnkbtnEnvoiMessage_Click(sender As Object, e As EventArgs) Handles lnkBtn_EnvoiMessage.Click
         Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim isMailSending = False
         If Not File.Exists(Server.MapPath("/BackControl/properties.txt")) Then
@@ -515,6 +515,12 @@ Public Class FRMPanneauDeControle
             CType(lviewInfoNouvelles.FindControl("lnkBtnAjoutNouvelle"), LinkButton).Visible = True
         End If
     End Sub
+    Protected Sub lnkbtnAnnulerNouvelle_Click(sender As Object, e As EventArgs)
+        If ViewState("modeNouvelle") = "AjoutNouvelle" Then
+            ViewState("modeNouvelle") = Nothing
+        End If
+        lviewInfoNouvelles.DataBind()
+    End Sub
 #End Region
 
 #Region "Événement"
@@ -656,6 +662,12 @@ Public Class FRMPanneauDeControle
             CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
             CType(lvInfoEvenement.FindControl("lnkBtnAjoutEvenement"), LinkButton).Visible = True
         End If
+    End Sub
+    Protected Sub lnkbtnAnnulerEvenement_Click(sender As Object, e As EventArgs)
+        If ViewState("modeEvenement") = "AjoutEvenement" Then
+            ViewState("modeEvenement") = Nothing
+        End If
+        lvInfoEvenement.DataBind()
     End Sub
 #End Region
 
@@ -821,6 +833,12 @@ Public Class FRMPanneauDeControle
             CType(e.Item.FindControl("lnkbtnSupprimerNouvelle"), LinkButton).Visible = True
             CType(lvInfoRDP.FindControl("lnkBtnAjoutRDP"), LinkButton).Visible = True
         End If
+    End Sub
+    Protected Sub lnkbtnAnnulerRDP_Click(sender As Object, e As EventArgs)
+        If ViewState("modeRDP") = "AjoutRDP" Then
+            ViewState("modeRDP") = Nothing
+        End If
+        lvInfoRDP.DataBind()
     End Sub
 #End Region
 
@@ -1049,5 +1067,12 @@ Public Class FRMPanneauDeControle
         CType(sender, RadioButtonList).Items.Add(Homme)
 
     End Sub
+    Protected Sub lnkbtnAnnulerUtilisateur_Click(sender As Object, e As EventArgs)
+        If ViewState("modeUtilisateur") = "AjoutUtilisateur" Then
+            ViewState("modeUtilisateur") = Nothing
+        End If
+        lviewInfoUtilisateur.DataBind()
+    End Sub
 #End Region
+
 End Class

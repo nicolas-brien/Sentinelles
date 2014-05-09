@@ -440,11 +440,6 @@ Public Class FRMForum
         End If
     End Sub
 
-    Private Sub lviewConsulterPublication_DataBound(sender As Object, e As EventArgs) Handles lviewConsulterPublication.DataBound
-        dataPagerHautPubs.Visible = (dataPagerHautPubs.PageSize < dataPagerHautPubs.TotalRowCount)
-        dataPagerBasPubs.Visible = (dataPagerBasPubs.PageSize < dataPagerBasPubs.TotalRowCount)
-    End Sub
-
     Private Sub lviewConsulterPublication_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles lviewConsulterPublication.ItemDataBound
         Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim unUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur)
