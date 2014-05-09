@@ -717,10 +717,12 @@
                                                     <asp:TextBox ID="tbConfirmer" CssClass="tbInfoUtilisateur" onkeydown="return (event.keyCode!=13);" type="password" runat="server" Text='<%# BindItem.confirmationMotDePasse%>' />
                                                     <asp:Label ID="lblConfirmer" CssClass="lblInfoUtilisateur" runat="server"><%= outils.obtenirLangue("Confirmer le mot de passe:|Confirm password:")%></asp:Label>
                                                 </div>
-                                                <div class="clear-both">
+                                                <div class="clear-both text-right">
+                                                    <asp:LinkButton ID="btnAnnuler" runat="server" OnClick="btnAnnulerInfos_Click" CssClass="btn btnAjouter">
+                                                        <i class="icon-remove"></i><%= outils.obtenirLangue(" Annuler| Cancel")%></asp:LinkButton>
                                                     <asp:LinkButton ID="btnModifier" runat="server"
                                                         CommandName="Update"
-                                                        CssClass="btn btnAjouter disabled-button tbInfoUtilisateur"
+                                                        CssClass="btn btnAjouter disabled-button"
                                                         CausesValidation="true"
                                                         ValidationGroup="sommaire">
                                                     <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Mettre à jour| Update")%></asp:LinkButton>

@@ -191,17 +191,6 @@ Public Class FRMForum
         Return listeCategoriePublication.AsQueryable
     End Function
 
-    Protected Sub lnkbtnSupprimerCategorie_Click2(sender As Object, e As EventArgs)
-        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
-        Dim unID = CType(sender, LinkButton).CommandArgument
-        Dim uneCategorie = (From pub As ModeleSentinellesHY.Categorie In leContexte.CategorieJeu _
-                        Where pub.idCategorie = unID).FirstOrDefault
-
-        ViewState("uneCategorie") = uneCategorie
-
-
-    End Sub
-
     Public Sub DeleteCategorie(ByVal categorieASupprimer As ModeleSentinellesHY.Categorie, sender As Object)
         Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim categorieAValider As ModeleSentinellesHY.Categorie = Nothing
@@ -613,7 +602,7 @@ Public Class FRMForum
         reponseAValider.idParent = CType(ViewState("idPublication"), Integer)
         reponseAValider.Utilisateur = outils.getCleanUser(leContexte, Session)
         reponseAValider.idCategorie = (From pub In leContexte.PublicationJeu _
-        Where pub.idPublication = reponseAValider.idParent).FirstOrDefault.idCategorie
+                                       Where pub.idPublication = reponseAValider.idParent).FirstOrDefault.idCategorie
         reponseAValider.titre = (From pub In leContexte.PublicationJeu _
                                  Where pub.idPublication = reponseAValider.idParent).FirstOrDefault().titre
         ModeleSentinellesHY.outils.validationFormulaire(reponseAValider, New ModeleSentinellesHY.PublicationValidation(), lviewAjouterReponse, listeErreur)
