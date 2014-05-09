@@ -970,6 +970,11 @@ Public Class FRMForum
 
         Return listeStatutUtilisateur.AsQueryable
     End Function
+
+    Protected Sub btnAnnulerInfos_Click(sender As Object, e As EventArgs)
+        Response.Redirect("~/Formulaires/FRMForum.aspx?view=4", False)
+    End Sub
+
 #End Region
 
 #Region "Recherche Vue5"
@@ -1199,6 +1204,4 @@ Public Class FRMForum
     End Sub
 #End Region
 
-
-   
 End Class

@@ -165,7 +165,7 @@
                                                         <asp:LinkButton ID="lnkbtnSupprimerCategorie" runat="server"
                                                             CssClass="pull-right"  
                                                             role="button"
-                                                            href='<%# String.format("#Supprimer{0}",Eval("idCategorie")) %>'
+                                                            href='<%# String.Format("#Supprimer{0}", Eval("idCategorie"))%>'
                                                             data-toggle="modal">
                                                             <i aria-hidden="true" class="icon-remove"></i></asp:LinkButton>
                                                         <%--fenetre modal--%>
