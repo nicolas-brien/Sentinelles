@@ -50,6 +50,11 @@ Public Class outils
         Return valide
     End Function
 
+    Public Shared Function getCleanUser(ByRef leContexte As ModeleSentinellesHY.model_sentinelleshyContainer, ByRef Session As System.Web.SessionState.HttpSessionState) As Utilisateur
+        Dim userDirty As Utilisateur = Session("Utilisateur")
+        Return (From u In leContexte.UtilisateurJeu Where u.idUtilisateur = userDirty.idUtilisateur).FirstOrDefault()
+    End Function
+
     'Fonction qui sert à valider un utilisateur avec son type de validation, son contenant
     'ainsi que la liste d'erreur
     Public Shared Function validationUtilisateur(ByRef utilisateurAValider As Object, _

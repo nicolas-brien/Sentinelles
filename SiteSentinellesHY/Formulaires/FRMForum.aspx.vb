@@ -611,9 +611,9 @@ Public Class FRMForum
 
         reponseAValider.datePublication = Date.Now()
         reponseAValider.idParent = CType(ViewState("idPublication"), Integer)
-        reponseAValider.Utilisateur = Session("Utilisateur")
+        reponseAValider.Utilisateur = outils.getCleanUser(leContexte, Session)
         reponseAValider.idCategorie = (From pub In leContexte.PublicationJeu _
-                                       Where pub.idPublication = reponseAValider.idParent).FirstOrDefault.idCategorie
+        Where pub.idPublication = reponseAValider.idParent).FirstOrDefault.idCategorie
         reponseAValider.titre = (From pub In leContexte.PublicationJeu _
                                  Where pub.idPublication = reponseAValider.idParent).FirstOrDefault().titre
         ModeleSentinellesHY.outils.validationFormulaire(reponseAValider, New ModeleSentinellesHY.PublicationValidation(), lviewAjouterReponse, listeErreur)
@@ -688,7 +688,7 @@ Public Class FRMForum
             publicationAValider.contenu = publicationAValider.contenu.Replace("</div>", "</p>")
         End If
         publicationAValider.datePublication = Date.Now()
-        publicationAValider.Utilisateur = Session("Utilisateur")
+        publicationAValider.Utilisateur = outils.getCleanUser(leContexte, Session)
 
         'On vérifie si la catégorie a été changée
         If publicationAValider.idCategorie = 0 Then
