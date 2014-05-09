@@ -96,18 +96,16 @@ Public Class FRMForum
                     End If
                 End If
             Next
-            'attribution de la photo pat default si trouve pas la photo du profil dans le dossier
-            For Each utilisateur As Utilisateur In leContexte.UtilisateurJeu
-                If ((di.GetFiles.Where(Function(x) x.Name = utilisateur.UrlAvatar).FirstOrDefault) Is Nothing) Then
-                    utilisateur.UrlAvatar = "default.png"
-                End If
-            Next
+            ''attribution de la photo pat default si trouve pas la photo du profil dans le dossier
+            'For Each utilisateur As Utilisateur In leContexte.UtilisateurJeu
+            '    If ((di.GetFiles.Where(Function(x) x.Name = utilisateur.UrlAvatar).FirstOrDefault) Is Nothing) Then
+            '        utilisateur.UrlAvatar = "default.png"
+            '    End If
+            'Next
 
-            leContexte.SaveChanges()
+            'leContexte.SaveChanges()
 
         End If
-
-
 
     End Sub
 
@@ -154,16 +152,21 @@ Public Class FRMForum
         Dim idPublication = CType(sender, LinkButton).CommandArgument
         Dim unePublication = (From pub As ModeleSentinellesHY.Publication In leContexte.PublicationJeu _
                               Where pub.idPublication = CType(sender, LinkButton).CommandArgument).FirstOrDefault
-        If unePublication.idParent Is Nothing Then
-            ViewState("idPublication") = unePublication.idPublication
+
+        If unePublication Is Nothing Then
+            Response.Redirect("FRMForum.aspx")
         Else
-            ViewState("idPublication") = unePublication.idParent
+            If unePublication.idParent Is Nothing Then
+                ViewState("idPublication") = unePublication.idPublication
+            Else
+                ViewState("idPublication") = unePublication.idParent
+            End If
+
+            ViewState("idCategorie") = unePublication.idCategorie
+
+            lviewCategorie.DataBind()
+            MultiViewForum.ActiveViewIndex = 2
         End If
-
-        ViewState("idCategorie") = unePublication.idCategorie
-
-        lviewCategorie.DataBind()
-        MultiViewForum.ActiveViewIndex = 2
     End Sub
 
     'Méthode qui nous amène à la vue d'ajout de publication parent
@@ -209,10 +212,16 @@ Public Class FRMForum
             leContexte.CategorieJeu.Remove(uneCategorie)
             leContexte.SaveChanges()
             lblErreurCategorie.Text = ""
+            etatCategorie.Value = "elementSupprime"
             tbNomCategorieEN.Text = ""
             tbNomCategorieFR.Text = ""
         End If
         lvCategorie.DataBind()
+
+        If etatCategorie.Value = "elementSupprime" Then
+            gererLesCategories.Attributes("class") = "collapse in"
+            etatCategorie.Value = ""
+        End If
     End Sub
 
     Protected Sub lnkbtnAjoutCategorie_Click(sender As Object, e As EventArgs)
@@ -517,8 +526,6 @@ Public Class FRMForum
     Protected Sub lnkbtnModifierPublication_Click(sender As Object, e As EventArgs)
         Dim noItem = CType(sender, LinkButton).CommandArgument
         ViewState("noItem") = noItem
-        'On force ici l'appel de la méthode Update du ListView
-        lviewConsulterPublication.UpdateItem(noItem, False)
     End Sub
 
     Public Sub UpdatePublication(ByVal publicationAUpdater As ModeleSentinellesHY.Publication)
@@ -527,7 +534,7 @@ Public Class FRMForum
         Dim listeEnfants = New List(Of Publication)
 
         listeEnfants = (From pub As Publication In leContexte.PublicationJeu _
-                        Where pub.idParent = publicationAUpdater.idPublication).ToList()
+                        Where pub.idParent = publicationAUpdater.idParent).ToList()
         Dim lblMessageErreurModifierPublication = CType(lviewConsulterPublication.Items(noItem).FindControl("lblMessageErreurModifierPublication"), Label)
         lblMessageErreurModifierPublication.Text = ""
         lblMessageErreurModifierPublication.ForeColor = Drawing.Color.Red
@@ -777,7 +784,7 @@ Public Class FRMForum
         Dim ratio As Double = image.Height / 250.0
         Dim nomFichier As String = ""
 
-        Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = Session("Utilisateur")
+        Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = outils.getCleanUser(leContexte, Session)
 
         'Get the Cordinates
         Dim X = CType(lvInfoUtilisateur.Items(0).FindControl("X"), System.Web.UI.WebControls.HiddenField)
@@ -821,8 +828,9 @@ Public Class FRMForum
     Public Function getInfoUtilisateur() As ModeleSentinellesHY.Utilisateur
         Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim unUtilisateur As New ModeleSentinellesHY.Utilisateur
-        If Not Session("Utilisateur") Is Nothing Then
-            Dim idUtilisateur = CType(Session("Utilisateur"), ModeleSentinellesHY.Utilisateur).idUtilisateur
+        Dim utilisateursEdit As ModeleSentinellesHY.Utilisateur = outils.getCleanUser(leContexte, Session)
+        If Not utilisateursEdit Is Nothing Then
+            Dim idUtilisateur = CType(utilisateursEdit, ModeleSentinellesHY.Utilisateur).idUtilisateur
             unUtilisateur = (From uti In leContexte.UtilisateurJeu Where uti.idUtilisateur = idUtilisateur).FirstOrDefault
             leContexte.Entry(unUtilisateur).Reload()
         Else
@@ -969,7 +977,6 @@ Public Class FRMForum
     Protected Sub btnAnnulerInfos_Click(sender As Object, e As EventArgs)
         Response.Redirect("~/Formulaires/FRMForum.aspx?view=4", False)
     End Sub
-
 #End Region
 
 #Region "Recherche Vue5"

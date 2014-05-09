@@ -118,9 +118,11 @@
             <%-----------------------------------Content----------------------------------%>
 
             <div id="content">
+                <asp:HiddenField ID="etatCategorie" runat="server" Value=""></asp:HiddenField>
+                                                       
                 <asp:MultiView ID="MultiViewForum" runat="server">
                     <asp:View ID="viewForum_Accueil" runat="server">
-                        <div class="row paddingRow">
+                        <div id="divDeForum" runat="server" class="row paddingRow">
                             <div class="text-center">
                                 <asp:Label runat="server" ID="Label4" CssClass="lblTitreConfig"><%= outils.obtenirLangue("ZONE SENTINELLE|SENTINEL AREA")%></asp:Label>
                             </div>
@@ -161,6 +163,7 @@
                                                         <asp:TextBox ID="tbNomCategorieEN" runat="server" MaxLength="50" Text='<%# BindItem.nomCategorieEN %>' onkeydown="return (event.keyCode!=13);"></asp:TextBox>
                                                     </div>
                                                     <div class="span2 offset2" style="padding-top: 3px">
+                                                        
                                                         <asp:LinkButton ID="lnkbtnSauvegarderCategorie" runat="server" Width="82px" CssClass="btn disabled-button"><%= outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
                                                         <asp:LinkButton ID="lnkbtnSupprimerCategorie" runat="server"
                                                             CssClass="pull-right"  
@@ -423,7 +426,7 @@
                                                             <ContentTemplate>
                                                                 <div class="modal-footer">
                                                                     <button class="btn" data-dismiss="modal" aria-hidden="true"><% =outils.obtenirLangue("Annuler|Cancel")%></button>
-                                                                    <asp:LinkButton ID="lnkbtnModifierPublication" runat="server" CommandArgument='<%# DataBinder.Eval(Container, "DataItemIndex") %>' OnClick="lnkbtnModifierPublication_Click" class="btn btn-primary disabled-button"><% =outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
+                                                                    <asp:LinkButton ID="lnkbtnModifierPublication" runat="server" CommandArgument='<%# DataBinder.Eval(Container, "DataItemIndex") %>' CommandName="Update" OnClick="lnkbtnModifierPublication_Click" class="btn btn-primary disabled-button"><% =outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <div>
@@ -621,8 +624,7 @@
                                             <div id="divAvatar" class="pull-left">
                                                 <div>
                                                     <asp:ImageButton runat="server" ID="imgUpload" class="pull-left" src='<%# String.Format("../Upload/ImagesProfil/{0}", Eval("UrlAvatar"))%>' OnClientClick="$('[id$=fuplPhoto]').click(); return false;" Style="width: 300px" />
-
-                                                    <div class="pull-right">
+                                                                                                      <div class="pull-right">
                                                         <asp:TextBox ID="tbAvatar" CssClass="tbInfoUtilisateur" ReadOnly="true" Text='<%# BindItem.UrlAvatar%>' runat="server" Style="display: none" />
                                                         <div class="clear-both tbInfoUtilisateur">
                                                             <asp:Button ID="uploadButton" runat="server" Text="Upload" ClientIDMode="Static" OnClick="lnkUpload_Click" Style="display: none" />
@@ -914,7 +916,7 @@
                             <asp:LinkButton ID="LnkBtnInfoMaltraitance_footer" CssClass="lnkBtn_Footer" runat="server" href="#ModalInfoMaltraitance" data-toggle="modal"><%= outils.obtenirLangue("Info Maltraitance|Elder Abuse Information")%></asp:LinkButton>
                         </p>
                         <p>
-                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" data-toggle="modal" href="#ModalConnexion"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
+                            <asp:LinkButton ID="LnkBtnZoneSentinelle_footer" CssClass="lnkBtn_Footer" runat="server" href="../Formulaires/FRMForum.aspx"><%= outils.obtenirLangue("Zone Sentinelle|Sentinel Area")%></asp:LinkButton>
                         </p>
                         <p>
                             <asp:LinkButton ID="lnkBtnPageCreateurs" CssClass="lnkBtn_Footer" runat="server" PostBackUrl="~/Formulaires/FRMCreateurs.aspx"><%= outils.obtenirLangue("Page des créateurs|Developer's page")%></asp:LinkButton>
@@ -926,6 +928,79 @@
             </div>
 
             <%-------------------------------End Footer-----------------------------------%>
+
+            <%-------------------------------Modal Windows--------------------------------%>
+            <div id="ModalDevenirSentinelle" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <asp:Label runat="server" CssClass="modalTitle"><%= outils.obtenirLangue("DEVENEZ SENTINELLE!|BECOME A SENTINEL!")%></asp:Label>
+                </div>
+                <div class="modal-body">
+                    <h5><%= outils.obtenirLangue("Les Sentinelles et leur rôle|Sentinels and their role")%></h5>
+                    <p><%= outils.obtenirLangue("Les sentinelles sont des adultes qui désirent s’engager de façon volontaire pour agir comme RELAIS entre les personnes suicidaires et les ressources d’aide. Leur rôle peut être comparé à celui des personnes formées en premiers soins : assurer un soutien en attendant que des professionnels prennent la relève.|The sentinels are adults who wish to engage voluntarily to act as RELAY between suicidal people and resources to help. Their role can be compared to people trained in first aid: provide support until the professionals take over.")%></p>
+                    <h5><%= outils.obtenirLangue("Un rôle encadré par des professionnels|A role supervised by professionals")%></h5>
+                    <p><%= outils.obtenirLangue("Après avoir été sélectionné, vous recevrez une formation vous permettant de :|After being selected, you will receive training to enable you to :")%></p>
+                    <ul>
+                        <li><%= outils.obtenirLangue("Comprendre votre rôle et ses limites ;|Understand your role and its limits ;")%></li>
+                        <li><%= outils.obtenirLangue("Développer des habiletés en relation d’aide ;|Develop skills in helping relationships ;")%></li>
+                        <li><%= outils.obtenirLangue("Développer une aisance à parler du suicide;|Develop an ease to talk about suicide ;")%></li>
+                        <li><%= outils.obtenirLangue("Reconnaître les signes précurseurs du suicide ;|Recognize the warning signs of suicide ;")%></li>
+                        <li><%= outils.obtenirLangue("Connaître les ressources d’aide.|Know the aid resources.")%></li>
+                    </ul>
+                    <h5><%= outils.obtenirLangue("Soutien continu|Ongoing support")%></h5>
+                    <p><%= outils.obtenirLangue("Vous recevrez également du soutien d’un professionnel lorsque vous serez en contact avec une personne suicidaire. D’autres activités (formation continue, bulletin d’informations, etc.) vous seront aussi offertes pour vous permettre de perfectionner vos habiletés dans votre rôle de <b>Sentinelle.</b>|You will also receive the support of a professional when you are in contact with a suicidal person. Other activities (training, newsletter, etc..) will be also available for you to improve your skills in your role as <b> Sentinel.</b>")%></p>
+                    <hr />
+                    <small><i><%= outils.obtenirLangue("Source : Dépliant produit par l’Agence de la santé et des services sociaux de la Montérégie.|Source: Brochure produced by the Agency for Health and Social Services of the Montérégie.")%></i></small>
+                </div>
+                <div class="modal-footer">
+                    <asp:LinkButton runat="server" CssClass="btn btn-primary" PostBackUrl="~/Formulaires/FRMdevenirsentinelle.aspx"><%= outils.obtenirLangue("Remplir le formulaire|Complete the form")%></asp:LinkButton>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true"><%= outils.obtenirLangue("Fermer|Close")%></button>
+                </div>
+            </div>
+            <div>
+                <div id="ModalInfoSuicide" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <asp:Label runat="server" CssClass="modalTitle"><%= outils.obtenirLangue("LE SUICIDE|SUICIDE")%></asp:Label>
+                    </div>
+                    <div class="modal-body">
+                        <h5><%= outils.obtenirLangue("Le Suicide|Suicide")%></h5>
+                        <p><%= outils.obtenirLangue("Le suicide tue plus que les accidents de la route. Au Québec, près de 1 200 personnes se suicident chaque année, ce qui représente plus de 3 décès par jour.|Suicide kills more people than road accidents. In Quebec, nearly 1200 people commit suicide each year, representing more than 3 deaths per day.")%></p>
+                        <p><%= outils.obtenirLangue("En considérant les personnes qui ont eu des idées suicidaires ou fait une tentative de suicide, celles qui se sont suicidées, leurs proches et les endeuillés, on dénombre plus de 700 000 Québécois qui, chaque année, sont touchés par le suicide.|Considering the people who have had suicidal thoughts or attempted suicide, those who committed suicide, their families and the bereaved, there are more than 700,000 Quebecers each year that are affected by suicide.")%></p>
+                        <p><%= outils.obtenirLangue("Malheureusement, on croit souvent, à tort, qu’on ne peut pas prévenir le suicide.|Unfortunately, it is often assumed, wrongly, that we can not prevent suicide.")%></p>
+                        <h5><%= outils.obtenirLangue("Il est possible de PRÉVENIR le suicide|It is possible to PREVENT suicide")%></h5>
+                        <p><%= outils.obtenirLangue("Les personnes suicidaires manifestent souvent des signes précurseurs de leur intention, et il est possible d’apprendre à les reconnaître.Les personnes suicidaires ne veulent pas mourir, mais plutôt arrêter de souffrir. Elles acceptent souvent l’aide offerte.|Suicidal people often show signs of their intention, and it is possible to learn to recognize them. Suicidal people do not want to die, but rather to stop suffering. They often accept the help offered.")%></p>
+                        <p><%= outils.obtenirLangue("Il existe des ressources qui peuvent venir en aide aux personnes touchées.|There are resources that can help those who are affected.")%></p>
+                        <p><%= outils.obtenirLangue("Vous désirez obtenir plus d'information? Consultez notre section <a href='../Formulaires/FRMliensutiles.aspx'>liens utiles</a>.|Want more information? Visit our section <a href='../Formulaires/FRMliensutiles.aspx'>useful links</a>.")%></p>
+                        <hr />
+                        <small><i><%= outils.obtenirLangue("Source : Dépliant produit par l’Agence de la santé et des services sociaux de la Montérégie.|Source: Brochure produced by the Agency for Health and Social Services of the Montérégie.")%></i></small>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true"><%= outils.obtenirLangue("Fermer|Close")%></button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div id="ModalInfoMaltraitance" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <asp:Label runat="server" CssClass="modalTitle"><%= outils.obtenirLangue("LA MALTRAITANCE ENVERS LES AINÉS|ELDER ABUSE")%></asp:Label>
+                    </div>
+                    <div class="modal-body">
+                        <h5><%= outils.obtenirLangue("Comment reconnaître la maltraitance envers les ainées?|How to recognize elder abuse?")%></h5>
+                        <p><%= outils.obtenirLangue("«Il y a maltraitance quand un geste singulier ou répétitif, ou une absence d’action appropriée, se produit dans une relation où il devrait y avoir de la confiance, et que cela cause du tort ou de la détresse chez une personne aînée.»|«Abuse exists when a single or repeated action, or lack of appropriate action occurs which could cause harm or distress to a senior in a relationship where there should be trust.»")%>&#185</p>
+                        <h5><%= outils.obtenirLangue("Types de maltraitance|Types of abuse")%></h5>
+                        <p><%= outils.obtenirLangue("La maltraitance envers les aînés revêt différentes formes qui sont classées, la plupart du temps, en cinq principales formes, soit la maltraitance physique, psychologique ou émotionnelle, financière ou matérielle, sexuelle et la négligence. La violation des droits est également une autre forme de maltraitance considérée par certains ainsi que la maltraitance organisationnelle ou systémique. Qu’en est-il vraiment?|Elder abuse occurs in different forms which generally fall into five main categories: physical, psychological or emotional, financial or material, sexual and negligence. Some authors also include violation of rights and organizational and systemic abuse. How are these defined?")%></p>
+                        <p><%= outils.obtenirLangue("Si vous souhaitez en apprendre plus sur la maltraitance, appuyez sur <a href='../Formulaires/FRMmaltraitance.aspx'>En savoir plus</a>.|If you want to learn more, press <a href='../Formulaires/FRMmaltraitance.aspx'>Learn more</a>.")%></p>
+                        <hr />
+                        <small>&#185<i><%= outils.obtenirLangue("Source : Organisation mondiale de la Santé, 2002 : 141|World Health Organization, 2002 : 141")%></i></small>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary" PostBackUrl="../Formulaires/FRMmaltraitance.aspx"><%= outils.obtenirLangue("En savoir plus|Learn more")%></asp:LinkButton>
+                        <button class="btn" data-dismiss="modal" aria-hidden="true"><%= outils.obtenirLangue("Fermer|Close")%></button>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 </body>

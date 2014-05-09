@@ -53,13 +53,29 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.0.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -95,7 +111,6 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\ajax-loader.gif" />
     <Content Include="BackControl\CleanBDControler.aspx" />
     <Content Include="BackControl\EmailSendRoutine.aspx" />
     <Content Include="bin\ar\AjaxControlToolkit.resources.dll" />
@@ -157,41 +172,10 @@
     <Content Include="Formulaires\FRMrevuedepresse.aspx" />
     <Content Include="Formulaires\index.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Images\AQDR.jpg" />
-    <Content Include="Images\background.png" />
-    <Content Include="Images\BanniereEN.png" />
-    <Content Include="Images\BanniereFR.png" />
-    <Content Include="Images\CGHY.jpg" />
-    <Content Include="Images\CGHY.png" />
-    <Content Include="Images\configuration.png" />
-    <Content Include="Images\CPS.jpg" />
-    <Content Include="Images\createurs.JPG" />
-    <Content Include="Images\CSSSHY.jpg" />
-    <Content Include="Images\enveloppe.png" />
-    <Content Include="Images\enveloppeSelected.png" />
-    <Content Include="Images\favicon.png" />
-    <Content Include="Images\flecheRetour.png" />
-    <Content Include="Images\glyphicons-halflings-white.png" />
-    <Content Include="Images\glyphicons-halflings.png" />
-    <Content Include="Images\icon-pin.png" />
-    <Content Include="Images\iconRotateLeft.png" />
-    <Content Include="Images\iconRotateRight.png" />
-    <Content Include="Images\LogoOfficielHY.png" />
-    <Content Include="Images\LogoOfficielHYSmallEN.png" />
-    <Content Include="Images\LogoOfficielHYSmallFR.png" />
-    <Content Include="Images\PastilleDevenirSentinelleEN.png" />
-    <Content Include="Images\PastilleDevenirSentinelleFR.png" />
-    <Content Include="Images\PastilleInfoMaltraitanceEN.png" />
-    <Content Include="Images\PastilleInfoMaltraitanceFR.png" />
-    <Content Include="Images\PastilleInfoSuicideEN.png" />
-    <Content Include="Images\PastilleInfoSuicideFR.png" />
-    <Content Include="Images\servicecanada.png" />
-    <Content Include="Images\TriangleFooter.png" />
     <Content Include="Log\ErrorLog.txt" />
     <Content Include="Upload\ImagesCarrousel\Carrousel1.jpg" />
     <Content Include="Upload\ImagesCarrousel\Carrousel2.jpg" />
     <Content Include="Upload\ImagesCarrousel\Carrousel3.jpg" />
-    <Content Include="Upload\ImagesProfil\35945.jpg" />
     <Content Include="Upload\ImagesProfil\default.png" />
     <Content Include="Upload\ImagesProfil\Sans titre70432.jpg" />
     <Content Include="Web.config">
@@ -199,6 +183,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.vb" />
     <Compile Include="BackControl\CleanBDControler.aspx.designer.vb">
       <DependentUpon>CleanBDControler.aspx</DependentUpon>
     </Compile>
@@ -347,6 +332,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="TestController.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -358,6 +344,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Formulaires\Site.Master" />
+    <Content Include="Documents\panneau_controle.pdf" />
+    <Content Include="Documents\zone_sentinelle.pdf" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -384,7 +372,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="backups\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModeleSentinellesHY\ModeleSentinellesHY.vbproj">
