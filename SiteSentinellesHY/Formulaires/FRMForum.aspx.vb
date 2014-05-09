@@ -1196,4 +1196,7 @@ Public Class FRMForum
 #End Region
 
 
+    Protected Sub btnAnnulerInfos_Click(sender As Object, e As EventArgs)
+        Response.Redirect("~/Formulaires/FRMForum.aspx?view=4", False)
+    End Sub
 End Class
