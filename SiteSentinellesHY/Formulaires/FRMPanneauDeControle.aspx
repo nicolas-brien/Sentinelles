@@ -1244,7 +1244,7 @@
 
                                 </div>
                                 <div id="lnkBtn_envoiMessage">
-                                    <% 
+                                    <%--<% 
                                         Dim isMailSending = False
                                         
                                         If Not File.Exists(Server.MapPath("/BackControl/properties.txt")) Then
@@ -1274,7 +1274,7 @@
                                         <%= outils.obtenirLangue(" Envoi de courriel en cours| Email sending under processing")%>
                                     <%        
                                         End If
-                                    %>
+                                    %>--%>
                                     
                                 </div>
                             </div>
