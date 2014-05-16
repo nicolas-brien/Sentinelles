@@ -673,6 +673,7 @@ Public Class FRMForum
         publicationAValider = New ModeleSentinellesHY.Publication
         TryUpdateModel(publicationAValider)
 
+
         'Remplace les div par des p pour un retour à la ligne
         If Not publicationAValider.contenu = Nothing Then
             publicationAValider.contenu = publicationAValider.contenu.Replace("<div", "<p")
