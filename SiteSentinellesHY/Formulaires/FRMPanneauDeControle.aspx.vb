@@ -169,7 +169,7 @@ Public Class FRMPanneauDeControle
 #End Region
 
 #Region "EnvoiMessage"
-    Private Sub lnkbtnEnvoiMessage_Click(sender As Object, e As EventArgs) Handles lnkBtn_EnvoiMessage.Click
+    Private Sub lnkbtnEnvoiMessage_Click(sender As Object, e As EventArgs) Handles lnkbtnEnvoiMessage.Click
         Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim isMailSending = False
         If Not File.Exists(Server.MapPath("/BackControl/properties.txt")) Then

@@ -105,7 +105,7 @@
             </div>
             <div class="row text-center">
                 <ul>
-                    <asp:linkbutton ID="lnkBtn_EnvoiMessage" CssClass="lnkBtn_EnvoiMessage" runat="server"><!-- No text --></asp:linkbutton>
+                    <asp:LinkButton ID="lnkBtn_EnvoiMessage" CssClass="lnkBtn_EnvoiMessage" runat="server"><!-- No text --></asp:LinkButton>
                     <asp:LinkButton ID="lnkButton_accueil" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("GÉNÉRAL|GENERAL")%></asp:LinkButton>
                     <asp:LinkButton ID="lnkButton_nouvelle" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("NOUVELLES|NEWS")%></asp:LinkButton>
                     <asp:LinkButton ID="lnkButton_evenement" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("ÉVÉNEMENTS|EVENTS")%></asp:LinkButton>
@@ -1269,8 +1269,7 @@
                                              %>
                                                 <asp:LinkButton ID="lnkbtnEnvoiMessage" runat="server"
                                                         CssClass = "btn btn-primary"
-                                                        Enabled = "true"
-                                                CommandName="Update">
+                                                        Enabled = "true">
                                                     <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
                                                 </asp:LinkButton>
                                             <%                                             
