@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class FRMnouvelles
 
     '''<summary>
-    '''Contrôle dataPagerHaut.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents dataPagerHaut As Global.System.Web.UI.WebControls.DataPager
-
-    '''<summary>
     '''Contrôle lvNouvelles.
     '''</summary>
     '''<remarks>
@@ -30,13 +21,4 @@ Partial Public Class FRMnouvelles
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents lvNouvelles As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''Contrôle dataPagerBas.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents dataPagerBas As Global.System.Web.UI.WebControls.DataPager
 End Class

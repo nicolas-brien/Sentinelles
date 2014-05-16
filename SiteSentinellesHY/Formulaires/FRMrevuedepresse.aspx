@@ -6,18 +6,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2><%= outils.obtenirLangue("REVUES DE PRESSE|PRESS REVIEW")%></h2>
-    <div class="dataPager">
-        <asp:DataPager runat="server" ID="dataPagerHaut" PageSize="3" PagedControlID="lvRevueDePresse" class="btn-group">
-            <Fields>
-                <asp:NextPreviousPagerField FirstPageText="<i class='icon-chevron-left'></i>" ShowFirstPageButton="True"
-                    ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
-                <asp:NumericPagerField CurrentPageLabelCssClass="btn btn-info btn-sm btn-datapager" NumericButtonCssClass="btn btn-default btn-sm btn-datapager" />
-                <asp:NextPreviousPagerField LastPageText="<i class='icon-chevron-right'></i>" ShowLastPageButton="True"
-                    ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
-            </Fields>
-        </asp:DataPager>
-    </div>
-    <br />
     <asp:ListView runat="server"
         ID="lvRevueDePresse"
         DataKeyNames="idRDP"
@@ -29,7 +17,7 @@
                 <div class="clear-both">
                     <div class="cadrageItems">
                         <div>
-                              <p><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ")%></b><%# Eval("DateRedactionDo")%></p>
+                            <p><b><%# outils.obtenirLangue("Date de rédaction : |Redaction date : ")%></b><%# Eval("DateRedactionDo")%></p>
                         </div>
                         <div class="clear-both">
                             <asp:Label ID="lblRDP1" runat="server" Text='<%# Eval(outils.obtenirLangue("contenuFR|contenuEN"))%>'></asp:Label>
@@ -56,15 +44,4 @@
             </div>
         </EmptyDataTemplate>
     </asp:ListView>
-    <div class="dataPager">
-        <asp:DataPager runat="server" ID="dataPagerBas" PageSize="3" PagedControlID="lvRevueDePresse" class="btn-group">
-            <Fields>
-                <asp:NextPreviousPagerField FirstPageText="<i class='icon-chevron-left'></i>" ShowFirstPageButton="True"
-                    ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
-                <asp:NumericPagerField CurrentPageLabelCssClass="btn btn-info btn-sm btn-datapager" NumericButtonCssClass="btn btn-default btn-sm btn-datapager" />
-                <asp:NextPreviousPagerField LastPageText="<i class='icon-chevron-right'></i>" ShowLastPageButton="True"
-                    ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonCssClass="btn btn-default btn-sm btn-datapager" />
-            </Fields>
-        </asp:DataPager>
-    </div>
 </asp:Content>

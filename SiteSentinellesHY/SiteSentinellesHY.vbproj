@@ -407,8 +407,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="App_Start\" />
     <Folder Include="backups\" />
   </ItemGroup>
   <ItemGroup>
