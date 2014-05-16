@@ -149,7 +149,9 @@
                                             ID="lvCategorie"
                                             ItemType="ModeleSentinellesHY.Categorie"
                                             SelectMethod="getCategorieAccueil"
-                                            DeleteMethod="DeleteCategorie">
+                                            UpdateMethod="UpdateCategorie"
+                                            DeleteMethod="DeleteCategorie"
+                                            DataKeyNames="idCategorie">
                                             <LayoutTemplate>
                                                 <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                             </LayoutTemplate>
@@ -164,7 +166,7 @@
                                                     </div>
                                                     <div class="span2 offset2" style="padding-top: 3px">
                                                         
-                                                        <asp:LinkButton ID="lnkbtnSauvegarderCategorie" runat="server" Width="82px" CssClass="btn disabled-button"><%= outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkbtnSauvegarderCategorie" runat="server" CommandName="Update" Width="82px" CssClass="btn disabled-button"><%= outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
                                                         <asp:LinkButton ID="lnkbtnSupprimerCategorie" runat="server"
                                                             CssClass="pull-right"  
                                                             role="button"
