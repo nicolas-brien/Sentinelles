@@ -194,6 +194,29 @@ Public Class FRMForum
         Return listeCategoriePublication.AsQueryable
     End Function
 
+    Public Sub UpdateCategorie(ByVal idCategorie As Integer)
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        Dim categorieAValider As ModeleSentinellesHY.Categorie = Nothing
+        categorieAValider = leContexte.CategorieJeu.Find(idCategorie)
+        TryUpdateModel(categorieAValider)
+        If ModelState.IsValid Then
+            'Condition pour vérifier si la catégorie à enregistrer est valide
+            If (categorieAValider.nomCategorieEN IsNot Nothing And categorieAValider.nomCategorieFR IsNot Nothing) AndAlso _
+               (categorieAValider.nomCategorieEN.Count <= 50 And categorieAValider.nomCategorieFR.Count <= 50) Then
+                leContexte.SaveChanges()
+                lblErreurCategorie.Text = ""
+            Else
+                lblErreurCategorie.Text = ModeleSentinellesHY.outils.obtenirLangue("Tous les champs doivent contenir un nom valide de moins de 50 caractères." _
+                                                                                   & "|All fields must contain a valid name of less than 50 characters.")
+            End If
+        Else
+            lblErreurCategorie.Text = ModeleSentinellesHY.outils.obtenirLangue("Tous les champs doivent contenir un nom valide de moins de 50 caractères." _
+                                                                                   & "|All fields must contain a valid name of less than 50 characters.")
+        End If
+        lvCategorie.DataBind()
+        gererLesCategories.Attributes("class") = "collapse in"
+    End Sub
+
     Public Sub DeleteCategorie(ByVal categorieASupprimer As ModeleSentinellesHY.Categorie, sender As Object)
         Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
         Dim categorieAValider As ModeleSentinellesHY.Categorie = Nothing
@@ -1206,5 +1229,4 @@ Public Class FRMForum
         End If
     End Sub
 #End Region
-
 End Class
