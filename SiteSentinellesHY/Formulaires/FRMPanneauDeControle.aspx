@@ -105,7 +105,7 @@
             </div>
             <div class="row text-center">
                 <ul>
-                    <asp:linkbutton ID="lnkBtn_EnvoiMessage" CssClass="lnkBtn_EnvoiMessage" runat="server"><!-- No text --></asp:linkbutton>
+                    <asp:LinkButton ID="lnkBtn_EnvoiMessage" CssClass="lnkBtn_EnvoiMessage" runat="server"><!-- No text --></asp:LinkButton>
                     <asp:LinkButton ID="lnkButton_accueil" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("GÉNÉRAL|GENERAL")%></asp:LinkButton>
                     <asp:LinkButton ID="lnkButton_nouvelle" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("NOUVELLES|NEWS")%></asp:LinkButton>
                     <asp:LinkButton ID="lnkButton_evenement" CssClass="lnkBtn_menuConfig" runat="server"><%= outils.obtenirLangue("ÉVÉNEMENTS|EVENTS")%></asp:LinkButton>
@@ -1169,7 +1169,7 @@
                                                     <asp:Button ID="btnImgDefaut" CssClass="btn btn-mini btn-warning" Text='<%# outils.obtenirLangue(" Image par défaut| Reset default image")%>' OnClick="btnImgDefaut_Click" runat="server"></asp:Button>
                                                 </div>
                                                 <div class="span6 Avatar_margin" style="float: right;">
-                                                    <img id="imgUpload" src='<%# String.Format("../Upload/ImagesProfil/{0}", Eval("UrlAvatar"))%>' runat="server" />
+                                                    <img id="imgUpload" src='<%# If(Eval("UrlAvatar") & "" <> "",String.Format("../Upload/ImagesProfil/{0}", Eval("UrlAvatar")),"../Upload/ImagesProfil/Default.png") %>' runat="server" />
                                                 </div>
                                             </div>
                                             <div id="rowBouton" class="row">
@@ -1269,8 +1269,7 @@
                                              %>
                                                 <asp:LinkButton ID="lnkbtnEnvoiMessage" runat="server"
                                                         CssClass = "btn btn-primary"
-                                                        Enabled = "true"
-                                                CommandName="Update">
+                                                        Enabled = "true">
                                                     <i aria-hidden="true" class="icon-check"></i><%= outils.obtenirLangue(" Envoyer| Send")%>
                                                 </asp:LinkButton>
                                             <%                                             

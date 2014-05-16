@@ -149,7 +149,9 @@
                                             ID="lvCategorie"
                                             ItemType="ModeleSentinellesHY.Categorie"
                                             SelectMethod="getCategorieAccueil"
-                                            DeleteMethod="DeleteCategorie">
+                                            UpdateMethod="UpdateCategorie"
+                                            DeleteMethod="DeleteCategorie"
+                                            DataKeyNames="idCategorie">
                                             <LayoutTemplate>
                                                 <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                                             </LayoutTemplate>
@@ -164,7 +166,7 @@
                                                     </div>
                                                     <div class="span2 offset2" style="padding-top: 3px">
                                                         
-                                                        <asp:LinkButton ID="lnkbtnSauvegarderCategorie" runat="server" Width="82px" CssClass="btn disabled-button"><%= outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkbtnSauvegarderCategorie" runat="server" CommandName="Update" Width="82px" CssClass="btn disabled-button"><%= outils.obtenirLangue("Sauvegarder|Save")%></asp:LinkButton>
                                                         <asp:LinkButton ID="lnkbtnSupprimerCategorie" runat="server"
                                                             CssClass="pull-right"  
                                                             role="button"
@@ -394,7 +396,7 @@
                                                                 <div class="clear-both">
                                                                     <asp:Label ID="lblContenu" runat="server" Font-Bold="true">Contenu de la publication</asp:Label>
                                                                     <asp:TextBox ID="txtboxcontenu" runat="server" CssClass="txtBoxHtmlEditor" Text='<%# BindItem.contenu %>' TextMode="MultiLine"></asp:TextBox>
-                                                                    <asp:HtmlEditorExtender ID="htmleditorMessage" runat="server" TargetControlID="txtboxcontenu">
+                                                                    <asp:HtmlEditorExtender ID="htmleditorMessage" EnableSanitization="false"  ValidateRequestMode="Disabled"  Enabled="true" runat="server" TargetControlID="txtboxcontenu">
                                                                         <Toolbar>
                                                                             <ajaxToolkit:Undo />
                                                                             <ajaxToolkit:Redo />
@@ -552,7 +554,7 @@
                                         <div class="clear-both">
                                             <asp:TextBox ID="txtboxtitre" CssClass="txtboxTitrePublication" onkeydown="return (event.keyCode !=13);" placeHolder="Titre/Title" Text="<%# BindItem.titre%>" runat="server" />
                                             <asp:TextBox ID="txtboxcontenu" CssClass="txtBoxHtmlEditor" TextMode="MultiLine" Text="<%# BindItem.contenu%>" runat="server" />
-                                            <asp:HtmlEditorExtender ID="htmleditorContenu" runat="server" TargetControlID="txtboxcontenu">
+                                            <asp:HtmlEditorExtender ID="htmleditorContenu" EnableSanitization="false"  ValidateRequestMode="Disabled"  Enabled="true" runat="server" TargetControlID="txtboxcontenu">
                                                 <Toolbar>
                                                     <ajaxToolkit:Undo />
                                                     <ajaxToolkit:Redo />
