@@ -835,16 +835,14 @@ Public Class FRMForum
         g.DrawImage(image, New Rectangle(0, 0, 400, 400), New Rectangle(x__1, y__2, w__3, h__4), GraphicsUnit.Pixel)
         'Save the file and reload to the control
 
-        'On ajoute un nombre aléatoire à la fin du fichier afin d'éviter d'écraser les photos existantes
-        Dim MyRandomNumber As New Random()
-        Dim xr As Integer = MyRandomNumber.Next(10000, 100000)
-        nomFichier = xr.ToString + ".jpg"
+        nomFichier = utilisateurAValider.idUtilisateur.ToString() + ".jpg"
 
         bmp.Save(Server.MapPath("../Upload/ImagesProfil/") + nomFichier, image.RawFormat)
         utilisateurAValider.UrlAvatar = nomFichier
 
         leContexte.SaveChanges()
         lvInfoUtilisateur.DataBind()
+
         CType(lvInfoUtilisateur.Items(0).FindControl("mvPhotos"), MultiView).ActiveViewIndex = 0
 
     End Sub
