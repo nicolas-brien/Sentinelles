@@ -96,14 +96,6 @@ Public Class FRMForum
                     End If
                 End If
             Next
-            ''attribution de la photo pat default si trouve pas la photo du profil dans le dossier
-            'For Each utilisateur As Utilisateur In leContexte.UtilisateurJeu
-            '    If ((di.GetFiles.Where(Function(x) x.Name = utilisateur.UrlAvatar).FirstOrDefault) Is Nothing) Then
-            '        utilisateur.UrlAvatar = "default.png"
-            '    End If
-            'Next
-
-            'leContexte.SaveChanges()
 
         End If
 
@@ -489,7 +481,7 @@ Public Class FRMForum
         'On vérifie si l'utilisateur existe encore dans la BD
         If Not unePublication.idUtilisateur Is Nothing Then
             lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Publié par |Posted by ") & unePublication.Utilisateur.nomUtilisateur
-            imgAvatar.ImageUrl = "../Upload/ImagesProfil/" & unePublication.Utilisateur.UrlAvatar
+            imgAvatar.ImageUrl = "../Upload/ImagesProfil/" & unePublication.Utilisateur.getUrlAvatar
         Else
             lblPubliePar.Text = ModeleSentinellesHY.outils.obtenirLangue("Utilisateur supprimé|User deleted")
             imgAvatar.ImageUrl = "../Upload/ImagesProfil/default.png"

@@ -1169,7 +1169,7 @@
                                                     <asp:Button ID="btnImgDefaut" CssClass="btn btn-mini btn-warning" Text='<%# outils.obtenirLangue(" Image par défaut| Reset default image")%>' OnClick="btnImgDefaut_Click" runat="server"></asp:Button>
                                                 </div>
                                                 <div class="span6 Avatar_margin" style="float: right;">
-                                                    <img id="imgUpload" src='<%# String.Format("../Upload/ImagesProfil/{0}", Eval("UrlAvatar"))%>' runat="server" />
+                                                    <img id="imgUpload" src='<%# String.Format("../Upload/ImagesProfil/{0}", Eval("getUrlAvatar"))%>' runat="server" />
                                                 </div>
                                             </div>
                                             <div id="rowBouton" class="row">

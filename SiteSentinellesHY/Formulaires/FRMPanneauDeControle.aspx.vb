@@ -70,8 +70,6 @@ Public Class FRMPanneauDeControle
                 End If
             Next
 
-            leContexte.SaveChanges()
-
         End If
 
     End Sub
