@@ -183,7 +183,7 @@
                                                                 <p><%= outils.obtenirLangue("Vous êtes sur le point de supprimer cette catégorie. Voulez-vous continuez?|You are about to delete this category. Do you want to proceed?")%></p>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button class="btn" data-dismiss="modal" aria-hidden="true"><%= outils.obtenirLangue("Annuler|Cancel")%></button>
+                                                                <a class="btn"><%= outils.obtenirLangue("Annuler|Cancel")%></a>
                                                                 <asp:LinkButton ClientIDMode="Static" ID="btnSupprimerCategorie" runat="server" CommandArgument='<%# BindItem.idCategorie %>' Text="Supprimer" CommandName="Delete" class="btn btn-danger" />
                                                                 <script>
                                                                     $(document).ready(function () {
@@ -625,7 +625,7 @@
 
                                             <div id="divAvatar" class="pull-left">
                                                 <div>
-                                                    <asp:ImageButton runat="server" ID="imgUpload" class="thumbnail pull-left" src='<%# String.Format("../Upload/ImagesProfil/{0}", Eval("getUrlAvatar"))%>' OnClientClick="$('[id$=fuplPhoto]').click(); return false;" Style="width: 300px" />
+                                                    <asp:ImageButton runat="server" ID="imgUpload" class="pull-left" src='<%# String.Format("../Upload/ImagesProfil/{0}", Eval("getUrlAvatar"))%>' OnClientClick="$('[id$=fuplPhoto]').click(); return false;" Style="width: 300px" />
                                                                                                       <div class="pull-right">
                                                         <asp:TextBox ID="tbAvatar" CssClass="tbInfoUtilisateur" ReadOnly="true" Text='<%# BindItem.UrlAvatar%>' runat="server" Style="display: none" />
                                                         <div class="clear-both tbInfoUtilisateur">
