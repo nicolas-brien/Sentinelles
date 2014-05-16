@@ -499,7 +499,8 @@ Public Class FRMForum
         'par un intervenant ou un admin après quoi le titre redevient normal au prochain affichage
         If unePublication.consulteParIntervenant = False AndAlso unUtilisateur.idStatut < 3 Then
             CType(e.Item.FindControl("lblTitrePublication"), Label).Attributes("style") = "color:orange;"
-            unePublication.consulteParIntervenant = True
+            Dim publicationModifier = leContexte.PublicationJeu.Find(unePublication.idPublication)
+            publicationModifier.consulteParIntervenant = True
             leContexte.SaveChanges()
         End If
 
