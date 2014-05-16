@@ -758,7 +758,8 @@ Public Class FRMForum
 #Region "InfoUtilisateur Vue4"
     Protected Sub vCrop_Activate(sender As Object, e As EventArgs)
         Dim controlUpload = CType(lvInfoUtilisateur.Items(0).FindControl("fuplPhoto"), FileUpload)
-
+        Dim leContexte As New ModeleSentinellesHY.model_sentinelleshyContainer
+        Dim utilisateurAValider As ModeleSentinellesHY.Utilisateur = outils.getCleanUser(leContexte, Session)
 
         If controlUpload.PostedFile.ContentType = "image/jpeg" Or controlUpload.PostedFile.ContentType = "image/png" Then
             Dim newFileName As String = ""
@@ -771,8 +772,13 @@ Public Class FRMForum
 
             controlUpload.SaveAs(Server.MapPath("../Upload/ImagesProfil/" & newFileName))
 
+            utilisateurAValider.UrlAvatar = nomFichier
+
+            leContexte.SaveChanges()
+
             Dim cropbox = CType(lvInfoUtilisateur.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
             cropbox.ImageUrl = "~/Upload/ImagesProfil/" & newFileName
+
         End If
 
     End Sub
