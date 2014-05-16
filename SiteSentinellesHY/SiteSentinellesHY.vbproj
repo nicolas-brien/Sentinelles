@@ -183,7 +183,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\WebApiConfig.vb" />
     <Compile Include="BackControl\CleanBDControler.aspx.designer.vb">
       <DependentUpon>CleanBDControler.aspx</DependentUpon>
     </Compile>
@@ -332,7 +331,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TestController.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -374,7 +372,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="backups\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModeleSentinellesHY\ModeleSentinellesHY.vbproj">
