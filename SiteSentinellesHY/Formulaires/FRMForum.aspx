@@ -183,7 +183,7 @@
                                                                 <p><%= outils.obtenirLangue("Vous êtes sur le point de supprimer cette catégorie. Voulez-vous continuez?|You are about to delete this category. Do you want to proceed?")%></p>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a class="btn"><%= outils.obtenirLangue("Annuler|Cancel")%></a>
+                                                                <button class="btn" data-dismiss="modal" aria-hidden="true"><%= outils.obtenirLangue("Annuler|Cancel")%></button>
                                                                 <asp:LinkButton ClientIDMode="Static" ID="btnSupprimerCategorie" runat="server" CommandArgument='<%# BindItem.idCategorie %>' Text="Supprimer" CommandName="Delete" class="btn btn-danger" />
                                                                 <script>
                                                                     $(document).ready(function () {
