@@ -321,6 +321,7 @@ Public Class FRMPanneauDeControle
 
             Dim cropbox = CType(lviewOptions.Items(0).FindControl("cropbox"), System.Web.UI.WebControls.Image)
             cropbox.ImageUrl = "~/Upload/ImagesCarrousel/" & newFileName
+
         End If
 
     End Sub
