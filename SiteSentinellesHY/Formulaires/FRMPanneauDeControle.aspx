@@ -1207,7 +1207,7 @@
                         </asp:View>
 
                         <asp:View ID="viewMessage" runat="server">
-                            <div class="encadrerModification">
+                            <div class="encadrerModification petitsPoints">
                                 <div>
                                     <asp:Label ID="Label11" runat="server">
                                         <%= outils.obtenirLangue("Veuillez prendre note que ce message sera distribué à tous les utilisateurs présentement inscrits.|Please take note that this email will be sent to all the users actually registered.")%>
