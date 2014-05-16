@@ -858,6 +858,12 @@
                         </div>
                     </asp:View>
                 </asp:MultiView>
+                <div class="row paddingRow">
+                    <div class="alert alert-info">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <%= outils.obtenirLangue(" Besoin d'un aide-mémoire? Un | In need of assistance? A ")%><a href="../Documents/zone_sentinelle.pdf"><%= outils.obtenirLangue(" document d'aide| user guide")%></a> <%= outils.obtenirLangue(" est disponible pour vous rafraîchir la mémoire| is available in order to help you")%>.
+                    </div>
+                </div>
             </div>
             <%-------------------------------End Content----------------------------------%>
 
