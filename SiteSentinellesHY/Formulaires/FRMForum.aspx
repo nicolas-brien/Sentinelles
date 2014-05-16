@@ -118,8 +118,7 @@
             <%-----------------------------------Content----------------------------------%>
 
             <div id="content">
-                <asp:HiddenField ID="etatCategorie" runat="server" Value=""></asp:HiddenField>
-                                                       
+                                               
                 <asp:MultiView ID="MultiViewForum" runat="server">
                     <asp:View ID="viewForum_Accueil" runat="server">
                         <div id="divDeForum" runat="server" class="row paddingRow">
