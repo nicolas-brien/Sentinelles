@@ -2,14 +2,34 @@
 'la fonction Validate ainsi qu'un constructeur vide.
 
 Imports System
+
+Imports System.Web
 Imports System.Collections.Generic
 Imports System.ComponentModel.DataAnnotations
 Imports System.ComponentModel
+Imports System.IO
+
 
 <MetadataType(GetType(UtilisateurValidation))> _
 Partial Public Class Utilisateur
     Implements IValidatableObject
 
+    Public ReadOnly Property getUrlAvatar
+
+        Get
+            Dim Server = HttpContext.Current.Server
+            Dim di As New DirectoryInfo(Server.MapPath("~/Upload/ImagesProfil/"))
+            For Each fi As FileInfo In di.GetFiles()
+                If (fi.Name.IndexOf(UrlAvatar) = 0) Then
+                    Return UrlAvatar
+                End If
+            Next
+
+            Return "default.png"
+
+        End Get
+
+    End Property
     'Mot de passe du formulaire
     Private _motDePasseTemp As String
     Public Property motDePasseTemp
@@ -58,6 +78,8 @@ Partial Public Class Utilisateur
         dateInscription = Date.Now.Date
     End Sub
 
+
+
     'La fonction validate contient plusieurs validations pour les mots de passes.
     Public Function Validate(ValidationContext As ValidationContext) As IEnumerable(Of ValidationResult) _
     Implements IValidatableObject.Validate
@@ -70,22 +92,24 @@ Partial Public Class Utilisateur
         'Sinon, le mot de passe du formulaire et la confirmation du mot de passe du formulaire doivent être identiques
         'Sinon, le mot de passe du formulaire doit contenir entre 6 et 16 caractères
         'À la suite de toutes ces vérifications, les mots de passe sont corrects.
-            If Me.motDePasseTemp = "" AndAlso Me.motDePasse <> "" Then
-                Me.motDePasse = leContexte.UtilisateurJeu.Find(Me.idUtilisateur).motDePasse
-                Me.SelDeMer = leContexte.UtilisateurJeu.Find(Me.idUtilisateur).SelDeMer
-            ElseIf Me.motDePasseTemp = "" Then
-                listeRetour.Add(New ValidationResult("Le mot de passe ne doit pas être vide|The password can't be empty"))
-            ElseIf Me.motDePasseTemp <> Me.confirmationMotDePasse Then
-                listeRetour.Add(New ValidationResult("Les mots de passes doivent être identiques|The passwords must be the same"))
-            ElseIf Me.motDePasseTemp.ToString.Count > 16 Or Me.motDePasseTemp.ToString.Count < 6 Then
-                listeRetour.Add(New ValidationResult("Le mot de passe doit contenir entre 6 et 16 caractères|The password must contains between 6 and 16 characters"))
-            Else
-                Me.SelDeMer = ModeleSentinellesHY.outils.SecureRandom(3)
-                Me.motDePasse = ModeleSentinellesHY.outils.encryptage(_motDePasseTemp & Me.SelDeMer)
-            End If
+        If Me.motDePasseTemp = "" AndAlso Me.motDePasse <> "" Then
+            Me.motDePasse = leContexte.UtilisateurJeu.Find(Me.idUtilisateur).motDePasse
+            Me.SelDeMer = leContexte.UtilisateurJeu.Find(Me.idUtilisateur).SelDeMer
+        ElseIf Me.motDePasseTemp = "" Then
+            listeRetour.Add(New ValidationResult("Le mot de passe ne doit pas être vide|The password can't be empty"))
+        ElseIf Me.motDePasseTemp <> Me.confirmationMotDePasse Then
+            listeRetour.Add(New ValidationResult("Les mots de passes doivent être identiques|The passwords must be the same"))
+        ElseIf Me.motDePasseTemp.ToString.Count > 16 Or Me.motDePasseTemp.ToString.Count < 6 Then
+            listeRetour.Add(New ValidationResult("Le mot de passe doit contenir entre 6 et 16 caractères|The password must contains between 6 and 16 characters"))
+        Else
+            Me.SelDeMer = ModeleSentinellesHY.outils.SecureRandom(3)
+            Me.motDePasse = ModeleSentinellesHY.outils.encryptage(_motDePasseTemp & Me.SelDeMer)
+        End If
 
         Return listeRetour
     End Function
+
+
 End Class
 
 Partial Public Class UtilisateurValidation

@@ -41,6 +41,21 @@ Public Class EmailSendRoutine
                 Else
                     isMailSending = False
                 End If
+
+                Dim isDone = False
+                If File.Exists(Server.MapPath(folder + filename)) Then
+                    Using sr As New StreamReader(Server.MapPath(folder + filename))
+                        Dim s As String = sr.ReadLine
+                        If s.Equals("[DONE]") Then
+                            isDone = True
+                        End If
+                    End Using
+                End If
+
+                If isDone Then
+                    File.Delete(Server.MapPath(folder + filename))
+                End If
+
             Catch ex As Exception
 
             End Try
@@ -83,7 +98,7 @@ Public Class EmailSendRoutine
                                         If Integer.TryParse(s.Trim(), id) Then
                                             mailList = (
                                             From m In leContexte.UtilisateurJeu
-                                            Where m.idUtilisateur > Integer.Parse(id)
+                                            Where m.idUtilisateur > id And id > 0
                                             Select m).ToList()
                                         End If
                                     Catch ex As Exception

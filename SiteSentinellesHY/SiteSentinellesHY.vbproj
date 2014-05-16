@@ -410,7 +410,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
     <Folder Include="backups\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModeleSentinellesHY\ModeleSentinellesHY.vbproj">
