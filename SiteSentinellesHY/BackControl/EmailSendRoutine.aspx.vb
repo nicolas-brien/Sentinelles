@@ -98,7 +98,7 @@ Public Class EmailSendRoutine
                                         If Integer.TryParse(s.Trim(), id) Then
                                             mailList = (
                                             From m In leContexte.UtilisateurJeu
-                                            Where m.idUtilisateur > Integer.Parse(id)
+                                            Where m.idUtilisateur > id And id > 0
                                             Select m).ToList()
                                         End If
                                     Catch ex As Exception
