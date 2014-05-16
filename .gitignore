@@ -223,5 +223,6 @@ bin/
 merge-all.sh
 ErrorLog.txt
 ErrorTemp.txt
+SiteSentinellesHY/BackControl/mailmsg.txt
 Upload/
 *.orig
